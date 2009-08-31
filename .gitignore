@@ -1,0 +1,7 @@
+.project
+.git
+web/uploads/*
+log/*.log
+cache/*
+config/databases.yml
+lib/vendor/**

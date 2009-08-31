@@ -1,0 +1,21 @@
+    # Be sure to only have this line once in your configuration
+    NameVirtualHost 127.0.0.1:80
+
+    # This is the configuration for symfony_films
+    Listen 127.0.0.1:80
+
+    <VirtualHost 127.0.0.1:80>
+      ServerName symfony_films.localhost
+      DocumentRoot "/home/leo/programs/projects/symfony_films/web"
+      DirectoryIndex index.php
+      <Directory "/home/leo/programs/projects/symfony_films/web">
+        AllowOverride All
+        Allow from All
+      </Directory>
+
+      Alias /sf ""
+      <Directory "">
+        AllowOverride All
+        Allow from All
+      </Directory>
+    </VirtualHost>
