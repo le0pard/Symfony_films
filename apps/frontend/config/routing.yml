@@ -1,7 +1,97 @@
+user_login:
+  url:     /login
+  param: { module: user, action: login }
+  
+user_registration:
+  url:     /registration
+  param: { module: user, action: registration }
+  
+user_ajax_registration:
+  url:     /ajax_registration
+  param: { module: user, action: ajax_registration }
+  requirements:
+    sf_method: [post]
+    
+user_profile:
+  url:     /profile
+  param: { module: user, action: profile }
+  
+user_logout:
+  url:     /logout
+  param: { module: user, action: logout }
+  
+  
+#film types
+film_types:
+  url:     /cathegory/:id/:url
+  class:   sfPropelRoute
+  options:
+    model: FilmTypes
+    type: object
+    method_for_criteria: doSelectActive
+  param:  { module: film_types, action: show }
+  requirements:
+    id: \d+
+    url: (.*)
+    sf_method: [get]
+
+#film add   
+film_add_step1:
+  url:     /film/add1
+  param:  { module: film, action: add_step1 }
+
+film_edit_step1:
+  url:     /film/edit1/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: edit_step1 }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+  
+film_add_step2:
+  url:     /film/add2/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: add_step2 }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+    
+film_edit_step2:
+  url:     /film/edit2/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: edit_step2 }
+  requirements:
+    id: \d+
+    sf_method: [post]
+    
+film_delete_gallery:
+  url:     /film/delete_gallery/:id
+  class:   sfPropelRoute
+  options:
+    model: FilmGallery
+    type: object
+  param:  { module: film, action: delete_gallery }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: index, action: index }
 
 default_index:
   url:   /:module

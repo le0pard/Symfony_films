@@ -1,0 +1,34 @@
+Film:
+<?php for ($i = 1; $i <= 820; $i++): ?>
+  film<?php echo $i ?>:
+    user_id:  leo
+    title:      'Фильм №<?php echo $i ?>'
+    original_title: 'Film #<?php echo $i ?>'
+    pub_year: 2005
+    director: 'Крутой парень <?php echo $i ?>'
+    about: |-    
+      Много текста Just like the partials, components accept additional parameters in the shape of an associative
+      array. The parameters are available to the partial under their name, and in the component via
+      the $this object.
+    is_visible:    true
+    is_public:     true
+    update_data: <?php echo (time()-$i); ?>
+ 
+<?php endfor; ?>
+
+<?php for ($i = 1000; $i <= 1670; $i++): ?>
+  film<?php echo $i ?>:
+    user_id:  user
+    title:      'Тест Фильм №<?php echo $i ?>'
+    original_title: 'Test Film #<?php echo $i ?>'
+    pub_year: 2008
+    director: 'Coll <?php echo $i ?>'
+    about: |-    
+      Just like the partials, components accept additional parameters in the shape of an associative
+      array. The parameters are available to the partial under their name, and in the component via
+      the $this object.
+    is_visible:    true
+    is_public:     true
+    update_data: <?php echo (time()-$i); ?>
+ 
+<?php endfor; ?>

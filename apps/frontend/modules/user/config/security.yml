@@ -1,0 +1,6 @@
+profile:
+  is_secure:   on    # The update action is only for authenticated
+logout:
+  is_secure:   on    # Only for authenticated users
+all:
+  is_secure:  off

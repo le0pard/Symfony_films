@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [main.css]
 
-  javascripts:    []
+  javascripts:    [prototype.min.js, effects.min.js, controls.min.js, application.js]
 
   has_layout:     on
   layout:         layout

@@ -1,7 +1,10 @@
 rendering: ~
-security:  ~
+security: ~
 
 # insert your own filters here
+remember:
+  class: LoginFilter
+
 
 cache:     ~
 common:    ~

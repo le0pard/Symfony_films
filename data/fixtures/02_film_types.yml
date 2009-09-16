@@ -1,0 +1,97 @@
+FilmTypes:
+  comedy:
+    title: 'Комедия'
+    description: |-
+      Жанр художественного произведения, характерезующийся юмором или сатирическим подходом
+    
+  drama:
+    title: 'Драма'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+
+    
+  boevik:
+    title: 'Боевик'
+    is_visible: false
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+    
+  detektiv:
+    title: 'Детектив'
+    description: |-
+      Жанр художественного произведения, характерезующийся юмором или сатирическим подходом
+    
+  erotika:
+    title: 'Эротика'
+    description: |-
+      Жанр художественного произведения, характерезующийся юмором или сатирическим подходом
+    
+  priklychenija:
+    title: 'Приключения'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+      
+  yjas:
+    title: 'Ужас'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+  
+  fantastic:
+    title: 'Фантастика'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+      
+  multfilm:
+    title: 'Мультфильм'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+      
+  fentezi:
+    title: 'Фентези'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.
+      
+  triller:
+    title: 'Триллер'
+    description: |-
+      You can include components in components, or in the global layout, as in any regular
+      template. Like actions, components’ execute methods can pass variables to the related partial
+      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
+      handle security or validation, cannot be called from the Internet (only from the application
+      itself), and doesn’t have various return possibilities. That’s why a component is faster to
+      execute than an action.

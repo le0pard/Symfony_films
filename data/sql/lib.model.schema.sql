@@ -20,11 +20,34 @@ CREATE TABLE `users`
 	`avatar` VARCHAR(500),
 	`about` TEXT,
 	`right_id` INTEGER default 1 NOT NULL,
+	`last_login` DATETIME,
+	`is_active` TINYINT default 1 NOT NULL,
+	`is_super_admin` TINYINT default 0 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	UNIQUE KEY `users_U_1` (`login`),
 	UNIQUE KEY `users_U_2` (`email`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- users_remember_key
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users_remember_key`;
+
+
+CREATE TABLE `users_remember_key`
+(
+	`user_id` INTEGER  NOT NULL,
+	`remember_key` VARCHAR(32),
+	`ip_address` VARCHAR(50)  NOT NULL,
+	`created_at` DATETIME,
+	PRIMARY KEY (`user_id`,`ip_address`),
+	CONSTRAINT `users_remember_key_FK_1`
+		FOREIGN KEY (`user_id`)
+		REFERENCES `users` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -52,6 +75,8 @@ CREATE TABLE `film`
 	`file_info` TEXT,
 	`is_visible` TINYINT default 1 NOT NULL,
 	`is_private` TINYINT default 0 NOT NULL,
+	`is_public` TINYINT default 0 NOT NULL,
+	`update_data` DATETIME,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
@@ -189,9 +214,30 @@ CREATE TABLE `comments`
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
-	UNIQUE KEY `comments_U_1` (`comment_type_id`),
 	INDEX `comments_FI_1` (`user_id`),
 	CONSTRAINT `comments_FK_1`
+		FOREIGN KEY (`user_id`)
+		REFERENCES `users` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- messages
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `messages`;
+
+
+CREATE TABLE `messages`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`user_id` INTEGER  NOT NULL,
+	`message_type` INTEGER  NOT NULL,
+	`description` TEXT,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`),
+	INDEX `messages_FI_1` (`user_id`),
+	CONSTRAINT `messages_FK_1`
 		FOREIGN KEY (`user_id`)
 		REFERENCES `users` (`id`)
 )Type=InnoDB;

@@ -32,10 +32,6 @@ class BaseCommentsForm extends BaseFormPropel
       'updated_at'        => new sfValidatorDateTime(array('required' => false)),
     ));
 
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'Comments', 'column' => array('comment_type_id')))
-    );
-
     $this->widgetSchema->setNameFormat('comments[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
