@@ -46,7 +46,9 @@ propel:
     id:               ~
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
     title:            { type: varchar(200), required: true }
-    url:              { type: varchar(500), required: true }  
+    url:              { type: varchar(500), required: true }
+    created_at:       ~
+    updated_at:       ~ 
     
   film_types:
     id:               ~

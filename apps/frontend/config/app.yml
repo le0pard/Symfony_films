@@ -9,3 +9,4 @@ all:
     poster_size: 5242880
     max_gallery: 10
     gallery_size: 5242880
+    max_links: 100

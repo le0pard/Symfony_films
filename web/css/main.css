@@ -205,17 +205,66 @@ h2 {
 }
 
 /* Gallery Add*/
-.table_gallery_add table{
+.gallery_main_cell{
 	border:1px solid #CCC;
+	margin:4px;
 }
-.table_gallery_add th{
-	text-align: left;
-  	vertical-align: top;
-	font-size:1.2em;
+.gallery_main_cell .gallery_cell img{
+	float:left;
+	padding:5px;
 }
 
-.table_gallery_add input{
-	font-size:1.2em;
+.gallery_main_cell .gallery_cell input{
+	font-size:1.4em;
+	margin:5px;
+}
+
+.gallery_main_cell .buttons input{
+	font-size:1.4em;
+	margin:5px;
+	float:left;
+}
+
+.gallery_main_cell ul.error_list {
+  margin: 0;
+  margin-bottom: 7px;
+  color: #d33;
+  border: none;
+  background-color: #f33;
+}
+
+.gallery_main_cell ul.error_list li {
+  padding: 4px;
+  padding-left: 25px;
+  list-style: none;
+  color: #fff;
+  background: url(/images/forms/error.png) no-repeat 4px 4px;
+}
+
+.gallery_add_cell{
+	border:1px solid #CCC;
+	margin:4px;
+}
+
+.gallery_add_cell input{
+	font-size:1.4em;
+	margin:5px;
+}
+
+.gallery_add_cell ul.error_list {
+  margin: 0;
+  margin-bottom: 7px;
+  color: #d33;
+  border: none;
+  background-color: #f33;
+}
+
+.gallery_add_cell ul.error_list li {
+  padding: 4px;
+  padding-left: 25px;
+  list-style: none;
+  color: #fff;
+  background: url(/images/forms/error.png) no-repeat 4px 4px;
 }
 
 /* cards */

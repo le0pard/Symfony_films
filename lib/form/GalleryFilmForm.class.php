@@ -30,8 +30,8 @@ class GalleryFilmForm extends BaseFilmForm
 		$i = 1;
 		foreach ($this->getObject()->getGallery() as $subitems) {  
 			$subitems_form = new FrontFilmGalleryForm($subitems);  
-			$this->embedForm('subitems'.$subitems->getId(), $subitems_form);
-			$this->widgetSchema->setLabel('subitems'.$subitems->getId(), 'Скриншот #'.$i);
+			$this->embedForm('gallery'.$subitems->getId(), $subitems_form);
+			$this->widgetSchema->setLabel('gallery'.$subitems->getId(), 'Скриншот #'.$i);
 			$i++;
 		}
 	}

@@ -99,6 +99,8 @@ CREATE TABLE `film_links`
 	`film_id` INTEGER  NOT NULL,
 	`title` VARCHAR(200)  NOT NULL,
 	`url` VARCHAR(500)  NOT NULL,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
 	PRIMARY KEY (`id`,`film_id`),
 	INDEX `film_links_FI_1` (`film_id`),
 	CONSTRAINT `film_links_FK_1`

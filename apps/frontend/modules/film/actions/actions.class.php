@@ -52,16 +52,30 @@ class filmActions extends sfActions
 	}
   }
   
-  public function executeAdd_step2(sfWebRequest $request)
-  {
+  protected function callStep2Forms(){
   	$this->film = $this->getRoute()->getObject();
-	$this->form = new GalleryFilmForm($this->film);
+	$this->form = new sfForm();
+	if (!$this->film->isNew()){
+		$i = 1;
+		foreach ($this->film->getGallery() as $subitems) {  
+			$subitems_form = new FrontFilmGalleryForm($subitems);  
+			$this->form->embedForm('gallery'.$subitems->getId(), $subitems_form);
+			$this->form->getWidgetSchema()->setLabel('gallery'.$subitems->getId(), 'Скриншот #'.$i);
+			$i++;
+		}
+	}
+	
 	if (sfConfig::get('app_films_max_gallery', 10) > $this->film->getGalleryCount()){
 		$this->form_add = new FrontFilmGalleryForm();
 		$this->form_add->setDefault('film_id', $this->film->getId());
 		$this->form_add->getObject()->setFilm($this->film);
 		$this->form_add->redefineFieldsByDef();	
 	}
+  }
+  
+  public function executeAdd_step2(sfWebRequest $request)
+  {
+  	$this->callStep2Forms();
 
 	if ($request->isMethod('post')){
 		if ($request->hasParameter('gallery') && isset($this->form_add)){
@@ -69,27 +83,33 @@ class filmActions extends sfActions
 			if ($this->form_add->isValid()){
 				$this->form_add->save();
 				$this->getUser()->setFlash('confirm', 'Скриншот успешно добавлен.');
+				$this->redirect($this->generateUrl('film_add_step2', $this->film));
 			}
 		}
-		$this->redirect($this->generateUrl('film_add_step2', $this->film));
 	}
   }
   
   public function executeEdit_step2(sfWebRequest $request)
   {
-  	$this->film = $this->getRoute()->getObject();
-	$this->form = new GalleryFilmForm($this->film);
+  	$this->callStep2Forms();
 
 	if ($request->isMethod('post')){
-		if ($request->hasParameter('film_gallery')){
-			$this->form->bind($request->getParameter('film_gallery'), $request->getFiles('film_gallery'));
-			if ($this->form->isValid()){
-				$this->form->save();
-				$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
+		if ($request->hasParameter('gallery')){
+			$params = $request->getParameter('gallery');
+			$all_forms = $this->form->getEmbeddedForms();
+			if (isset($all_forms['gallery'.$params['id']])){
+				$this->form_edit = $all_forms['gallery'.$params['id']];
+				$this->form_edit->bind($params, $request->getFiles('gallery'));
+				if ($this->form_edit->isValid()){
+					$this->form_edit->save();
+					$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
+					$this->redirect($this->generateUrl('film_add_step2', $this->film));
+				}
 			}
 		}
-		$this->redirect($this->generateUrl('film_add_step2', $this->film));
 	}
+	$this->setTemplate('add_step2');
+	//$this->forward('film', 'add_step2');
   }
   
   public function executeDelete_gallery(sfWebRequest $request)
@@ -102,4 +122,76 @@ class filmActions extends sfActions
 	}
 	$this->redirect($this->generateUrl('film_add_step2', $film));
   }
+  
+  
+  protected function callStep3Forms(){
+  	$this->film = $this->getRoute()->getObject();
+	$this->form = new sfForm();
+  	if (!$this->film->isNew()){
+		$i = 1;
+		foreach ($this->film->getLinks() as $subitems) {  
+			$subitems_form = new FrontFilmLinksForm($subitems);  
+			$this->form->embedForm('links'.$subitems->getId(), $subitems_form);
+			$this->form->getWidgetSchema()->setLabel('links'.$subitems->getId(), 'Ссылка #'.$i);
+			$i++;
+		}
+	}
+	if (sfConfig::get('app_films_max_links', 100) > $this->film->getLinksCount()){
+		$this->form_add = new FrontFilmLinksForm();
+		$this->form_add->setDefault('film_id', $this->film->getId());
+		$this->form_add->getObject()->setFilm($this->film);
+	}
+  }
+  
+  
+  public function executeAdd_step3(sfWebRequest $request)
+  {
+  	$this->callStep3Forms();
+	
+	if ($request->isMethod('post')){
+		if ($request->hasParameter('film_links') && isset($this->form_add)){
+			$this->form_add->bind($request->getParameter('film_links'), $request->getFiles('film_links'));
+			if ($this->form_add->isValid()){
+				$this->form_add->save();
+				$this->getUser()->setFlash('confirm', 'Ссылка успешно добавлена.');
+				$this->redirect($this->generateUrl('film_add_step3', $this->film));
+			}
+		}
+	}
+	
+  }
+  
+  public function executeEdit_step3(sfWebRequest $request)
+  {
+  	$this->callStep3Forms();
+	
+	if ($request->isMethod('post')){
+		if ($request->hasParameter('film_links')){
+			$params = $request->getParameter('film_links');
+			$all_forms = $this->form->getEmbeddedForms();
+			if (isset($all_forms['links'.$params['id']])){
+				$this->form_edit = $all_forms['links'.$params['id']];
+				$this->form_edit->bind($params, $request->getFiles('film_links'));
+				if ($this->form_edit->isValid()){
+					$this->form_edit->save();
+					$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
+					$this->redirect($this->generateUrl('film_add_step3', $this->film));
+				}
+			}
+		}
+	}
+	$this->setTemplate('add_step3');
+  }
+  
+  public function executeDelete_link(sfWebRequest $request)
+  {
+  	$this->film_link = $this->getRoute()->getObject();
+    $film = $this->film_link->getFilm();
+	if ($film->getUserId() == $this->getUser()->getAuthUser()->getId()){
+		$this->getUser()->setFlash('confirm', 'Ссылка успешно удалена.');
+		$this->film_link->delete();
+	}
+	$this->redirect($this->generateUrl('film_add_step3', $film));
+  }
+  
 }

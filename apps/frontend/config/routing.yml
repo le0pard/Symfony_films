@@ -74,7 +74,7 @@ film_edit_step2:
   param:  { module: film, action: edit_step2 }
   requirements:
     id: \d+
-    sf_method: [post]
+    sf_method: [get, post]
     
 film_delete_gallery:
   url:     /film/delete_gallery/:id
@@ -86,7 +86,41 @@ film_delete_gallery:
   requirements:
     id: \d+
     sf_method: [get]
+    
+film_add_step3:
+  url:     /film/add3/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: add_step3 }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+    
+film_edit_step3:
+  url:     /film/edit3/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: edit_step3 }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
 
+film_delete_step3:
+  url:     /film/delete_link/:id
+  class:   sfPropelRoute
+  options:
+    model: FilmLinks
+    type: object
+  param:  { module: film, action: delete_link }
+  requirements:
+    id: \d+
+    sf_method: [get]
 
 # default rules
 homepage:
