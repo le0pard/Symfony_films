@@ -7,7 +7,6 @@
     <tr>
       <td colspan="2">
         <input type="submit" value="Обновить" />
-		<a onclick="javascript: return confirm('Вы уверены, что хотите удалить &laquo;<?php echo $film->getTitle() ?>&raquo; ?');" href="<?php echo url_for('film_delete_step1', $film) ?>">Удалить</a>
       </td>
     </tr>
   </table>

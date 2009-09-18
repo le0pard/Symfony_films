@@ -16,6 +16,10 @@ user_profile:
   url:     /profile
   param: { module: user, action: profile }
   
+user_films_list:
+  url:     /unpublic_films
+  param: { module: user, action: unpublic_films }
+  
 user_logout:
   url:     /logout
   param: { module: user, action: logout }
@@ -51,6 +55,18 @@ film_edit_step1:
   requirements:
     id: \d+
     sf_method: [get, post]
+    
+film_delete_step1:
+  url:     /film/delete1/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: delete_film }
+  requirements:
+    id: \d+
+    sf_method: [get]
   
 film_add_step2:
   url:     /film/add2/:id
@@ -121,6 +137,19 @@ film_delete_step3:
   requirements:
     id: \d+
     sf_method: [get]
+    
+film_add_final:
+  url:     /film/add_final/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectUserUnpublic
+  param:  { module: film, action: add_final }
+  requirements:
+    id: \d+
+    sf_method: [get, post]    
+
 
 # default rules
 homepage:

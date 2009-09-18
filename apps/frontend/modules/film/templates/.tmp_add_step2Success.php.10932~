@@ -4,6 +4,7 @@
 <?php foreach($form->getEmbeddedForms() as $row): ?>
 <form action="<?php echo url_for('film_edit_step2', $film) ?>" method="POST" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>
   <div class="gallery_main_cell">
+  		<?php echo $row['thumb_img']->renderError() ?>
   		<?php echo $row['id']->render(); ?>
   		<?php echo $row['film_id']->render(); ?>
   		<?php echo $row['thumb_img']->render(); ?>

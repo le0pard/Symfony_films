@@ -7,6 +7,8 @@ all:
     catalog_page: 30  
   films:
     poster_size: 5242880
+    min_gallery: 3
     max_gallery: 10
     gallery_size: 5242880
+    min_links: 1
     max_links: 100

@@ -10,8 +10,6 @@
 			<div>Привет, <strong><?php echo $sf_user->getAuthUser()->getLogin() ?></strong></div>
 			<ul>
 				<li><a href="<?php echo url_for('@film_add_step1') ?>">Добавить фильм/сериал</a></li>
-				<?php $unp_films_count = $sf_user->getAuthUser()->getUnpublicFilmsCount(); ?>
-				<li><a href="<?php echo url_for('@user_films_list') ?>">Неопубликованые<?php if ($unp_films_count > 0): ?><strong> (<?php echo $unp_films_count; ?>)<?php endif ?></strong></a></li>
 				<li><a href="<?php echo url_for('@user_profile') ?>">Профиль</a></li>
 				<li><a href="<?php echo url_for('@user_logout') ?>">Выход</a></li>
 			</ul>

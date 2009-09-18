@@ -65,16 +65,17 @@ class FrontFilmForm extends BaseFilmForm
 	  						array('required' => 'Укажите хотя бы одну категорию.')),
     ));
 	
+	$this->widgetSchema['normal_logo'] = new sfWidgetFormInputFileEditable(array(
+      'label'     => 'Постер',
+      'file_src'  => '/uploads/posters/'.$this->getObject()->getNormalLogo(),
+      'is_image'  => true,
+      'edit_mode' => !$this->isNew(),
+      'template'  => '<div class="poster">%file%<br />%input%</div>',
+    ));
+	
+	$this->widgetSchema->moveField('normal_logo', 'after', 'film_film_types_list');
+	
 	if ($this->getObject()->isNew()){
-		$this->widgetSchema['normal_logo'] = new sfWidgetFormInputFileEditable(array(
-	      'label'     => 'Постер',
-	      'file_src'  => '/uploads/posters/'.$this->getObject()->getNormalLogo(),
-	      'is_image'  => true,
-	      'edit_mode' => false,
-	      'template'  => '%file%<br />%input%',
-	    ));
-		
-		$this->widgetSchema->moveField('normal_logo', 'after', 'film_film_types_list');
 		
 		$this->validatorSchema['normal_logo'] = new sfValidatorFile(array(
 		  'required'   => true,
@@ -84,6 +85,15 @@ class FrontFilmForm extends BaseFilmForm
 		  'validated_file_class' => 'sfPosterFile'
 		), array('required' => 'Без постера не так красиво', 'max_size' => 'Загружать до '.round((sfConfig::get('app_films_poster_size')/1048576), 3).' Мб!', 'mime_types' => 'Загружать можно только картинки!'));
 		
+	} else {
+	
+		$this->validatorSchema['normal_logo'] = new sfValidatorFile(array(
+		  'required'   => false,
+		  'max_size'   => sfConfig::get('app_films_poster_size'),
+		  'path'       => sfConfig::get('sf_upload_dir').'/posters',
+		  'mime_types' => 'web_images',
+		  'validated_file_class' => 'sfPosterFile'
+		), array('required' => 'Без постера не так красиво', 'max_size' => 'Загружать до '.round((sfConfig::get('app_films_poster_size')/1048576), 3).' Мб!', 'mime_types' => 'Загружать можно только картинки!'));
 	}
 	
 	$this->widgetSchema->setLabels(array(

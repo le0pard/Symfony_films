@@ -11,9 +11,9 @@ class Film extends BaseFilm
 	  $this->setUrl(System::slugify($title));
 	}
 	
-	public function setThumbLogo($logo){
-	  parent::setThumbLogo($logo);
-	  $this->setNormalLogo(str_replace('thumb_', '', $logo));
+	public function setNormalLogo($logo){
+	  parent::setNormalLogo($logo);
+	  $this->setThumbLogo('thumb_'.$logo);
 	}
 	
 	public function getGallery(){

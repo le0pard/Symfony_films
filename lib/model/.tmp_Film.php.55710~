@@ -29,4 +29,18 @@ class Film extends BaseFilm
 		$criteria->addAscendingOrderByColumn(FilmGalleryPeer::ID);
 		return FilmGalleryPeer::doCount($criteria);
 	}
+	
+	public function getLinks(){
+		$criteria = new Criteria();
+		$criteria->add(FilmLinksPeer::FILM_ID, $this->getId());
+		$criteria->addAscendingOrderByColumn(FilmLinksPeer::ID);
+		return FilmLinksPeer::doSelect($criteria);
+	}
+	
+	public function getLinksCount(){
+		$criteria = new Criteria();
+		$criteria->add(FilmLinksPeer::FILM_ID, $this->getId());
+		$criteria->addAscendingOrderByColumn(FilmLinksPeer::ID);
+		return FilmLinksPeer::doCount($criteria);
+	}
 }

@@ -111,12 +111,6 @@ class userActions extends sfActions
   	$this->redirect('@homepage');
   }
   
-  public function executeUnpublic_films(sfWebRequest $request)
-  {
-	$this->user_data = $this->getUser()->getAuthUser();
-	$this->film_list = $this->user_data->getUnpublicFilms();
-  }
-  
   public function executeSecure(){
     $this->getResponse()->setStatusCode(403);
   }

@@ -112,16 +112,6 @@ class filmActions extends sfActions
 	//$this->forward('film', 'add_step2');
   }
   
-  public function executeDelete_film(sfWebRequest $request)
-  {
-  	$this->film = $this->getRoute()->getObject();
-	if ($this->film->getUserId() == $this->getUser()->getAuthUser()->getId()){
-		$this->getUser()->setFlash('confirm', 'Фильм удален.');
-		$this->film->delete();
-	}
-	$this->redirect('@homepage');
-  }
-  
   public function executeDelete_gallery(sfWebRequest $request)
   {
   	$this->film_gallery = $this->getRoute()->getObject();
@@ -202,21 +192,6 @@ class filmActions extends sfActions
 		$this->film_link->delete();
 	}
 	$this->redirect($this->generateUrl('film_add_step3', $film));
-  }
-  
-  
-  public function executeAdd_final(sfWebRequest $request)
-  {
-  	$this->film = $this->getRoute()->getObject();
-    if ($request->isMethod('post')){
-		if ($request->hasParameter('pub')){
-			$this->film->setUpdateData(time());
-			$this->film->setIsPublic(true);
-			$this->film->save();
-			$this->getUser()->setFlash('confirm', 'Ваша публикация отправленна на расмотрение.');
-			$this->redirect('@homepage');
-		}
-	}
   }
   
 }

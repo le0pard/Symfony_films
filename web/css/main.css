@@ -74,7 +74,11 @@ h2 {
 .film_cell{
 	float:left;
 	min-width:300px;
+	width:300px;
+	max-width:300px;
 	min-height:350px;
+	height:350px;
+	max-height:350px;
 	border:1px solid #CCC;
 	margin:2px;
 }
@@ -241,6 +245,14 @@ h2 {
   background: url(/images/forms/error.png) no-repeat 4px 4px;
 }
 
+.gallery_main_cell input[type='submit'] {
+	border:2px #CCC solid;
+}
+
+.gallery_main_cell input:hover[type='submit'] {
+	border:2px #666 solid;
+}
+
 .gallery_add_cell{
 	border:1px solid #CCC;
 	margin:4px;
@@ -265,6 +277,14 @@ h2 {
   list-style: none;
   color: #fff;
   background: url(/images/forms/error.png) no-repeat 4px 4px;
+}
+
+.gallery_add_cell input[type='submit'] {
+	border:2px #CCC solid;
+}
+
+.gallery_add_cell input:hover[type='submit'] {
+	border:2px #666 solid;
 }
 
 /* cards */

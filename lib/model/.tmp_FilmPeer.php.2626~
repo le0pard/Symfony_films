@@ -21,18 +21,15 @@ class FilmPeer extends BaseFilmPeer
     	return self::doCount(self::addVisibleCriteria($criteria));
   	}
 	
-	static public function doSelectUnpublicCriteria(Criteria $criteria = null) {
+	
+	static public function doSelectUserUnpublic(Criteria $criteria)
+	{
 	  if (is_null($criteria)) {
 	     $criteria = new Criteria();
 	  }
 	  $criteria->add(self::IS_VISIBLE, false);
 	  $criteria->add(self::IS_PUBLIC, false);
 	  $criteria->add(self::USER_ID, sfContext::getInstance()->getUser()->getAuthUser()->getId());
-	  return $criteria;
-    }
-	
-	static public function doSelectUserUnpublic(Criteria $criteria)
-	{
-	  return self::doSelectOne(self::doSelectUnpublicCriteria());
+	  return self::doSelectOne($criteria);
 	}
 }

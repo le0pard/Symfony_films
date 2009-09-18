@@ -12,13 +12,4 @@ class Users extends BaseUsers
 		}
 		parent::setPassword(md5($password));
     }
-	
-	public function getUnpublicFilms(){
-		return FilmPeer::doSelect(FilmPeer::doSelectUnpublicCriteria());
-	}
-	
-	public function getUnpublicFilmsCount(){
-		return FilmPeer::doCount(FilmPeer::doSelectUnpublicCriteria());
-	}
-
 }
