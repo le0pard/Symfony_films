@@ -44,8 +44,6 @@ class FilmPeer extends BaseFilmPeer
 	static public function getLuceneIndex()
 	{
 	  ProjectConfiguration::registerZend();
-	  Zend_Search_Lucene_Analysis_Analyzer::setDefault(new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num_CaseInsensitive());
-	  Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('UTF-8');
 	  if (file_exists($index = self::getLuceneIndexFile()))
 	  {
 	    return Zend_Search_Lucene::open($index);
@@ -54,6 +52,9 @@ class FilmPeer extends BaseFilmPeer
 	  {
 	    return Zend_Search_Lucene::create($index);
 	  }
+	  $analyzer = new Zend_Search_Lucene_Analysis_Analyzer_Common_Utf8Num();
+	  Zend_Search_Lucene_Analysis_Analyzer::setDefault($analyzer);
+	  Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('UTF-8');
 	}
 	
 	static public function getLuceneIndexFile()
@@ -81,16 +82,9 @@ class FilmPeer extends BaseFilmPeer
 		$criteria = new Criteria();
 		$criteria->add(self::ID, $pks, Criteria::IN);
 		$criteria->setLimit(50);
-		$criteria->add(self::IS_VISIBLE, true);
-		$criteria->add(self::IS_PUBLIC, true);
-		return self::doSelect($criteria);
-	}
-
-	static public function searchAutoComplete($title){
-		$criteria = new Criteria();
-		$criteria->add(self::TITLE, $title."%", Criteria::LIKE);
-		$criteria->setLimit(8);
 		return self::doSelect(self::addVisibleCriteria($criteria));
 	}
+
+
 
 }

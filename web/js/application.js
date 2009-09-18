@@ -3,6 +3,7 @@ var FilmSiteJs = {
 	url: '/frontend_dev.php/',
 	init: function(){
 		this.initRegForm();
+		this.initSearchForm();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -12,6 +13,17 @@ var FilmSiteJs = {
 			if ($('registration_email')) {
 				$('registration_email').observe('blur', FilmSiteJs.checkRegEmail)
 			}
+		}
+	},
+	initSearchForm: function(){
+		if ($('search_field')){
+			new Ajax.Autocompleter('search_field', 
+			'search_field_auto_complete', 
+			FilmSiteJs.url + 'search_auto_complete', {
+				minChars: 3,
+				indicator: 'search_indicator',
+				frequency: 1
+			});
 		}
 	},
 	checkRegName: function(){

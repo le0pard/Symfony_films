@@ -84,9 +84,9 @@ class Film extends BaseFilm
 		// store job primary key to identify it in the search results
 		$doc->addField(Zend_Search_Lucene_Field::Keyword('pk', $this->getId()));
 		// index job fields
-		$doc->addField(Zend_Search_Lucene_Field::Text('title',
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('title',
 		$this->getTitle(), 'UTF-8'));
-		$doc->addField(Zend_Search_Lucene_Field::Text('original_title',
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('original_title',
 		$this->getOriginalTitle(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('pub_year',
 		$this->getPubYear(), 'UTF-8'));
