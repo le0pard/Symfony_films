@@ -24,6 +24,23 @@ user_logout:
   url:     /logout
   param: { module: user, action: logout }
   
+user_show:
+  url:     /userinfo/:id
+  class:   sfPropelRoute
+  options:
+    model: Users
+    type: object
+    method_for_criteria: getActivedOne
+  param:  { module: user, action: show }
+  requirements:
+    id: \d+
+    sf_method: [get]
+  
+#search
+search:
+  url:   /search
+  param: { module: search, action: index }
+ 
   
 #film types
 film_types:
@@ -150,7 +167,20 @@ film_add_final:
     id: \d+
     sf_method: [get, post]    
 
-
+#film one
+film_show:
+  url:     /film/:id/:url
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectOneVisible
+  param:  { module: film, action: show }
+  requirements:
+    id: \d+
+    url: (.*)
+    sf_method: [get, post] 
+    
 # default rules
 homepage:
   url:   /

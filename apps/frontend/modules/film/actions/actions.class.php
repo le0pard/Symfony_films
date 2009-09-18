@@ -20,6 +20,11 @@ class filmActions extends sfActions
     $this->forward('default', 'module');
   }
   
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->film = $this->getRoute()->getObject();
+  }
+  
   public function executeAdd_step1(sfWebRequest $request)
   {
     $this->form = new FrontFilmForm();

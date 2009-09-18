@@ -16,4 +16,8 @@ class UsersPeer extends BaseUsersPeer
 		$criteria->add(self::PASSWORD, md5($password));
 	    return self::doSelectOne($criteria);
     }
+	
+	static public function getActivedOne(Criteria $criteria = null){
+	    return self::doSelectOne(self::addActiveCriteria($criteria));
+    }
 }

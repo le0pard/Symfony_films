@@ -1,5 +1,5 @@
 Film:
-<?php for ($i = 1; $i <= 820; $i++): ?>
+<?php for ($i = 1; $i <= 120; $i++): ?>
   film<?php echo $i ?>:
     user_id:  leo
     title:      'Фильм №<?php echo $i ?>'
@@ -16,7 +16,7 @@ Film:
  
 <?php endfor; ?>
 
-<?php for ($i = 1000; $i <= 1670; $i++): ?>
+<?php for ($i = 1000; $i <= 1070; $i++): ?>
   film<?php echo $i ?>:
     user_id:  user
     title:      'Тест Фильм №<?php echo $i ?>'

@@ -7,7 +7,13 @@
 		<a href="<?php echo url_for('@user_registration') ?>">Регистрация</a>
 	<?php } else { ?>
 		<div class="user_left" style="float:left;">
-			<div>Привет, <strong><?php echo $sf_user->getAuthUser()->getLogin() ?></strong></div>
+			<div>Привет, 
+				<strong>
+					<a href="<?php echo url_for('user_show', $sf_user->getAuthUser()) ?>">
+						<?php echo $sf_user->getAuthUser()->getLogin() ?>
+					</a>
+				</strong>
+			</div>
 			<ul>
 				<li><a href="<?php echo url_for('@film_add_step1') ?>">Добавить фильм/сериал</a></li>
 				<?php $unp_films_count = $sf_user->getAuthUser()->getUnpublicFilmsCount(); ?>

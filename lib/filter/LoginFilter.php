@@ -10,7 +10,11 @@ class LoginFilter extends sfFilter {
 	        $c->add(UsersRememberKeyPeer::REMEMBER_KEY, $cookie);
 	        $rk = UsersRememberKeyPeer::doSelectOne($c);
 	        if ($rk && $rk->getUsers()){
-	          $this->getContext()->getUser()->signIn($rk->getUsers());
+	        	if ($rk->getUsers()->getIsActive()){
+	        		$this->getContext()->getUser()->signIn($rk->getUsers());
+				} else {
+					$this->getContext()->getController()->forward('user', 'logout');
+				}
 	        }
 	      }
 	  }

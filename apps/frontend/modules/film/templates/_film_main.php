@@ -92,17 +92,32 @@
 	
 	<div class="links">
 		<?php foreach($film->getLinks() as $row): ?>
-			<?php echo $row->getTitle() ?>
+			<a href="<?php echo $row->getUrl() ?>" target="_blank">
+				<?php echo $row->getTitle() ?>
+			</a>
 		<?php endforeach ?>
 	</div>
 	
 	<div class="film_info">
+		<div class="catalog">
+			<ul>
+				<?php foreach($film->getFilmFilmTypessJoinFilmTypes() as $row):?>
+					<li>
+						<a href="<?php echo url_for('film_types', $row->getFilmTypes()) ?>">
+							<?php echo $row->getFilmTypes()->getTitle() ?>
+						</a>
+					</li>
+				<?php endforeach ?>
+			</ul>
+		</div>
 		<div class="date">
 			<?php echo gmstrftime('%d.%m.%Y', $film->getUpdatedAt('U')) ?>
 		</div>
 		<div class="autor">
 			<?php if ($film->getUsers()): ?>
-				<?php echo $film->getUsers()->getLogin() ?>
+				<a href="<?php echo url_for('user_show', $film->getUsers()) ?>">
+					<?php echo $film->getUsers()->getLogin() ?>
+				</a>
 			<?php else: ?>
 				Неизвестен	
 			<?php endif ?>

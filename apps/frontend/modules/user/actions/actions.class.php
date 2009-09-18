@@ -19,6 +19,12 @@ class userActions extends sfActions
   {
     $this->forward('default', 'module');
   }
+    
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->user_data = $this->getRoute()->getObject();
+  }
+  
   
   public function executeLogin(sfWebRequest $request)
   {
