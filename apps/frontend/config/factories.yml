@@ -35,6 +35,8 @@ all:
     class: sfSessionStorage
     param:
       session_name: sfUserSession
+      timeout: 21600
+
 
 #all:
 #  controller:
