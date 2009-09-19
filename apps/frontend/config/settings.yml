@@ -2,6 +2,7 @@ prod:
   .settings:
     no_script_name:         on
     logging_enabled:        off
+    cache:                  on
 
 dev:
   .settings:
@@ -17,6 +18,13 @@ test:
     cache:                  off
     web_debug:              off
     no_script_name:         off
+    etag:                   off
+
+cache:
+  .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+    web_debug:              on
+    cache:                  on
     etag:                   off
 
 all:

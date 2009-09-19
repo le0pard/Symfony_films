@@ -183,7 +183,15 @@ film_show:
     id: \d+
     url: (.*)
     sf_method: [get, post] 
+
+homepage_atom:
+  url:   /atom
+  param: { module: index, action: index, sf_format: atom }
     
+homepage_rss:
+  url:   /rss
+  param: { module: index, action: index, sf_format: xml }
+  
 # default rules
 homepage:
   url:   /
