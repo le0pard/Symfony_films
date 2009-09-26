@@ -5,3 +5,4 @@ log/*.log
 cache/*
 config/databases.yml
 lib/vendor/**
+data/films.*
