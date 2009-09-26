@@ -19,7 +19,6 @@ CREATE TABLE `users`
 	`website_blog` VARCHAR(500),
 	`avatar` VARCHAR(500),
 	`about` TEXT,
-	`right_id` INTEGER default 1 NOT NULL,
 	`last_login` DATETIME,
 	`is_active` TINYINT default 1 NOT NULL,
 	`is_super_admin` TINYINT default 0 NOT NULL,
@@ -28,6 +27,45 @@ CREATE TABLE `users`
 	PRIMARY KEY (`id`),
 	UNIQUE KEY `users_U_1` (`login`),
 	UNIQUE KEY `users_U_2` (`email`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- users_group
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users_group`;
+
+
+CREATE TABLE `users_group`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(255)  NOT NULL,
+	`description` TEXT,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `users_group_U_1` (`name`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- users_users_group
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `users_users_group`;
+
+
+CREATE TABLE `users_users_group`
+(
+	`user_id` INTEGER  NOT NULL,
+	`group_id` INTEGER  NOT NULL,
+	PRIMARY KEY (`user_id`,`group_id`),
+	CONSTRAINT `users_users_group_FK_1`
+		FOREIGN KEY (`user_id`)
+		REFERENCES `users` (`id`)
+		ON DELETE CASCADE,
+	INDEX `users_users_group_FI_2` (`group_id`),
+	CONSTRAINT `users_users_group_FK_2`
+		FOREIGN KEY (`group_id`)
+		REFERENCES `users_group` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 
-class myUser extends sfBasicSecurityUser
+class sfSecurityFilmsUser extends sfBasicSecurityUser
 {
 	protected $user = null;
 	
@@ -22,6 +22,20 @@ class myUser extends sfBasicSecurityUser
     $this->setAttribute('user_id', $user->getId(), 'sfFilmAutorizedUser');
     $this->setAuthenticated(true);
     $this->clearCredentials();
+	
+	//set credintials
+	//super admin
+	if (10 == $user->getRightId()){
+		$this->addCredentials('super_admin');	
+	}
+	//admin
+	if (9 == $user->getRightId()){
+		$this->addCredentials('admin');	
+	}
+	//moder
+	if (2 == $user->getRightId()){
+		$this->addCredentials('moder');	
+	}
 
     // save last login
     $user->setLastLogin(time());

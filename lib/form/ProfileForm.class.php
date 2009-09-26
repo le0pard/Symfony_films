@@ -8,7 +8,7 @@ class ProfileForm extends BaseUsersForm{
       $this['is_active'], $this['is_super_admin'], 
 	  $this['last_login'], $this['right_id'],
 	  $this['login'], $this['email'], 
-	  $this['film_raiting_list']
+	  $this['film_raiting_list'], $this['users_users_group_list']
     );
 	
 	$this->widgetSchema['id'] = new sfWidgetFormInputHidden();

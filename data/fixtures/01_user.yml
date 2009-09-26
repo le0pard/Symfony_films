@@ -3,9 +3,7 @@ Users:
     login: 'leo'
     password: 'password'
     email: 'leo@leo.com'
-    right_id: 10
     is_active: true
-    
     
   user:
     login: 'user'

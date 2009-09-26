@@ -13,37 +13,37 @@ class BaseUsersForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                => new sfWidgetFormInputHidden(),
-      'login'             => new sfWidgetFormInput(),
-      'password'          => new sfWidgetFormInput(),
-      'email'             => new sfWidgetFormInput(),
-      'website_blog'      => new sfWidgetFormInput(),
-      'avatar'            => new sfWidgetFormInput(),
-      'about'             => new sfWidgetFormTextarea(),
-      'right_id'          => new sfWidgetFormInput(),
-      'last_login'        => new sfWidgetFormDateTime(),
-      'is_active'         => new sfWidgetFormInputCheckbox(),
-      'is_super_admin'    => new sfWidgetFormInputCheckbox(),
-      'created_at'        => new sfWidgetFormDateTime(),
-      'updated_at'        => new sfWidgetFormDateTime(),
-      'film_raiting_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Film')),
+      'id'                     => new sfWidgetFormInputHidden(),
+      'login'                  => new sfWidgetFormInput(),
+      'password'               => new sfWidgetFormInput(),
+      'email'                  => new sfWidgetFormInput(),
+      'website_blog'           => new sfWidgetFormInput(),
+      'avatar'                 => new sfWidgetFormInput(),
+      'about'                  => new sfWidgetFormTextarea(),
+      'last_login'             => new sfWidgetFormDateTime(),
+      'is_active'              => new sfWidgetFormInputCheckbox(),
+      'is_super_admin'         => new sfWidgetFormInputCheckbox(),
+      'created_at'             => new sfWidgetFormDateTime(),
+      'updated_at'             => new sfWidgetFormDateTime(),
+      'film_raiting_list'      => new sfWidgetFormPropelChoiceMany(array('model' => 'Film')),
+      'users_users_group_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'UsersGroup')),
     ));
 
     $this->setValidators(array(
-      'id'                => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
-      'login'             => new sfValidatorString(array('max_length' => 100)),
-      'password'          => new sfValidatorString(array('max_length' => 100)),
-      'email'             => new sfValidatorString(array('max_length' => 100)),
-      'website_blog'      => new sfValidatorString(array('max_length' => 500, 'required' => false)),
-      'avatar'            => new sfValidatorString(array('max_length' => 500, 'required' => false)),
-      'about'             => new sfValidatorString(array('required' => false)),
-      'right_id'          => new sfValidatorInteger(),
-      'last_login'        => new sfValidatorDateTime(array('required' => false)),
-      'is_active'         => new sfValidatorBoolean(),
-      'is_super_admin'    => new sfValidatorBoolean(),
-      'created_at'        => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'        => new sfValidatorDateTime(array('required' => false)),
-      'film_raiting_list' => new sfValidatorPropelChoiceMany(array('model' => 'Film', 'required' => false)),
+      'id'                     => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
+      'login'                  => new sfValidatorString(array('max_length' => 100)),
+      'password'               => new sfValidatorString(array('max_length' => 100)),
+      'email'                  => new sfValidatorString(array('max_length' => 100)),
+      'website_blog'           => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'avatar'                 => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'about'                  => new sfValidatorString(array('required' => false)),
+      'last_login'             => new sfValidatorDateTime(array('required' => false)),
+      'is_active'              => new sfValidatorBoolean(),
+      'is_super_admin'         => new sfValidatorBoolean(),
+      'created_at'             => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'             => new sfValidatorDateTime(array('required' => false)),
+      'film_raiting_list'      => new sfValidatorPropelChoiceMany(array('model' => 'Film', 'required' => false)),
+      'users_users_group_list' => new sfValidatorPropelChoiceMany(array('model' => 'UsersGroup', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -81,6 +81,17 @@ class BaseUsersForm extends BaseFormPropel
       $this->setDefault('film_raiting_list', $values);
     }
 
+    if (isset($this->widgetSchema['users_users_group_list']))
+    {
+      $values = array();
+      foreach ($this->object->getUsersUsersGroups() as $obj)
+      {
+        $values[] = $obj->getGroupId();
+      }
+
+      $this->setDefault('users_users_group_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
@@ -88,6 +99,7 @@ class BaseUsersForm extends BaseFormPropel
     parent::doSave($con);
 
     $this->saveFilmRaitingList($con);
+    $this->saveUsersUsersGroupList($con);
   }
 
   public function saveFilmRaitingList($con = null)
@@ -120,6 +132,41 @@ class BaseUsersForm extends BaseFormPropel
         $obj = new FilmRaiting();
         $obj->setUserId($this->object->getPrimaryKey());
         $obj->setFilmId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveUsersUsersGroupList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['users_users_group_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(UsersUsersGroupPeer::USER_ID, $this->object->getPrimaryKey());
+    UsersUsersGroupPeer::doDelete($c, $con);
+
+    $values = $this->getValue('users_users_group_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new UsersUsersGroup();
+        $obj->setUserId($this->object->getPrimaryKey());
+        $obj->setGroupId($value);
         $obj->save();
       }
     }

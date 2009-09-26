@@ -20,5 +20,19 @@ class Users extends BaseUsers
 	public function getUnpublicFilmsCount(){
 		return FilmPeer::doCount(FilmPeer::doSelectUnpublicCriteria());
 	}
+	
+	public function getAllPermissions(){
+		$names_array = array();
+		foreach($this->getUsersUsersGroupsJoinUsersGroup() as $key=>$row){
+			$group = $row->getUsersGroup();
+			
+			$names_array[$group->getName()] = $group;
+		}
+		return $names_array;
+	}
+	
+	public function getAllPermissionNames(){
+		return array_keys($this->getAllPermissions());
+	}
 
 }

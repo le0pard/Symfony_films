@@ -24,19 +24,7 @@ class sfSecurityFilmsUser extends sfBasicSecurityUser
     $this->clearCredentials();
 	
 	//set credintials
-	//super admin
-	if (10 == $user->getRightId()){
-		$this->addCredentials('super_admin');	
-	}
-	//admin
-	if (9 == $user->getRightId()){
-		$this->addCredentials('admin');	
-	}
-	//moder
-	if (2 == $user->getRightId()){
-		$this->addCredentials('moder');	
-	}
-
+	$this->addCredentials($user->getAllPermissionNames());
     // save last login
     $user->setLastLogin(time());
     $user->save($con);

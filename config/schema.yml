@@ -7,12 +7,20 @@ propel:
     website_blog:     { type: varchar(500) }
     avatar:           { type: varchar(500) }
     about:            { type: longvarchar }
-    right_id:         { type: integer, required: true, default: 1 }
     last_login:       { type: timestamp }
     is_active:        { type: boolean, required: true, default: 1 }
     is_super_admin:   { type: boolean, required: true, default: 0 }
     created_at:       ~
     updated_at:       ~
+  
+  users_group:
+    id:             ~
+    name:           { type: varchar, size: 255, required: true, index: unique }
+    description:    { type: longvarchar }
+    
+  users_users_group:
+    user_id:        { type: integer, primaryKey: true, required: true, foreignTable: users, foreignReference: id, onDelete: cascade }
+    group_id:       { type: integer, primaryKey: true, required: true, foreignTable: users_group, foreignReference: id, onDelete: cascade }
     
   users_remember_key:
     user_id:        { type: integer, primaryKey: true, required: true, foreignTable: users, foreignReference: id, onDelete: cascade }

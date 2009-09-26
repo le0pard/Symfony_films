@@ -1,0 +1,6 @@
+UsersGroup:
+  admin:
+    name: 'admin'
+    
+  super_admin:
+    name: 'super_admin'
