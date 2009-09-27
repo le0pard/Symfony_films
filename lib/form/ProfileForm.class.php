@@ -12,8 +12,14 @@ class ProfileForm extends BaseUsersForm{
     );
 	
 	$this->widgetSchema['id'] = new sfWidgetFormInputHidden();
-	$this->widgetSchema['about'] = new sfWidgetFormTextarea(array(), array('rows' => 5, 'cols' => 30));
-	
+	$this->widgetSchema['about'] = new sfWidgetFormTextarea(array(), 
+					array('rows' => 5, 'cols' => 30));
+	/*
+	$this->widgetSchema['about'] = new sfWidgetFormTextareaTinyMCE(array(
+					'theme' => 'simple', 
+					'config' => 'language : "ru"'), 
+					array('rows' => 5, 'cols' => 30, 'class' => 'TinyMCE'));
+	*/
     $this->setValidators(array(
 	  'id'              => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
       'website_blog'    => new sfValidatorString(array('required' => false, 'max_length' => 30),

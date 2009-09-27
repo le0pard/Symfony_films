@@ -58,4 +58,23 @@ class System {
 
     return md5($string);
   }
+  
+  static public function strip_tags_attributes($string,$allowtags=NULL,$allowattributes=NULL){
+    $string = strip_tags($string, $allowtags);
+    if (!is_null($allowattributes)) {
+        if(!is_array($allowattributes))
+            $allowattributes = explode(",",$allowattributes);
+        if(is_array($allowattributes))
+            $allowattributes = implode(")(?<!",$allowattributes);
+        if (strlen($allowattributes) > 0)
+            $allowattributes = "(?<!".$allowattributes.")";
+        $string = preg_replace_callback("/<[^>]*>/i",create_function(
+            '$matches',
+            'return preg_replace("/ [^ =]*'.$allowattributes.'=(\"[^\"]*\"|\'[^\']*\')/i", "", $matches[0]);'   
+        ),$string);
+    }
+
+    return $string;
+} 
+  
 }

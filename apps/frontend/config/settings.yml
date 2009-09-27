@@ -33,11 +33,14 @@ all:
     csrf_secret:       false     # Unique secret to enable CSRF protection or false to disable
 
     # Output escaping settings
-    escaping_strategy:      false            # Determines how variables are made available to templates. Accepted values: on, off.
+    escaping_strategy:      on            # Determines how variables are made available to templates. Accepted values: on, off.
     escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
 
     # Cache settings
     lazy_cache_key:         on        # Delays creation of a cache key until after checking whether an action or partial is cacheable
+    
+    rich_text_js_dir:  js/tiny_mce
+    
   .actions:
     error_404_module:       index   # To be called when a 404 error is raised
     error_404_action:       error404  # Or when the requested URL doesn't match any route
