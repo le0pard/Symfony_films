@@ -25,8 +25,6 @@ class userActions extends sfActions
     $this->user_data = $this->getRoute()->getObject();
 	require_once sfConfig::get('sf_lib_dir').'/vendor/jevix/jevix.class.php';
 	$this->jevix = System::configure_jevix_light();
-	$errors = null;
-	$this->about_data = $this->jevix->parse($this->user_data->getAbout(), $errors);
   }
   
   

@@ -1,8 +1,0 @@
-<?php echo $user_data->getLogin() ?>
-<div>
-	<?php if ($jevix && $about_data): ?>
-		<?php echo $sf_data->get('about_data', ESC_RAW) ?>
-	<?php else: ?>
-		<?php echo $user_data->getAbout(ESC_RAW); ?>
-	<?php endif ?>
-</div>
