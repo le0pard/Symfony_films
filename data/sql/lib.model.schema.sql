@@ -365,7 +365,9 @@ CREATE TABLE `static_pages`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`title` VARCHAR(500)  NOT NULL,
 	`url` VARCHAR(500),
+	`sort` INTEGER default 0,
 	`description` TEXT,
+	`is_visible` TINYINT default 1 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`)

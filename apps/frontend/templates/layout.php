@@ -5,12 +5,16 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
+	<link rel="alternate" type="application/atom+xml" title="Atom"  href="<?php echo url_for('@homepage_atom', true) ?>" />
+	<link title="RSS" type="application/rss+xml" rel="alternate" href="<?php echo url_for('@homepage_rss', true) ?>"/>
 	<?php include_javascripts() ?>
     <?php include_stylesheets() ?>
   </head>
   <body>
     <!--HEADER-->
    	<?php include_partial('global/header') ?>
+	<div class="clear"></div>
+	<?php include_component('static', 'menu') ?>
 	<div class="clear"></div>
 	<!--HEADER-->
 	<!--FLASH-->

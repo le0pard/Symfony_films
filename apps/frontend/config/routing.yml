@@ -184,6 +184,22 @@ film_show:
     url: (.*)
     sf_method: [get, post] 
 
+#static
+static_page:
+  url:     /page/:id/:url
+  class:   sfPropelRoute
+  options:
+    model: StaticPages
+    type: object
+    method_for_criteria: doSelectOneVisible
+  param:  { module: static, action: show }
+  requirements:
+    id: \d+
+    url: (.*)
+    sf_method: [get]
+    
+ 
+
 homepage_atom:
   url:   /atom
   param: { module: index, action: index, sf_format: atom }

@@ -10,21 +10,10 @@
  */
 class userActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-    //$this->forward('default', 'module');
-  }
     
   public function executeShow(sfWebRequest $request)
   {
     $this->user_data = $this->getRoute()->getObject();
-	require_once sfConfig::get('sf_lib_dir').'/vendor/jevix/jevix.class.php';
-	$this->jevix = System::configure_jevix_light();
   }
   
   

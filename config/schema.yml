@@ -129,6 +129,8 @@ propel:
    id:              ~
    title:           { type: varchar(500), required: true }
    url:             { type: varchar(500) }
+   sort:            { type: integer, default: 0 }
    description:     { type: longvarchar }
+   is_visible:      { type: boolean, required: true, default: 1 }
    created_at:      ~
    updated_at:      ~  

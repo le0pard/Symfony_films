@@ -16,7 +16,9 @@ class BaseStaticPagesForm extends BaseFormPropel
       'id'          => new sfWidgetFormInputHidden(),
       'title'       => new sfWidgetFormInput(),
       'url'         => new sfWidgetFormInput(),
+      'sort'        => new sfWidgetFormInput(),
       'description' => new sfWidgetFormTextarea(),
+      'is_visible'  => new sfWidgetFormInputCheckbox(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -25,7 +27,9 @@ class BaseStaticPagesForm extends BaseFormPropel
       'id'          => new sfValidatorPropelChoice(array('model' => 'StaticPages', 'column' => 'id', 'required' => false)),
       'title'       => new sfValidatorString(array('max_length' => 500)),
       'url'         => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'sort'        => new sfValidatorInteger(array('required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
+      'is_visible'  => new sfValidatorBoolean(),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
