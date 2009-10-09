@@ -184,6 +184,13 @@ film_show:
     url: (.*)
     sf_method: [get, post] 
 
+#comment
+comment_add:
+  url:     /comment/add
+  param:  { module: comment, action: add }
+  requirements:
+    sf_method: [post]
+
 #static
 static_page:
   url:     /page/:id/:url

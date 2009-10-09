@@ -8,7 +8,8 @@ class RegistrationForm extends BaseUsersForm{
       $this['is_active'], $this['is_super_admin'], 
 	  $this['last_login'], $this['right_id'],
 	  $this['about'], $this['avatar'],
-	  $this['website_blog'], $this['film_raiting_list']
+	  $this['website_blog'], $this['film_raiting_list'],
+	  $this['users_users_group_list']
     );
 	
     $this->setValidators(array(
