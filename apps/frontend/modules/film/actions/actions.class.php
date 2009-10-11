@@ -23,6 +23,7 @@ class filmActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->film = $this->getRoute()->getObject();
+	$this->comments = CommentsPeer::getByFilmId($this->film->getId());
   }
   
   public function executeAdd_step1(sfWebRequest $request)

@@ -15,8 +15,25 @@ class commentActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
-  public function executeIndex(sfWebRequest $request)
+  public function executeAdd(sfWebRequest $request)
   {
-    $this->forward('default', 'module');
+  	$this->form = new CommentsForm();
+  	if ($request->isMethod('post')){
+  		$params = $request->getParameter('comments');
+		if ('Film' == $params['comment_type_name'] && $params['comment_type_id']){
+			$film = FilmPeer::retrieveByPK($params['comment_type_id']);
+			if ($film){
+				$this->form->bind($params);
+				if ($this->form->isValid()){			
+					$comment = $this->form->getObject();
+					$comment->setUsers($this->getUser()->getAuthUser());
+					$this->form->save();
+					$this->redirect($this->generateUrl('film_show', $film));
+				} else {
+					$this->redirect($this->generateUrl('film_show', $film));
+				}
+			}
+		}
+	}
   }
 }
