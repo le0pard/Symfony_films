@@ -14,7 +14,7 @@
     <!--HEADER-->
    	<?php include_partial('global/header') ?>
 	<div class="clear"></div>
-	<?php include_component('static', 'menu') ?>
+	<?php include_component('static', 'menu', array('sf_cache_key' => 'menu')) ?>
 	<div class="clear"></div>
 	<!--HEADER-->
 	<!--FLASH-->
