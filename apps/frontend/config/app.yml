@@ -4,7 +4,8 @@ all:
   remember_cookie_name: 'userRememberCookies'
   pages:
     main_page: 30
-    catalog_page: 30  
+    catalog_page: 30
+    comments_page: 50 
   films:
     poster_size: 5242880
     min_gallery: 3

@@ -23,7 +23,13 @@ class filmActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->film = $this->getRoute()->getObject();
-	$this->comments = CommentsPeer::getByFilmId($this->film->getId());
+	$this->pager = new sfPropelPager(
+		'Comments',
+		sfConfig::get('app_pages_comments_page')
+	);
+	$this->pager->setCriteria(CommentsPeer::getByFilmId($this->film->getId()));
+	$this->pager->setPage($request->getParameter('page', 1));
+	$this->pager->init();
   }
   
   public function executeAdd_step1(sfWebRequest $request)

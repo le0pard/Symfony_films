@@ -9,6 +9,6 @@ class CommentsPeer extends BaseCommentsPeer
 		}
 		$criteria->add(self::COMMENT_TYPE_NAME, 'Film');
 	    $criteria->addAscendingOrderByColumn(self::CREATED_AT);
-	    return self::doSelect($criteria);
+	    return $criteria;
     }
 }
