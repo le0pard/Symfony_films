@@ -1,0 +1,5 @@
+_menu:
+  enabled:     on
+  lifetime:    1728000 # 5 суток
+all:
+  with_layout: false
