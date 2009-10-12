@@ -1,0 +1,27 @@
+film_types:
+  class: sfPropelRouteCollection
+  options:
+    model:                FilmTypes
+    module:               catalog
+    prefix_path:          catalog
+    column:               id
+    with_wildcard_routes: true
+
+# default rules
+user_login:
+  url:     /login
+  param: { module: user, action: login }
+user_logout:
+  url:     /logout
+  param: { module: user, action: logout }  
+
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

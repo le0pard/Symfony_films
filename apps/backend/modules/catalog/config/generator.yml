@@ -1,0 +1,42 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           FilmTypes
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          film_types
+    with_propel_route:     1
+
+    config:
+      actions:
+        _new: { label: "Создать" }
+      fields:
+        title: { label: Название }
+        is_visible: { label: Видимый? }
+        is_not_main: { label: Не на главной? }
+
+      list:
+        title:          Категории фильмов
+        display:        [title, is_visible, is_not_main]
+        max_per_page:   10
+        sort:           [title, asc]
+        batch_actions:
+          _delete: { label: Удалить }
+        object_actions:
+          _edit:       { label: Редактировать }
+          _delete:     { label: Удалить, confirm: "Уверены, что хотите удалить?" }
+        actions:
+          _new: { label: Создать }
+
+      filter:
+        display: [title, is_visible, is_not_main]
+
+      form: 
+        class: BackendFilmTypesForm
+      edit:
+        title: Редактировать категорию %%title%%
+      new: 
+        title: Новая категория

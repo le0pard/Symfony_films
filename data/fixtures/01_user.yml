@@ -4,6 +4,7 @@ Users:
     password: 'password'
     email: 'leo@leo.com'
     is_active: true
+    is_super_admin: true
     
   user:
     login: 'user'
