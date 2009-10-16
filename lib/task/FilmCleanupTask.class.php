@@ -4,20 +4,23 @@ class JobeetCleanupTask extends sfBaseTask
   protected function configure()
   {
      $this->addOptions(array(
-       new sfCommandOption('env', null,
-sfCommandOption::PARAMETER_REQUIRED, 'The environement', 'prod'),
-     ));
+      new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name'),
+      new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
+      new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
+      // add your own options here
+    ));
      $this->namespace = 'film';
      $this->name = 'cleanup';
      $this->briefDescription = 'Cleanup Film database';
      $this->detailedDescription = <<<EOF
-The [jobeet:cleanup|INFO] task cleans up the Film database:
-  [./symfony jobeet:cleanup --env=prod|INFO]
+The [film:cleanup|INFO] task cleans up the Film database:
+  [./symfony film:cleanup --env=prod|INFO]
 EOF;
   }
   protected function execute($arguments = array(), $options = array())
   {
     $databaseManager = new sfDatabaseManager($this->configuration);
+    $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
     // cleanup Lucene index
 	$index = FilmPeer::getLuceneIndex();
 	$criteria = new Criteria();

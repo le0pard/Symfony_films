@@ -42,7 +42,7 @@ search:
   param: { module: search, action: index }
  
 search_auto_complete:
-  url: /search_auto_complete
+  url:   /search_auto_complete
   param: { module: search, action: auto_complete }
   
 #film types

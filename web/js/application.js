@@ -1,6 +1,7 @@
 
 var FilmSiteJs = {
 	url: '/frontend_dev.php/',
+	url_syfix: '.html',
 	init: function(){
 		this.initRegForm();
 		this.initSearchForm();
@@ -19,7 +20,7 @@ var FilmSiteJs = {
 		if ($('search_field')){
 			new Ajax.Autocompleter('search_field', 
 			'search_field_auto_complete', 
-			FilmSiteJs.url + 'search_auto_complete', {
+			search_auto_complete_path(), {
 				minChars: 3,
 				indicator: 'search_indicator',
 				frequency: 1
@@ -27,7 +28,7 @@ var FilmSiteJs = {
 		}
 	},
 	checkRegName: function(){
-		new Ajax.Request(FilmSiteJs.url + 'ajax_registration', {
+		new Ajax.Request(user_ajax_registration_path(), {
 		  method: 'post',
 		  postBody: 'login=' + $F('registration_login'),
 		  onComplete: function(request) {
@@ -43,7 +44,7 @@ var FilmSiteJs = {
 		});
 	},
 	checkRegEmail: function(){
-		new Ajax.Request(FilmSiteJs.url + 'ajax_registration', {
+		new Ajax.Request(user_ajax_registration_path(), {
 		  method: 'post',
 		  postBody: 'email=' + $F('registration_email'),
 		  onComplete: function(request) {
