@@ -40,18 +40,21 @@ EOF;
   
   protected function outputRoutes($application, $environment)
   {
-    $this->logSection('app', sprintf('Current routes for application "%s" and enviroment "%s"', $application, $environment));
+    $this->logSection('app', sprintf('Create less routes for application "%s" and enviroment "%s"', $application, $environment));
 	$function_str = '';
 	
 	switch($environment){
 		case 'dev':
 		case 'development':
-			$path_prefix = "var less_routes_prefix_url = '/frontend_dev.php';\n";
+			$path_prefix = "var less_routes_prefix_url = '/".$application."_dev.php';\n";
 			$file_prefix = 'dev';
 			break;
 		case 'prod':
 		case 'production':
-			$path_prefix = "var less_routes_prefix_url = '';\n";
+			if ('frontend' == $application)
+				$path_prefix = "var less_routes_prefix_url = '';\n";
+			else
+				$path_prefix = "var less_routes_prefix_url = '/".$application.".php';\n";	
 			$file_prefix = '';
 			break;
 		case 'test':
@@ -88,8 +91,8 @@ EOF;
 		}
 	  }
 	  $temp_route.= "'";
-	  print "Generate route for name ".$name.":";
-	  print " >> ".$temp_route."\n";
+	  
+	  $this->logSection('routes', sprintf('Route for name "%s" >> "%s"', $name, $temp_route));
 	  
 	  $function_str.= $name.'_path = function(';
 	  foreach($temp_variables as $k=>$variable){
@@ -102,7 +105,7 @@ EOF;
 	$handle = fopen(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR."js".DIRECTORY_SEPARATOR.$application."_less_routes_".$file_prefix.".js", "w+");
 	if ($handle){
 		if (fwrite($handle, $path_prefix.$function_str) === false) {
-			throw new sfCommandException(sprintf('Cannot write %s_less_routes_dev.js text file.', $application));
+			throw new sfCommandException(sprintf('Cannot write %s_less_routes_%s.js text file.', $application, $file_prefix));
         }
     	fclose($handle); 
 	}
