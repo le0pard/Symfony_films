@@ -15,10 +15,6 @@ class filmActions extends sfActions
   *
   * @param sfRequest $request A request object
   */
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->forward('default', 'module');
-  }
   
   public function executeShow(sfWebRequest $request)
   {
@@ -224,8 +220,13 @@ class filmActions extends sfActions
 		if ($request->hasParameter('pub')){
 			$this->film->setUpdateData(time());
 			$this->film->setIsPublic(true);
+			if ($this->getUser()->hasCredential(array('super_admin', 'admin', 'moder'), false)){
+				$this->film->setIsVisible(true);
+				$this->getUser()->setFlash('confirm', 'Ваша публикация уже опубликована.');
+			} else {
+				$this->getUser()->setFlash('confirm', 'Ваша публикация отправленна на расмотрение.');
+			}
 			$this->film->save();
-			$this->getUser()->setFlash('confirm', 'Ваша публикация отправленна на расмотрение.');
 			$this->redirect('@homepage');
 		}
 	}

@@ -1,3 +1,4 @@
+<?php use_javascript('tiny_mce/tiny_mce.js') ?>
 <h1>Добавление фильма/сериала</h1>
 <?php include_partial('film/add_panel', array('film' => $film)) ?>
 <h2>Редактирование данных про &laquo;<?php echo $film->getTitle() ?>&raquo;</h2>

@@ -47,7 +47,7 @@ class Film extends BaseFilm
 	#search add
 	public function save(PropelPDO $con = null) {
 		if (is_null($con)) {
-			$con = Propel::getConnection(JobeetJobPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$con->beginTransaction();
 		try {

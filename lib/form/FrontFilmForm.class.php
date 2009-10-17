@@ -29,7 +29,19 @@ class FrontFilmForm extends BaseFilmForm
       'pub_year'             => new sfWidgetFormSelect(array('multiple' => false, 'choices' => array_combine($years, $years))),
       'director'             => new sfWidgetFormInput(),
       'cast'                 => new sfWidgetFormInput(),
-      'about'                => new sfWidgetFormTextarea(),
+      'about'                => new sfWidgetFormTextareaTinyMCE(
+	  				array('theme' => 'advanced','config' => '
+							skin : "o2k7", 
+							language : "ru",
+							plugins : "safari,spellchecker,table,advimage,advlink,searchreplace,contextmenu,paste,directionality,fullscreen",
+							theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect",
+							theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,forecolor,backcolor",
+							theme_advanced_toolbar_location : "top",
+							theme_advanced_toolbar_align : "left",
+							theme_advanced_statusbar_location : "bottom",
+							theme_advanced_resizing : true,
+							'), 
+					array('rows' => 5, 'cols' => 50, 'class' => 'TinyMCE')),
       'country'              => new sfWidgetFormInput(),
       'duration'             => new sfWidgetFormInput(),
       'file_info'            => new sfWidgetFormTextarea()

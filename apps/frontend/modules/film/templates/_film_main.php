@@ -59,7 +59,9 @@
 			</tr>
 			<tr>
 				<th>Про что</th>
-				<td><?php echo $film->getAbout() ?></td>
+				<td>
+					<?php echo System::jevix_def($film->getAbout(ESC_RAW)); ?>
+				</td>
 			</tr>
 			<tr class="file">
 				<th>Качество</th>
@@ -75,7 +77,7 @@
 				<th>Информация про файл</th>
 				<td>
 					<?php if ($film->getFileInfo()): ?>
-						<?php echo $film->getFileInfo() ?>
+						<?php echo nl2br($film->getFileInfo()) ?>
 					<?php else: ?>
 						<span class="not_set">не указано</span>
 					<?php endif ?>
