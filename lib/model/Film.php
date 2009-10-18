@@ -76,7 +76,7 @@ class Film extends BaseFilm
 		foreach ($index->find('pk:'.$this->getId()) as $hit) {
 			$index->delete($hit->id);
 		}
-		// don't index expired and non-activated jobs
+		// don't index expired and non-activated films
 		if (!$this->getIsPublic() || !$this->getIsVisible()){
 			return;
 		}
@@ -92,8 +92,12 @@ class Film extends BaseFilm
 		$this->getPubYear(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('director',
 		$this->getDirector(), 'UTF-8'));
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('cast',
+		$this->getCast(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('country',
 		$this->getCountry(), 'UTF-8'));
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('about',
+		$this->getAbout(), 'UTF-8'));
 		// add job to the index
 		$index->addDocument($doc);
 		$index->commit();

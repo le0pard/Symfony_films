@@ -17,10 +17,10 @@ class searchActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-	if (!$query = $request->getParameter('s')) {
-		return $this->forward('index', 'index');
+	if (!$this->query = $request->getParameter('s')) {
+		$this->redirect($this->generateUrl('@homepage'));
 	}
-	$this->search_res = FilmPeer::getForLuceneQuery($query);
+	$this->search_res = FilmPeer::getForLuceneQuery($this->query);
   }
   
   public function executeAuto_complete(sfWebRequest $request)

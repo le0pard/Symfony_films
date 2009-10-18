@@ -13,3 +13,5 @@ all:
     gallery_size: 5242880
     min_links: 1
     max_links: 100
+  search:
+    limit: 50

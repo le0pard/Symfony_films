@@ -48,7 +48,9 @@ class FilmPeer extends BaseFilmPeer
 	  Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('UTF-8');
 	  if (file_exists($index = self::getLuceneIndexFile()))
 	  {
-	    return Zend_Search_Lucene::open($index);
+	  	$zf_index = Zend_Search_Lucene::open($index);
+	  	$zf_index->optimize();
+	    return $zf_index;
 	  }
 	  else
 	  {
@@ -71,8 +73,6 @@ class FilmPeer extends BaseFilmPeer
 	
 	static public function getForLuceneQuery($query) {
 		$index = self::getLuceneIndex();
-		//$query_str = mb_strtolower($query, 'UTF-8');
-		//$query_str = Zend_Search_Lucene_Search_QueryParser::parse($query, 'utf-8');
 		$hits = $index->find($query);
 		$pks = array();
 		foreach ($hits as $hit) {
@@ -80,7 +80,7 @@ class FilmPeer extends BaseFilmPeer
 		}
 		$criteria = new Criteria();
 		$criteria->add(self::ID, $pks, Criteria::IN);
-		$criteria->setLimit(50);
+		$criteria->setLimit(sfConfig::get('app_search_limit', 50));
 		$criteria->add(self::IS_VISIBLE, true);
 		$criteria->add(self::IS_PUBLIC, true);
 		return self::doSelect($criteria);
