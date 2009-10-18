@@ -1,10 +1,9 @@
 
 var FilmSiteJs = {
-	url: '/frontend_dev.php/',
-	url_syfix: '.html',
 	init: function(){
 		this.initRegForm();
 		this.initSearchForm();
+		this.initGallery();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -24,6 +23,13 @@ var FilmSiteJs = {
 				minChars: 3,
 				indicator: 'search_indicator',
 				frequency: 1
+			});
+		}
+	},
+	initGallery: function(){
+		if ($('galleryBox')){
+			$('galleryBox').select("a.img_link").each(function(s){
+				s.observe('click', FilmSiteJs.selectGalleryImage);
 			});
 		}
 	},
@@ -58,6 +64,19 @@ var FilmSiteJs = {
 			}
 		  }
 		});
+	},
+	selectGalleryImage: function(event){
+		$('galleryBox').select("a.img_link").each(function(s){
+			s.setOpacity(1);
+		});	
+		var element = Event.findElement(event, 'a');
+		var img = element.readAttribute('rel');
+		if (img && $('mainGalleryImg')){
+			var tempImg = new Image();
+			tempImg.src = img;
+			$('mainGalleryImg').writeAttribute('src', img);
+			element.setOpacity(0.8);
+		}
 	}
 };
 

@@ -86,9 +86,14 @@
 		</table>
 	</div>
 	
-	<div class="gallery">
+	<div id="galleryBox" class="gallery">
+		<div id="mainGalleryBox">
+			<img id="mainGalleryImg" alt="Просмотр" src="" />
+		</div>
 		<?php foreach($film->getGallery() as $row): ?>
-			<img alt="<?php echo $film->getTitle() ?>" src="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getThumbImg() ?>" />
+			<a class="img_link" href="javascript:;" rel="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getNormalImg() ?>">	
+				<img alt="<?php echo $film->getTitle() ?>" src="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getThumbImg() ?>" />
+			</a>
 		<?php endforeach ?>
 	</div>
 	
