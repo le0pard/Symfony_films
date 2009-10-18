@@ -1,0 +1,44 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Film
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          film
+    with_propel_route:     1
+
+    config:
+      actions:
+        _new: { label: "Создать" }
+      fields:
+        title: { label: Название }
+        original_title: { label: Оригинальное название }
+        is_visible: { label: Видимый? }
+        is_public: { label: Опубликован? }
+        update_data: { label: Дата }
+
+      list:
+        title:          Фильмы
+        display:        [title, original_title, is_visible, is_public, update_data]
+        max_per_page:   50
+        sort:           [update_data, desc]
+        batch_actions:
+          _delete: { label: Удалить }
+        object_actions:
+          _edit:       { label: Редактировать }
+          _delete:     { label: Удалить, confirm: "Уверены, что хотите удалить?" }
+        actions:
+          _new: { label: Создать }
+
+      filter:
+        display: [title, original_title, pub_year]
+
+      form: 
+        class: FilmForm
+      edit:
+        title: Редактировать фильм %%title%%
+      new: 
+        title: Новый фильм

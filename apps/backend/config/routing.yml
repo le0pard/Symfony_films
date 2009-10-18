@@ -1,3 +1,12 @@
+film:
+  class: sfPropelRouteCollection
+  options:
+    model:                Film
+    module:               film
+    prefix_path:          film
+    column:               id
+    with_wildcard_routes: true
+
 film_types:
   class: sfPropelRouteCollection
   options:

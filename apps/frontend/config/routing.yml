@@ -70,7 +70,7 @@ film_edit_step1:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: edit_step1 }
   requirements:
     id: \d+
@@ -82,7 +82,7 @@ film_delete_step1:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: delete_film }
   requirements:
     id: \d+
@@ -94,7 +94,7 @@ film_add_step2:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: add_step2 }
   requirements:
     id: \d+
@@ -106,7 +106,7 @@ film_edit_step2:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: edit_step2 }
   requirements:
     id: \d+
@@ -118,6 +118,7 @@ film_delete_gallery:
   options:
     model: FilmGallery
     type: object
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: delete_gallery }
   requirements:
     id: \d+
@@ -129,7 +130,7 @@ film_add_step3:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: add_step3 }
   requirements:
     id: \d+
@@ -141,7 +142,7 @@ film_edit_step3:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: edit_step3 }
   requirements:
     id: \d+
@@ -153,6 +154,7 @@ film_delete_step3:
   options:
     model: FilmLinks
     type: object
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: delete_link }
   requirements:
     id: \d+
@@ -164,7 +166,7 @@ film_add_final:
   options:
     model: Film
     type: object
-    method_for_criteria: doSelectUserUnpublic
+    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: add_final }
   requirements:
     id: \d+

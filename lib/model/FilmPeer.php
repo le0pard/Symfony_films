@@ -25,6 +25,23 @@ class FilmPeer extends BaseFilmPeer
     	return self::doCount(self::addVisibleCriteria($criteria));
   	}
 	
+	static public function doSelectEditFilmCriteria(Criteria $criteria = null) {
+	  if (is_null($criteria)) {
+	     $criteria = new Criteria();
+	  }
+	  if (!sfContext::getInstance()->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+	  	$criteria->add(self::IS_VISIBLE, false);
+	  	$criteria->add(self::IS_PUBLIC, false);
+	  	$criteria->add(self::USER_ID, sfContext::getInstance()->getUser()->getAuthUser()->getId());
+	  }
+	  return $criteria;
+    }
+	
+	static public function doSelectEditFilm(Criteria $criteria = null)
+	{
+	  return self::doSelectOne(self::doSelectEditFilmCriteria($criteria));
+	}
+	
 	static public function doSelectUnpublicCriteria(Criteria $criteria = null) {
 	  if (is_null($criteria)) {
 	     $criteria = new Criteria();
@@ -35,9 +52,9 @@ class FilmPeer extends BaseFilmPeer
 	  return $criteria;
     }
 	
-	static public function doSelectUserUnpublic(Criteria $criteria)
+	static public function doSelectUserUnpublic(Criteria $criteria = null)
 	{
-	  return self::doSelectOne(self::doSelectUnpublicCriteria());
+	  return self::doSelectOne(self::doSelectUnpublicCriteria($criteria));
 	}
 	
 	//search
@@ -48,9 +65,7 @@ class FilmPeer extends BaseFilmPeer
 	  Zend_Search_Lucene_Search_QueryParser::setDefaultEncoding('UTF-8');
 	  if (file_exists($index = self::getLuceneIndexFile()))
 	  {
-	  	$zf_index = Zend_Search_Lucene::open($index);
-	  	$zf_index->optimize();
-	    return $zf_index;
+	    return Zend_Search_Lucene::open($index);
 	  }
 	  else
 	  {
