@@ -57,11 +57,11 @@ class sfLuceneHighlighter
    */
   protected function prepare()
   {
-    $response = substr_count($this->content, '>') == substr_count($this->content, '<');
+    $response = mb_substr_count($this->content, '>') == mb_substr_count($this->content, '<');
 
     if ($this->hasBody)
     {
-      $response = $response && substr_count($this->content, '<body') == 1 && substr_count($this->content, '</body>') == 1;
+      $response = $response && mb_substr_count($this->content, '<body') == 1 && mb_substr_count($this->content, '</body>') == 1;
     }
 
     if (!$response)
@@ -110,8 +110,8 @@ class sfLuceneHighlighter
    */
   public function addKeywordSlug($slug)
   {
-    $this->addKeywords( str_word_count($slug, 2, implode($this->blacklist, '')) );
-
+    //$this->addKeywords(str_word_count($slug, 2, implode($this->blacklist, '')));
+	$this->addKeywords(str_word_count_utf8($slug, 2));
     return $this;
   }
 
@@ -171,7 +171,7 @@ class sfLuceneHighlighter
 
     // first we build an index of all the keywords
     $index = array();
-    $length = strlen($this->content);
+    $length = mb_strlen($this->content);
     $radius = floor($size / 2);
 
     $blacklist = $this->blacklist;
@@ -180,7 +180,7 @@ class sfLuceneHighlighter
     {
       $keywordLength = mb_strlen($keyword);
 
-      for ($position = stripos($this->content, $keyword); $position !== false; $position += $keywordLength, $position = stripos($this->content, $keyword, $position))
+      for ($position = mb_stripos($this->content, $keyword); $position !== false; $position += $keywordLength, $position = mb_stripos($this->content, $keyword, $position))
       {
         if (!in_array(mb_strtolower(mb_substr($this->content, $position + $keywordLength, 1)), $blacklist) &&
         !in_array(mb_strtolower(mb_substr($this->content, $position - 1, 1)), $blacklist) &&
@@ -261,7 +261,7 @@ class sfLuceneHighlighter
       }
     }
 
-    $newContent = trim(substr($this->content, $bestLeft, $size));
+    $newContent = trim(mb_substr($this->content, $bestLeft, $size));
 
     if ($bestLeft + $size < $length)
     {
@@ -291,8 +291,8 @@ class sfLuceneHighlighter
 
     if ($this->hasBody)
     {
-      $body_start = stripos($this->content, '<body');
-      $body_end = stripos($this->content, '</body>') + strlen('</body>');
+      $body_start = mb_stripos($this->content, '<body');
+      $body_end = mb_stripos($this->content, '</body>') + mb_strlen('</body>');
 
       $prefix = mb_substr($this->content, 0, $body_start);
       $suffix = mb_substr($this->content, $body_end);
@@ -323,7 +323,7 @@ class sfLuceneHighlighter
 
     $next_chars_blacklist = $this->blacklist;
 
-    for ($position = stripos($content, $term); $position !== false; $position = stripos($content, $term, $position))
+    for ($position = mb_stripos($content, $term); $position !== false; $position = mb_stripos($content, $term, $position))
     {
       $lowerContent = mb_strtolower($content);
 
@@ -341,7 +341,7 @@ class sfLuceneHighlighter
 
         $term_hit = mb_substr($content, $position, $term_length);
         $new_term = sprintf($this->getHighlighter($term_count), $term_hit);
-        $new_term_length = strlen($new_term);
+        $new_term_length = mb_strlen($new_term);
 
         $content = $prefix .  $new_term . $suffix;
 
@@ -366,3 +366,97 @@ class sfLuceneHighlighter
     return $this->highlighters[$term_count % count($this->highlighters)];
   }
 }
+
+
+function str_word_count_utf8($string, $format = 0){
+        switch ($format) {
+        case 1:
+            preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", $string, $matches);
+            return $matches[0];
+        case 2:
+            preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", $string, $matches, PREG_OFFSET_CAPTURE);
+            $result = array();
+            foreach ($matches[0] as $match) {
+                $result[$match[1]] = $match[0];
+            }
+            return $result;
+        }
+        return preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", $string, $matches);
+}
+
+if (!function_exists('mb_internal_encoding')){
+   function mb_strlen($str)
+   {
+      for ($i = strlen($str), $j = 0; $i--; )
+         if ((ord($str[$i]) & 0xc0) != 0x80)
+            $j++;
+         return $j;
+   }
+
+function mb_substr($str, $from, $len = false)
+   {
+      if ($from >= 0)
+      {
+         for ($c_byte = 0; $from--; )
+            if (ord($str[$c_byte]) <= 0x7F)
+               $c_byte++;
+            else
+               while ((ord($str[++$c_byte]) & 0xc0) == 0x80);
+
+         $byte_beg = $c_byte;
+
+         if ($len === false)
+            return substr($str, $byte_beg);
+         elseif ($len < 0)
+         {
+            for ($c_byte = strlen($str) - 1; $len++; $c_byte--)
+               if (ord($str[$c_byte]) > 0x7F)
+                  while ((ord($str[--$c_byte]) & 0xc0) == 0x80);
+
+            return substr($str, $byte_beg, -strlen($str) + 1 + $c_byte);
+         }
+         else
+         {
+            for ( ; $len--; )
+               if (ord($str[$c_byte]) <= 0x7F)
+                  $c_byte++;
+               else
+                  while ((ord($str[++$c_byte]) & 0xc0) == 0x80);
+
+            return substr($str, $byte_beg, $c_byte - $byte_beg);
+         }
+      }
+      else
+      {
+         $last_byte = strlen($str) - 1;
+         for ($c_byte = $last_byte; $from++; $c_byte--)
+            if (ord($str[$c_byte]) > 0x7F)
+               while ((ord($str[--$c_byte]) & 0xc0) == 0x80);
+
+         $byte_beg = $c_byte;
+
+         if ($len === false)
+            return substr($str, $byte_beg - $last_byte);
+         elseif ($len < 0)
+         {
+            for ($c_byte = $last_byte; $len++; $c_byte--)
+               if (ord($str[$c_byte]) > 0x7F)
+                  while ((ord($str[--$c_byte]) & 0xc0) == 0x80);
+
+            return substr($str, $byte_beg - $last_byte, $c_byte - $last_byte);
+         }
+         else
+         {
+            for ( ; $len--; )
+               if (ord($str[$c_byte]) <= 0x7F)
+                  $c_byte++;
+               else
+                  while ((ord($str[++$c_byte]) & 0xc0) == 0x80);
+
+            return substr($str, $byte_beg - $last_byte, $c_byte - $byte_beg);
+         }
+      }
+   }
+}
+else
+   mb_internal_encoding('UTF-8');
