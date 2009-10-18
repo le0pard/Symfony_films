@@ -27,6 +27,11 @@ class RegistrationForm extends BaseUsersForm{
 					), array('required' => true, 'trim' => true), array('required' => 'Email должен быть указан.'))
     ));
 	
+	$this->widgetSchema['captcha'] = new sfWidgetFormInput();
+	$this->validatorSchema['captcha'] = new sfValidatorSfCryptoCaptcha(array('required' => true, 'trim' => true),
+                                                   array('wrong_captcha' => 'Неверные циферки.',
+                                                         'required' => 'Нам нужны эти циферки.'));
+	
 	$this->widgetSchema['password'] = new sfWidgetFormInputPassword();
     $this->widgetSchema['password_confirmation'] = new sfWidgetFormInputPassword();
     $this->validatorSchema['password_confirmation'] = clone $this->validatorSchema['password'];
@@ -37,7 +42,8 @@ class RegistrationForm extends BaseUsersForm{
 	  'login'   => 'Логин',
 	  'email'	=> 'E-mail',
 	  'password'   => 'Пароль',
-	  'password_confirmation' => 'Повторите пароль'
+	  'password_confirmation' => 'Повторите пароль',
+	  'captcha' => 'Картинка'
 	));
 	
 	$this->widgetSchema['rights'] = new sfWidgetFormInputCheckbox(array(
@@ -55,6 +61,7 @@ class RegistrationForm extends BaseUsersForm{
 		'password' => 'Длинна пароля от 3 до 20 символов',
 		'password_confirmation' => 'Повторите введенный Вами пароль',
 		'email' => 'Пожалуйста, введите верный e-mail (не показывается на сайте)',
+		'captcha' => 'Нам нужны эти циферки',
 		'rights' => 'Ознакомлен и согласен с правилами'
 	));
 

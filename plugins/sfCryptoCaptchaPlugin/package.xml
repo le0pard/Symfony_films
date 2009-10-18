@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.4.11" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfCryptoCaptchaPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>symfony captcha plugin</summary>
+ <description>Creates very configurable captchas for symfony forms - based on the Cryptographp library.</description>
+ <lead>
+  <name>Terrance CAVENDISH</name>
+  <user>henearkrxern</user>
+  <email>henearkrxern@hotmail.fr</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-09-16</date>
+ <time>14:08:07</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.symfony-project.org/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <file role="data" name="README" />
+   <file role="data" name="LICENSE" />
+   <dir name="config">
+    <file role="data" name="app.yml" />
+    <file role="data" name="config.php" />
+   </dir>
+   <dir name="lib">
+    <dir name="form">
+     <file role="data" name="sfCryptoCaptchaForm.class.php" />
+    </dir>
+    <dir name="helper">
+     <file role="data" name="sfCryptoCaptchaHelper.php" />
+    </dir>
+    <dir name="validator">
+     <file role="data" name="sfValidatorSfCryptoCaptcha.class.php" />
+    </dir>
+    <file role="data" name="sfCryptoCaptcha.class.php" />
+    <file role="data" name="sfCryptoCaptchaPluginRouting.class.php" />
+   </dir>
+   <dir name="modules">
+    <dir name="sfCryptoCaptcha">
+     <file role="data" name="actions/actions.class.php" />
+     <file role="data" name="templates/captchaDemoSuccess.php" />
+    </dir>
+   </dir>
+   <dir name="media">
+     <dir name="fonts">
+     <file role="data" name="Alanden_.ttf" />
+     <file role="data" name="arial.ttf" />
+     <file role="data" name="bsurp___.ttf" />
+     <file role="data" name="ELECHA__.ttf" />
+     <file role="data" name="luggerbu.ttf" />
+     <file role="data" name="RASCAL__.ttf" />
+     <file role="data" name="SCRAWL.ttf" />
+     <file role="data" name="WAVY.ttf" />
+    </dir>
+    <dir name="bg">
+     <file role="data" name="beige_marble.jpg" />
+     <file role="data" name="leaf_bg.jpg" />
+     <file role="data" name="metal_bg.jpg" />
+     <file role="data" name="styrofoam.jpg" />
+    </dir>
+    <dir name="error">
+     <file role="data" name="refresh.png" />
+     <file role="data" name="too_many.png" />
+     <file role="data" name="unknown.png" />
+     <dir name="en">
+      <file role="data" name="refresh.png" />
+      <file role="data" name="too_many.png" />
+      <file role="data" name="unknown.png" />
+     </dir>
+     <dir name="fr">
+      <file role="data" name="refresh.png" />
+      <file role="data" name="too_many.png" />
+      <file role="data" name="unknown.png" />
+     </dir>
+    </dir>
+   </dir>
+   <dir name="web">
+    <dir name="images">
+     <file role="data" name="refresh_blue_big.png" />
+     <file role="data" name="refresh_green_cw_small.png" />
+     <file role="data" name="refresh_blue_ccw_small.png" />
+     <file role="data" name="reload_blue_medium.png" />
+     <file role="data" name="refresh_blue_cw_medium.png" />
+     <file role="data" name="reload_blue_small.gif" />
+     <file role="data" name="refresh_blue_medium.png" />
+     <file role="data" name="reload_dark_green_small.gif" />
+     <file role="data" name="refresh_clear_blue_medium.png" />
+     <file role="data" name="reload_green_small.gif" />
+     <file role="data" name="refresh_clear_blue_small.png" />
+     <file role="data" name="reload_green_small.png" />
+     <file role="data" name="refresh_dark_blue_big.png" />
+     <file role="data" name="reload_original.png" />
+     <file role="data" name="refresh_green_ccw_small.png" />
+     <file role="data" name="web_refresh_green_big.png" />
+     <file role="data" name="refresh_green_cw_small.gif" />
+    </dir>
+   </dir>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.0.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.1.0</min>
+    <max>1.2.0</max>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-09-16</date>
+   <notes>
+     * henearkrxern: there was a fonts folder that was in the web/ dir - fixed. Thanks to: Maik
+   </notes>
+  </release> 
+ 
+  <release>
+   <version>
+    <release>0.0.9</release>
+    <api>0.0.9</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-09-10</date>
+   <notes>
+     * henearkrxern: there was a problem when re-displaying the form after a submit with errors on some browsers cache logic (no automatic image refresh in Konqueror) - thanks to Sotiris
+     * henearkrxern: added the little adaptation to do for sf 1.1 into the README (replace routing class by manually defining routes in the routing.yml file) - thanks to M.Roos
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.0.8</release>
+    <api>0.0.8</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-06-30</date>
+   <notes>
+     * henearkrxern: updated the validator to public instead of private to allow it's use in the action if needed - thanks to spilo101 for noticing it
+     * henearkrxern: fixed a "bug" in the symfony configuration cascade that was making the plugin behave strangely - thanks to CedCannes for noticing this and other small glitches
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.0.7</release>
+    <api>0.0.7</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-06-26</date>
+   <notes>
+     * henearkrxern: updated README
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.0.6</release>
+    <api>0.0.6</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-06-25</date>
+   <notes>
+     * henearkrxern: reorganisation of the plugin (media directory, fonts, backgrounds)
+     * henearkrxern: fonts dir specified from the symfony root and not the web dir and moved
+     * henearkrxern: added support for url suffixes (.php, .html, ...)
+     * henearkrxern: added free and/or GPL icons for the refresh button (check out the plugin web/images folder)
+     * henearkrxern: added some organic backgrounds
+     * henearkrxern: errors are now pre-generated graphics that can be internationalized
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.0.5</release>
+    <api>0.0.5</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-06-25</date>
+   <notes>
+     * henearkrxern: packaging and svn error...
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.0.4</release>
+    <api>0.0.4</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2009-06-25</date>
+   <notes>
+     * henearkrxern: problem with background image - FIXED and some details in README and package
+   </notes>
+  </release>
+  <release>
+    <version>
+      <release>0.0.3</release>
+      <api>0.0.3</api>
+    </version>
+    <stability>
+     <release>beta</release>
+     <api>beta</api>
+    </stability>
+    <license uri="http://www.symfony-project.org/license">MIT license</license>
+    <date>2009-04-07</date>
+    <license>MIT</license>
+    <notes>
+      * henearkrxern: there were some errors in the README (fixed)
+    </notes>
+  </release>
+  <release>
+    <version>
+      <release>0.0.2</release>
+      <api>0.0.2</api>
+    </version>
+    <stability>
+     <release>beta</release>
+     <api>beta</api>
+    </stability>
+    <license uri="http://www.symfony-project.org/license">MIT license</license>
+    <date>2009-04-06</date>
+    <license>MIT</license>
+    <notes>
+      * henearkrxern: some errors in the plugin packaging and uploading (fixed)
+    </notes>
+  </release>
+  <release>
+    <version>
+      <release>0.0.1</release>
+      <api>0.0.1</api>
+    </version>
+    <stability>
+     <release>beta</release>
+     <api>beta</api>
+    </stability>
+    <license uri="http://www.symfony-project.org/license">MIT license</license>
+    <date>2009-04-06</date>
+    <license>MIT</license>
+    <notes>
+      * henearkrxern: First version, no known bugs (somewhat stable) but there are improvements to be done (see README)
+    </notes>
+  </release>
+</changelog>
+</package>

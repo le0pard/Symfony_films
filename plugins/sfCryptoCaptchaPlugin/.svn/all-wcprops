@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/!svn/ver/22072/plugins/sfCryptoCaptchaPlugin/trunk
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/17114/plugins/sfCryptoCaptchaPlugin/trunk/LICENSE
+END
+package.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/!svn/ver/22072/plugins/sfCryptoCaptchaPlugin/trunk/package.xml
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/!svn/ver/21841/plugins/sfCryptoCaptchaPlugin/trunk/README
+END

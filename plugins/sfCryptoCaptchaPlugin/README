@@ -1,0 +1,224 @@
+sfCryptoCaptcha Plugin
+======================
+
+
+This plugin generates a higly configurable captcha to block spam and robots.
+The script is based on the [Cryptographp library](http://www.captcha.fr/ "Cryptographp") but
+is actually a complete rewrite in PHP 5 and in OOP of the sfCryptographpPlugin
+that was available for symfony 1.0 on the trac wiki.
+
+Installation
+------------
+
+The plugin is easy to install, by using SVN or PEAR:
+
+
+### Install using PEAR
+
+    $ symfony plugin:install sfCryptoCaptchaPlugin
+
+If this doesn't work, try the help option for plugin installation
+
+    $ symfony help plugin:install
+
+
+### Install using SVN
+
+    $ mkdir plugins/sfCryptoCaptchaPlugin
+    $ cd plugins/sfCryptoCaptchaPlugin
+    plugins/sfCryptoCaptchaPlugin$ svn co http://svn.symfony-project.com/plugins/sfCryptoCaptchaPlugin/trunk .
+    $ cd ../..
+
+Activate the plugin in you applications `settings.yml` file:
+
+    all:
+      .settings:
+        enabled_modules:        [default, sfCryptoCaptcha]
+
+Then plublish the assets and clear the cache:
+
+     $ symfony plugin:publish-assets
+     $ symfony cc
+
+
+### Configure plugin
+
+This plugin can be easily configured with the `app.yml` file. All the options
+are detailed in the comments of the original configuration file.
+
+Some precisions thought:
+
+  * img_dir : the image directory is searched under the web/ directory of the project.
+  * char_random_color_lvl : the color of the characters if they are randomly selected. It selectes between very dark and very light colors (1 = very dark, 2 = dark, 3 = bright, 4  very bright)
+  * char_fonts_dir : same for the char fonts directory, it is searched under the web/ directory of the project.
+  * chars_used : the characters specified here are used only if easy_captcha is set to false.
+  * easy_captcha_bool : not very important, it defines if the easy captcha starts with a vowel or consonnant.
+  * format : there are 3 formats available: png, jpeg and gif
+  * flood_timer : the timer prevents from refreshing too often. Don't set a too high value for it may display an [Error - refreshing too fast] if you submit a form with errors before the minimum waiting time.
+  * max_refresh : this option is reset to 0 when a good captcha is entered (anywhere on your project site)
+
+>**Note**
+>When configuring the plugin, use the application `app.yml` file to override the setting you want to change. Do not use the the plugin `app.yml` file
+
+
+## Using the plugin
+
+Two helper functions are to be used in your template 
+
+    [php]
+    <?php
+    // in the head of your template, call the helper
+    use_helper('sfCryptoCaptcha');
+    
+    //the helper functions
+    captcha_image();
+    captcha_reload_button();
+    ?>
+    
+    // in a table form it looks like this
+    <tr>
+      <th><?php echo $form['captcha']->renderLabel(); ?></th>
+      <td>
+        <?php echo $form['captcha']->renderError(); ?>
+        <?php echo $form['captcha']->render(); ?>
+      </td>
+      <td><?php echo captcha_image(); echo captcha_reload_button(); ?></td>
+    </tr>
+
+The first helper displays the captcha image, the second one is the reload button (if the user can't read the picture and want to use another one).
+
+## Validation
+
+To validate the entered captcha code in a form, use the sfValidatorSfCryptoCaptcha validator like so:
+
+    [php]
+    <?php
+    //this is in your somePurposeForm.class.php file
+    $this->setWidgets(array(
+           // .. other fields ..
+           'captcha'       => new sfWidgetFormInput(),
+           // .. other fields ..
+    ));
+    $this->widgetSchema->setLabels(array(
+           // .. other fields ..
+           'captcha'       => 'Please copy the security code.',
+           // .. other fields ..
+    ));
+    $this->setValidators(array(
+           // .. other fields ..
+           'captcha' => new sfValidatorSfCryptoCaptcha(array('required' => true, 'trim' => true),
+                                                       array('wrong_captcha' => 'The code you copied is not valid.',
+                                                             'required' => 'You did not copy any code. Please copy the code.')),
+           // .. other fields ..
+    ));
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+## Configuration details
+
+Here are some useful configuration details
+
+The bg_img options can have many values:
+
+ 1. it can be a boolean (disable background image) 
+ 2. it can be a image name (path from the symfony root) 
+ 3. or it can be a file name (an image will be randomly chosen in the file)
+
+Here's how it looks in the configuration app.yml file
+
+    [yaml]
+    ---
+    bg_img:         false                                                  #1
+    bg_img:         '/plugins/sfCryptoCaptchaPlugin/media/bg/leaf_bg.png'  #2
+    bg_img:         '/plugins/sfCryptoCaptchaPlugin/media/bg'              #3
+
+When setting the letters for the captcha, be careful to exclude characters that look alike,
+for example: `o` and `0` or `B` and `8` (when there is noise and funky fonts, there symbols quickly look alike).
+
+``You want to make it difficult for robots but not for your users.``
+
+For configurations needing paths (backgrounds, refresh button, fonts)
+
+  * Be careful, the path to the refresh image must be from the __web__ root and not the symfony root dir.
+  * On the contrary, the path to the background images and the fonts is relative to the symfony root and the options need to start by a '/'
+
+The error messages are internationalized if the i18n is turned on for symfony.
+The images displayed will be in the `/plugins/sfCryptoCaptchaPlugin/media/error/%SF_CULTURE%/...`
+directory and the extension used will be the same as the configured `format`. If there is no i18n
+active, the three images will be taken from the `/plugins/sfCryptoCaptchaPlugin/media/error/` directory.
+
+The three needed images are:
+
+  * `unknown.xxx`   For unknown errors
+  * `too_many.xxx`  For too many requests per session (maximum 1000 requests per session)
+  * `refresh.xxx`   For too fast refreshes
+
+Each one of there images __must__ be present in each culture folder or in the main error folder.
+By default, a french and english version is provided. You can add as many languages and needed and customize the error images in any graphic editor(Gimp, Photoshop ...) as long as it is in jpeg, png or gif format [the same as the captcha `format` option].
+
+## Dependencies
+
+There are no dependecies other than PHP >= 5.0.0
+
+## Versions
+
+  * sfCryptoCaptchaPlugin_v0.0.3 => New PHP5 and OOP version of the sfCryptographp_v1.0.0 plugin and of the Cryptographp library (mixed and updated). Only the concepts and functionnalities have been kept from the original library.
+  * sfCryptographpPlugin_v1.0.0 => First version of the Cryptographp library in a symfony plugin. It was available for symfony 1.0 on the trac wiki
+
+## Todo List
+
+These are the things that need to be implemented/fixed:
+
+ * The pear install seems to malfunction :(
+ * The functionality to reuse a captcha (by saving it in clear in the user session) has been removed from the original library, it could be nice to code it back in and add an option to activate that feature - still, this is a less secure method than making a new captcha everytime.
+ * Not tested on 1.1 but it should also work correctly.
+
+## Troubleshooting
+
+For symfony 1.1 users only, you may have to comment or delete the whole lib/sfCryptoCaptchaPluginRouting.class.php file
+and add these routes manually for the plugin to work correctly:
+
+    [yaml]
+    ---
+    captcha:
+      url:        /captcha
+      param:      { module: sfCryptoCaptcha , action: captcha }
+    captcha_refresh:
+      url:        /captcha/:random
+      param:      { module: sfCryptoCaptcha , action: captcha }
+    captcha_demo:
+      url:        /captcha_demo
+      param:      { module: sfCryptoCaptcha , action: captchaDemo }
+
+If there is no image or no refresh button, check the following:
+
+  * try displaying a single captcha image by going to the URL /captcha in your symfony site
+    * if there is an image here, then the helper must be doing something wrong (or you forgot to add the helper functions in your template)
+    * if you get errors, make sure that:
+      * you have executed the `plugin:publish-assets` command (under Windows, you may have to manually copy the sfCryptoCaptchaPlugin/web to the web/ directory)
+      * the fonts directory is properly configured (in the `app.yml` file)
+      * the SF_ROOT/plugins/sfCryptoCaptchaPlugin/fonts directory and sub-directories have the proper permissions
+      * all the permissions of the plugin are correct
+      * if there is still no image, check that the image is correctly destroyed in the sfCryptoCaptcha class with `imagedestroy($this->image);` line 220
+        * same for the noise, if there is no noise, check that the image-brush is destroyed with `$this->clearBrush();` line 198
+  * back in your template, make sure that:
+    * the final paths are correct (/captcha for the image and /sfCryptoCaptchaPlugin/images/refresh.png for the refresh image)
+    * there is no conflict in the url (/captcha not used by some other plugin or module of the same name)
+  * after checking all this, if it still doesn't work, you'll have to check everything directly in the source of the plugin. If you need help or you notice a glitch or a bug, please contact-me [henearkrxern [at] hotmail.fr] and I'll update the script. Thanks :)
+
+If your captcha does not display correctly:
+
+  * If all the characters are not in the image (overflow), play with the character size settings(char_min_size and char_max_size) and the character spacing (char_px_spacing) and/or with the image size.
+  * Play with some options and see what you come up with, hopefully, you should find where the problem is coming from.
+  * You have enabled the background image but your background is black: check that the path is correct and that it starts with a "/".
+  * If there is an error with the font (usually there will be no image - but in case you run out of problem-ideas, check the path to the font files and that it starts with a "/".
+
+## Copyright
+
+    sfCryptoCaptchaPlugin (c) Terrance CAVENDISH
+    sfCryptographpPlugin (c) Leo CACHEUX
+    Cryptographp (c) Sylvain BRISON
+    
+    http://www.mog-soft.org/symfony/download - sfCryptographpPlugin v1.0.0
+    http://www.symfony-project.com - symfony
+    http://www.cryptographp.com - Cryptographp
+    http://www.captcha.fr - Cryptographp

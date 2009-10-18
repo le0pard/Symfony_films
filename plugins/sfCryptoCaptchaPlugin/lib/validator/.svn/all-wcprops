@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/!svn/ver/19703/plugins/sfCryptoCaptchaPlugin/trunk/lib/validator
+END
+sfValidatorSfCryptoCaptcha.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/!svn/ver/19703/plugins/sfCryptoCaptchaPlugin/trunk/lib/validator/sfValidatorSfCryptoCaptcha.class.php
+END

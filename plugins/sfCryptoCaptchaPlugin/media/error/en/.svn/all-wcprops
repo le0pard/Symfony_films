@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/19571/plugins/sfCryptoCaptchaPlugin/trunk/media/error/en
+END
+refresh.png
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/19571/plugins/sfCryptoCaptchaPlugin/trunk/media/error/en/refresh.png
+END
+unknown.png
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/!svn/ver/19571/plugins/sfCryptoCaptchaPlugin/trunk/media/error/en/unknown.png
+END
+too_many.png
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/!svn/ver/19571/plugins/sfCryptoCaptchaPlugin/trunk/media/error/en/too_many.png
+END

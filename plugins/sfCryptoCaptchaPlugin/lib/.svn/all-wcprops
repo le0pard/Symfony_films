@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/21842/plugins/sfCryptoCaptchaPlugin/trunk/lib
+END
+sfCryptoCaptcha.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/!svn/ver/21841/plugins/sfCryptoCaptchaPlugin/trunk/lib/sfCryptoCaptcha.class.php
+END
+sfCryptoCaptchaPluginRouting.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/!svn/ver/17114/plugins/sfCryptoCaptchaPlugin/trunk/lib/sfCryptoCaptchaPluginRouting.class.php
+END
