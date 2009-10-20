@@ -4,6 +4,8 @@ web/uploads/*
 log/*.log
 cache/*
 config/databases.yml
+config/sphinx.conf
 lib/vendor/**
 data/films.*
 .tmp_*
+data/sphinx/*
