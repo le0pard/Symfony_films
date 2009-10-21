@@ -14,6 +14,7 @@ all:
     min_links: 1
     max_links: 100
   search:
+    method: sphinx #default lucene
     limit: 50
     
     

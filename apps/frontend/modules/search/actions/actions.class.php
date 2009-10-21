@@ -20,7 +20,28 @@ class searchActions extends sfActions
 	if (!$this->query = $request->getParameter('s')) {
 		$this->redirect($this->generateUrl('@homepage'));
 	}
-	$this->search_res = FilmPeer::getForLuceneQuery($this->query);
+	
+	if ('sphinx' == sfConfig::get('app_search_method')){
+		$this->page = $this->getRequestParameter('page', 1);
+		$options = array(
+			'limit'   => sfConfig::get('app_search_limit', 50),
+			'offset'  => ($this->page - 1) * sfConfig::get('app_search_limit', 50),
+			'weights' => array(100, 1),
+			'sort'    => sfSphinxClient::SPH_SORT_EXTENDED,
+			'sortby'  => '@weight DESC',
+		);
+		$this->sphinx = new sfSphinxClient($options);
+	    $res = $this->sphinx->Query($this->query, 'main');
+	    $this->pager = new sfSphinxPager('Film', $options['limit'], $this->sphinx);
+	    $this->pager->setPage($this->page);
+	    $this->pager->setPeerMethod('retrieveByPKs');
+	    $this->pager->init();
+	    $this->logMessage('Sphinx search "' . $this->query . '" [' . $res['time'] .
+	                      's] found ' . $this->pager->getNbResults() . ' matches');
+
+	} else {
+		$this->search_res = FilmPeer::getForLuceneQuery($this->query);
+	}
   }
   
   public function executeAuto_complete(sfWebRequest $request)
