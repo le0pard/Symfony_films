@@ -1,5 +1,5 @@
 <?php use_helper('sfLucene') ?>
-<?php if ('sphinx' == sfConfig::get('app_search_method')): ?>
+<?php if ('sphinx' == sfConfig::get('app_search_method') && isset($pager) && isset($sphinx)): ?>
 	
 	<?php if ($sphinx->getLastWarning()): ?>
 	Warning: <?php echo $sphinx->getLastWarning() ?>

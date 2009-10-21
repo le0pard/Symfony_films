@@ -30,15 +30,19 @@ class searchActions extends sfActions
 			'sort'    => sfSphinxClient::SPH_SORT_EXTENDED,
 			'sortby'  => '@weight DESC',
 		);
-		$this->sphinx = new sfSphinxClient($options);
-	    $res = $this->sphinx->Query($this->query, 'main');
-	    $this->pager = new sfSphinxPager('Film', $options['limit'], $this->sphinx);
-	    $this->pager->setPage($this->page);
-	    $this->pager->setPeerMethod('retrieveByPKs');
-	    $this->pager->init();
-	    $this->logMessage('Sphinx search "' . $this->query . '" [' . $res['time'] .
-	                      's] found ' . $this->pager->getNbResults() . ' matches');
-
+		try {
+			$this->sphinx = new sfSphinxClient($options);
+			 $res = $this->sphinx->Query($this->query, 'main');
+		    $this->pager = new sfSphinxPager('Film', $options['limit'], $this->sphinx);
+		    $this->pager->setPage($this->page);
+		    $this->pager->setPeerMethod('retrieveByPKs');
+		    $this->pager->init();
+		    $this->logMessage('Sphinx search "' . $this->query . '" [' . $res['time'] .
+		                      's] found ' . $this->pager->getNbResults() . ' matches');
+		} catch (Exception $e) {
+			$this->search_res = FilmPeer::getForLuceneQuery($this->query);
+		}
+	   
 	} else {
 		$this->search_res = FilmPeer::getForLuceneQuery($this->query);
 	}
