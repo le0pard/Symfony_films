@@ -206,7 +206,15 @@ static_page:
     id: \d+
     url: (.*)
     sf_method: [get]
-    
+
+#statistic
+statistic:
+  url:   /statistic
+  param: { module: statistic, action: index }
+
+statistic_cathegory_films:
+  url:   /statistic_cathegory_films
+  param: { module: statistic, action: cathegory_films }  
  
 
 homepage_atom:

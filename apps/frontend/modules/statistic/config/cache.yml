@@ -1,0 +1,8 @@
+index:
+  enabled:     on
+  lifetime:    432000 # 5 суток
+cathegory_films:
+  enabled:     on
+  lifetime:    432000 # 5 суток
+all:
+  with_layout: false
