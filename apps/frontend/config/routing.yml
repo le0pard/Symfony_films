@@ -193,6 +193,28 @@ comment_add:
   requirements:
     sf_method: [post]
 
+comment_edit:
+  url:     /comment/edit/:id
+  class:   sfPropelRoute
+  options:
+    model: Comments
+    type: object
+  param:  { module: comment, action: edit }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+
+comment_delete:
+  url:     /comment/delete/:id
+  class:   sfPropelRoute
+  options:
+    model: Comments
+    type: object
+  param:  { module: comment, action: delete }
+  requirements:
+    id: \d+
+    sf_method: [get]
+    
 #static
 static_page:
   url:     /page/:id/:url

@@ -1,0 +1,1 @@
+<?php include_partial('comment/comment_form', array('form' => $form, 'comment' => $comment, 'method' => 'edit')) ?>
