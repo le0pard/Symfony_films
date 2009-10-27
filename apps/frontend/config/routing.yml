@@ -56,8 +56,31 @@ film_types:
   param:  { module: film_types, action: show }
   requirements:
     id: \d+
-    url: (.*)
     sf_method: [get]
+    
+film_types_rss:
+  url:     /cathegory/:id/:url/rss
+  class:   sfPropelRoute
+  options:
+    model: FilmTypes
+    type: object
+    method_for_criteria: doSelectActive
+  param:  { module: film_types, action: show, sf_format: xml }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
+film_types_atom:
+  url:     /cathegory/:id/:url/atom
+  class:   sfPropelRoute
+  options:
+    model: FilmTypes
+    type: object
+    method_for_criteria: doSelectActive
+  param:  { module: film_types, action: show, sf_format: atom }
+  requirements:
+    id: \d+
+    sf_method: [get]      
 
 #film add   
 film_add_step1:

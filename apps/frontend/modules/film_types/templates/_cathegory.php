@@ -10,5 +10,9 @@
 			<?php echo $cathegory->getDescription(ESC_RAW) ?>
 		</p>
 	</div>
+	<div>
+		<a href="<?php echo url_for('film_types_rss', $cathegory) ?>">RSS</a> 
+		<a href="<?php echo url_for('film_types_atom', $cathegory) ?>">ATOM</a>
+	</div>	
 	<div class="clear"></div>
 </div>

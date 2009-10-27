@@ -1,0 +1,35 @@
+digraph G {
+nodeusers [label="{<table>users|<cols>id (INTEGER) [PK]\llogin (VARCHAR)\lpassword (VARCHAR)\lemail (VARCHAR)\lwebsite_blog (VARCHAR)\lavatar (VARCHAR)\labout (LONGVARCHAR)\llast_login (TIMESTAMP)\lis_active (BOOLEAN)\lis_super_admin (BOOLEAN)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodeusers_group [label="{<table>users_group|<cols>id (INTEGER) [PK]\lname (VARCHAR)\ldescription (LONGVARCHAR)\l}", shape=record];
+nodeusers_users_group [label="{<table>users_users_group|<cols>user_id (INTEGER) [FK]\lgroup_id (INTEGER) [FK]\l}", shape=record];
+nodeusers_remember_key [label="{<table>users_remember_key|<cols>user_id (INTEGER) [FK]\lremember_key (VARCHAR)\lip_address (VARCHAR) [PK]\lcreated_at (TIMESTAMP)\l}", shape=record];
+nodefilm [label="{<table>film|<cols>id (INTEGER) [PK]\luser_id (INTEGER) [FK]\ltitle (VARCHAR)\loriginal_title (VARCHAR)\lnormal_logo (VARCHAR)\lthumb_logo (VARCHAR)\lurl (VARCHAR)\lpub_year (INTEGER)\ldirector (VARCHAR)\lcast (VARCHAR)\labout (LONGVARCHAR)\lcountry (VARCHAR)\lduration (VARCHAR)\lfile_info (LONGVARCHAR)\lis_visible (BOOLEAN)\lis_private (BOOLEAN)\lis_public (BOOLEAN)\lupdate_data (TIMESTAMP)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodefilm_links [label="{<table>film_links|<cols>id (INTEGER) [PK]\lfilm_id (INTEGER) [FK]\ltitle (VARCHAR)\lurl (VARCHAR)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodefilm_types [label="{<table>film_types|<cols>id (INTEGER) [PK]\ltitle (VARCHAR)\lurl (VARCHAR)\llogo (VARCHAR)\ldescription (LONGVARCHAR)\lis_visible (BOOLEAN)\lis_not_main (BOOLEAN)\lcreated_at (TIMESTAMP)\l}", shape=record];
+nodefilm_raiting [label="{<table>film_raiting|<cols>id (INTEGER) [PK]\lfilm_id (INTEGER) [FK]\luser_id (INTEGER) [FK]\lraiting (INTEGER)\l}", shape=record];
+nodefilm_gallery [label="{<table>film_gallery|<cols>id (INTEGER) [PK]\lfilm_id (INTEGER) [FK]\lthumb_img (VARCHAR)\lnormal_img (VARCHAR)\l}", shape=record];
+nodefilm_film_types [label="{<table>film_film_types|<cols>film_id (INTEGER) [FK]\lfilm_genre_id (INTEGER) [FK]\l}", shape=record];
+nodecomments [label="{<table>comments|<cols>id (INTEGER) [PK]\luser_id (INTEGER) [FK]\lcomment_type_id (INTEGER)\lcomment_type_name (VARCHAR)\ldescription (LONGVARCHAR)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodemessages [label="{<table>messages|<cols>id (INTEGER) [PK]\luser_id (INTEGER) [FK]\lmessage_type (INTEGER)\ldescription (LONGVARCHAR)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodeuser_friends [label="{<table>user_friends|<cols>user_id (INTEGER) [FK]\lfriend_id (INTEGER) [FK]\lcommit (BOOLEAN)\l}", shape=record];
+nodenews [label="{<table>news|<cols>id (INTEGER) [PK]\luser_id (INTEGER) [FK]\ltitle (VARCHAR)\lurl (VARCHAR)\ldescription (LONGVARCHAR)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodeafisha [label="{<table>afisha|<cols>id (INTEGER) [PK]\luser_id (INTEGER) [FK]\ltitle (VARCHAR)\lnormal_logo (VARCHAR)\lthumb_logo (VARCHAR)\ldescription (LONGVARCHAR)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+nodestatic_pages [label="{<table>static_pages|<cols>id (INTEGER) [PK]\ltitle (VARCHAR)\lurl (VARCHAR)\lsort (INTEGER)\ldescription (LONGVARCHAR)\lis_visible (BOOLEAN)\lcreated_at (TIMESTAMP)\lupdated_at (TIMESTAMP)\l}", shape=record];
+
+nodeusers_users_group:cols -> nodeusers:table [label="user_id=id "];
+nodeusers_users_group:cols -> nodeusers_group:table [label="group_id=id "];
+nodeusers_remember_key:cols -> nodeusers:table [label="user_id=id "];
+nodefilm:cols -> nodeusers:table [label="user_id=id "];
+nodefilm_links:cols -> nodefilm:table [label="film_id=id "];
+nodefilm_raiting:cols -> nodefilm:table [label="film_id=id "];
+nodefilm_raiting:cols -> nodeusers:table [label="user_id=id "];
+nodefilm_gallery:cols -> nodefilm:table [label="film_id=id "];
+nodefilm_film_types:cols -> nodefilm:table [label="film_id=id "];
+nodefilm_film_types:cols -> nodefilm_types:table [label="film_genre_id=id "];
+nodecomments:cols -> nodeusers:table [label="user_id=id "];
+nodemessages:cols -> nodeusers:table [label="user_id=id "];
+nodeuser_friends:cols -> nodeusers:table [label="user_id=id "];
+nodeuser_friends:cols -> nodeusers:table [label="friend_id=id "];
+nodenews:cols -> nodeusers:table [label="user_id=id "];
+nodeafisha:cols -> nodeusers:table [label="user_id=id "];
+}
