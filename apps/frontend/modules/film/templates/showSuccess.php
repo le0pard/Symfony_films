@@ -1,3 +1,7 @@
+<?php slot('title') ?>
+  <?php echo sprintf('%s / %s (%s)', $film->getTitle(), $film->getOriginalTitle(), $film->getPubYear()) ?>
+<?php end_slot(); ?>
+
 <?php if($sf_user->hasCredential(array('admin', 'super_admin'), false)): ?>
 	<a href="<?php echo url_for('film_edit_step1', $film) ?>">Редактировать</a>
 <?php endif ?>
