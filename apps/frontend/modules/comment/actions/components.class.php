@@ -9,5 +9,12 @@ class commentComponents extends sfComponents
 			}
 		}
 	}
+	
+	public function executeLast_comments() {
+		$c = new Criteria();
+		$c->setLimit(sfConfig::get('app_last_comments', 5));
+		$c->addDescendingOrderByColumn(CommentsPeer::CREATED_AT);
+		$this->comments = CommentsPeer::doSelect($c);
+	}
 
 }

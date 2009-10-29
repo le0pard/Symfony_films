@@ -16,6 +16,7 @@ all:
   search:
     method: sphinx #default lucene
     limit: 50
+  last_comments: 5
     
     
   #captcha
