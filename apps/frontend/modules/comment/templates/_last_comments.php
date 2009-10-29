@@ -1,6 +1,6 @@
 <div class="right_card">
 	<div class="header">
-		Ссылки
+		Последнии коментарии
 	</div>
 	<ul>
 		<?php foreach($comments as $row): ?>
