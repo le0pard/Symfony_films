@@ -26,6 +26,11 @@ class indexActions extends sfActions
 	$this->pager->init();
   }
   
+  public function executeSitemap(sfWebRequest $request)
+  {
+    
+  }
+  
   public function executeError404(sfWebRequest $request)
   {
 	

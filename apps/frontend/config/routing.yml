@@ -261,7 +261,12 @@ statistic_cathegory_films:
   url:   /statistic_cathegory_films
   param: { module: statistic, action: cathegory_films }  
  
+#sitemap
+sitemap:
+  url:   /sitemap.xml
+  param: { module: index, action: sitemap, sf_format: xml }
 
+#homepage rss and atom
 homepage_atom:
   url:   /atom
   param: { module: index, action: index, sf_format: atom }
