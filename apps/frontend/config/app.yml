@@ -17,6 +17,12 @@ all:
     method: sphinx #default lucene
     limit: 50
   last_comments: 5
+  
+  #sphinx options
+  sphinx_search:
+    indexer: /opt/sphinx/bin/indexer
+    searchd: /opt/sphinx/bin/searchd
+    config: /config/sphinx.conf
     
     
   #captcha

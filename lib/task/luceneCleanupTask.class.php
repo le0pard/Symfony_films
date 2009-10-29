@@ -1,5 +1,5 @@
 <?php
-class JobeetCleanupTask extends sfBaseTask
+class luceneCleanupTask extends sfBaseTask
 {
   protected function configure()
   {
@@ -9,12 +9,12 @@ class JobeetCleanupTask extends sfBaseTask
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
       // add your own options here
     ));
-     $this->namespace = 'film';
+     $this->namespace = 'lucene';
      $this->name = 'cleanup';
-     $this->briefDescription = 'Cleanup Film database';
+     $this->briefDescription = 'Cleanup lucene Film database';
      $this->detailedDescription = <<<EOF
-The [film:cleanup|INFO] task cleans up the Film database:
-  [./symfony film:cleanup --env=prod|INFO]
+The [lucene:cleanup|INFO] task cleans up the Film database:
+  [./symfony lucene:cleanup --env=prod|INFO]
 EOF;
   }
   protected function execute($arguments = array(), $options = array())

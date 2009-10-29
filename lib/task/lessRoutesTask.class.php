@@ -1,6 +1,6 @@
 <?php
 
-class LessRoutesTask extends sfBaseTask
+class lessRoutesTask extends sfBaseTask
 {
   protected function configure()
   {
