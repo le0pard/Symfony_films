@@ -260,6 +260,10 @@ statistic:
 statistic_cathegory_films:
   url:   /statistic_cathegory_films
   param: { module: statistic, action: cathegory_films }  
+  
+statistic_films_by_day:
+  url:   /statistic_films_by_day
+  param: { module: statistic, action: films_by_day } 
  
 #sitemap
 sitemap:

@@ -25,6 +25,15 @@ class FilmPeer extends BaseFilmPeer
     	return self::doCount(self::addVisibleCriteria($criteria));
   	}
 	
+	static public function countByDateRange($date_begin, $date_end) {
+		$criteria = new Criteria();
+		$cton1 = $criteria->getNewCriterion(self::UPDATE_DATA, $date_begin, Criteria::GREATER_EQUAL);
+		$cton2 = $criteria->getNewCriterion(self::UPDATE_DATA, $date_end, Criteria::LESS_EQUAL);
+		$cton1->addAnd($cton2);
+		$criteria->add($cton1);
+    	return self::doCount(self::addVisibleCriteria($criteria));
+  	}
+	
 	static public function doSelectEditFilmCriteria(Criteria $criteria = null) {
 	  if (is_null($criteria)) {
 	     $criteria = new Criteria();

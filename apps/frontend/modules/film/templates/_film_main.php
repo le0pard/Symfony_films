@@ -118,7 +118,7 @@
 			</ul>
 		</div>
 		<div class="date">
-			<?php echo gmstrftime('%d.%m.%Y', $film->getUpdatedAt('U')) ?>
+			<?php echo strftime('%d.%m.%Y', $film->getUpdateData('U')) ?>
 		</div>
 		<div class="autor">
 			<?php if ($film->getUsers()): ?>

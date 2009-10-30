@@ -12,7 +12,7 @@
         <description><![CDATA[<?php echo $row->getAbout() ?>]]></description>
         <link><?php echo url_for('film_show', $row, true) ?></link>
 		<guid><?php echo url_for('film_show', $row, true) ?></guid>
-		<pubDate><?php echo gmstrftime('%Y-%m-%dT%H:%M:%SZ', $row->getUpdatedAt('U')) ?></pubDate>
+		<pubDate><?php echo strftime('%Y-%m-%dT%H:%M:%SZ', $row->getUpdatedAt('U')) ?></pubDate>
 	</item>
 	<?php endforeach ?>
 	</channel>

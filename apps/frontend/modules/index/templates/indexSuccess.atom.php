@@ -5,7 +5,7 @@
   <subtitle>Latest Jobs</subtitle>
   <link href="<?php echo url_for('@homepage_atom', true) ?>" rel="self"/>
   <link href="<?php echo url_for('@homepage', true) ?>"/>
-  <updated><?php echo gmstrftime('%Y-%m-%dT%H:%M:%SZ', time()) ?></updated>
+  <updated><?php echo strftime('%Y-%m-%dT%H:%M:%SZ', time()) ?></updated>
   <author><name>leopard</name></author>
   <id><?php echo sha1(time()) ?></id>
   <?php foreach($pager->getResults() as $key=>$row): ?>
@@ -13,7 +13,7 @@
     <title><?php echo $row->getTitle(); ?></title>
     <link href="<?php echo url_for('film_show', $row, true) ?>" />
     <id><?php echo sha1($row->getId()) ?></id>
-    <updated><?php echo gmstrftime('%Y-%m-%dT%H:%M:%SZ', $row->getUpdatedAt('U')) ?></updated>
+    <updated><?php echo strftime('%Y-%m-%dT%H:%M:%SZ', $row->getUpdatedAt('U')) ?></updated>
     <summary><![CDATA[<?php echo $row->getAbout() ?>]]></summary>
     <author>
     	<name>

@@ -60,4 +60,58 @@ class statisticActions extends sfActions
 	 
 	  return sfView::NONE;
   }
+  
+  public function executeFilms_by_day(){
+  	  $titleData = array();
+  	  $chartData = array();
+	  $aryRange=array();
+	  $tommorow  = mktime(0, 0, 0, date("m"), date("d")-1, date("Y"));
+	  $lastmonth = mktime(0, 0, 0, date("m")-1, date("d"), date("Y"));
+	  while ($tommorow>=$lastmonth) {
+	  	$titleData[] = date("d/m/y", $lastmonth);
+	  	$chartData[] = FilmPeer::countByDateRange(
+				mktime(0, 0, 0, date("m", $lastmonth), date("d", $lastmonth), date("Y", $lastmonth)), 
+				mktime(23, 59, 59, date("m", $lastmonth), date("d", $lastmonth), date("Y", $lastmonth))
+		);
+		$lastmonth += 86400;
+	  }
+	 
+	  //Create new stGraph object
+	  $g = new stGraph();
+	 
+	  // Chart Title
+	  $g->title( 'Опубликовано за день', '{font-size: 20px;}' );
+	  $g->bg_colour = '#E4F5FC';
+	  $g->set_inner_background( '#E3F0FD', '#CBD7E6', 90 );
+	  $g->x_axis_colour( '#8499A4', '#E4F5FC' );
+	  $g->y_axis_colour( '#8499A4', '#E4F5FC' );
+	 
+	  //Use line_dot to set line dots diameter, text, color etc.
+	  $g->line_dot(2, 3, '#3495FE', 'Количество опубликованых фильмов в день', 10);
+	 
+	  //In case of line chart data should be passed to stGraph object
+	  //unsing set_data
+	  $g->set_data( $chartData );
+	 
+	  //Setting labels for X-Axis
+	  $g->set_x_labels($titleData);
+	 
+	  //to set the format of labels on x-axis e.g. font, color, step
+	  $g->set_x_label_style( 10, '#18A6FF', 0, 3 );
+	 
+	  //set maximum value for y-axis
+	  //we can fix the value as 20, 10 etc.
+	  //but its better to use max of data
+	  $g->set_y_max(max($chartData));
+	 
+	  $g->y_label_steps(15);
+	 
+	  // display the data
+	  echo $g->render();
+	 
+	  echo $g->render();
+	 
+	  return sfView::NONE;
+
+  }
 }

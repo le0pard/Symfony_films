@@ -28,7 +28,12 @@ class indexActions extends sfActions
   
   public function executeSitemap(sfWebRequest $request)
   {
-    
+  	$c = new Criteria();
+	$c->setLimit(sfConfig::get('app_sitemap_limit', 1000));
+    $this->films = FilmPeer::getVisible($c);
+	$c = new Criteria();
+	$c->setLimit(sfConfig::get('app_sitemap_limit', 1000));
+	$this->static_pages = StaticPagesPeer::doSelectVisible($c);
   }
   
   public function executeError404(sfWebRequest $request)

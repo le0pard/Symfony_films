@@ -17,6 +17,8 @@ all:
     method: sphinx #default lucene
     limit: 50
   last_comments: 5
+  sitemap:
+    limit: 2000
   
   #sphinx options
   sphinx_search:
