@@ -19,4 +19,13 @@ class StaticPagesPeer extends BaseStaticPagesPeer
 	static public function doSelectVisible(Criteria $criteria = null){
 		return self::doSelect(self::addVisibleCriteria($criteria));
 	}
+	
+	public static function doDeleteAll($con = null) {
+		//clear cache
+		$current_app = sfConfig::get('sf_app');
+		if ($current_app){
+			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=static&action=_menu&sf_cache_key=menu', $current_app); 
+		}
+		return parent::doDeleteAll($con);
+	}
 }

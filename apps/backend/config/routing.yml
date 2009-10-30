@@ -1,3 +1,12 @@
+static_pages:
+  class: sfPropelRouteCollection
+  options:
+    model:                StaticPages
+    module:               static
+    prefix_path:          static
+    column:               id
+    with_wildcard_routes: true
+
 film:
   class: sfPropelRouteCollection
   options:

@@ -1,0 +1,42 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           StaticPages
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          static_pages
+    with_propel_route:     1
+
+    config:
+      actions:
+        _new: { label: "Создать" }
+      fields:
+        title: { label: Название }
+        sort: { label: Сортировка }
+        is_visible: { label: Видимый? }
+
+      list:
+        title:          Статические страницы
+        display:        [title, sort, is_visible]
+        max_per_page:   20
+        sort:           [sort, asc]
+        batch_actions:
+          _delete: { label: Удалить }
+        object_actions:
+          _edit:       { label: Редактировать }
+          _delete:     { label: Удалить, confirm: "Уверены, что хотите удалить?" }
+        actions:
+          _new: { label: Создать }
+
+      filter:
+        display: [title, is_visible]
+
+      form: 
+        class: StaticPagesForm
+      edit:
+        title: Редактировать страницу %%title%%
+      new: 
+        title: Новая страница
