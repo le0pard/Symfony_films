@@ -35,9 +35,21 @@ all:
   storage:
     class: sfSessionStorage
     param:
-      session_name: sfUserSession
+      session_name: filmUserSession
       timeout: 21600
 
+#  view_cache:
+#    class: sfMemcacheCache
+#    param:
+#      host: 127.0.0.1
+#      port: 11211
+#      persistent: true
+
+  view_cache:
+    class: sfFileCache
+    param:
+      automatic_cleaning_factor: 0
+      cache_dir:                 %SF_TEMPLATE_CACHE_DIR%
 
 #all:
 #  controller:
