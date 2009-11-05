@@ -7,17 +7,20 @@ class backendConfiguration extends sfApplicationConfiguration
   }
   
   public function clearFrontendCache($url, $app){
-  	$currentConfig = sfContext::getInstance()->getConfiguration();
-	$currentContext = sfContext::getInstance();
-	
-	$otherConfig = ProjectConfiguration::getApplicationConfiguration('frontend', 'cache', true);
-	$otherContext = sfContext::createInstance($otherConfig);
-	
-	sfContext::switchTo('frontend');
-	$cacheManager = sfContext::getInstance()->getViewCacheManager();
-	if ($cacheManager){
-		$cacheManager->remove($url);
-	}
-	sfContext::switchTo($app);
+	  if (sfContext::hasInstance()){
+	  
+	  	$currentConfig = sfContext::getInstance()->getConfiguration();
+		$currentContext = sfContext::getInstance();
+		
+		$otherConfig = ProjectConfiguration::getApplicationConfiguration('frontend', 'cache', true);
+		$otherContext = sfContext::createInstance($otherConfig);
+		
+		sfContext::switchTo('frontend');
+		$cacheManager = sfContext::getInstance()->getViewCacheManager();
+		if ($cacheManager){
+			$cacheManager->remove($url);
+		}
+		sfContext::switchTo($app);
+	  }	
   }
 }
