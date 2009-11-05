@@ -8,8 +8,7 @@ class backendConfiguration extends sfApplicationConfiguration
   
   public function clearFrontendCache($url, $app){
 	  if (sfContext::hasInstance()){
-	  
-	  	$currentConfig = sfContext::getInstance()->getConfiguration();
+	   	$currentConfig = sfContext::getInstance()->getConfiguration();
 		$currentContext = sfContext::getInstance();
 		
 		$otherConfig = ProjectConfiguration::getApplicationConfiguration('frontend', 'cache', true);
