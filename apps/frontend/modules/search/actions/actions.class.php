@@ -32,8 +32,8 @@ class searchActions extends sfActions
 		);
 		try {
 			$this->sphinx = new sfSphinxClient($options);
-			 $res = $this->sphinx->Query($this->query, 'main');
-		    $this->pager = new sfSphinxPager('Film', $options['limit'], $this->sphinx);
+			$res = $this->sphinx->Query($this->query, 'main');
+		    $this->pager = new sfSphinxPropelPager('Film', $options['limit'], $this->sphinx);
 		    $this->pager->setPage($this->page);
 		    $this->pager->setPeerMethod('retrieveByPKs');
 		    $this->pager->init();

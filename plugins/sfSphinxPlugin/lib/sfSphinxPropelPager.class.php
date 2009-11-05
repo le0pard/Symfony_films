@@ -5,7 +5,7 @@
  * @author  Hung Dao <hungdao@mahshelf.com>
  */
 
-class sfSphinxPager extends sfPropelPager
+class sfSphinxPropelPager extends sfPropelPager
 {
   protected
     $peer_method_name       = 'retrieveByPKs',
