@@ -26,8 +26,8 @@ class BaseUsersFormFilter extends BaseFormFilterPropel
       'is_super_admin'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'created_at'             => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'             => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'film_raiting_list'      => new sfWidgetFormPropelChoice(array('model' => 'Film', 'add_empty' => true)),
       'users_users_group_list' => new sfWidgetFormPropelChoice(array('model' => 'UsersGroup', 'add_empty' => true)),
+      'film_raiting_list'      => new sfWidgetFormPropelChoice(array('model' => 'Film', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -42,8 +42,8 @@ class BaseUsersFormFilter extends BaseFormFilterPropel
       'is_super_admin'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'created_at'             => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'             => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'film_raiting_list'      => new sfValidatorPropelChoice(array('model' => 'Film', 'required' => false)),
       'users_users_group_list' => new sfValidatorPropelChoice(array('model' => 'UsersGroup', 'required' => false)),
+      'film_raiting_list'      => new sfValidatorPropelChoice(array('model' => 'Film', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('users_filters[%s]');
@@ -51,31 +51,6 @@ class BaseUsersFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addFilmRaitingListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(FilmRaitingPeer::USER_ID, UsersPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(FilmRaitingPeer::FILM_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(FilmRaitingPeer::FILM_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addUsersUsersGroupListColumnCriteria(Criteria $criteria, $field, $values)
@@ -103,6 +78,31 @@ class BaseUsersFormFilter extends BaseFormFilterPropel
     $criteria->add($criterion);
   }
 
+  public function addFilmRaitingListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(FilmRaitingPeer::USER_ID, UsersPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(FilmRaitingPeer::FILM_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(FilmRaitingPeer::FILM_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
   public function getModelName()
   {
     return 'Users';
@@ -123,8 +123,8 @@ class BaseUsersFormFilter extends BaseFormFilterPropel
       'is_super_admin'         => 'Boolean',
       'created_at'             => 'Date',
       'updated_at'             => 'Date',
-      'film_raiting_list'      => 'ManyKey',
       'users_users_group_list' => 'ManyKey',
+      'film_raiting_list'      => 'ManyKey',
     );
   }
 }

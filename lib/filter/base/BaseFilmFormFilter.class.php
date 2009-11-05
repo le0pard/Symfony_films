@@ -34,8 +34,8 @@ class BaseFilmFormFilter extends BaseFormFilterPropel
       'update_data'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'created_at'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'film_raiting_list'    => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
       'film_film_types_list' => new sfWidgetFormPropelChoice(array('model' => 'FilmTypes', 'add_empty' => true)),
+      'film_raiting_list'    => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -58,8 +58,8 @@ class BaseFilmFormFilter extends BaseFormFilterPropel
       'update_data'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'created_at'           => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'           => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'film_raiting_list'    => new sfValidatorPropelChoice(array('model' => 'Users', 'required' => false)),
       'film_film_types_list' => new sfValidatorPropelChoice(array('model' => 'FilmTypes', 'required' => false)),
+      'film_raiting_list'    => new sfValidatorPropelChoice(array('model' => 'Users', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('film_filters[%s]');
@@ -67,31 +67,6 @@ class BaseFilmFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addFilmRaitingListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(FilmRaitingPeer::FILM_ID, FilmPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(FilmRaitingPeer::USER_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(FilmRaitingPeer::USER_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addFilmFilmTypesListColumnCriteria(Criteria $criteria, $field, $values)
@@ -114,6 +89,31 @@ class BaseFilmFormFilter extends BaseFormFilterPropel
     foreach ($values as $value)
     {
       $criterion->addOr($criteria->getNewCriterion(FilmFilmTypesPeer::FILM_GENRE_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
+  public function addFilmRaitingListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(FilmRaitingPeer::FILM_ID, FilmPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(FilmRaitingPeer::USER_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(FilmRaitingPeer::USER_ID, $value));
     }
 
     $criteria->add($criterion);
@@ -147,8 +147,8 @@ class BaseFilmFormFilter extends BaseFormFilterPropel
       'update_data'          => 'Date',
       'created_at'           => 'Date',
       'updated_at'           => 'Date',
-      'film_raiting_list'    => 'ManyKey',
       'film_film_types_list' => 'ManyKey',
+      'film_raiting_list'    => 'ManyKey',
     );
   }
 }

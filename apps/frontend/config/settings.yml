@@ -31,7 +31,7 @@ all:
   .settings:
     enabled_modules:        [default, sfCryptoCaptcha, sfSphinx]
     # Form security secret (CSRF protection)
-    csrf_secret:       false     # Unique secret to enable CSRF protection or false to disable
+    csrf_secret:       caf5940426dbad42b7637db63ed5b658     # Unique secret to enable CSRF protection or false to disable
 
     # Output escaping settings
     escaping_strategy:      on            # Determines how variables are made available to templates. Accepted values: on, off.

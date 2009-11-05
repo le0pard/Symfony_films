@@ -33,8 +33,8 @@ class BaseFilmForm extends BaseFormPropel
       'update_data'          => new sfWidgetFormDateTime(),
       'created_at'           => new sfWidgetFormDateTime(),
       'updated_at'           => new sfWidgetFormDateTime(),
-      'film_raiting_list'    => new sfWidgetFormPropelChoiceMany(array('model' => 'Users')),
       'film_film_types_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'FilmTypes')),
+      'film_raiting_list'    => new sfWidgetFormPropelChoiceMany(array('model' => 'Users')),
     ));
 
     $this->setValidators(array(
@@ -58,8 +58,8 @@ class BaseFilmForm extends BaseFormPropel
       'update_data'          => new sfValidatorDateTime(array('required' => false)),
       'created_at'           => new sfValidatorDateTime(array('required' => false)),
       'updated_at'           => new sfValidatorDateTime(array('required' => false)),
-      'film_raiting_list'    => new sfValidatorPropelChoiceMany(array('model' => 'Users', 'required' => false)),
       'film_film_types_list' => new sfValidatorPropelChoiceMany(array('model' => 'FilmTypes', 'required' => false)),
+      'film_raiting_list'    => new sfValidatorPropelChoiceMany(array('model' => 'Users', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('film[%s]');
@@ -79,17 +79,6 @@ class BaseFilmForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['film_raiting_list']))
-    {
-      $values = array();
-      foreach ($this->object->getFilmRaitings() as $obj)
-      {
-        $values[] = $obj->getUserId();
-      }
-
-      $this->setDefault('film_raiting_list', $values);
-    }
-
     if (isset($this->widgetSchema['film_film_types_list']))
     {
       $values = array();
@@ -101,49 +90,25 @@ class BaseFilmForm extends BaseFormPropel
       $this->setDefault('film_film_types_list', $values);
     }
 
+    if (isset($this->widgetSchema['film_raiting_list']))
+    {
+      $values = array();
+      foreach ($this->object->getFilmRaitings() as $obj)
+      {
+        $values[] = $obj->getUserId();
+      }
+
+      $this->setDefault('film_raiting_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveFilmRaitingList($con);
     $this->saveFilmFilmTypesList($con);
-  }
-
-  public function saveFilmRaitingList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['film_raiting_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(FilmRaitingPeer::FILM_ID, $this->object->getPrimaryKey());
-    FilmRaitingPeer::doDelete($c, $con);
-
-    $values = $this->getValue('film_raiting_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new FilmRaiting();
-        $obj->setFilmId($this->object->getPrimaryKey());
-        $obj->setUserId($value);
-        $obj->save();
-      }
-    }
+    $this->saveFilmRaitingList($con);
   }
 
   public function saveFilmFilmTypesList($con = null)
@@ -176,6 +141,41 @@ class BaseFilmForm extends BaseFormPropel
         $obj = new FilmFilmTypes();
         $obj->setFilmId($this->object->getPrimaryKey());
         $obj->setFilmGenreId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveFilmRaitingList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['film_raiting_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(FilmRaitingPeer::FILM_ID, $this->object->getPrimaryKey());
+    FilmRaitingPeer::doDelete($c, $con);
+
+    $values = $this->getValue('film_raiting_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new FilmRaiting();
+        $obj->setFilmId($this->object->getPrimaryKey());
+        $obj->setUserId($value);
         $obj->save();
       }
     }
