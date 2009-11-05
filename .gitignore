@@ -2,6 +2,7 @@
 .git
 web/uploads/*
 log/*.log
+log
 cache/*
 config/databases.yml
 config/sphinx.conf
