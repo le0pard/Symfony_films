@@ -12,5 +12,7 @@ abstract class BaseFormPropel extends sfFormPropel
 {
   public function setup()
   {
+  	//sfForm::enableCSRFProtection();
+    //$this->addCSRFProtection('caf5940426dbad42b7637db63ed5b658');
   }
 }

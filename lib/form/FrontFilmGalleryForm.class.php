@@ -15,12 +15,15 @@ class FrontFilmGalleryForm extends BaseFilmGalleryForm
   	unset(
       $this['normal_img']
     );
-	
-	$this->widgetSchema['id'] = new sfWidgetFormInputHidden();
-	$this->validatorSchema['id'] = new sfValidatorPropelChoice(array('model' => 'FilmGallery', 'column' => 'id', 'required' => false));
-	
-	$this->widgetSchema['film_id'] = new sfWidgetFormInputHidden();
-    $this->validatorSchema['film_id'] = new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false));
+    
+    $this->setWidgets(array(
+      'id'         => new sfWidgetFormInputHidden(),
+      'film_id'    => new sfWidgetFormInputHidden()
+    ));
+     $this->setValidators(array(
+      'id'         => new sfValidatorPropelChoice(array('model' => 'FilmGallery', 'column' => 'id', 'required' => false)),
+      'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => true)),
+     ));
 	
 	if ($this->getObject()->isNew()){
 		$this->redefineFieldsByDef();

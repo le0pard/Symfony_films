@@ -9,6 +9,7 @@
   		<?php echo $form_add['thumb_img']->renderError() ?>
   		<?php echo $form_add['film_id']->render(); ?>
   		<?php echo $form_add['thumb_img']->render(); ?>
+  		<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
   	<div class="buttons">
     	<input type="submit" value="Добавить" />
 	</div>
@@ -29,6 +30,7 @@
   		<?php echo $row['id']->render(); ?>
   		<?php echo $row['film_id']->render(); ?>
   		<?php echo $row['thumb_img']->render(); ?>
+  		<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
   	<div class="buttons">
     	<input type="submit" value="Обновить" />
 		<?php echo $row['thumb_img']->renderHelp() ?>

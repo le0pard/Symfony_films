@@ -141,7 +141,6 @@ film_delete_gallery:
   options:
     model: FilmGallery
     type: object
-    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: delete_gallery }
   requirements:
     id: \d+
@@ -177,7 +176,6 @@ film_delete_step3:
   options:
     model: FilmLinks
     type: object
-    method_for_criteria: doSelectEditFilm
   param:  { module: film, action: delete_link }
   requirements:
     id: \d+
