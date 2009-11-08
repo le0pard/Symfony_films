@@ -92,6 +92,14 @@ class FilmPeer extends BaseFilmPeer
 			sfToolkit::clearDirectory($index);
 			rmdir($index);
 		}
+		
+		//clear cache
+		$current_app = sfConfig::get('sf_app');
+		if ($current_app){
+			sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+			sfProjectConfiguration::getActive()->clearFrontendCache('film_types/show?id=*&url=*', $current_app);
+		}
+		
 		return parent::doDeleteAll($con);
 	}
 	

@@ -52,6 +52,19 @@ class Film extends BaseFilm
 		$con->beginTransaction();
 		try {
 			$ret = parent::save($con);
+			
+			//clear cache
+			$current_app = sfConfig::get('sf_app');
+			if ($current_app){
+				sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+				foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
+					$f_type = $row->getFilmTypes();
+					if ($f_type){
+						sfProjectConfiguration::getActive()->clearFrontendCache('film_types/show?id='.$f_type->getId().'&url='.$f_type->getUrl(), $current_app);
+					}	
+				}
+			}
+			
 			$this->updateLuceneIndex();
 			$con->commit();
 			return $ret;
@@ -66,6 +79,19 @@ class Film extends BaseFilm
 		foreach ($index->find('pk:'.$this->getId()) as $hit) {
 			$index->delete($hit->id);
 		}
+		
+		//clear cache
+		$current_app = sfConfig::get('sf_app');
+		if ($current_app){
+			sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+			foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
+				$f_type = $row->getFilmTypes();
+				if ($f_type){
+					sfProjectConfiguration::getActive()->clearFrontendCache('film_types/show?id='.$f_type->getId().'&url='.$f_type->getUrl(), $current_app);
+				}	
+			}
+		}
+		
 		return parent::delete($con);
 	}
 

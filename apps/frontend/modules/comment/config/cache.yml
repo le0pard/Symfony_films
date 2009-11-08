@@ -1,10 +1,7 @@
-index:
+_last_comments:
   enabled:     on
   lifetime:    432000 # 5 суток
-cathegory_films:
-  enabled:     on
-  lifetime:    432000 # 5 суток
-films_by_day:
+last_comments:
   enabled:     on
   lifetime:    432000 # 5 суток
 all:

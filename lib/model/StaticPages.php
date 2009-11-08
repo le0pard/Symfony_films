@@ -15,6 +15,7 @@ class StaticPages extends BaseStaticPages
 		//clear cache
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app){
+			sfProjectConfiguration::getActive()->clearFrontendCache('static/show?id='.$this->getId().'&url='.$this->getUrl(), $current_app); 
 			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=static&action=_menu&sf_cache_key=menu', $current_app); 
 		}
 		return parent::save($con);
@@ -24,6 +25,7 @@ class StaticPages extends BaseStaticPages
 		//clear cache
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app){
+			sfProjectConfiguration::getActive()->clearFrontendCache('static/show?id='.$this->getId().'&url='.$this->getUrl(), $current_app);
 			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=static&action=_menu&sf_cache_key=menu', $current_app); 
 		}
 		return parent::delete($con);

@@ -11,7 +11,7 @@ class commentComponents extends sfComponents
 		$c = new Criteria();
 		$c->setLimit(sfConfig::get('app_last_comments', 5));
 		$c->addDescendingOrderByColumn(CommentsPeer::CREATED_AT);
-		$this->comments = CommentsPeer::doSelect($c);
+		$this->comments = CommentsPeer::doSelectJoinAll($c);
 	}
 
 }
