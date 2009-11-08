@@ -240,6 +240,18 @@ comment_delete:
   requirements:
     id: \d+
     sf_method: [get]
+
+#links
+go_by_link_id:
+  url:     /go/:id
+  class:   sfPropelRoute
+  options:
+    model: FilmLinks
+    type: object
+  param:  { module: link, action: index }
+  requirements:
+    id: \d+
+    sf_method: [get]
     
 #static
 static_page:

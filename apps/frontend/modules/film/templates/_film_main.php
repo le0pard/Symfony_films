@@ -99,7 +99,7 @@
 	
 	<div class="links">
 		<?php foreach($film->getLinks() as $row): ?>
-			<a href="<?php echo $row->getUrl() ?>" target="_blank">
+			<a href="<?php echo url_for('go_by_link_id', $row) ?>">
 				<?php echo $row->getTitle() ?>
 			</a>
 		<?php endforeach ?>
