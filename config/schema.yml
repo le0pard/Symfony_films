@@ -87,8 +87,7 @@ propel:
   comments:
    id:               ~
    user_id:          { type: integer, foreignTable: users, foreignReference: id, required: true }
-   comment_type_id:  { type: integer, required: true }
-   comment_type_name: { type: varchar(500), required: true }
+   film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
    description:      { type: longvarchar }
    created_at:       ~
    updated_at:       ~

@@ -14,13 +14,11 @@ class CommentsForm extends BaseCommentsForm
   {
   	unset(
       $this['created_at'], $this['updated_at'],
-      $this['user_id']
+      $this['user_id'], $this['film_id']
     );
 	
 	$this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'comment_type_id'   => new sfWidgetFormInputHidden(),
-      'comment_type_name' => new sfWidgetFormInputHidden(),
       'description'       => new sfWidgetFormTextareaTinyMCE(
 	  				array('theme' => 'advanced','config' => '
 							skin : "o2k7", 
@@ -39,8 +37,6 @@ class CommentsForm extends BaseCommentsForm
 
     $this->setValidators(array(
       'id'                => new sfValidatorPropelChoice(array('model' => 'Comments', 'column' => 'id', 'required' => false)),
-      'comment_type_id'   => new sfValidatorInteger(array('required' => true, 'min' => 1), array('required' => 'НЛОшибка!', 'min' => 'НЛОшибка!')),
-      'comment_type_name' => new sfValidatorString(array('max_length' => 500, 'required' => true), array('required' => 'НЛОшибка!', 'max_length' => 'НЛОшибка!')),
       'description'       => new sfValidatorString(array('required' => true), array('required' => 'Коментарий нужно написать'))
     ));
 	

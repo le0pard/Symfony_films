@@ -248,16 +248,20 @@ CREATE TABLE `comments`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`user_id` INTEGER  NOT NULL,
-	`comment_type_id` INTEGER  NOT NULL,
-	`comment_type_name` VARCHAR(500)  NOT NULL,
+	`film_id` INTEGER  NOT NULL,
 	`description` TEXT,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
+	PRIMARY KEY (`id`,`film_id`),
 	INDEX `comments_FI_1` (`user_id`),
 	CONSTRAINT `comments_FK_1`
 		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
+		REFERENCES `users` (`id`),
+	INDEX `comments_FI_2` (`film_id`),
+	CONSTRAINT `comments_FK_2`
+		FOREIGN KEY (`film_id`)
+		REFERENCES `film` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

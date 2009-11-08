@@ -4,8 +4,8 @@
 <form id="comment_add" action="
 <?php if (isset($method) && 'edit' == $method && isset($comment)): ?>
 <?php echo url_for('comment_edit', $comment) ?>
-<?php else: ?>
-<?php echo url_for('@comment_add') ?>
+<?php elseif (isset($film)): ?>
+<?php echo url_for('comment_add', $film) ?>
 <?php endif ?>
 " method="POST" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>
 	<table class="table_form table_form_big">		

@@ -117,13 +117,12 @@ class filmActions extends sfActions
 		}
 	}
 	$this->setTemplate('add_step2');
-	//$this->forward('film', 'add_step2');
   }
   
   public function executeDelete_film(sfWebRequest $request)
   {
   	$this->film = $this->getRoute()->getObject();
-	if ($this->film->getUserId() == $this->getUser()->getAuthUser()->getId()){
+	if (($this->film->getUsers() && $this->film->getUserId() == $this->getUser()->getAuthUser()->getId()) || $this->getUser()->hasCredential(array('admin', 'super_admin'), false)){
 		$this->getUser()->setFlash('confirm', 'Фильм удален.');
 		$this->film->delete();
 	}
@@ -134,10 +133,12 @@ class filmActions extends sfActions
   {
   	$this->film_gallery = $this->getRoute()->getObject();
     $film = $this->film_gallery->getFilm();
-	if ($film->getUserId() == $this->getUser()->getAuthUser()->getId()){
-		$this->getUser()->setFlash('confirm', 'Скриншот успешно удален.');
-		$this->film_gallery->delete();
-	}
+    if ($film){
+		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+			$this->getUser()->setFlash('confirm', 'Скриншот успешно удален.');
+			$this->film_gallery->delete();
+		}
+    }
 	$this->redirect($this->generateUrl('film_add_step2', $film));
   }
   
@@ -205,10 +206,12 @@ class filmActions extends sfActions
   {
   	$this->film_link = $this->getRoute()->getObject();
     $film = $this->film_link->getFilm();
-	if ($film->getUserId() == $this->getUser()->getAuthUser()->getId()){
-		$this->getUser()->setFlash('confirm', 'Ссылка успешно удалена.');
-		$this->film_link->delete();
-	}
+    if ($film){
+		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+			$this->getUser()->setFlash('confirm', 'Ссылка успешно удалена.');
+			$this->film_link->delete();
+		}
+    }
 	$this->redirect($this->generateUrl('film_add_step3', $film));
   }
   
