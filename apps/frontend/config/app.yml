@@ -5,7 +5,8 @@ all:
   pages:
     main_page: 30
     catalog_page: 30
-    comments_page: 50 
+    comments_page: 50
+    all_comments_page: 100
   films:
     poster_size: 5242880
     min_gallery: 3

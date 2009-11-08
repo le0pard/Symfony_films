@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?php use_helper('Text') ?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <?php include_title() ?>
-  <subtitle>Latest Jobs</subtitle>
+  <title>Кукурудза - Лучшие фильмы и сериалы</title>
+  <subtitle>Films</subtitle>
   <link href="<?php echo url_for('@homepage_atom', true) ?>" rel="self"/>
   <link href="<?php echo url_for('@homepage', true) ?>"/>
   <updated><?php echo strftime('%Y-%m-%dT%H:%M:%SZ', time()) ?></updated>

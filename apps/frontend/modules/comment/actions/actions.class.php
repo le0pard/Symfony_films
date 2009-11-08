@@ -59,4 +59,16 @@ class commentActions extends sfActions
 		$this->redirect($this->generateUrl('film_show', $film));
 	}
   }
+  
+	public function executeLast_comments(sfWebRequest $request) {
+		$c = new Criteria();
+		$c->addDescendingOrderByColumn(CommentsPeer::CREATED_AT);
+		$this->comments = new sfPropelPager(
+			'Comments',
+			sfConfig::get('app_pages_all_comments_page', 100)
+		);
+		$this->comments->setCriteria($c);
+		$this->comments->setPage($request->getParameter('page', 1));
+		$this->comments->init();
+	}
 }

@@ -21,7 +21,7 @@ class filmActions extends sfActions
     $this->film = $this->getRoute()->getObject();
 	$this->pager = new sfPropelPager(
 		'Comments',
-		sfConfig::get('app_pages_comments_page')
+		sfConfig::get('app_pages_comments_page', 50)
 	);
 	$this->pager->setCriteria(CommentsPeer::getByFilmId($this->film->getId()));
 	$this->pager->setPage($request->getParameter('page', 1));

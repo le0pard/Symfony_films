@@ -18,5 +18,6 @@
 			<?php endif ?>
 		<?php endforeach ?>
 	</ul>
+	<a href="<?php echo url_for('@comments_last_list') ?>">Все коментарии</a>
 </div>
 <div class="clear"></div>

@@ -241,6 +241,12 @@ comment_delete:
     id: \d+
     sf_method: [get]
 
+comments_last_list:
+  url:     /comments_list
+  param:  { module: comment, action: last_comments }
+  requirements:
+    sf_method: [get]
+
 #links
 go_by_link_id:
   url:     /go/:id

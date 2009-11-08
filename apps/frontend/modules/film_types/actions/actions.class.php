@@ -26,7 +26,7 @@ class film_typesActions extends sfActions
 	
 	$this->pager = new sfPropelPager(
 		'FilmFilmTypes',
-		sfConfig::get('app_pages_catalog_page')
+		sfConfig::get('app_pages_catalog_page', 60)
 	);
 	$this->pager->setPeerMethod('doSelectJoinFilm');
 	$this->pager->setPeerCountMethod('doCountJoinFilm');

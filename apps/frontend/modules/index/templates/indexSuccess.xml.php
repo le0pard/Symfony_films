@@ -2,7 +2,7 @@
 <?php use_helper('Text') ?>
 <rss version="2.0">
 	<channel>
-    <?php include_title() ?>
+    <title>Кукурудза - Лучшие фильмы и сериалы</title>
     <link><?php echo url_for('@homepage', true) ?></link>
     <description>Test</description>
     <language>ru</language>
