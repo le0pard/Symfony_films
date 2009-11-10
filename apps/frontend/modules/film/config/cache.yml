@@ -1,5 +1,8 @@
 _types:
   enabled:     on
   lifetime:    2592000 # 30 суток
+_film_main:
+  enabled:     on
+  lifetime:    2592000 # 30 суток
 all:
   with_layout: false

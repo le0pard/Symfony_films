@@ -57,6 +57,7 @@ class Film extends BaseFilm
 			$current_app = sfConfig::get('sf_app');
 			if ($current_app){
 				sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+				sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key='.$this->getId(), $current_app);
 				foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
 					$f_type = $row->getFilmTypes();
 					if ($f_type){
@@ -84,6 +85,7 @@ class Film extends BaseFilm
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app){
 			sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key='.$this->getId(), $current_app);
 			foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
 				$f_type = $row->getFilmTypes();
 				if ($f_type){

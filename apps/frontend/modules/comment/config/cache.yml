@@ -1,8 +1,8 @@
 _last_comments:
   enabled:     on
-  lifetime:    432000 # 5 суток
+  lifetime:    2592000 # 30 суток
 last_comments:
   enabled:     on
-  lifetime:    432000 # 5 суток
+  lifetime:    2592000 # 30 суток
 all:
   with_layout: false
