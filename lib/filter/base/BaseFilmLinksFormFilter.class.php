@@ -17,6 +17,7 @@ class BaseFilmLinksFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'title'      => new sfWidgetFormFilterInput(),
       'url'        => new sfWidgetFormFilterInput(),
+      'sort'       => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
@@ -24,6 +25,7 @@ class BaseFilmLinksFormFilter extends BaseFormFilterPropel
     $this->setValidators(array(
       'title'      => new sfValidatorPass(array('required' => false)),
       'url'        => new sfValidatorPass(array('required' => false)),
+      'sort'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
@@ -47,6 +49,7 @@ class BaseFilmLinksFormFilter extends BaseFormFilterPropel
       'film_id'    => 'ForeignKey',
       'title'      => 'Text',
       'url'        => 'Text',
+      'sort'       => 'Number',
       'created_at' => 'Date',
       'updated_at' => 'Date',
     );

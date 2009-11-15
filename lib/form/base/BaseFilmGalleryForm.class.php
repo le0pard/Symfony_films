@@ -17,6 +17,7 @@ class BaseFilmGalleryForm extends BaseFormPropel
       'film_id'    => new sfWidgetFormInputHidden(),
       'thumb_img'  => new sfWidgetFormInput(),
       'normal_img' => new sfWidgetFormInput(),
+      'sort'       => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -24,6 +25,7 @@ class BaseFilmGalleryForm extends BaseFormPropel
       'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'thumb_img'  => new sfValidatorString(array('max_length' => 500)),
       'normal_img' => new sfValidatorString(array('max_length' => 500)),
+      'sort'       => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('film_gallery[%s]');

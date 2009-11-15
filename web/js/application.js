@@ -4,6 +4,8 @@ var FilmSiteJs = {
 		this.initRegForm();
 		this.initSearchForm();
 		this.initGallery();
+		this.initAddGallerySort();
+		this.initAddLinkSort();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -77,6 +79,26 @@ var FilmSiteJs = {
 			$('mainGalleryImg').writeAttribute('src', img);
 			element.setOpacity(0.8);
 		}
+	},
+	initAddGallerySort: function(){
+		if ($('add_gallery_list') && $('js_add_film_id')){
+			Sortable.create("add_gallery_list", {
+		        tag: 'li', handles:$$('#add_gallery_list div.sort_cursor'),
+		        onUpdate: function(){
+					new Ajax.Request(film_sort_step2_path($F('js_add_film_id')),{ method: "post", postBody: Sortable.serialize('add_gallery_list')});
+				}  
+		    });
+		}	
+	},
+	initAddLinkSort: function(){
+		if ($('add_link_list') && $('js_add_film_id')){
+			Sortable.create("add_link_list", {
+		        tag: 'li', handles:$$('#add_link_list div.sort_cursor'),
+		        onUpdate: function(){
+					new Ajax.Request(film_sort_step3_path($F('js_add_film_id')),{ method: "post", postBody: Sortable.serialize('add_link_list')});
+				}  
+		    });
+		}	
 	}
 };
 

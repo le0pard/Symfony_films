@@ -3,6 +3,9 @@
 class FilmLinks extends BaseFilmLinks
 {
 	public function save(PropelPDO $con = null) {
+		if ($this->isNew()){
+			$this->setSort(FilmLinksPeer::getCountByFilm($this->getFilm()->getId()));
+		}
 		//clear cache
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app && $this->getFilm()){

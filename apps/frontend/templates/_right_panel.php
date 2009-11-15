@@ -6,8 +6,8 @@
 	<div class="header">
 		Ссылки
 	</div>
-	<a href="<?php echo url_for('@homepage_rss') ?>">RSS</a><br />
-	<a href="<?php echo url_for('@homepage_atom') ?>">ATOM</a><br />
+	<a href="<?php echo url_for('@film_types_all_rss') ?>">RSS</a><br />
+	<a href="<?php echo url_for('@film_types_all_atom') ?>">ATOM</a><br />
 	<a href="<?php echo url_for('@statistic') ?>">Статистика</a><br />
 </div>
 <div class="clear"></div>

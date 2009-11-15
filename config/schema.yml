@@ -55,6 +55,7 @@ propel:
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
     title:            { type: varchar(200), required: true }
     url:              { type: varchar(500), required: true }
+    sort:             { type: integer, default: 0 }
     created_at:       ~
     updated_at:       ~ 
     
@@ -79,6 +80,7 @@ propel:
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
     thumb_img:        { type: varchar(500), required: true }
     normal_img:       { type: varchar(500), required: true }
+    sort:             { type: integer, default: 0 }
     
   film_film_types:
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }

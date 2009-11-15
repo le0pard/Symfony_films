@@ -18,30 +18,26 @@ class Film extends BaseFilm
 	
 	public function getGallery(){
 		$criteria = new Criteria();
-		$criteria->add(FilmGalleryPeer::FILM_ID, $this->getId());
-		$criteria->addAscendingOrderByColumn(FilmGalleryPeer::ID);
-		return FilmGalleryPeer::doSelect($criteria);
+		$criteria->addAscendingOrderByColumn(FilmGalleryPeer::SORT);
+		return $this->getFilmGallerys($criteria);
 	}
 	
 	public function getGalleryCount(){
 		$criteria = new Criteria();
-		$criteria->add(FilmGalleryPeer::FILM_ID, $this->getId());
-		$criteria->addAscendingOrderByColumn(FilmGalleryPeer::ID);
-		return FilmGalleryPeer::doCount($criteria);
+		$criteria->addAscendingOrderByColumn(FilmGalleryPeer::SORT);
+		return $this->countFilmGallerys($criteria);
 	}
 	
 	public function getLinks(){
 		$criteria = new Criteria();
-		$criteria->add(FilmLinksPeer::FILM_ID, $this->getId());
-		$criteria->addAscendingOrderByColumn(FilmLinksPeer::ID);
-		return FilmLinksPeer::doSelect($criteria);
+		$criteria->addAscendingOrderByColumn(FilmLinksPeer::SORT);
+		return $this->getFilmLinkss($criteria);
 	}
 	
 	public function getLinksCount(){
 		$criteria = new Criteria();
-		$criteria->add(FilmLinksPeer::FILM_ID, $this->getId());
-		$criteria->addAscendingOrderByColumn(FilmLinksPeer::ID);
-		return FilmLinksPeer::doCount($criteria);
+		$criteria->addAscendingOrderByColumn(FilmLinksPeer::SORT);
+		return $this->countFilmLinkss($criteria);
 	}
 	
 	#search add
@@ -56,7 +52,7 @@ class Film extends BaseFilm
 			//clear cache
 			$current_app = sfConfig::get('sf_app');
 			if ($current_app){
-				sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+				sfProjectConfiguration::getActive()->clearFrontendCache('film_types/index', $current_app);
 				sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key='.$this->getId(), $current_app);
 				foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
 					$f_type = $row->getFilmTypes();
@@ -84,7 +80,7 @@ class Film extends BaseFilm
 		//clear cache
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app){
-			sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+			sfProjectConfiguration::getActive()->clearFrontendCache('film_types/index', $current_app);
 			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key='.$this->getId(), $current_app);
 			foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
 				$f_type = $row->getFilmTypes();

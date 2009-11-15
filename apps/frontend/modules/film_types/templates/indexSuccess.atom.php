@@ -3,8 +3,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Кукурудза - Лучшие фильмы и сериалы</title>
   <subtitle>Films</subtitle>
-  <link href="<?php echo url_for('@homepage_atom', true) ?>" rel="self"/>
-  <link href="<?php echo url_for('@homepage', true) ?>"/>
+  <link href="<?php echo url_for('@film_types_all_atom', true) ?>" rel="self"/>
+  <link href="<?php echo url_for('@film_types_all', true) ?>"/>
   <updated><?php echo strftime('%Y-%m-%dT%H:%M:%SZ', time()) ?></updated>
   <author><name>leopard</name></author>
   <id><?php echo sha1(time()) ?></id>

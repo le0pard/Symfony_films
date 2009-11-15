@@ -1,7 +1,7 @@
 <h1>Добавление фильма/сериала</h1>
 <?php include_partial('film/add_panel', array('film' => $film)) ?>
 <h2>Галерея к фильму &laquo;<?php echo $film->getTitle() ?>&raquo;</h2>
-
+<input type="hidden" id="js_add_film_id" value="<?php echo $film->getId() ?>" />
 <?php if (isset($form_add)): ?>
 <h2>Добавить скриншот</h2>
 <form id="film_add_form_st2_add" action="<?php echo url_for('film_add_step2', $film) ?>" method="POST" <?php $form_add->isMultipart() and print 'enctype="multipart/form-data"' ?>>
@@ -23,7 +23,10 @@
 <?php endif ?>
 
 <h2>Галерея</h2>
+<ul id="add_gallery_list">
 <?php foreach($form->getEmbeddedForms() as $row): ?>
+<li id="gallery_<?php echo $row->getObject()->getId() ?>">
+<div class="sort_cursor">Сортировать</div>
 <form action="<?php echo url_for('film_edit_step2', $film) ?>" method="POST" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>
   <div class="gallery_main_cell">
   		<?php echo $row['thumb_img']->renderError() ?>
@@ -38,5 +41,6 @@
 	<div class="clear"></div>
   </div>
 </form>
-
+</li>
 <?php endforeach ?>
+</ul>

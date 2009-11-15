@@ -1,3 +1,6 @@
+index:
+  enabled:     on
+  lifetime:    2592000 # 30 суток
 show:
   enabled:     on
   lifetime:    2592000 # 30 суток

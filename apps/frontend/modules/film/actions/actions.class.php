@@ -119,6 +119,25 @@ class filmActions extends sfActions
 	$this->setTemplate('add_step2');
   }
   
+  public function executeSort_step2(sfWebRequest $request)
+  {
+
+	if ($request->isXmlHttpRequest() && $request->isMethod('post')){
+		$this->film = $this->getRoute()->getObject();
+		$params = $request->getParameter('add_gallery_list');
+		if ($this->film && $params){
+			foreach($params as $key=>$row){
+				$gallery = FilmGalleryPeer::retrieveByPK($row, $this->film->getId());
+				if ($gallery){
+					$gallery->setSort($key);
+					$gallery->save();
+				}
+			}
+		}
+	}
+	return $this->renderText('');
+  }
+  
   public function executeDelete_film(sfWebRequest $request)
   {
   	$this->film = $this->getRoute()->getObject();
@@ -200,6 +219,25 @@ class filmActions extends sfActions
 		}
 	}
 	$this->setTemplate('add_step3');
+  }
+  
+  public function executeSort_step3(sfWebRequest $request)
+  {
+
+	if ($request->isXmlHttpRequest() && $request->isMethod('post')){
+		$this->film = $this->getRoute()->getObject();
+		$params = $request->getParameter('add_link_list');
+		if ($this->film && $params){
+			foreach($params as $key=>$row){
+				$link = FilmLinksPeer::retrieveByPK($row, $this->film->getId());
+				if ($link){
+					$link->setSort($key);
+					$link->save();
+				}
+			}
+		}
+	}
+	return $this->renderText('');
   }
   
   public function executeDelete_link(sfWebRequest $request)

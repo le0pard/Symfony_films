@@ -46,6 +46,18 @@ search_auto_complete:
   param: { module: search, action: auto_complete }
   
 #film types
+film_types_all:
+  url:   /cathegory/all
+  param: { module: film_types, action: index }
+  
+film_types_all_atom:
+  url:   /cathegory/all.atom
+  param: { module: film_types, action: index, sf_format: atom }
+    
+film_types_all_rss:
+  url:   /cathegory/all.rss
+  param: { module: film_types, action: index, sf_format: xml }
+
 film_types:
   url:     /cathegory/:id/:url
   class:   sfPropelRoute
@@ -135,6 +147,18 @@ film_edit_step2:
     id: \d+
     sf_method: [get, post]
     
+film_sort_step2:
+  url:     /film/sort2/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectEditFilm
+  param:  { module: film, action: sort_step2 }
+  requirements:
+    id: \d+
+    sf_method: [post]
+    
 film_delete_gallery:
   url:     /film/delete_gallery/:id
   class:   sfPropelRoute
@@ -169,6 +193,18 @@ film_edit_step3:
   requirements:
     id: \d+
     sf_method: [get, post]
+
+film_sort_step3:
+  url:     /film/sort3/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectEditFilm
+  param:  { module: film, action: sort_step3 }
+  requirements:
+    id: \d+
+    sf_method: [post]
 
 film_delete_step3:
   url:     /film/delete_link/:id
@@ -291,14 +327,6 @@ sitemap:
   url:   /sitemap.xml
   param: { module: index, action: sitemap, sf_format: xml }
 
-#homepage rss and atom
-homepage_atom:
-  url:   /atom
-  param: { module: index, action: index, sf_format: atom }
-    
-homepage_rss:
-  url:   /rss
-  param: { module: index, action: index, sf_format: xml }
   
 # default rules
 homepage:

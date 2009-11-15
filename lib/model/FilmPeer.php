@@ -96,7 +96,7 @@ class FilmPeer extends BaseFilmPeer
 		//clear cache
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app){
-			sfProjectConfiguration::getActive()->clearFrontendCache('index/index', $current_app);
+			sfProjectConfiguration::getActive()->clearFrontendCache('film_types/index', $current_app);
 			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key=*', $current_app);
 			sfProjectConfiguration::getActive()->clearFrontendCache('film_types/show?id=*&url=*', $current_app);
 		}

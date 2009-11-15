@@ -8,6 +8,9 @@ class FilmGallery extends BaseFilmGallery
 	}
 	
 	public function save(PropelPDO $con = null) {
+		if ($this->isNew()){
+			$this->setSort(FilmGalleryPeer::getCountByFilm($this->getFilm()->getId()));
+		}
 		//clear cache
 		$current_app = sfConfig::get('sf_app');
 		if ($current_app && $this->getFilm()){

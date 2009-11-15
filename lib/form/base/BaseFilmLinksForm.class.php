@@ -17,6 +17,7 @@ class BaseFilmLinksForm extends BaseFormPropel
       'film_id'    => new sfWidgetFormInputHidden(),
       'title'      => new sfWidgetFormInput(),
       'url'        => new sfWidgetFormInput(),
+      'sort'       => new sfWidgetFormInput(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -26,6 +27,7 @@ class BaseFilmLinksForm extends BaseFormPropel
       'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'title'      => new sfValidatorString(array('max_length' => 200)),
       'url'        => new sfValidatorString(array('max_length' => 500)),
+      'sort'       => new sfValidatorInteger(array('required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));

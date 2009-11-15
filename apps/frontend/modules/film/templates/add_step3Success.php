@@ -1,7 +1,7 @@
 <h1>Добавление фильма/сериала</h1>
 <?php include_partial('film/add_panel', array('film' => $film)) ?>
 <h2>Ссылки к фильму/сериалу &laquo;<?php echo $film->getTitle() ?>&raquo;</h2>
-
+<input type="hidden" id="js_add_film_id" value="<?php echo $film->getId() ?>" />
 <?php if (isset($form_add)): ?>
 <h2>Добавить ссылку</h2>
 <form id="film_add_form_st3_add" action="<?php echo url_for('film_add_step3', $film) ?>" method="POST" <?php $form_add->isMultipart() and print 'enctype="multipart/form-data"' ?>>
@@ -21,7 +21,10 @@
 <?php endif ?>
 
 <h2>Список ссылок</h2>
+<ul id="add_link_list">
 <?php foreach($form->getEmbeddedForms() as $row): ?>
+<li id="link_<?php echo $row->getObject()->getId() ?>">
+<div class="sort_cursor">Сортировать</div>
 <form action="<?php echo url_for('film_edit_step3', $film) ?>" method="POST" <?php $row->isMultipart() and print 'enctype="multipart/form-data"' ?>>
   <table class="table_form table_form_big">
   		<?php echo $row ?>
@@ -33,5 +36,6 @@
     </tr>
   </table>
 </form>
-
+</li>
 <?php endforeach ?>
+</ul>

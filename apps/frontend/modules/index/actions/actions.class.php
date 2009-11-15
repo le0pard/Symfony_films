@@ -17,13 +17,7 @@ class indexActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->pager = new sfPropelPager(
-		'Film',
-		sfConfig::get('app_pages_main_page')
-	);
-	$this->pager->setCriteria(FilmPeer::addVisibleCriteria());
-	$this->pager->setPage($request->getParameter('page', 1));
-	$this->pager->init();
+    
   }
   
   public function executeSitemap(sfWebRequest $request)

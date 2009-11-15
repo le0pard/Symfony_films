@@ -6,11 +6,20 @@
     	Кукурудза - Лучшие фильмы и сериалы
   	<?php endif; ?>
 	</title>
+	
+	<?php use_javascript('prototype.min.js') ?>
+	<?php use_javascript('effects.min.js') ?>
+	<?php use_javascript('controls.min.js') ?>
+	<?php use_javascript('dragdrop.min.js') ?>
+	<?php use_javascript('frontend_less_routes_dev.js') ?>
+	<?php use_javascript('application.js') ?>
+	<?php use_stylesheet('main.css') ?>
+	
 	<?php include_http_metas() ?>
     <?php include_metas() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="alternate" type="application/atom+xml" title="Atom"  href="<?php echo url_for('@homepage_atom', true) ?>" />
-	<link title="RSS" type="application/rss+xml" rel="alternate" href="<?php echo url_for('@homepage_rss', true) ?>"/>
+	<link rel="alternate" type="application/atom+xml" title="Atom"  href="<?php echo url_for('@film_types_all_atom', true) ?>" />
+	<link title="RSS" type="application/rss+xml" rel="alternate" href="<?php echo url_for('@film_types_all_rss', true) ?>"/>
     <?php include_stylesheets() ?>
 	<?php include_javascripts() ?>
   </head>
