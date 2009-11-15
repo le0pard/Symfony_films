@@ -1,9 +1,27 @@
+<?php use_javascript('yui/yuiloader-dom-event/yuiloader-dom-event.js') ?>
+<?php use_javascript('yui/element/element-min.js') ?>
+<?php use_javascript('yui/uploader/uploader-min.js') ?>
+<?php use_javascript('uploader.js') ?>
 <h1>Добавление фильма/сериала</h1>
 <?php include_partial('film/add_panel', array('film' => $film)) ?>
 <h2>Галерея к фильму &laquo;<?php echo $film->getTitle() ?>&raquo;</h2>
 <input type="hidden" id="js_add_film_id" value="<?php echo $film->getId() ?>" />
 <?php if (isset($form_add)): ?>
 <h2>Добавить скриншот</h2>
+
+<div class="upload-photo-form">
+	<div id="dataTableContainer"></div>
+	<div id="uiElements">
+		<div id="uploaderContainer">
+			<div id="uploaderOverlay" style="position:absolute; z-index:2"></div>
+			<div id="selectFilesLink" style="z-index:1"><a id="selectLink" href="#">Choose Photos</a></div>
+		</div>
+		<div id="uploadFilesLink" style="display:none">
+			<input type="button" id="uploadLink" class="upl_button" onClick="YUIUploader.upload(); return false;" value="Upload" /> or <%= link_to 'cancel', user_photo_galleries_path %>
+		</div>
+	</div>
+</div>
+
 <form id="film_add_form_st2_add" action="<?php echo url_for('film_add_step2', $film) ?>" method="POST" <?php $form_add->isMultipart() and print 'enctype="multipart/form-data"' ?>>
   <div class="gallery_add_cell">
   		<?php echo $form_add['thumb_img']->renderError() ?>
