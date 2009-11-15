@@ -131,8 +131,8 @@ var YUIUploader = {
 	upload: function () {
 		if (YUIUploader.fileList != null) {
 			YUIUploader.uploader.setSimUploadLimit(1);
-			YUIUploader.uploader.uploadAll(film_add_step2_path($F('js_add_film_id')), "POST", 
-			{'session_id' : session_id, 'gallery[film_id]' : $F('js_add_film_id')}, "gallery[thumb_img]");
+			YUIUploader.uploader.uploadAll(film_add_swf_step2_path($F('js_add_film_id')) + "?" + session_name + "=" + session_val, "POST", 
+			{'gallery[film_id]' : $F('js_add_film_id')}, "gallery[thumb_img]");
 		}	
 	},
 	//set size

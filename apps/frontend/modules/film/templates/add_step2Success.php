@@ -25,7 +25,8 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		var session_id = '<?php echo session_id()?>';
+		var session_name = '<?php echo ini_get('session.name') ?>';
+		var session_val = '<?php echo session_id()?>';
 	</script>
 </div>
 

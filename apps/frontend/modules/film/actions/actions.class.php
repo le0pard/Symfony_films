@@ -97,6 +97,21 @@ class filmActions extends sfActions
 	}
   }
   
+  public function executeAdd_swf_step2(sfWebRequest $request)
+  {
+  	$this->callStep2Forms();
+	
+	if ($request->isMethod('post')){
+		if ($request->hasParameter('gallery') && isset($this->form_add)){
+			$this->form_add->bind($request->getParameter('gallery'), $request->getFiles('gallery'));
+			if ($this->form_add->isValid()){
+				$this->form_add->save();
+			}
+		}
+	}
+  	return $this->renderText(print_r($this->form_add['thumb_img']->renderError()));
+  }
+  
   public function executeEdit_step2(sfWebRequest $request)
   {
   	$this->callStep2Forms();
