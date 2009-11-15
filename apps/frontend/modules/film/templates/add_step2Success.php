@@ -1,7 +1,8 @@
 <?php use_javascript('yui/yuiloader-dom-event/yuiloader-dom-event.js') ?>
 <?php use_javascript('yui/element/element-min.js') ?>
 <?php use_javascript('yui/uploader/uploader-min.js') ?>
-<?php use_javascript('uploader.js') ?>
+<?php use_javascript('uploader.js', 'last') ?>
+
 <h1>Добавление фильма/сериала</h1>
 <?php include_partial('film/add_panel', array('film' => $film)) ?>
 <h2>Галерея к фильму &laquo;<?php echo $film->getTitle() ?>&raquo;</h2>
@@ -17,7 +18,7 @@
 			<div id="selectFilesLink" style="z-index:1"><a id="selectLink" href="#">Choose Photos</a></div>
 		</div>
 		<div id="uploadFilesLink" style="display:none">
-			<input type="button" id="uploadLink" class="upl_button" onClick="YUIUploader.upload(); return false;" value="Upload" /> or <%= link_to 'cancel', user_photo_galleries_path %>
+			<input type="button" id="uploadLink" class="upl_button" onclick="YUIUploader.upload(); return false;" value="Upload" /> or <a>отмена</a>
 		</div>
 	</div>
 </div>

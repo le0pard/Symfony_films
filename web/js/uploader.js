@@ -31,7 +31,7 @@ var YUIUploader = {
 	    YUIUploader.uploader.addListener('rollOver', YUIUploader.handleRollOver);
 	    YUIUploader.uploader.addListener('rollOut', YUIUploader.handleRollOut);
 	    YUIUploader.uploader.addListener('click', YUIUploader.handleClick);
-		
+
 		YUIUploader.dataTableContainer = dataTableContainer;
 	},
 	// When the Flash layer is clicked, the "Browse" dialog is invoked.
@@ -53,7 +53,7 @@ var YUIUploader = {
 	// When contentReady event is fired, you can call methods on the uploader.
 	handleContentReady: function () {
 	    // Allows the uploader to send log messages to trace, as well as to YAHOO.log
-		YUIUploader.uploader.setAllowLogging(true);
+		YUIUploader.uploader.setAllowLogging(false);
 		// Allows multiple file selection in "Browse" dialog.
 		YUIUploader.uploader.setAllowMultipleFiles(true);
 		// New set of file filters.
@@ -105,7 +105,7 @@ var YUIUploader = {
 		
 		YUIUploader.uploadsCount++;
 		if  (YUIUploader.uploadsCount >= YUIUploader.rowCounter){
-			location.href = redirect_link;
+			location.href = film_add_step2_path($F('js_add_film_id'));
 		}
 	},
 	// Do something if a file upload throws an error.
@@ -131,8 +131,8 @@ var YUIUploader = {
 	upload: function () {
 		if (YUIUploader.fileList != null) {
 			YUIUploader.uploader.setSimUploadLimit(1);
-			YUIUploader.uploader.uploadAll(link_upload, "POST", 
-			{'session_id' : session_id}, "photo[image]");
+			YUIUploader.uploader.uploadAll(film_add_step2_path($F('js_add_film_id')), "POST", 
+			{'session_id' : '11'}, "photo[image]");
 		}	
 	},
 	//set size
@@ -253,14 +253,15 @@ var YUIUploader = {
 			}
 		}
 	}
-}
+}//end
 
 
-YAHOO.util.Event.onDOMReady(function () { 
-var uiLayer = YAHOO.util.Dom.getRegion('selectLink');
-var overlay = YAHOO.util.Dom.get('uploaderOverlay');
-YAHOO.util.Dom.setStyle(overlay, 'width', uiLayer.right-uiLayer.left + "px");
-YAHOO.util.Dom.setStyle(overlay, 'height', uiLayer.bottom-uiLayer.top + "px");
-
-YUIUploader.initialize("uploaderOverlay", "dataTableContainer");
+YAHOO.util.Event.onDOMReady(function () {
+	if ($('uploaderOverlay') && $('dataTableContainer') && $('js_add_film_id')){
+		var uiLayer = YAHOO.util.Dom.getRegion('selectLink');
+		var overlay = YAHOO.util.Dom.get('uploaderOverlay');
+		YAHOO.util.Dom.setStyle(overlay, 'width', uiLayer.right-uiLayer.left + "px");
+		YAHOO.util.Dom.setStyle(overlay, 'height', uiLayer.bottom-uiLayer.top + "px");
+		YUIUploader.initialize("uploaderOverlay", "dataTableContainer");
+	}
 });	
