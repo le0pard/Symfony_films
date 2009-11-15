@@ -6,14 +6,15 @@ var FilmSiteJs = {
 		this.initGallery();
 		this.initAddGallerySort();
 		this.initAddLinkSort();
+		this.initGalleryMultUploader();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
 			if ($('registration_login')) {
-				$('registration_login').observe('blur', FilmSiteJs.checkRegName)
+				$('registration_login').observe('blur', FilmSiteJs.checkRegName);
 			}
 			if ($('registration_email')) {
-				$('registration_email').observe('blur', FilmSiteJs.checkRegEmail)
+				$('registration_email').observe('blur', FilmSiteJs.checkRegEmail);
 			}
 		}
 	},
@@ -99,7 +100,20 @@ var FilmSiteJs = {
 				}  
 		    });
 		}	
-	}
+	},
+	initGalleryMultUploader: function(){
+		if ($('upload_gallery_form') && $('upload_gallery_link') && $('uploadLink')){
+			$('upload_gallery_link').observe('click', FilmSiteJs.showHideMultUploader);
+			$('uploadLink').observe('click', YUIUploader.upload);
+		}	
+	},
+	showHideMultUploader: function(){
+		if ($('upload_gallery_form').visible()){
+			$('upload_gallery_form').blindUp();
+		} else {
+			$('upload_gallery_form').blindDown();
+		}	
+	}	
 };
 
 Event.observe(window, 'load', function(){

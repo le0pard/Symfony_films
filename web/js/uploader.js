@@ -80,7 +80,7 @@ var YUIUploader = {
 		var tempCell = $('uploadRow_' + rowNum).select('.yui-dt-col-trash');
 		if (tempCell){
 			tempCell.each(function(s) {
-			  s.update("Progress...");
+			  s.update("Загрузка...");
 			});
 		}
 	},
@@ -99,7 +99,7 @@ var YUIUploader = {
 		var tempCell = $('uploadRow_' + rowNum).select('.yui-dt-col-trash');
 		if (tempCell){
 			tempCell.each(function(s) {
-			  s.update("Done");
+			  s.update("Готово");
 			});
 		}
 		
@@ -132,19 +132,19 @@ var YUIUploader = {
 		if (YUIUploader.fileList != null) {
 			YUIUploader.uploader.setSimUploadLimit(1);
 			YUIUploader.uploader.uploadAll(film_add_step2_path($F('js_add_film_id')), "POST", 
-			{'session_id' : '11'}, "photo[image]");
+			{'session_id' : session_id, 'gallery[film_id]' : $F('js_add_film_id')}, "gallery[thumb_img]");
 		}	
 	},
 	//set size
 	setSize: function (size){
-		var word = ' B';
+		var word = ' байт';
 		if (size > 1024){
 			size = Math.round((size * 100)/1024)/100;
-			word = ' KB';
+			word = ' Kбайт';
 		}
 		if (size > 1024){
 			size = Math.round((size * 100)/1024)/100;
-			word = ' MB';
+			word = ' Mбайт';
 		}
 		
 		return size + word;
@@ -160,8 +160,7 @@ var YUIUploader = {
 			YUIUploader.createDataTable();
 			
 			$('uploadFilesLink').show();
-			//$('selectLink').hide();
-			$('selectLink').update('Add More Photos');
+			$('selectLink').update('Добавить еще скриншотов');
 			$('selectLink').addClassName('add_more');
 			YUIUploader.handleRollOut();
 			
@@ -179,16 +178,16 @@ var YUIUploader = {
 			var tmpTHead=main_table.appendChild(document.createElement("thead"));
 			tmpRow=tmpTHead.appendChild(document.createElement("tr"));
 			tmpCell=tmpRow.appendChild(document.createElement("th"));
-			tmpCell.innerHTML = "File Name";
+			tmpCell.innerHTML = "Файл";
 			tmpCell.className = "yui-dt-first";
 			tmpCell=tmpRow.appendChild(document.createElement("th"));
-			tmpCell.innerHTML = "Size";
+			tmpCell.innerHTML = "Разм.";
 			tmpCell.className = "";
 			tmpCell=tmpRow.appendChild(document.createElement("th"));
-			tmpCell.innerHTML = "Upload progress";
+			tmpCell.innerHTML = "Прогресс";
 			tmpCell.className = "";
 			tmpCell=tmpRow.appendChild(document.createElement("th"));
-			tmpCell.innerHTML = "Remove?";
+			tmpCell.innerHTML = "Удалить?";
 			tmpCell.className = "yui-dt-last";
 				
 			for(var i in YUIUploader.fileList) {
@@ -245,8 +244,7 @@ var YUIUploader = {
 					if (YUIUploader.rowCounter <= 0){
 						$(YUIUploader.dataTableContainer).innerHTML = "";
 						$('uploadFilesLink').hide();
-						//$('selectLink').show();
-						$('selectLink').update('Choose Photos');
+						$('selectLink').update('Выбрать скриншоты');
 						$('selectLink').removeClassName('add_more');
 					}
 				}
@@ -263,5 +261,6 @@ YAHOO.util.Event.onDOMReady(function () {
 		YAHOO.util.Dom.setStyle(overlay, 'width', uiLayer.right-uiLayer.left + "px");
 		YAHOO.util.Dom.setStyle(overlay, 'height', uiLayer.bottom-uiLayer.top + "px");
 		YUIUploader.initialize("uploaderOverlay", "dataTableContainer");
+		$('upload_gallery_form').hide();
 	}
 });	

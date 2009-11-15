@@ -10,6 +10,12 @@
  */
 class FrontFilmLinksForm extends BaseFilmLinksForm
 {
+	
+  public function __construct(BaseObject $object = null, $options = array(), $CSRFSecret = null)
+  {
+    parent::__construct($object, $options, false);
+  }
+	
   public function configure()
   {
   	unset(

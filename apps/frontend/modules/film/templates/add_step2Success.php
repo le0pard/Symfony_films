@@ -10,17 +10,23 @@
 <?php if (isset($form_add)): ?>
 <h2>Добавить скриншот</h2>
 
-<div class="upload-photo-form">
+<div>
+	<a id="upload_gallery_link" href="javascript:;">Мульти-загрузчик</a>
+</div>
+<div id="upload_gallery_form">
 	<div id="dataTableContainer"></div>
 	<div id="uiElements">
 		<div id="uploaderContainer">
 			<div id="uploaderOverlay" style="position:absolute; z-index:2"></div>
-			<div id="selectFilesLink" style="z-index:1"><a id="selectLink" href="#">Choose Photos</a></div>
+			<div id="selectFilesLink" style="z-index:1"><a id="selectLink" href="#">Выбрать скриншоты</a></div>
 		</div>
 		<div id="uploadFilesLink" style="display:none">
-			<input type="button" id="uploadLink" class="upl_button" onclick="YUIUploader.upload(); return false;" value="Upload" /> or <a>отмена</a>
+			<input type="button" id="uploadLink" class="upl_button" value="Upload" />
 		</div>
 	</div>
+	<script type="text/javascript">
+		var session_id = '<?php echo session_id()?>';
+	</script>
 </div>
 
 <form id="film_add_form_st2_add" action="<?php echo url_for('film_add_step2', $film) ?>" method="POST" <?php $form_add->isMultipart() and print 'enctype="multipart/form-data"' ?>>
@@ -28,7 +34,9 @@
   		<?php echo $form_add['thumb_img']->renderError() ?>
   		<?php echo $form_add['film_id']->render(); ?>
   		<?php echo $form_add['thumb_img']->render(); ?>
-  		<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
+  		<?php if ($form_add->isCSRFProtected()) : ?> 
+  			<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
+  		<?php endif ?>
   	<div class="buttons">
     	<input type="submit" value="Добавить" />
 	</div>
@@ -52,7 +60,9 @@
   		<?php echo $row['id']->render(); ?>
   		<?php echo $row['film_id']->render(); ?>
   		<?php echo $row['thumb_img']->render(); ?>
-  		<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
+  		<?php if ($row->isCSRFProtected()) : ?> 
+  			<?php echo $row[$row->getCSRFFieldName()]->render(); ?>
+  		<?php endif ?>
   	<div class="buttons">
     	<input type="submit" value="Обновить" />
 		<?php echo $row['thumb_img']->renderHelp() ?>
