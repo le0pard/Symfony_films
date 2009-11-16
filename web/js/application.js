@@ -30,10 +30,11 @@ var FilmSiteJs = {
 		}
 	},
 	initGallery: function(){
-		if ($('galleryBox')){
-			$('galleryBox').select("a.img_link").each(function(s){
+		if ($('gallery_list')){
+			$('gallery_list').select("a.img_link").each(function(s){
 				s.observe('click', FilmSiteJs.selectGalleryImage);
 			});
+			
 		}
 	},
 	checkRegName: function(){
@@ -69,7 +70,7 @@ var FilmSiteJs = {
 		});
 	},
 	selectGalleryImage: function(event){
-		$('galleryBox').select("a.img_link").each(function(s){
+		$('gallery_list').select("a.img_link").each(function(s){
 			s.setOpacity(1);
 		});	
 		var element = Event.findElement(event, 'a');
@@ -80,6 +81,11 @@ var FilmSiteJs = {
 			$('mainGalleryImg').writeAttribute('src', img);
 			element.setOpacity(0.8);
 		}
+		
+		Position.prepare();
+		container_x = Position.cumulativeOffset($('gallery_list_box'))[0];
+		element_x = Position.cumulativeOffset(element)[0];
+		new Effect.Scroll('gallery_list_box', {x:(element_x-container_x - 200), y:0});
 	},
 	initAddGallerySort: function(){
 		if ($('add_gallery_list') && $('js_add_film_id')){

@@ -1,3 +1,4 @@
+<?php use_javascript('scroll.min.js', 'last') ?>
 <?php if ($film): ?>
 <div id="main_film">
 	<h1>
@@ -87,14 +88,18 @@
 	</div>
 	
 	<div id="galleryBox" class="gallery">
-		<div id="mainGalleryBox">
+		<div id="mainGalleryBox" style="height:500px;">
 			<img id="mainGalleryImg" alt="Просмотр" src="" />
 		</div>
-		<?php foreach($film->getGallery() as $row): ?>
-			<a class="img_link" href="javascript:;" rel="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getNormalImg() ?>">	
-				<img alt="<?php echo $film->getTitle() ?>" src="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getThumbImg() ?>" />
-			</a>
-		<?php endforeach ?>
+		<div id="gallery_list_box">
+			<div id="gallery_list">
+			<?php foreach($film->getGallery() as $row): ?>
+				<a class="img_link" href="javascript:;" rel="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getNormalImg() ?>">	
+					<img alt="<?php echo $film->getTitle() ?>" src="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getThumbImg() ?>" />
+				</a>
+			<?php endforeach ?>
+			</div>
+		</div>
 	</div>
 	
 	<div class="links">

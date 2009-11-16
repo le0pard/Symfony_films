@@ -1,0 +1,7 @@
+prod:
+  sfErrorNotifier:
+    emailTo:      leopard_ne@inbox.ru
+    emailFrom:    Coocoorooza <no-reply@coocoorooza.com> 
+    emailFormat:  html   # 'html' or 'txt', html by default 
+
+ 
