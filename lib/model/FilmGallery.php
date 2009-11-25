@@ -17,7 +17,7 @@ class FilmGallery extends BaseFilmGallery
 
 sfPropelBehavior::add('FilmGallery', array(
 	'viewCacheObserver' => array(
-		'up_depend' => array(
+		'belongs_to_depend' => array(
 			'getFilm'
 		)
 	)

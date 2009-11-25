@@ -100,18 +100,15 @@ class Film extends BaseFilm
 		$index->commit();
 	}
 
-	static public function getCacheArray(){
-		return array(
-			'film_types/index',
-			'@sf_cache_partial?module=film&action=_film_main&sf_cache_key=#{id}'
-		);
-	}
-
 }
 
 sfPropelBehavior::add('Film', array(
 	'viewCacheObserver' => array(
-		'depend' => array(
+		'cache' => array(
+			'film_types/index',
+			'@sf_cache_partial?module=film&action=_film_main&sf_cache_key=#{id}'
+		),
+		'has_many_depend' => array(
 			'getFilmFilmTypessJoinFilmTypes' => 'getFilmTypes'
 		),
 		'variables' => array(

@@ -12,7 +12,7 @@ class FilmLinks extends BaseFilmLinks
 
 sfPropelBehavior::add('FilmLinks', array(
 	'viewCacheObserver' => array(
-		'up_depend' => array(
+		'belongs_to_depend' => array(
 			'getFilm'
 		)
 	)

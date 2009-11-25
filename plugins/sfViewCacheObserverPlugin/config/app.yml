@@ -1,0 +1,4 @@
+all:
+  viewCacheObserver:
+    project_cache: frontend
+    environment_cache: cache
