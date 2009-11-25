@@ -116,6 +116,10 @@ sfPropelBehavior::add('Film', array(
 		),
 		'variables' => array(
 			'id' => 'getId'
+		),
+		'criteria' => array(
+			'getIsVisible' => true,
+			'getIsPublic' => true
 		)
 	)
 ));
