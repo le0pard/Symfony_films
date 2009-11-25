@@ -10,14 +10,4 @@ class CommentsPeer extends BaseCommentsPeer
 	    $criteria->addAscendingOrderByColumn(self::CREATED_AT);
 	    return $criteria;
     }
-    
-	public static function doDeleteAll($con = null) {
-		//clear cache
-		$current_app = sfConfig::get('sf_app');
-		if ($current_app){
-			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=comment&action=_last_comments&sf_cache_key=last_comments', $current_app);
-			sfProjectConfiguration::getActive()->clearFrontendCache('comment/last_comments', $current_app); 
-		}
-		return parent::doDeleteAll($con);
-	}
 }

@@ -48,20 +48,6 @@ class Film extends BaseFilm
 		$con->beginTransaction();
 		try {
 			$ret = parent::save($con);
-			
-			//clear cache
-			$current_app = sfConfig::get('sf_app');
-			if ($current_app){
-				sfProjectConfiguration::getActive()->clearFrontendCache('film_types/index', $current_app);
-				sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key='.$this->getId(), $current_app);
-				foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
-					$f_type = $row->getFilmTypes();
-					if ($f_type){
-						sfProjectConfiguration::getActive()->clearFrontendCache('film_types/show?id='.$f_type->getId().'&url='.$f_type->getUrl(), $current_app);
-					}	
-				}
-			}
-			
 			$this->updateLuceneIndex();
 			$con->commit();
 			return $ret;
@@ -75,19 +61,6 @@ class Film extends BaseFilm
 		$index = FilmPeer::getLuceneIndex();
 		foreach ($index->find('pk:'.$this->getId()) as $hit) {
 			$index->delete($hit->id);
-		}
-		
-		//clear cache
-		$current_app = sfConfig::get('sf_app');
-		if ($current_app){
-			sfProjectConfiguration::getActive()->clearFrontendCache('film_types/index', $current_app);
-			sfProjectConfiguration::getActive()->clearFrontendCache('@sf_cache_partial?module=film&action=_film_main&sf_cache_key='.$this->getId(), $current_app);
-			foreach($this->getFilmFilmTypessJoinFilmTypes() as $row){
-				$f_type = $row->getFilmTypes();
-				if ($f_type){
-					sfProjectConfiguration::getActive()->clearFrontendCache('film_types/show?id='.$f_type->getId().'&url='.$f_type->getUrl(), $current_app);
-				}	
-			}
 		}
 		
 		return parent::delete($con);
@@ -127,5 +100,22 @@ class Film extends BaseFilm
 		$index->commit();
 	}
 
+	static public function getCacheArray(){
+		return array(
+			'film_types/index',
+			'@sf_cache_partial?module=film&action=_film_main&sf_cache_key=#{id}'
+		);
+	}
 
 }
+
+sfPropelBehavior::add('Film', array(
+	'viewCacheObserver' => array(
+		'depend' => array(
+			'getFilmFilmTypessJoinFilmTypes' => 'getFilmTypes'
+		),
+		'variables' => array(
+			'id' => 'getId'
+		)
+	)
+));
