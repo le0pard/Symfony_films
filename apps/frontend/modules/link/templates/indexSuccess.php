@@ -1,0 +1,1 @@
+<a href="<?php echo $link->getUrl();?>"><?php echo $link->getUrl();?></a>

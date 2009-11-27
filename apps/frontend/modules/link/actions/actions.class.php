@@ -18,8 +18,8 @@ class linkActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	$this->link = $this->getRoute()->getObject();
-  	if ($this->link){
-  		$this->redirect($this->link->getUrl());
+  	if (!$this->link){
+  		$this->redirect('@homepage');
   	}
   }
 }
