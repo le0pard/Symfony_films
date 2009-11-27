@@ -37,3 +37,6 @@ all:
     effect_grayscale: true
     noise_min_lines: 3
     noise_max_lines: 6
+
+  google_analytics:
+    code: UA-10000-01

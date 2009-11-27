@@ -62,5 +62,6 @@
 	<!--FOOTER-->
    	<?php include_partial('global/footer') ?>
 	<!--FOOTER-->
+	<?php include_partial('global/google_analytics') ?>
   </body>
 </html>
