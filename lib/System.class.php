@@ -142,8 +142,8 @@ class System {
 	//    cfgSetTagChilds($tag, $childs, $isContainerOnly, $isChildOnly)
 	//       $isContainerOnly : тег является только контейнером для других тегов и не может содержать текст (по умолчанию false)
 	//       $isChildOnly : вложенные теги не могут присутствовать нигде кроме указанного тега (по умолчанию false)
-	System::$jevix->cfgSetTagChilds('ul', 'li', true, true);
-	System::$jevix->cfgSetTagChilds('ol', 'li', true, true);
+	System::$jevix->cfgSetTagChilds('ul', 'li', false, true);
+	System::$jevix->cfgSetTagChilds('ol', 'li', false, true);
 	// 8. Устанавливаем атрибуты тегов, которые будут добавлятся автоматически
 	System::$jevix->cfgSetTagParamsAutoAdd('a', array('rel' => 'nofollow'));
 	// 9. Устанавливаем автозамену
