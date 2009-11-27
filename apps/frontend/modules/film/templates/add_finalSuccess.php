@@ -5,4 +5,4 @@
 	<p>Внимание!</p>
 	<input type="submit" name="pub" value="Публиковать" />
 </form>
-<?php include_partial('film/film_main', array('film' => $film)) ?>
+<?php include_partial('film/film_main', array('film' => $film, 'sf_cache_key' => $film->getId())) ?>
