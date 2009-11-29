@@ -1,8 +1,8 @@
 edit:
-  is_secure:  on
+  is_secure:  true
   credentials: [[ admin, super_admin ]]
 delete:
-  is_secure:  on
+  is_secure:  true
   credentials: [[ admin, super_admin ]]  
 all:
-  is_secure:  on
+  is_secure:  true

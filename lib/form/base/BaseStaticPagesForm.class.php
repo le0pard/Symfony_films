@@ -3,20 +3,22 @@
 /**
  * StaticPages form base class.
  *
+ * @method StaticPages getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseStaticPagesForm extends BaseFormPropel
+abstract class BaseStaticPagesForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'title'       => new sfWidgetFormInput(),
-      'url'         => new sfWidgetFormInput(),
-      'sort'        => new sfWidgetFormInput(),
+      'title'       => new sfWidgetFormInputText(),
+      'url'         => new sfWidgetFormInputText(),
+      'sort'        => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'is_visible'  => new sfWidgetFormInputCheckbox(),
       'created_at'  => new sfWidgetFormDateTime(),
@@ -27,7 +29,7 @@ class BaseStaticPagesForm extends BaseFormPropel
       'id'          => new sfValidatorPropelChoice(array('model' => 'StaticPages', 'column' => 'id', 'required' => false)),
       'title'       => new sfValidatorString(array('max_length' => 500)),
       'url'         => new sfValidatorString(array('max_length' => 500, 'required' => false)),
-      'sort'        => new sfValidatorInteger(array('required' => false)),
+      'sort'        => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
       'is_visible'  => new sfValidatorBoolean(),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),

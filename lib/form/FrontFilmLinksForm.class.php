@@ -24,8 +24,8 @@ class FrontFilmLinksForm extends BaseFilmLinksForm
 	$this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'film_id'    => new sfWidgetFormInputHidden(),
-      'title'      => new sfWidgetFormInput(),
-      'url'        => new sfWidgetFormInput()
+      'title'      => new sfWidgetFormInputText(),
+      'url'        => new sfWidgetFormInputText()
     ));
 
     $this->setValidators(array(

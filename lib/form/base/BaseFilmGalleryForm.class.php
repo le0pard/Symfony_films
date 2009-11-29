@@ -3,21 +3,23 @@
 /**
  * FilmGallery form base class.
  *
+ * @method FilmGallery getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseFilmGalleryForm extends BaseFormPropel
+abstract class BaseFilmGalleryForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'film_id'    => new sfWidgetFormInputHidden(),
-      'thumb_img'  => new sfWidgetFormInput(),
-      'normal_img' => new sfWidgetFormInput(),
-      'sort'       => new sfWidgetFormInput(),
+      'thumb_img'  => new sfWidgetFormInputText(),
+      'normal_img' => new sfWidgetFormInputText(),
+      'sort'       => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -25,7 +27,7 @@ class BaseFilmGalleryForm extends BaseFormPropel
       'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'thumb_img'  => new sfValidatorString(array('max_length' => 500)),
       'normal_img' => new sfValidatorString(array('max_length' => 500)),
-      'sort'       => new sfValidatorInteger(array('required' => false)),
+      'sort'       => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('film_gallery[%s]');

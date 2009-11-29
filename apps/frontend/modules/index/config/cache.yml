@@ -1,5 +1,5 @@
 index:
-  enabled:     off
+  enabled:     false
   lifetime:    2592000 # 30 суток
 all:
   with_layout: false

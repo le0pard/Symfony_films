@@ -3,21 +3,23 @@
 /**
  * Afisha form base class.
  *
+ * @method Afisha getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseAfishaForm extends BaseFormPropel
+abstract class BaseAfishaForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'user_id'     => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
-      'title'       => new sfWidgetFormInput(),
-      'normal_logo' => new sfWidgetFormInput(),
-      'thumb_logo'  => new sfWidgetFormInput(),
+      'title'       => new sfWidgetFormInputText(),
+      'normal_logo' => new sfWidgetFormInputText(),
+      'thumb_logo'  => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),

@@ -23,12 +23,12 @@ class FrontFilmForm extends BaseFilmForm
     $years = range(date("Y", time()) + 5, 1900);
 	$this->setWidgets(array(
 	  'id'                   => new sfWidgetFormInputHidden(),
-      'title'                => new sfWidgetFormInput(),
-      'original_title'       => new sfWidgetFormInput(),
-	  'film_film_types_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'FilmTypes'), array('size' => 8)),
+      'title'                => new sfWidgetFormInputText(),
+      'original_title'       => new sfWidgetFormInputText(),
+	  'film_film_types_list' => new sfWidgetFormPropelChoice(array('model' => 'FilmTypes', 'multiple' => true), array('size' => 8)),
       'pub_year'             => new sfWidgetFormSelect(array('multiple' => false, 'choices' => array_combine($years, $years))),
-      'director'             => new sfWidgetFormInput(),
-      'cast'                 => new sfWidgetFormInput(),
+      'director'             => new sfWidgetFormInputText(),
+      'cast'                 => new sfWidgetFormInputText(),
       'about'                => new sfWidgetFormTextareaTinyMCE(
 	  				array('theme' => 'advanced','config' => '
 							skin : "o2k7", 
@@ -42,8 +42,8 @@ class FrontFilmForm extends BaseFilmForm
 							theme_advanced_resizing : true,
 							'), 
 					array('rows' => 5, 'cols' => 50, 'class' => 'TinyMCE')),
-      'country'              => new sfWidgetFormInput(),
-      'duration'             => new sfWidgetFormInput(),
+      'country'              => new sfWidgetFormInputText(),
+      'duration'             => new sfWidgetFormInputText(),
       'file_info'            => new sfWidgetFormTextarea()
     ));
 
@@ -73,7 +73,7 @@ class FrontFilmForm extends BaseFilmForm
 								  'max_length' => '"%value%" слишком длинное (Максимальная длинна %max_length% символа).')),
       'file_info'            => new sfValidatorString(array('required' => true), 
 	  						array('required' => 'Нужно указать эту информацию.')),
-      'film_film_types_list' => new sfValidatorPropelChoiceMany(array('model' => 'FilmTypes', 'required' => true), 
+      'film_film_types_list' => new sfValidatorPropelChoice(array('model' => 'FilmTypes', 'required' => true, 'multiple' => true), 
 	  						array('required' => 'Укажите хотя бы одну категорию.')),
     ));
 	

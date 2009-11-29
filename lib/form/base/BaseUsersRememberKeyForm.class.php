@@ -3,18 +3,20 @@
 /**
  * UsersRememberKey form base class.
  *
+ * @method UsersRememberKey getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseUsersRememberKeyForm extends BaseFormPropel
+abstract class BaseUsersRememberKeyForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'user_id'      => new sfWidgetFormInputHidden(),
-      'remember_key' => new sfWidgetFormInput(),
+      'remember_key' => new sfWidgetFormInputText(),
       'ip_address'   => new sfWidgetFormInputHidden(),
       'created_at'   => new sfWidgetFormDateTime(),
     ));

@@ -1,31 +1,31 @@
 prod:
   .settings:
-    no_script_name:         on
-    logging_enabled:        off
-    cache:                  on
+    no_script_name:         true
+    logging_enabled:        false
+    cache:                  true
 
 dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              on
-    cache:                  off
-    no_script_name:         off
-    etag:                   off
+    web_debug:              true
+    cache:                  false
+    no_script_name:         false
+    etag:                   false
 
 test:
   .settings:
     error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  off
-    web_debug:              off
-    no_script_name:         off
-    etag:                   off
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
 
 cache:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              on
-    cache:                  on
-    etag:                   off
+    web_debug:              true
+    cache:                  true
+    etag:                   false
 
 all:
   .settings:
@@ -113,7 +113,7 @@ all:
 #    max_forwards:           5
 #
 #    # Logging
-#    logging_enabled:        on
+#    logging_enabled:        true
 #
 #    # i18n
 #    default_culture:        en        # Default user culture

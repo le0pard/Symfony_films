@@ -3,20 +3,22 @@
 /**
  * News form base class.
  *
+ * @method News getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseNewsForm extends BaseFormPropel
+abstract class BaseNewsForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'user_id'     => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
-      'title'       => new sfWidgetFormInput(),
-      'url'         => new sfWidgetFormInput(),
+      'title'       => new sfWidgetFormInputText(),
+      'url'         => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),

@@ -1,27 +1,25 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/base/BaseFormFilterPropel.class.php');
-
 /**
  * FilmTypes filter form base class.
  *
  * @package    symfony_films
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseFilmTypesFormFilter extends BaseFormFilterPropel
+abstract class BaseFilmTypesFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'title'                => new sfWidgetFormFilterInput(),
-      'url'                  => new sfWidgetFormFilterInput(),
-      'logo'                 => new sfWidgetFormFilterInput(),
+      'title'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'url'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'logo'                 => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description'          => new sfWidgetFormFilterInput(),
       'is_visible'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'is_not_main'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'created_at'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'           => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'film_film_types_list' => new sfWidgetFormPropelChoice(array('model' => 'Film', 'add_empty' => true)),
     ));
 

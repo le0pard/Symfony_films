@@ -3,29 +3,31 @@
 /**
  * Film form base class.
  *
+ * @method Film getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseFilmForm extends BaseFormPropel
+abstract class BaseFilmForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
       'user_id'              => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
-      'title'                => new sfWidgetFormInput(),
-      'original_title'       => new sfWidgetFormInput(),
-      'normal_logo'          => new sfWidgetFormInput(),
-      'thumb_logo'           => new sfWidgetFormInput(),
-      'url'                  => new sfWidgetFormInput(),
-      'pub_year'             => new sfWidgetFormInput(),
-      'director'             => new sfWidgetFormInput(),
-      'cast'                 => new sfWidgetFormInput(),
+      'title'                => new sfWidgetFormInputText(),
+      'original_title'       => new sfWidgetFormInputText(),
+      'normal_logo'          => new sfWidgetFormInputText(),
+      'thumb_logo'           => new sfWidgetFormInputText(),
+      'url'                  => new sfWidgetFormInputText(),
+      'pub_year'             => new sfWidgetFormInputText(),
+      'director'             => new sfWidgetFormInputText(),
+      'cast'                 => new sfWidgetFormInputText(),
       'about'                => new sfWidgetFormTextarea(),
-      'country'              => new sfWidgetFormInput(),
-      'duration'             => new sfWidgetFormInput(),
+      'country'              => new sfWidgetFormInputText(),
+      'duration'             => new sfWidgetFormInputText(),
       'file_info'            => new sfWidgetFormTextarea(),
       'is_visible'           => new sfWidgetFormInputCheckbox(),
       'is_private'           => new sfWidgetFormInputCheckbox(),
@@ -33,8 +35,8 @@ class BaseFilmForm extends BaseFormPropel
       'update_data'          => new sfWidgetFormDateTime(),
       'created_at'           => new sfWidgetFormDateTime(),
       'updated_at'           => new sfWidgetFormDateTime(),
-      'film_film_types_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'FilmTypes')),
-      'film_raiting_list'    => new sfWidgetFormPropelChoiceMany(array('model' => 'Users')),
+      'film_raiting_list'    => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Users')),
+      'film_film_types_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'FilmTypes')),
     ));
 
     $this->setValidators(array(
@@ -45,7 +47,7 @@ class BaseFilmForm extends BaseFormPropel
       'normal_logo'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'thumb_logo'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'url'                  => new sfValidatorString(array('max_length' => 500, 'required' => false)),
-      'pub_year'             => new sfValidatorInteger(array('required' => false)),
+      'pub_year'             => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'director'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'cast'                 => new sfValidatorString(array('max_length' => 1000, 'required' => false)),
       'about'                => new sfValidatorString(array('required' => false)),
@@ -58,8 +60,8 @@ class BaseFilmForm extends BaseFormPropel
       'update_data'          => new sfValidatorDateTime(array('required' => false)),
       'created_at'           => new sfValidatorDateTime(array('required' => false)),
       'updated_at'           => new sfValidatorDateTime(array('required' => false)),
-      'film_film_types_list' => new sfValidatorPropelChoiceMany(array('model' => 'FilmTypes', 'required' => false)),
-      'film_raiting_list'    => new sfValidatorPropelChoiceMany(array('model' => 'Users', 'required' => false)),
+      'film_raiting_list'    => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Users', 'required' => false)),
+      'film_film_types_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'FilmTypes', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('film[%s]');
@@ -79,17 +81,6 @@ class BaseFilmForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['film_film_types_list']))
-    {
-      $values = array();
-      foreach ($this->object->getFilmFilmTypess() as $obj)
-      {
-        $values[] = $obj->getFilmGenreId();
-      }
-
-      $this->setDefault('film_film_types_list', $values);
-    }
-
     if (isset($this->widgetSchema['film_raiting_list']))
     {
       $values = array();
@@ -101,49 +92,25 @@ class BaseFilmForm extends BaseFormPropel
       $this->setDefault('film_raiting_list', $values);
     }
 
+    if (isset($this->widgetSchema['film_film_types_list']))
+    {
+      $values = array();
+      foreach ($this->object->getFilmFilmTypess() as $obj)
+      {
+        $values[] = $obj->getFilmGenreId();
+      }
+
+      $this->setDefault('film_film_types_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveFilmFilmTypesList($con);
     $this->saveFilmRaitingList($con);
-  }
-
-  public function saveFilmFilmTypesList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['film_film_types_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(FilmFilmTypesPeer::FILM_ID, $this->object->getPrimaryKey());
-    FilmFilmTypesPeer::doDelete($c, $con);
-
-    $values = $this->getValue('film_film_types_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new FilmFilmTypes();
-        $obj->setFilmId($this->object->getPrimaryKey());
-        $obj->setFilmGenreId($value);
-        $obj->save();
-      }
-    }
+    $this->saveFilmFilmTypesList($con);
   }
 
   public function saveFilmRaitingList($con = null)
@@ -159,7 +126,7 @@ class BaseFilmForm extends BaseFormPropel
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }
@@ -176,6 +143,41 @@ class BaseFilmForm extends BaseFormPropel
         $obj = new FilmRaiting();
         $obj->setFilmId($this->object->getPrimaryKey());
         $obj->setUserId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveFilmFilmTypesList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['film_film_types_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(FilmFilmTypesPeer::FILM_ID, $this->object->getPrimaryKey());
+    FilmFilmTypesPeer::doDelete($c, $con);
+
+    $values = $this->getValue('film_film_types_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new FilmFilmTypes();
+        $obj->setFilmId($this->object->getPrimaryKey());
+        $obj->setFilmGenreId($value);
         $obj->save();
       }
     }

@@ -3,12 +3,14 @@
 /**
  * UsersUsersGroup form base class.
  *
+ * @method UsersUsersGroup getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseUsersUsersGroupForm extends BaseFormPropel
+abstract class BaseUsersUsersGroupForm extends BaseFormPropel
 {
   public function setup()
   {

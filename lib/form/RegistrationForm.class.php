@@ -27,7 +27,7 @@ class RegistrationForm extends BaseUsersForm{
 					), array('required' => true, 'trim' => true), array('required' => 'Email должен быть указан.'))
     ));
 	
-	$this->widgetSchema['captcha'] = new sfWidgetFormInput();
+	$this->widgetSchema['captcha'] = new sfWidgetFormInputText();
 	$this->validatorSchema['captcha'] = new sfValidatorSfCryptoCaptcha(array('required' => true, 'trim' => true),
                                                    array('wrong_captcha' => 'Неверные циферки.',
                                                          'required' => 'Нам нужны эти циферки.'));

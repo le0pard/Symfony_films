@@ -1,8 +1,8 @@
 _menu:
-  enabled:     on
+  enabled:     true
   lifetime:    2592000 # 30 суток
 show:
-  enabled:     on
+  enabled:     true
   lifetime:    2592000 # 30 суток  
 all:
   with_layout: false

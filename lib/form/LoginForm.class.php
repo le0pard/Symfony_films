@@ -1,10 +1,10 @@
 <?php
-class LoginForm extends sfForm{
+class LoginForm extends BaseForm{
   public function configure()
   {
   	
     $this->setWidgets(array(
-      'login'    => new sfWidgetFormInput(),
+      'login'    => new sfWidgetFormInputText(),
       'password' => new sfWidgetFormInputPassword(),
 	  'not_remember' => new sfWidgetFormInputCheckbox(array('label' => '&nbsp;', 'value_attribute_value' => 1), array('value' => 1))
     ));

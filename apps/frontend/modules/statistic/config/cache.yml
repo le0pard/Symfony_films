@@ -1,11 +1,11 @@
 index:
-  enabled:     on
+  enabled:     true
   lifetime:    14400 # 4 часа
 cathegory_films:
-  enabled:     on
+  enabled:     true
   lifetime:    14400 # 4 часа
 films_by_day:
-  enabled:     on
+  enabled:     true
   lifetime:    14400 # 4 часа
 all:
   with_layout: false

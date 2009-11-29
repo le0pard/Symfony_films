@@ -1,8 +1,8 @@
 profile:
   is_secure:   on    # The update action is only for authenticated
 list_unpublic_films:
-  is_secure:   on
+  is_secure:   true
 logout:
   is_secure:   on    # Only for authenticated users
 all:
-  is_secure:  off
+  is_secure:  false

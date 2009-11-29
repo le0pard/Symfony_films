@@ -3,27 +3,29 @@
 /**
  * UsersGroup form base class.
  *
+ * @method UsersGroup getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseUsersGroupForm extends BaseFormPropel
+abstract class BaseUsersGroupForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                     => new sfWidgetFormInputHidden(),
-      'name'                   => new sfWidgetFormInput(),
+      'name'                   => new sfWidgetFormInputText(),
       'description'            => new sfWidgetFormTextarea(),
-      'users_users_group_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Users')),
+      'users_users_group_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Users')),
     ));
 
     $this->setValidators(array(
       'id'                     => new sfValidatorPropelChoice(array('model' => 'UsersGroup', 'column' => 'id', 'required' => false)),
       'name'                   => new sfValidatorString(array('max_length' => 255)),
       'description'            => new sfValidatorString(array('required' => false)),
-      'users_users_group_list' => new sfValidatorPropelChoiceMany(array('model' => 'Users', 'required' => false)),
+      'users_users_group_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Users', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -80,7 +82,7 @@ class BaseUsersGroupForm extends BaseFormPropel
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

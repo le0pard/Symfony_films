@@ -3,25 +3,27 @@
 /**
  * FilmTypes form base class.
  *
+ * @method FilmTypes getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseFilmTypesForm extends BaseFormPropel
+abstract class BaseFilmTypesForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                   => new sfWidgetFormInputHidden(),
-      'title'                => new sfWidgetFormInput(),
-      'url'                  => new sfWidgetFormInput(),
-      'logo'                 => new sfWidgetFormInput(),
+      'title'                => new sfWidgetFormInputText(),
+      'url'                  => new sfWidgetFormInputText(),
+      'logo'                 => new sfWidgetFormInputText(),
       'description'          => new sfWidgetFormTextarea(),
       'is_visible'           => new sfWidgetFormInputCheckbox(),
       'is_not_main'          => new sfWidgetFormInputCheckbox(),
       'created_at'           => new sfWidgetFormDateTime(),
-      'film_film_types_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Film')),
+      'film_film_types_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Film')),
     ));
 
     $this->setValidators(array(
@@ -33,7 +35,7 @@ class BaseFilmTypesForm extends BaseFormPropel
       'is_visible'           => new sfValidatorBoolean(),
       'is_not_main'          => new sfValidatorBoolean(),
       'created_at'           => new sfValidatorDateTime(array('required' => false)),
-      'film_film_types_list' => new sfValidatorPropelChoiceMany(array('model' => 'Film', 'required' => false)),
+      'film_film_types_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Film', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('film_types[%s]');
@@ -86,7 +88,7 @@ class BaseFilmTypesForm extends BaseFormPropel
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

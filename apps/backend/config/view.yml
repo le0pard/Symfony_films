@@ -9,9 +9,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    []
 
-  javascripts:    [tiny_mce/tiny_mce.js]
+  javascripts:    []
 
-  has_layout:     on
+  has_layout:     true
   layout:         layout

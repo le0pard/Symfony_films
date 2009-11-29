@@ -3,30 +3,32 @@
 /**
  * Users form base class.
  *
+ * @method Users getObject() Returns the current form's model object
+ *
  * @package    symfony_films
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseUsersForm extends BaseFormPropel
+abstract class BaseUsersForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                     => new sfWidgetFormInputHidden(),
-      'login'                  => new sfWidgetFormInput(),
-      'password'               => new sfWidgetFormInput(),
-      'email'                  => new sfWidgetFormInput(),
-      'website_blog'           => new sfWidgetFormInput(),
-      'avatar'                 => new sfWidgetFormInput(),
+      'login'                  => new sfWidgetFormInputText(),
+      'password'               => new sfWidgetFormInputText(),
+      'email'                  => new sfWidgetFormInputText(),
+      'website_blog'           => new sfWidgetFormInputText(),
+      'avatar'                 => new sfWidgetFormInputText(),
       'about'                  => new sfWidgetFormTextarea(),
       'last_login'             => new sfWidgetFormDateTime(),
       'is_active'              => new sfWidgetFormInputCheckbox(),
       'is_super_admin'         => new sfWidgetFormInputCheckbox(),
       'created_at'             => new sfWidgetFormDateTime(),
       'updated_at'             => new sfWidgetFormDateTime(),
-      'users_users_group_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'UsersGroup')),
-      'film_raiting_list'      => new sfWidgetFormPropelChoiceMany(array('model' => 'Film')),
+      'film_raiting_list'      => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Film')),
+      'users_users_group_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'UsersGroup')),
     ));
 
     $this->setValidators(array(
@@ -42,8 +44,8 @@ class BaseUsersForm extends BaseFormPropel
       'is_super_admin'         => new sfValidatorBoolean(),
       'created_at'             => new sfValidatorDateTime(array('required' => false)),
       'updated_at'             => new sfValidatorDateTime(array('required' => false)),
-      'users_users_group_list' => new sfValidatorPropelChoiceMany(array('model' => 'UsersGroup', 'required' => false)),
-      'film_raiting_list'      => new sfValidatorPropelChoiceMany(array('model' => 'Film', 'required' => false)),
+      'film_raiting_list'      => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Film', 'required' => false)),
+      'users_users_group_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'UsersGroup', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -70,17 +72,6 @@ class BaseUsersForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['users_users_group_list']))
-    {
-      $values = array();
-      foreach ($this->object->getUsersUsersGroups() as $obj)
-      {
-        $values[] = $obj->getGroupId();
-      }
-
-      $this->setDefault('users_users_group_list', $values);
-    }
-
     if (isset($this->widgetSchema['film_raiting_list']))
     {
       $values = array();
@@ -92,49 +83,25 @@ class BaseUsersForm extends BaseFormPropel
       $this->setDefault('film_raiting_list', $values);
     }
 
+    if (isset($this->widgetSchema['users_users_group_list']))
+    {
+      $values = array();
+      foreach ($this->object->getUsersUsersGroups() as $obj)
+      {
+        $values[] = $obj->getGroupId();
+      }
+
+      $this->setDefault('users_users_group_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveUsersUsersGroupList($con);
     $this->saveFilmRaitingList($con);
-  }
-
-  public function saveUsersUsersGroupList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['users_users_group_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(UsersUsersGroupPeer::USER_ID, $this->object->getPrimaryKey());
-    UsersUsersGroupPeer::doDelete($c, $con);
-
-    $values = $this->getValue('users_users_group_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new UsersUsersGroup();
-        $obj->setUserId($this->object->getPrimaryKey());
-        $obj->setGroupId($value);
-        $obj->save();
-      }
-    }
+    $this->saveUsersUsersGroupList($con);
   }
 
   public function saveFilmRaitingList($con = null)
@@ -150,7 +117,7 @@ class BaseUsersForm extends BaseFormPropel
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }
@@ -167,6 +134,41 @@ class BaseUsersForm extends BaseFormPropel
         $obj = new FilmRaiting();
         $obj->setUserId($this->object->getPrimaryKey());
         $obj->setFilmId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveUsersUsersGroupList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['users_users_group_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(UsersUsersGroupPeer::USER_ID, $this->object->getPrimaryKey());
+    UsersUsersGroupPeer::doDelete($c, $con);
+
+    $values = $this->getValue('users_users_group_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new UsersUsersGroup();
+        $obj->setUserId($this->object->getPrimaryKey());
+        $obj->setGroupId($value);
         $obj->save();
       }
     }
