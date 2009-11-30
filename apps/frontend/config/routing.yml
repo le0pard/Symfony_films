@@ -50,6 +50,10 @@ film_types_all:
   url:   /cathegory/all
   param: { module: film_types, action: index }
   
+film_types_all_pages:
+  url:   /cathegory/all/:page
+  param: { module: film_types, action: index }
+  
 film_types_all_atom:
   url:   /cathegory/all.atom
   param: { module: film_types, action: index, sf_format: atom }

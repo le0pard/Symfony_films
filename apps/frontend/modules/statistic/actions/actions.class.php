@@ -109,8 +109,6 @@ class statisticActions extends sfActions
 	  // display the data
 	  echo $g->render();
 	 
-	  echo $g->render();
-	 
 	  return sfView::NONE;
 
   }

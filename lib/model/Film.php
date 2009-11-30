@@ -105,6 +105,7 @@ class Film extends BaseFilm
 sfPropelBehavior::add('Film', array(
 	'viewCacheObserver' => array(
 		'cache' => array(
+			'film_types/index?page=*',
 			'film_types/index',
 			'@sf_cache_partial?module=film&action=_film_main&sf_cache_key=#{id}'
 		),
