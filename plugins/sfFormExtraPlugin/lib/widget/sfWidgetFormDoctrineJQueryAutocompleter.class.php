@@ -9,15 +9,18 @@
  */
 
 /**
- * sfWidgetFormPropelJQueryAutocompleter represents an autocompleter input widget rendered by JQuery
+ * sfWidgetFormDoctrineJQueryAutocompleter represents an autocompleter input widget rendered by JQuery
  * optimized for foreign key lookup.
+ *
+ * This implementation is based on sfWidgetFormPropelJQueryAutocompleter.
  *
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
+ * @author     Roland Jungwirth <roland@top-node.com>
  * @version    SVN: $Id: sfWidgetFormPropelJQueryAutocompleter.class.php 12130 2008-10-10 14:51:07Z fabien $
  */
-class sfWidgetFormPropelJQueryAutocompleter extends sfWidgetFormJQueryAutocompleter
+class sfWidgetFormDoctrineJQueryAutocompleter extends sfWidgetFormJQueryAutocompleter
 {
   /**
    * @see sfWidget
@@ -40,6 +43,7 @@ class sfWidgetFormPropelJQueryAutocompleter extends sfWidgetFormJQueryAutocomple
   protected function configure($options = array(), $attributes = array())
   {
     $this->addRequiredOption('model');
+    $this->addOption('method_for_query', 'findOneById');
     $this->addOption('method', '__toString');
 
     parent::configure($options, $attributes);
@@ -52,10 +56,14 @@ class sfWidgetFormPropelJQueryAutocompleter extends sfWidgetFormJQueryAutocomple
    */
   protected function toString($value)
   {
-    $class = constant($this->getOption('model').'::PEER');
+    $object = null;
+    if ($value != null)
+    {
+      $class = Doctrine::getTable($this->getOption('model'));
+      $method = $this->getOption('method_for_query');
 
-    $criteria = new Criteria();
-    $object = call_user_func(array($class, 'retrieveByPK'), $value);
+      $object = call_user_func(array($class, $method), $value);
+    }
 
     $method = $this->getOption('method');
 
