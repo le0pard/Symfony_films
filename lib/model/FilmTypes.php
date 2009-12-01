@@ -16,7 +16,8 @@ sfPropelBehavior::add('FilmTypes', array(
 	'viewCacheObserver' => array(
 		'cache' => array(
 			'@sf_cache_partial?module=film&action=_types&sf_cache_key=types',
-			'film_types/show?id=#{id}&url=#{url}'
+			'film_types/show?id=#{id}&url=#{url}',
+			'film_types/show?id=#{id}&url=#{url}&page=*'
 		),
 		'variables' => array(
 			'id' => 'getId',

@@ -131,7 +131,7 @@ class sfErrorNotifierMail{
     	$subtable = implode('<br/>',$subtable);
     
     	$this->addRow('Attributes',$subtable);
-    	$this->addRow('Credentials',implode(', ',$user->listCredentials()));
+    	$this->addRow('Credentials',implode(', ',$user->getCredentials()));
     $this->body .= '</table>';
     
     	
@@ -181,7 +181,7 @@ class sfErrorNotifierMail{
 	$this->body .= "\n\n";
 	
     $this->body .= "User Credentials:\n";
-    $this->body .= implode(', ' , $user->listCredentials());	
+    $this->body .= implode(', ' , $user->getCredentials());	
     $this->body .= "\n\n";
     
     @mail($this->to, $this->subject, $this->body, $this->headers);
