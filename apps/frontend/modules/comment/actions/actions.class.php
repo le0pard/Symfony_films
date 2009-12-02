@@ -27,9 +27,9 @@ class commentActions extends sfActions
 			$comment->setUsers($this->getUser()->getAuthUser());
 			$comment->setFilm($this->film);
 			$this->form->save();
-			$this->redirect($this->generateUrl('film_show', $this->film));
+			$this->redirect('film_show', $this->film);
 		} else {
-			$this->redirect($this->generateUrl('film_show', $this->film));
+			$this->redirect('film_show', $this->film);
 		}
 	}
   }
@@ -43,9 +43,9 @@ class commentActions extends sfActions
 		$this->form->bind($params);
 		if ($this->form->isValid()){			
 			$this->form->save();
-			$this->redirect($this->generateUrl('film_show', $this->form->getObject()->getFilm()));
+			$this->redirect('film_show', $this->form->getObject()->getFilm());
 		} else {
-			$this->redirect($this->generateUrl('film_show', $this->form->getObject()->getFilm()));
+			$this->redirect('film_show', $this->form->getObject()->getFilm());
 		}
 	}
   }
@@ -56,7 +56,7 @@ class commentActions extends sfActions
   	$film = $this->comment->getFilm();
 	if ($film){
 		$this->comment->delete();
-		$this->redirect($this->generateUrl('film_show', $film));
+		$this->redirect('film_show', $film);
 	}
   }
   

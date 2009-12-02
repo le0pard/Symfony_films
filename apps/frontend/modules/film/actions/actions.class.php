@@ -41,7 +41,7 @@ class filmActions extends sfActions
 			$film->setIsPublic(false);
 			$this->form->save();
 			$this->getUser()->setFlash('confirm', 'Данные по фильму добавленны. Не забудте про ссылки и галерею.');
-			$this->redirect($this->generateUrl('film_add_step2', $film));
+			$this->redirect('film_add_step2', $film);
 		}
 	}
   }
@@ -55,7 +55,7 @@ class filmActions extends sfActions
 		if ($this->form->isValid()){
 			$this->form->save();
 			$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
-			$this->redirect($this->generateUrl('film_edit_step1', $this->film));
+			$this->redirect('film_edit_step1', $this->film);
 		}
 	}
   }
@@ -91,7 +91,7 @@ class filmActions extends sfActions
 			if ($this->form_add->isValid()){
 				$this->form_add->save();
 				$this->getUser()->setFlash('confirm', 'Скриншот успешно добавлен.');
-				$this->redirect($this->generateUrl('film_add_step2', $this->film));
+				$this->redirect('film_add_step2', $this->film);
 			}
 		}
 	}
@@ -126,7 +126,7 @@ class filmActions extends sfActions
 				if ($this->form_edit->isValid()){
 					$this->form_edit->save();
 					$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
-					$this->redirect($this->generateUrl('film_add_step2', $this->film));
+					$this->redirect('film_add_step2', $this->film);
 				}
 			}
 		}
@@ -173,7 +173,7 @@ class filmActions extends sfActions
 			$this->film_gallery->delete();
 		}
     }
-	$this->redirect($this->generateUrl('film_add_step2', $film));
+	$this->redirect('film_add_step2', $film);
   }
   
   
@@ -207,7 +207,7 @@ class filmActions extends sfActions
 			if ($this->form_add->isValid()){
 				$this->form_add->save();
 				$this->getUser()->setFlash('confirm', 'Ссылка успешно добавлена.');
-				$this->redirect($this->generateUrl('film_add_step3', $this->film));
+				$this->redirect('film_add_step3', $this->film);
 			}
 		}
 	}
@@ -228,7 +228,7 @@ class filmActions extends sfActions
 				if ($this->form_edit->isValid()){
 					$this->form_edit->save();
 					$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
-					$this->redirect($this->generateUrl('film_add_step3', $this->film));
+					$this->redirect('film_add_step3', $this->film);
 				}
 			}
 		}
@@ -265,7 +265,7 @@ class filmActions extends sfActions
 			$this->film_link->delete();
 		}
     }
-	$this->redirect($this->generateUrl('film_add_step3', $film));
+	$this->redirect('film_add_step3', $film);
   }
   
   

@@ -78,9 +78,9 @@ class Film extends BaseFilm
 			return;
 		}
 		$doc = new Zend_Search_Lucene_Document();
-		// store job primary key to identify it in the search results
+		// store primary key to identify it in the search results
 		$doc->addField(Zend_Search_Lucene_Field::Keyword('pk', $this->getId()));
-		// index job fields
+		// index fields
 		$doc->addField(Zend_Search_Lucene_Field::Text('title',
 		$this->getTitle(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::Text('original_title',

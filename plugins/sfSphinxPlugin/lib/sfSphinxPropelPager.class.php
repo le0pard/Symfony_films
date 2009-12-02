@@ -122,11 +122,7 @@ class sfSphinxPropelPager extends sfPropelPager
       $ids = array();
       foreach ($res['matches'] as $match)
       {
-      	if ($match['attrs']['id']){
-      		$ids[] = $match['attrs']['id'];
-      	} else {
-        	$ids[] = $match['id'];
-		}
+      	$ids[] = $match['id'];
       }
       // Then we retrieve the objects correspoding to the found Ids
       return call_user_func(array($this->getClassPeer(), $this->getPeerMethod()), $ids);

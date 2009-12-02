@@ -7,28 +7,25 @@
 
 class sfViewCacheObserver  {
 	
-	public function clearCache($url, $app){
+	public function clearCache($url){
 	if (sfContext::hasInstance()){
-	   	$currentConfig = sfContext::getInstance()->getConfiguration();
-		$currentContext = sfContext::getInstance();
+	   	$currentConfiguration = sfContext::getInstance()->getConfiguration();
 		
-		$otherConfig = ProjectConfiguration::getApplicationConfiguration(sfConfig::get('app_viewCacheObserver_project_cache', 'frontend'), sfConfig::get('app_viewCacheObserver_environment_cache', 'prod'), true);
+		$otherConfig = ProjectConfiguration::getApplicationConfiguration(sfConfig::get('app_viewCacheObserver_project_cache', 'frontend'), sfConfig::get('app_viewCacheObserver_environment_cache', 'prod'), false);
 		$otherContext = sfContext::createInstance($otherConfig);
-		
-		sfContext::switchTo(sfConfig::get('app_viewCacheObserver_project_cache', 'frontend'));
+
 		$cacheManager = sfContext::getInstance()->getViewCacheManager();
 		if ($cacheManager){
 			$cacheManager->remove($url);
 		}
-		sfContext::switchTo($app);
+
+ 	    $configuration = ProjectConfiguration::getApplicationConfiguration($currentConfiguration->getApplication(), $currentConfiguration->getEnvironment(), $currentConfiguration->isDebug()); 
+ 	    $this->context = sfContext::createInstance($configuration); 
+ 	    unset($currentConfiguration);
 	  }
 	}
 	
 	public function identifyAndClearByObject($object, $called_main_method = true){
-		$current_app = sfConfig::get('sf_app');
-		if (!$current_app){
-			return false;
-		}
 		$class = get_class($object);
 		$criteriaArray = sfConfig::get('propel_behavior_viewCacheObserver_'.$class.'_criteria', array());
 		$criteria_pass = true;
@@ -48,7 +45,7 @@ class sfViewCacheObserver  {
 						$row = str_replace('#{'.$var.'}', call_user_func(array($object, $funct)), $row);
 					}
 				}
-				sfViewCacheObserver::clearCache($row, $current_app);
+				sfViewCacheObserver::clearCache($row);
 			}
 			if ($called_main_method){
 				$dependArray = sfConfig::get('propel_behavior_viewCacheObserver_'.$class.'_has_many_depend', array());

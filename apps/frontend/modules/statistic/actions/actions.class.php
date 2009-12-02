@@ -56,9 +56,8 @@ class statisticActions extends sfActions
 	  $g->set_tool_tip( '#val#%' );
 	 
 	  $g->title('Категории фильмов', '{font-size:18px; color: #18A6FF}');
-	  echo $g->render();
-	 
-	  return sfView::NONE;
+	  return $this->renderText($g->render());
+	  //return sfView::NONE;
   }
   
   public function executeFilms_by_day(){
@@ -107,9 +106,9 @@ class statisticActions extends sfActions
 	  $g->y_label_steps(15);
 	 
 	  // display the data
-	  echo $g->render();
+	  return $this->renderText($g->render());
 	 
-	  return sfView::NONE;
+	  //return sfView::NONE;
 
   }
 }

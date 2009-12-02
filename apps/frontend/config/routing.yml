@@ -53,6 +53,8 @@ film_types_all:
 film_types_all_pages:
   url:   /cathegory/all/:page
   param: { module: film_types, action: index }
+  requirements:
+    page: \d+
   
 film_types_all_atom:
   url:   /cathegory/all.atom
