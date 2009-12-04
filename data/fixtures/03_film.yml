@@ -12,7 +12,7 @@ Film:
       the $this object.
     is_visible:    true
     is_public:     true
-    update_data: <?php echo (time()-$i); ?>
+    modified_at: <?php echo (time()-$i); ?>
  
 <?php endfor; ?>
 
@@ -29,6 +29,6 @@ Film:
       the $this object.
     is_visible:    true
     is_public:     true
-    update_data: <?php echo (time()-$i); ?>
+    modified_at: <?php echo (time()-$i); ?>
  
 <?php endfor; ?>

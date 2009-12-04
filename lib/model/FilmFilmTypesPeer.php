@@ -9,7 +9,7 @@ class FilmFilmTypesPeer extends BaseFilmFilmTypesPeer
 	    if (!is_null($f_obj)) {
 	    	$criteria->add(self::FILM_GENRE_ID, $f_obj->getId());
 	    }
-	    //$criteria->addDescendingOrderByColumn(self::UPDATE_DATA);
+	    //$criteria->addDescendingOrderByColumn(self::MODIFIED_AT);
 	    return $criteria;
     }
 }

@@ -15,7 +15,8 @@ class FilmForm extends BaseFilmForm
   	unset(
       $this['created_at'], $this['updated_at'],
       $this['url'],
-	  $this['film_raiting_list'], $this['normal_logo']
+	  $this['film_raiting_list'], $this['normal_logo'],
+	  $this['modified_user_id'], $this['modified_text']
     );
 	
     $years = range(date("Y", time()) + 5, 1900);
@@ -47,7 +48,9 @@ class FilmForm extends BaseFilmForm
 	  'is_visible'           => new sfWidgetFormInputCheckbox(),
       'is_private'           => new sfWidgetFormInputCheckbox(),
       'is_public'            => new sfWidgetFormInputCheckbox(),
-	  'update_data'          => new sfWidgetFormDateTime()
+	  'modified_user_id'     => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
+	  'modified_at'          => new sfWidgetFormDateTime(),
+	  'modified_text'        => new sfWidgetFormInputText()			
     ));
 
     $this->setValidators(array(
@@ -81,7 +84,9 @@ class FilmForm extends BaseFilmForm
 	  'is_visible'           => new sfValidatorBoolean(),
       'is_private'           => new sfValidatorBoolean(),
       'is_public'            => new sfValidatorBoolean(),
-      'update_data'          => new sfValidatorDateTime(array('required' => false)),
+	  'modified_user_id'     => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
+      'modified_at'          => new sfValidatorDateTime(array('required' => false)),
+	  'modified_text'        => new sfValidatorString(array('max_length' => 500, 'required' => false)),
 	  'user_id'              => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id'))
     ));
 	
@@ -132,7 +137,9 @@ class FilmForm extends BaseFilmForm
 	  'is_visible' => 'Видимый?',
 	  'is_private' => 'Приватный?',
 	  'is_public' => 'Опубликован?',
-	  'update_data' => 'Дата'
+	  'modified_user_id' => 'Кто обновлял',
+	  'modified_at' => 'Дата',
+	  'modified_text' => 'Текст обновления'
 	));
 	
     $this->setDefaults(array(

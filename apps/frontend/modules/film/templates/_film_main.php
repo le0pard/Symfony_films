@@ -123,12 +123,12 @@
 			</ul>
 		</div>
 		<div class="date">
-			<?php echo strftime('%d.%m.%Y', $film->getUpdateData('U')) ?>
+			<?php echo strftime('%d.%m.%Y', $film->getModifiedAt('U')) ?>
 		</div>
 		<div class="autor">
-			<?php if ($film->getUsers()): ?>
-				<a href="<?php echo url_for('user_show', $film->getUsers()) ?>">
-					<?php echo $film->getUsers()->getLogin() ?>
+			<?php if ($film->getUsersRelatedByUserId()): ?>
+				<a href="<?php echo url_for('user_show', $film->getUsersRelatedByUserId()) ?>">
+					<?php echo $film->getUsersRelatedByUserId()->getLogin() ?>
 				</a>
 			<?php else: ?>
 				Неизвестен	

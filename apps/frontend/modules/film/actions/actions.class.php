@@ -35,8 +35,8 @@ class filmActions extends sfActions
 		$this->form->bind($request->getParameter('film_add'), $request->getFiles('film_add'));
 		if ($this->form->isValid()){			
 			$film = $this->form->getObject();
-			$film->setUsers($this->getUser()->getAuthUser());
-			$film->setUpdateData(time());
+			$film->setUsersRelatedByUserId($this->getUser()->getAuthUser());
+			$film->setModifiedAt(time());
 			$film->setIsVisible(false);
 			$film->setIsPublic(false);
 			$this->form->save();
@@ -274,7 +274,7 @@ class filmActions extends sfActions
   	$this->film = $this->getRoute()->getObject();
     if ($request->isMethod('post')){
 		if ($request->hasParameter('pub')){
-			$this->film->setUpdateData(time());
+			$this->film->setModifiedAt(time());
 			$this->film->setIsPublic(true);
 			if ($this->getUser()->hasCredential(array('super_admin', 'admin', 'moder'), false)){
 				$this->film->setIsVisible(true);

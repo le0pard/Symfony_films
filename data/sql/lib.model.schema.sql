@@ -114,13 +114,19 @@ CREATE TABLE `film`
 	`is_visible` TINYINT default 1 NOT NULL,
 	`is_private` TINYINT default 0 NOT NULL,
 	`is_public` TINYINT default 0 NOT NULL,
-	`update_data` DATETIME,
+	`modified_user_id` INTEGER,
+	`modified_at` DATETIME,
+	`modified_text` VARCHAR(500),
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
 	INDEX `film_FI_1` (`user_id`),
 	CONSTRAINT `film_FK_1`
 		FOREIGN KEY (`user_id`)
+		REFERENCES `users` (`id`),
+	INDEX `film_FI_2` (`modified_user_id`),
+	CONSTRAINT `film_FK_2`
+		FOREIGN KEY (`modified_user_id`)
 		REFERENCES `users` (`id`)
 )Type=InnoDB;
 

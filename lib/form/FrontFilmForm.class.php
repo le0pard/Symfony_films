@@ -14,10 +14,11 @@ class FrontFilmForm extends BaseFilmForm
   {
   	unset(
       $this['created_at'], $this['updated_at'],
-      $this['update_data'], $this['url'],
+      $this['modified_at'], $this['url'],
 	  $this['is_private'], $this['is_visible'],
 	  $this['user_id'], $this['film_raiting_list'],
-	  $this['normal_logo'], $this['is_public']
+	  $this['normal_logo'], $this['is_public'],
+	  $this['modified_user_id'], $this['modified_text']
     );
 	
     $years = range(date("Y", time()) + 5, 1900);
@@ -25,7 +26,7 @@ class FrontFilmForm extends BaseFilmForm
 	  'id'                   => new sfWidgetFormInputHidden(),
       'title'                => new sfWidgetFormInputText(),
       'original_title'       => new sfWidgetFormInputText(),
-	  'film_film_types_list' => new sfWidgetFormPropelChoice(array('model' => 'FilmTypes', 'multiple' => true), array('size' => 8)),
+	  'film_film_types_list' => new sfWidgetFormPropelChoice(array('model' => 'FilmTypes', 'multiple' => true, 'criteria' => FilmTypesPeer::getActiveCriteria()), array('size' => 8)),
       'pub_year'             => new sfWidgetFormSelect(array('multiple' => false, 'choices' => array_combine($years, $years))),
       'director'             => new sfWidgetFormInputText(),
       'cast'                 => new sfWidgetFormInputText(),

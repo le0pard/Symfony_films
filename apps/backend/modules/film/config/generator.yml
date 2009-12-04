@@ -18,13 +18,13 @@ generator:
         original_title: { label: Оригинальное название }
         is_visible: { label: Видимый? }
         is_public: { label: Опубликован? }
-        update_data: { label: Дата }
+        modified_at: { label: Дата }
 
       list:
         title:          Фильмы
-        display:        [title, original_title, is_visible, is_public, update_data]
+        display:        [title, original_title, is_visible, is_public, modified_at]
         max_per_page:   50
-        sort:           [update_data, desc]
+        sort:           [modified_at, desc]
         batch_actions:
           _delete: { label: Удалить }
         object_actions:

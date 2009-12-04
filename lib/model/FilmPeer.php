@@ -9,7 +9,7 @@ class FilmPeer extends BaseFilmPeer
 	 
 	    $criteria->add(self::IS_VISIBLE, true);
 		$criteria->add(self::IS_PUBLIC, true);
-	    $criteria->addDescendingOrderByColumn(self::UPDATE_DATA);
+	    $criteria->addDescendingOrderByColumn(self::MODIFIED_AT);
 	    return $criteria;
     }
 	
@@ -27,8 +27,8 @@ class FilmPeer extends BaseFilmPeer
 	
 	static public function countByDateRange($date_begin, $date_end) {
 		$criteria = new Criteria();
-		$cton1 = $criteria->getNewCriterion(self::UPDATE_DATA, $date_begin, Criteria::GREATER_EQUAL);
-		$cton2 = $criteria->getNewCriterion(self::UPDATE_DATA, $date_end, Criteria::LESS_EQUAL);
+		$cton1 = $criteria->getNewCriterion(self::MODIFIED_AT, $date_begin, Criteria::GREATER_EQUAL);
+		$cton2 = $criteria->getNewCriterion(self::MODIFIED_AT, $date_end, Criteria::LESS_EQUAL);
 		$cton1->addAnd($cton2);
 		$criteria->add($cton1);
     	return self::doCount(self::addVisibleCriteria($criteria));

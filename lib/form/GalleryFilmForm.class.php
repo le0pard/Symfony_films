@@ -14,7 +14,7 @@ class GalleryFilmForm extends BaseFilmForm
   {
   	unset(
       $this['created_at'], $this['updated_at'],
-      $this['update_data'], $this['url'],
+      $this['modified_at'], $this['url'],
 	  $this['is_private'], $this['is_visible'],
 	  $this['user_id'], $this['film_raiting_list'],
 	  $this['thumb_logo'], $this['id'], 
@@ -23,7 +23,8 @@ class GalleryFilmForm extends BaseFilmForm
 	  $this['director'], $this['cast'], 
 	  $this['about'], $this['country'], 
 	  $this['duration'], $this['file_info'], 
-	  $this['normal_logo'], $this['is_public']
+	  $this['normal_logo'], $this['is_public'],
+	  $this['modified_user_id'], $this['modified_text']
     );
 	
 	if (!$this->getObject()->isNew()){

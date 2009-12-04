@@ -46,7 +46,9 @@ propel:
     is_visible:       { type: boolean, required: true, default: 1 }
     is_private:       { type: boolean, required: true, default: 0 }
     is_public:        { type: boolean, required: true, default: 0 }
-    update_data:      { type: timestamp }
+    modified_user_id: { type: integer, foreignTable: users, foreignReference: id, required: false }
+    modified_at:      { type: timestamp }
+    modified_text:    { type: varchar(500) }
     created_at:       ~
     updated_at:       ~
     
