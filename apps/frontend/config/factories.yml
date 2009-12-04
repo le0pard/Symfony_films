@@ -4,7 +4,7 @@ prod:
     param:
       level:   err
       loggers: ~
-
+               
 cli:
   controller:
     class: sfConsoleController
@@ -37,7 +37,12 @@ all:
     param:
       session_name: filmUserSession
       timeout: 21600
-
+      
+  mailer:
+    param:
+      delivery_strategy: single_address
+      delivery_address:  no-reply@coocoorooza.com
+      
 #  view_cache:
 #    class: sfMemcacheCache
 #    param:

@@ -32,7 +32,7 @@ class sfErrorNotifierMail{
     if(!$this->to)
     	return false;
     
-    $this->from = sfConfig::get('app_sfErrorNotifier_emailFrom');
+    $this->from = sfConfig::get('app_sfErrorNotifier_emailFrom', 'no-reply@example.com');
     
     if($this->from)
     	$this->headers = "From: ".$this->from."\r\n";
@@ -137,6 +137,7 @@ class sfErrorNotifierMail{
     	
     $this->body .= '</div>';
     
+    //$this->getMailer()->composeAndSend($this->from, $this->to, $this->subject, $this->body);
     @mail($this->to, $this->subject, $this->body, $this->headers);
 
     return true;
@@ -184,6 +185,7 @@ class sfErrorNotifierMail{
     $this->body .= implode(', ' , $user->getCredentials());	
     $this->body .= "\n\n";
     
+    //$this->getMailer()->composeAndSend($this->from, $this->to, $this->subject, $this->body);
     @mail($this->to, $this->subject, $this->body, $this->headers);
 
     return true;
