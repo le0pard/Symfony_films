@@ -10,6 +10,7 @@ propel:
     last_login:       { type: timestamp }
     is_active:        { type: boolean, required: true, default: 1 }
     is_super_admin:   { type: boolean, required: true, default: 0 }
+    count_of_films:   { type: integer, default: 0 }
     created_at:       ~
     updated_at:       ~
   

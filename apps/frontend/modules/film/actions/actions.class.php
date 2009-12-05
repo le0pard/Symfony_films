@@ -156,7 +156,7 @@ class filmActions extends sfActions
   public function executeDelete_film(sfWebRequest $request)
   {
   	$this->film = $this->getRoute()->getObject();
-	if (($this->film->getUsers() && $this->film->getUserId() == $this->getUser()->getAuthUser()->getId()) || $this->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+	if (($this->film->getUsersRelatedByUserId() && $this->film->getUserId() == $this->getUser()->getAuthUser()->getId()) || $this->getUser()->hasCredential(array('admin', 'super_admin', 'moder'), false)){
 		$this->getUser()->setFlash('confirm', 'Фильм удален.');
 		$this->film->delete();
 	}
@@ -168,7 +168,7 @@ class filmActions extends sfActions
   	$this->film_gallery = $this->getRoute()->getObject();
     $film = $this->film_gallery->getFilm();
     if ($film){
-		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin', 'moder'), false)){
 			$this->getUser()->setFlash('confirm', 'Скриншот успешно удален.');
 			$this->film_gallery->delete();
 		}
@@ -260,7 +260,7 @@ class filmActions extends sfActions
   	$this->film_link = $this->getRoute()->getObject();
     $film = $this->film_link->getFilm();
     if ($film){
-		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin', 'moder'), false)){
 			$this->getUser()->setFlash('confirm', 'Ссылка успешно удалена.');
 			$this->film_link->delete();
 		}
@@ -278,6 +278,7 @@ class filmActions extends sfActions
 			$this->film->setIsPublic(true);
 			if ($this->getUser()->hasCredential(array('super_admin', 'admin', 'moder'), false)){
 				$this->film->setIsVisible(true);
+				$this->film->setUsersRelatedByModifiedUserId($this->getUser()->getAuthUser());
 				$this->getUser()->setFlash('confirm', 'Ваша публикация уже опубликована.');
 			} else {
 				$this->getUser()->setFlash('confirm', 'Ваша публикация отправленна на расмотрение.');

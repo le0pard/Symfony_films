@@ -9,23 +9,6 @@
   <author><name>leopard</name></author>
   <id><?php echo sha1(time()) ?></id>
   <?php foreach($pager->getResults() as $key=>$row): ?>
-  <entry>
-    <title><?php echo $row->getTitle(); ?></title>
-    <link href="<?php echo url_for('film_show', $row, true) ?>" />
-    <id><?php echo sha1($row->getId()) ?></id>
-    <updated><?php echo strftime('%Y-%m-%dT%H:%M:%SZ', $row->getUpdatedAt('U')) ?></updated>
-    <summary><![CDATA[<?php echo $row->getAbout() ?>]]></summary>
-    <author>
-    	<name>
-    		<?php if ($row->getUsers()): ?>
-				<a href="<?php echo url_for('user_show', $row->getUsers()) ?>">
-					<?php echo $row->getUsers()->getLogin() ?>
-				</a>
-			<?php else: ?>
-				Неизвестен	
-			<?php endif ?>
-		</name>
-	</author>
-  </entry>
+  	<?php include_partial('film_types/row', array('film' => $row, 'sf_cache_key' => $row->getId())) ?>
   <?php endforeach ?>
 </feed>

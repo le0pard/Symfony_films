@@ -7,5 +7,9 @@ class filmComponents extends sfComponents
 		$c->addAscendingOrderByColumn(FilmTypesPeer::TITLE);
 		$this->film_types = FilmTypesPeer::doSelect($c);
 	}
+	
+	public function executeTopNew() {
+		$this->films = FilmPeer::getTopNewFilms();
+	}
 
 }

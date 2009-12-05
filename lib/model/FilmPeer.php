@@ -38,7 +38,7 @@ class FilmPeer extends BaseFilmPeer
 	  if (is_null($criteria)) {
 	     $criteria = new Criteria();
 	  }
-	  if (!sfContext::getInstance()->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+	  if (!sfContext::getInstance()->getUser()->hasCredential(array('admin', 'super_admin', 'moder'), false)){
 	  	$criteria->add(self::IS_VISIBLE, false);
 	  	$criteria->add(self::IS_PUBLIC, false);
 	  	$criteria->add(self::USER_ID, sfContext::getInstance()->getUser()->getAuthUser()->getId());
@@ -116,6 +116,16 @@ class FilmPeer extends BaseFilmPeer
 		$criteria->add(self::TITLE, $title."%", Criteria::LIKE);
 		$criteria->setLimit(8);
 		return self::doSelect(self::addVisibleCriteria($criteria));
+	}
+	
+	static public function getTopNewFilms(Criteria $criteria = null){
+		if (is_null($criteria)) {
+	    	$criteria = new Criteria();
+	    }
+	    $criteria->add(self::IS_VISIBLE, true);
+		$criteria->setLimit(sfConfig::get('app_films_top_new', 10));
+		$criteria->addDescendingOrderByColumn(self::MODIFIED_AT);
+		return self::doSelect($criteria);
 	}
 
 }

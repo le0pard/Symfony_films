@@ -50,6 +50,7 @@ class Film extends BaseFilm
 			$ret = parent::save($con);
 			$this->updateLuceneIndex();
 			$con->commit();
+			$this->countFilmsForUser();
 			return $ret;
 		} catch (Exception $e) {
 			$con->rollBack();
@@ -63,7 +64,9 @@ class Film extends BaseFilm
 			$index->delete($hit->id);
 		}
 		
-		return parent::delete($con);
+		$rez = parent::delete($con);
+		$this->countFilmsForUser(true);
+		return $rez;
 	}
 
 
@@ -98,6 +101,15 @@ class Film extends BaseFilm
 		// add job to the index
 		$index->addDocument($doc);
 		$index->commit();
+	}
+	
+	public function countFilmsForUser(){
+		if ($this->getUsersRelatedByUserId()){
+			$user = $this->getUsersRelatedByUserId();
+			$user->setCountOfFilms($user->countFilmsRelatedByUserId(FilmPeer::addVisibleCriteria()));
+			$user->save();
+		}
+		
 	}
 
 }

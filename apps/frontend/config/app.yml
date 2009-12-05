@@ -18,6 +18,9 @@ all:
     method: sphinx #default lucene
     limit: 50
   last_comments: 5
+  films_top:
+    new: 6
+  users_top_film: 15
   sitemap:
     limit: 2000
   

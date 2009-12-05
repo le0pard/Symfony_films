@@ -22,6 +22,7 @@ CREATE TABLE `users`
 	`last_login` DATETIME,
 	`is_active` TINYINT default 1 NOT NULL,
 	`is_super_admin` TINYINT default 0 NOT NULL,
+	`count_of_films` INTEGER default 0,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
