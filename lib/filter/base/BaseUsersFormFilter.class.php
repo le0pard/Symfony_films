@@ -5,7 +5,7 @@
  *
  * @package    symfony_films
  * @subpackage filter
- * @author     Your name here
+ * @author     leopard
  * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseUsersFormFilter extends BaseFormFilterPropel

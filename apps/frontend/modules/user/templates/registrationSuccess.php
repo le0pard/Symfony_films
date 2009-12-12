@@ -1,6 +1,9 @@
 <?php use_helper('sfCryptoCaptcha') ?>
 <h1>Регистрация</h1>
 <form id="registration_form" action="<?php echo url_for('@user_registration') ?>" method="POST" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>
+  <?php if ($form->isCSRFProtected()) : ?> 
+  	<?php echo $form[$form->getCSRFFieldName()]->render(); ?>
+  <?php endif ?>
   <table class="table_form">
   	<tr>
       <th><?php echo $form['login']->renderLabel(); ?></th>

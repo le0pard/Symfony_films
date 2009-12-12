@@ -29,7 +29,15 @@ all:
     indexer: /opt/sphinx/bin/indexer
     searchd: /opt/sphinx/bin/searchd
     config: /config/sphinx.conf
-    
+  
+  #integration
+  integration:
+    is_verlihub: true
+    verlihub_config:
+      host: localhost
+      user: verlihub_user
+      password: q2mBq6Qv2c3Zsjnb
+      database: verlihub_db
     
   #captcha
   sf_crypto_captcha:

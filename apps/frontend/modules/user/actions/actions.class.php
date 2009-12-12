@@ -47,6 +47,18 @@ class userActions extends sfActions
 			$user->setEmail($values['email']);
 			$user->setPassword($values['password']);
 			if ($user->save()){
+				
+				if (sfConfig::get('app_integration_is_verlihub')){
+					$verli_config = sfConfig::get('app_integration_verlihub_config');
+					$verl_hub = new VerlihubMysql(
+						$verli_config['host'],
+						$verli_config['user'],
+						$verli_config['password'],
+						$verli_config['database']
+					);
+					$verl_hub->register_user($user->getLogin(), $values['password']);
+				}
+				
 				$this->getUser()->setFlash('confirm', 'Регистрация прошла успешно. Теперь можете входить на сайт.');
 				$this->redirect('@user_login');
 			} else {
@@ -91,7 +103,20 @@ class userActions extends sfActions
 	if ($request->isMethod('post')){
 		$this->form->bind($request->getParameter('profile'), $request->getFiles('profile'));
 		if ($this->form->isValid()){
+			$values = $this->form->getValues();
 			$this->form->save();
+			
+			if (sfConfig::get('app_integration_is_verlihub')){
+				$verli_config = sfConfig::get('app_integration_verlihub_config');
+				$verl_hub = new VerlihubMysql(
+					$verli_config['host'],
+					$verli_config['user'],
+					$verli_config['password'],
+					$verli_config['database']
+				);
+				$verl_hub->change_password_for_user($this->user_data->getLogin(), $values['password']);
+			}
+			
 			$this->getUser()->setFlash('confirm', 'Профиль обновлен.');
 			$this->redirect('@user_profile');			
 		}

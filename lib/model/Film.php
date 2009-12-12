@@ -65,7 +65,7 @@ class Film extends BaseFilm
 		}
 		
 		$rez = parent::delete($con);
-		$this->countFilmsForUser(true);
+		$this->countFilmsForUser();
 		return $rez;
 	}
 
