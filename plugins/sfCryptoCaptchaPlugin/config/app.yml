@@ -55,7 +55,7 @@ all:
     noise_color:                      3                   # noise color to use (1=character color, 2= background color, 3= random color)
     noise_on_top:                     false               # if noise is the top layer (above the caracters)
   #Refresh
-    refresh_image:                    '/sfCryptoCaptchaPlugin/images/reload_original.png'  # use an other captcha reload image - must be in the web directory
+    refresh_image:                    '/sfCryptoCaptchaPlugin/images/refresh_clear_blue_small.png'  # use an other captcha reload image - must be in the web directory
     error_images_dir:                 '/plugins/sfCryptoCaptchaPlugin/media/error/' # the path to the directory where the error images are - from the symfony root dir
     
     
