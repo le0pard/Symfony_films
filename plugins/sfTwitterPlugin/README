@@ -1,0 +1,95 @@
+Twitter symfony plugin
+=========================
+
+Provide an access to twitter, allow post statuses to twitter and get their from it. It uses
+TwitterClass provided by Tijs Verkoyen (see copyrights). Development version
+
+Installation
+------------
+
+  * Install the plugin
+  
+		$ symfony plugin:install -r <versionnumber> sfTwitterPlugin
+  
+  * Enable the plugin. Eg. in your ProjectConfiguration.class.php
+  
+		$this->enablePlugins(array('sfTwitterPlugin'));
+  
+  * Enable the module in your settings.yml
+  
+    enabled_modules:  [default,sfTwitterPlugin]
+
+  * Build models
+  
+    $ symfony propel:build-model
+  
+  * Create a table
+  
+    $ symfony propel:insert-sql
+    
+  *  or do a sql query
+  
+    ``CREATE TABLE `twitter_users`
+    (
+      `id` INTEGER  NOT NULL AUTO_INCREMENT,
+      `email` VARCHAR(50),
+      `password` VARCHAR(50),
+      PRIMARY KEY (`id`)
+    )``
+  
+  * Clear your cache
+
+		$ symfony cc
+  
+How to use
+----------
+
+  * All users datas are stored in twitter_users table. 
+  * All users should have records in table. If user doesn't have record in twitter_users table,
+  he can't access his twitter messages. 
+  * Update twitter status:
+  
+    $t = new SymfonyTwitter(USER_EMAIL); // USER_EMAIL - e-mail of current user
+    
+    $t->updateStatus(STATUS, IN_REPLY_TO); // STATUS - new status, IN_REPLY_TO - id of message (not required)
+    
+  * Get twitts:
+    
+    $t = new SymfonyTwitter(USER_EMAIL);
+    
+    $t->getUserTimeline();
+    
+  * Get followers:
+    
+    $t->getFollowers();
+    
+  * You can access twitter without twitter_users table:
+  
+    $t = new SymfonyTwitter(USER_EMAIL, USER_PASSWORD);
+      
+    But unfortinatly you will ask password every time you need it
+    
+  * For more samples look at code Twitter.class.php
+    
+
+Configure plugin
+----------------
+
+  * Custom error messages
+    e.g.
+    in app.yml:
+    all:
+      ...
+      twitter:
+        not_found: YOUR_CUSTOM_MESSAGE
+    
+
+  * Custom css
+  
+		web/css/twitter.css
+  
+Copyright
+---------
+
+* Symfony adaptation plugin: Eugene Smirnov [smirik](http://smirik.ru "smirik.ru")
+* Twitter plugin: Copyright (c) 2008, [Tijs Verkoyen](http://classes.verkoyen.eu/twitter/ "Tijs"). All rights reserved.

@@ -29,7 +29,7 @@ cache:
 
 all:
   .settings:
-    enabled_modules:        [default, sfCryptoCaptcha, sfSphinx]
+    enabled_modules:        [default, sfCryptoCaptcha, sfSphinx, sfTwitterPlugin]
     # Form security secret (CSRF protection)
     csrf_secret:            caf5940426dbad42b7637db63ed5b658     # Unique secret to enable CSRF protection or false to disable
     #csrf_secret:           false
