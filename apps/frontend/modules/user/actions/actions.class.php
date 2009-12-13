@@ -59,6 +59,11 @@ class userActions extends sfActions
 					$verl_hub->register_user($user->getLogin(), $values['password']);
 				}
 				//verlihub end
+				//jabber begin
+				if (sfConfig::get('app_integration_is_jabber')){
+					JabberOpenfire::add_user($user->getLogin(), $values['password'], $user->getEmail());
+				}
+				//jabber end
 				$this->getUser()->setFlash('confirm', 'Регистрация прошла успешно. Теперь можете входить на сайт.');
 				$this->redirect('@user_login');
 			} else {
@@ -117,6 +122,11 @@ class userActions extends sfActions
 				$verl_hub->change_password_for_user($this->user_data->getLogin(), $values['password']);
 			}
 			//verlihub end
+			//jabber begin
+			if (sfConfig::get('app_integration_is_jabber')){
+				JabberOpenfire::edit_user($this->user_data->getLogin(), $values['password'], $this->user_data->getEmail());
+			}
+			//jabber end
 			$this->getUser()->setFlash('confirm', 'Профиль обновлен.');
 			$this->redirect('@user_profile');			
 		}

@@ -38,6 +38,9 @@ all:
       user: verlihub_user
       password: q2mBq6Qv2c3Zsjnb
       database: verlihub_db
+    is_jabber: true
+    jabber_server: 127.0.0.1:9090
+    jabber_domain: leo-asus
     
   #captcha
   sf_crypto_captcha:
