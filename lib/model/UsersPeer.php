@@ -14,7 +14,14 @@ class UsersPeer extends BaseUsersPeer
 		$criteria = self::addActiveCriteria();
 		$criteria->add(self::LOGIN, $login);
 		$criteria->add(self::PASSWORD, md5($password));
-	    return self::doSelectOne($criteria);
+	    $user = self::doSelectOne($criteria);
+	    if (!$user){
+	    	$criteria = self::addActiveCriteria();
+			$criteria->add(self::EMAIL, $login);
+			$criteria->add(self::PASSWORD, md5($password));
+		    $user = self::doSelectOne($criteria);
+	    }
+	    return $user;
     }
 	
 	static public function getActivedOne(Criteria $criteria = null){
