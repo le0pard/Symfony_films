@@ -56,6 +56,14 @@ all:
       automatic_cleaning_factor: 0
       cache_dir:                 %SF_TEMPLATE_CACHE_DIR%
 
+#  view_cache:
+#    class: sfRedisCache
+#    param:
+#      host:                      127.0.0.1
+#      mode:                      shared
+#      port:                      6379
+#      prefix:                    %SF_APP_DIR%/template
+
 #all:
 #  controller:
 #    class: sfFrontWebController
