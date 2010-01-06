@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project name="Build first JS lib" default="build-lib" basedir=".">
+	
+	<property name="src.dir" value="./web/js_src"/>
+	<property name="dest.dir" value="./web/js"/>
+
+	<taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
+		<classpath>
+			<fileset dir="/home/leo/programs/libs/yuicompressor">
+				<include name="*.jar"/>
+			</fileset>
+		</classpath>
+	</taskdef>
+
+	<target name="build-lib" depends="minify, concat-files">
+		<echo>Done.</echo>
+	</target>
+
+
+	<target name="concat-files">
+		<echo>Concatenating files</echo>
+		<concat destfile="${dest.dir}/all.js">
+			<filelist dir="${dest.dir}">
+				<file name="prototype.js" />
+				<file name="effects.js" />
+				<file name="controls.js" />
+				<file name="dragdrop.js" />
+				<file name="scroll.js" />
+				<file name="frontend_less_routes_dev.js" />
+				<file name="application.js" />
+			</filelist>
+		</concat>
+	</target>
+
+	<target name="minify">
+		<echo>Minifying files</echo>
+		<yuicompress munge="yes" linebreak="5000" preserveallsemicolons="yes" outputfolder="${dest.dir}">
+			<fileset dir="${src.dir}">
+				<include name="*.js"/>
+			</fileset>
+		</yuicompress>
+	</target>
+	
+</project>

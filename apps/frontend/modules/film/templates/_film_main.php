@@ -1,4 +1,4 @@
-<?php use_javascript('scroll.min.js', 'last') ?>
+<?php /*use_javascript('scroll.min.js', 'last')*/ ?>
 <?php if ($film): ?>
 <div id="main_film">
 	<h1>

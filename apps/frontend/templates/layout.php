@@ -6,15 +6,7 @@
     	Кукурудза - Лучшие фильмы и сериалы
   	<?php endif; ?>
 	</title>
-	<?php /* ?>
-	<?php use_javascript('prototype.min.js') ?>
-	<?php use_javascript('effects.min.js') ?>
-	<?php use_javascript('controls.min.js') ?>
-	<?php use_javascript('dragdrop.min.js') ?>
-	<?php */ ?>
 	<?php use_javascript('all.js') ?>
-	<?php use_javascript('frontend_less_routes_dev.js') ?>
-	<?php use_javascript('application.js') ?>
 	<?php use_stylesheet('main.css') ?>
 	
 	<?php include_http_metas() ?>

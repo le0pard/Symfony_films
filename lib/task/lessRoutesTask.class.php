@@ -102,7 +102,7 @@ EOF;
 	  $function_str.= "){ return less_routes_prefix_url + ".$temp_route."; }\n";
     }
 	
-	$handle = fopen(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR."js".DIRECTORY_SEPARATOR.$application."_less_routes_".$file_prefix.".js", "w+");
+	$handle = fopen(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR."js_src".DIRECTORY_SEPARATOR.$application."_less_routes_".$file_prefix.".js", "w+");
 	if ($handle){
 		if (fwrite($handle, $path_prefix.$function_str) === false) {
 			throw new sfCommandException(sprintf('Cannot write %s_less_routes_%s.js text file.', $application, $file_prefix));
