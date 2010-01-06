@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="Build first JS lib" default="build-lib" basedir=".">
+<project name="JS yuicompress lib" default="build-lib" basedir=".">
 	
 	<property name="src.dir" value="./web/js_src"/>
 	<property name="dest.dir" value="./web/js"/>
