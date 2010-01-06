@@ -1,3 +1,8 @@
+/*
+ * Multiuploader with flash
+ * @author leopard
+ */
+
 YAHOO.widget.Uploader.SWFURL = "/js/yui/uploader/assets/uploader.swf";
 
 var YUIUploader = {

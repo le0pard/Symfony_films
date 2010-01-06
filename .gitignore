@@ -1,5 +1,6 @@
 .project
 .git
+.externalToolBuilders
 web/uploads/*
 log/*.log
 log/*.pid

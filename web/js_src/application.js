@@ -1,4 +1,7 @@
-
+/*
+ * @author leopard
+ * 
+ */
 var FilmSiteJs = {
 	init: function(){
 		this.initRegForm();

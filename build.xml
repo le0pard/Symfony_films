@@ -34,7 +34,7 @@
 
 	<target name="minify">
 		<echo>Minifying files</echo>
-		<yuicompress munge="yes" linebreak="5000" preserveallsemicolons="yes" outputfolder="${dest.dir}">
+		<yuicompress munge="yes" warn="false" linebreak="5000" preserveallsemicolons="yes" outputfolder="${dest.dir}">
 			<fileset dir="${src.dir}">
 				<include name="*.js"/>
 			</fileset>
