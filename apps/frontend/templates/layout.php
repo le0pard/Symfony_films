@@ -7,7 +7,7 @@
   	<?php endif; ?>
 	</title>
 	<?php use_javascript('all.js') ?>
-	<?php use_stylesheet('main.css') ?>
+	<?php use_stylesheet('all.css') ?>
 	
 	<?php include_http_metas() ?>
     <?php include_metas() ?>

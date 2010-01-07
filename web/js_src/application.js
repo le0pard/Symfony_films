@@ -6,7 +6,7 @@ var FilmSiteJs = {
 	init: function(){
 		this.initRegForm();
 		this.initSearchForm();
-		this.initGallery();
+		/*this.initGallery();*/
 		this.initAddGallerySort();
 		this.initAddLinkSort();
 		this.initGalleryMultUploader();

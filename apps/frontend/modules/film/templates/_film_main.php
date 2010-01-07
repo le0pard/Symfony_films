@@ -94,7 +94,7 @@
 		<div id="gallery_list_box">
 			<div id="gallery_list">
 			<?php foreach($film->getGallery() as $row): ?>
-				<a class="img_link" href="javascript:;" rel="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getNormalImg() ?>">	
+				<a class="img_link" href="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getNormalImg() ?>" rel="lightbox[gallery]">	
 					<img alt="<?php echo $film->getTitle() ?>" src="/uploads/gallery/<?php echo $row->getFilmId() ?>/<?php echo $row->getThumbImg() ?>" />
 				</a>
 			<?php endforeach ?>
