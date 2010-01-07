@@ -88,9 +88,6 @@
 	</div>
 	
 	<div id="galleryBox" class="gallery">
-		<div id="mainGalleryBox" style="height:500px;">
-			<img id="mainGalleryImg" alt="Просмотр" src="" />
-		</div>
 		<div id="gallery_list_box">
 			<div id="gallery_list">
 			<?php foreach($film->getGallery() as $row): ?>

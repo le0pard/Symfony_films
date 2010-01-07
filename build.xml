@@ -24,10 +24,11 @@
 		<concat destfile="${dest_js.dir}/all.js">
 			<filelist dir="${dest_js.dir}">
 				<file name="prototype.js" />
-				<file name="effects.js" />
-				<file name="controls.js" />
-				<file name="dragdrop.js" />
 				<file name="builder.js" />
+				<file name="effects.js" />
+				<file name="dragdrop.js" />
+				<file name="slider.js" />
+				<file name="controls.js" />
 				<file name="scroll.js" />
 				<file name="lightbox.js" />
 				<file name="frontend_less_routes_dev.js" />
@@ -57,7 +58,7 @@
 	</target>
 	
 	<target name="minify-css">
-		<echo>Minifying js files</echo>
+		<echo>Minifying css files</echo>
 		<yuicompress munge="yes" warn="false" linebreak="5000" preserveallsemicolons="yes" outputfolder="${dest_css.dir}">
 			<fileset dir="${src_css.dir}">
 				<include name="*.css"/>
