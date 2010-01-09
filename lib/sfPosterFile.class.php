@@ -43,11 +43,11 @@ class sfPosterFile extends sfValidatedFile{
 		}
 
 		// copy the temp file to the destination file
-		$thumbnail = new sfThumbnail(250, 250, true, false, 95, 'sfGDAdapter');
+		$thumbnail = new sfThumbnail(200, 200, true, false, 95, 'sfGDAdapter');
 		$thumbnail->loadFile($this->getTempName());
 		$thumbnail->save($smallFile);
 		
-		$thumbnail = new sfThumbnail(600, 800, true, false, 95, 'sfGDAdapter');
+		$thumbnail = new sfThumbnail(600, 600, true, false, 100, 'sfGDAdapter');
 		$thumbnail->loadFile($this->getTempName());
 		$thumbnail->save($file);
 
