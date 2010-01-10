@@ -21,6 +21,7 @@ CREATE TABLE `users`
 	`about` TEXT,
 	`last_login` DATETIME,
 	`is_active` TINYINT default 1 NOT NULL,
+	`persistence_token` VARCHAR(200) default '',
 	`is_super_admin` TINYINT default 0 NOT NULL,
 	`count_of_films` INTEGER default 0,
 	`created_at` DATETIME,
@@ -343,6 +344,47 @@ CREATE TABLE `news`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- afisha_city
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `afisha_city`;
+
+
+CREATE TABLE `afisha_city`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(500)  NOT NULL,
+	`description` TEXT,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- afisha_theater
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `afisha_theater`;
+
+
+CREATE TABLE `afisha_theater`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`afisha_city_id` INTEGER  NOT NULL,
+	`title` VARCHAR(500)  NOT NULL,
+	`logo` VARCHAR(255),
+	`link` VARCHAR(255),
+	`description` TEXT,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`),
+	INDEX `afisha_theater_FI_1` (`afisha_city_id`),
+	CONSTRAINT `afisha_theater_FK_1`
+		FOREIGN KEY (`afisha_city_id`)
+		REFERENCES `afisha_city` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- afisha
 #-----------------------------------------------------------------------------
 
@@ -352,18 +394,70 @@ DROP TABLE IF EXISTS `afisha`;
 CREATE TABLE `afisha`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`user_id` INTEGER  NOT NULL,
+	`afisha_theater_id` INTEGER  NOT NULL,
 	`title` VARCHAR(500)  NOT NULL,
-	`normal_logo` VARCHAR(255),
-	`thumb_logo` VARCHAR(255),
+	`logo` VARCHAR(255),
+	`link` VARCHAR(255),
 	`description` TEXT,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
-	INDEX `afisha_FI_1` (`user_id`),
+	INDEX `afisha_FI_1` (`afisha_theater_id`),
 	CONSTRAINT `afisha_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
+		FOREIGN KEY (`afisha_theater_id`)
+		REFERENCES `afisha_theater` (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- afisha_zal
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `afisha_zal`;
+
+
+CREATE TABLE `afisha_zal`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`afisha_theater_id` INTEGER  NOT NULL,
+	`afisha_id` INTEGER  NOT NULL,
+	`title` VARCHAR(500)  NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `afisha_zal_FI_1` (`afisha_theater_id`),
+	CONSTRAINT `afisha_zal_FK_1`
+		FOREIGN KEY (`afisha_theater_id`)
+		REFERENCES `afisha_theater` (`id`)
+		ON DELETE CASCADE,
+	INDEX `afisha_zal_FI_2` (`afisha_id`),
+	CONSTRAINT `afisha_zal_FK_2`
+		FOREIGN KEY (`afisha_id`)
+		REFERENCES `afisha` (`id`)
+		ON DELETE CASCADE
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- afisha_zal_time
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `afisha_zal_time`;
+
+
+CREATE TABLE `afisha_zal_time`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`afisha_zal_id` INTEGER  NOT NULL,
+	`afisha_id` INTEGER  NOT NULL,
+	`time` DATETIME  NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `afisha_zal_time_FI_1` (`afisha_zal_id`),
+	CONSTRAINT `afisha_zal_time_FK_1`
+		FOREIGN KEY (`afisha_zal_id`)
+		REFERENCES `afisha_zal` (`id`)
+		ON DELETE CASCADE,
+	INDEX `afisha_zal_time_FI_2` (`afisha_id`),
+	CONSTRAINT `afisha_zal_time_FK_2`
+		FOREIGN KEY (`afisha_id`)
+		REFERENCES `afisha` (`id`)
+		ON DELETE CASCADE
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------

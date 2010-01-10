@@ -9,6 +9,7 @@ propel:
     about:            { type: longvarchar }
     last_login:       { type: timestamp }
     is_active:        { type: boolean, required: true, default: 1 }
+    persistence_token: { type: varchar(200), default: "" }
     is_super_admin:   { type: boolean, required: true, default: 0 }
     count_of_films:   { type: integer, default: 0 }
     created_at:       ~
@@ -118,16 +119,45 @@ propel:
    description:     { type: longvarchar }
    created_at:      ~
    updated_at:      ~
-     
-  afisha:
+   
+  afisha_city:
    id:              ~
-   user_id:         { type: integer, foreignTable: users, foreignReference: id, required: true }
    title:           { type: varchar(500), required: true }
-   normal_logo:     { type: varchar(255) }
-   thumb_logo:      { type: varchar(255) }
+   description:     { type: longvarchar }
+   created_at:      ~
+   updated_at:      ~ 
+   
+  afisha_theater:
+   id:              ~
+   afisha_city_id:  { type: integer, foreignTable: afisha_city, foreignReference: id, required: true }
+   title:           { type: varchar(500), required: true }
+   logo:            { type: varchar(255) }
+   link:            { type: varchar(255) }
    description:     { type: longvarchar }
    created_at:      ~
    updated_at:      ~
+     
+  afisha:
+   id:              ~
+   afisha_theater_id: { type: integer, foreignTable: afisha_theater, foreignReference: id, required: true }
+   title:           { type: varchar(500), required: true }
+   logo:            { type: varchar(255) }
+   link:            { type: varchar(255) }
+   description:     { type: longvarchar }
+   created_at:      ~
+   updated_at:      ~
+   
+  afisha_zal:
+   id:              ~
+   afisha_theater_id: { type: integer, foreignTable: afisha_theater, foreignReference: id, required: true, onDelete: cascade }
+   afisha_id:       { type: integer, foreignTable: afisha, foreignReference: id, required: true, onDelete: cascade }
+   title:           { type: varchar(500), required: true }
+   
+  afisha_zal_time:
+   id:              ~
+   afisha_zal_id:     { type: integer, foreignTable: afisha_zal, foreignReference: id, required: true, onDelete: cascade }
+   afisha_id:         { type: integer, foreignTable: afisha, foreignReference: id, required: true, onDelete: cascade }
+   time:              { type: timestamp, required: true } 
      
   static_pages:
    id:              ~
