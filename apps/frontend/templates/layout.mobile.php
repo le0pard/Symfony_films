@@ -17,5 +17,8 @@
   </head>
   <body>
 	<?php echo $sf_content ?>
+	<!--FOOTER-->
+   	<?php include_partial('global/footer') ?>
+	<!--FOOTER-->
   </body>
 </html>
