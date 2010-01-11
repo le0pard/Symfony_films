@@ -3,6 +3,9 @@ rendering: ~
 remember:
   class: LoginFilter
 
+mobile:
+  class: MobileFilter
+
 security: ~
 
 # insert your own filters here

@@ -1,6 +1,7 @@
 # default values
 all:
   domain: films.leo.local
+  mobile_domail: m.films.leo.local
   user_remember_key_expiration_age:  7776000
   remember_cookie_name: 'userRememberCookies'
   pages:
