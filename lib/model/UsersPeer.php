@@ -23,6 +23,12 @@ class UsersPeer extends BaseUsersPeer
 	    }
 	    return $user;
     }
+    
+	static public function getUserByEmail($email){
+		$criteria = self::addActiveCriteria();
+		$criteria->add(self::EMAIL, $email);
+	    return self::doSelectOne($criteria);
+    }
 	
 	static public function getActivedOne(Criteria $criteria = null){
 	    return self::doSelectOne(self::addActiveCriteria($criteria));

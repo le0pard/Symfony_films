@@ -8,7 +8,7 @@ propel:
     avatar:           { type: varchar(500) }
     about:            { type: longvarchar }
     last_login:       { type: timestamp }
-    is_active:        { type: boolean, required: true, default: 1 }
+    is_active:        { type: boolean, required: true, default: 0 }
     persistence_token: { type: varchar(200), default: "" }
     is_super_admin:   { type: boolean, required: true, default: 0 }
     count_of_films:   { type: integer, default: 0 }

@@ -58,7 +58,7 @@ all:
   mailer:
     param:
       delivery_strategy: single_address
-      delivery_address:  no-reply@coocoorooza.com
+      delivery_address:  leopard_ne@bigmir.net
       
 #  view_cache:
 #    class: sfMemcacheCache

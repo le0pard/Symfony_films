@@ -46,7 +46,29 @@ class userActions extends sfActions
 			$user->setLogin($values['login']);
 			$user->setEmail($values['email']);
 			$user->setPassword($values['password']);
+			$user->setIsActive(false);
+			$persistan_token = System::generateRandomKey();
+			$user->setPersistenceToken($persistan_token);
+			
+			
 			if ($user->save()){
+				//send email
+				$message = $this->getMailer()->compose(
+				      array(sfConfig::get('app_support_email') => sfConfig::get('app_support_title')),
+				      $user->getEmail(),
+				      'Пользователь успешно зарегестрирован',
+<<<EOF
+Пользователь успешно зарегестрирован.
+				 
+Для активации своего акаунта перейдите по ссылке {$this->generateUrl('user_activate', $user, true)}.
+				 
+Coocoorooza Bot.
+EOF
+);
+				 
+				    $this->getMailer()->send($message);
+				
+				
 				//verlihub begin
 				if (sfConfig::get('app_integration_is_verlihub')){
 					$verli_config = sfConfig::get('app_integration_verlihub_config');
@@ -64,8 +86,7 @@ class userActions extends sfActions
 					JabberOpenfire::add_user($user->getLogin(), $values['password'], $user->getEmail());
 				}
 				//jabber end
-				$this->getUser()->setFlash('confirm', 'Регистрация прошла успешно. Теперь можете входить на сайт.');
-				$this->redirect('@user_login');
+				$this->redirect('@user_registration_done');
 			} else {
 				$this->getUser()->setFlash('error', 'Произошла непредвиденная ошибка.', false);
 			}
@@ -102,6 +123,24 @@ class userActions extends sfActions
 	}
   }
   
+  public function executeRegistration_done(sfWebRequest $request){
+  	
+  }
+  
+  public function executeActivate(sfWebRequest $request){
+  	if ($request->getParameter('persistence_token')){
+  		$user = $this->getRoute()->getObject();
+  		if ($user && $user->getPersistenceToken()){
+  			$user->setPersistenceToken("");
+  			$user->setIsActive(true);
+  			if ($user->save()){
+  				$this->getUser()->setFlash('confirm', 'Активация прошла успешно. Теперь можете входить на сайт.');
+  			}
+  		}
+  	}
+  	$this->redirect('@user_login');
+  }
+  
   public function executeProfile(sfWebRequest $request){
   	$this->user_data = $this->getUser()->getAuthUser();
   	$this->form = new ProfileForm($this->user_data);
@@ -131,6 +170,76 @@ class userActions extends sfActions
 			$this->redirect('@user_profile');			
 		}
 	}
+  }
+  
+  public function executeForgot_pass(sfWebRequest $request){
+  	
+  	$this->form = new ForgotPassForm();
+	if ($request->isMethod('post')){
+		$this->form->bind($request->getParameter('forgot_pass'));
+		if ($this->form->isValid()){
+			$values = $this->form->getValues();
+			$data = UsersPeer::getUserByEmail($values['email']);
+			if ($data){
+				$persistan_token = System::generateRandomKey();
+				$data->setPersistenceToken($persistan_token);
+				if ($data->save()){
+				//send email
+				$message = $this->getMailer()->compose(
+				      array(sfConfig::get('app_support_email') => sfConfig::get('app_support_title')),
+				      $data->getEmail(),
+				      'Запрос на изменение пароля',
+<<<EOF
+Сброс пароля по ссылке {$this->generateUrl('user_forgot_pass_token', $data, true)}.
+				 
+Coocoorooza Bot.
+EOF
+);
+				 
+				    $this->getMailer()->send($message);
+				}	    	
+			}
+			$this->getUser()->setFlash('confirm', 'На ваш email выслано письмо для смены пароля.');
+			$this->redirect('@user_forgot_pass');
+		}
+	}
+  }
+  
+  public function executeForgot_pass_token(sfWebRequest $request){
+  	$this->user = $this->getRoute()->getObject();
+  	if ($this->user && $this->user->getPersistenceToken()){
+  		$this->form = new ForgotPassTokenForm();
+  		if ($request->isMethod('post')){
+  			$this->form->bind($request->getParameter('forgot_pass'));
+  			if ($this->form->isValid()){
+				$values = $this->form->getValues();
+				$this->user->setPersistenceToken("");
+				$this->user->setPassword($values['password']);
+				$this->user->save();
+				//verlihub begin
+				if (sfConfig::get('app_integration_is_verlihub')){
+					$verli_config = sfConfig::get('app_integration_verlihub_config');
+					$verl_hub = new VerlihubMysql(
+						$verli_config['host'],
+						$verli_config['user'],
+						$verli_config['password'],
+						$verli_config['database']
+					);
+					$verl_hub->change_password_for_user($this->user->getLogin(), $values['password']);
+				}
+				//verlihub end
+				//jabber begin
+				if (sfConfig::get('app_integration_is_jabber')){
+					JabberOpenfire::edit_user($this->user->getLogin(), $values['password'], $this->user->getEmail());
+				}
+				//jabber end
+				$this->getUser()->setFlash('confirm', 'Новый пароль задан.');
+				$this->redirect('@user_login');
+  			}
+  		}
+  	} else {
+  		$this->redirect('@homepage');
+  	}
   }
   
   public function executeLogout(sfWebRequest $request)

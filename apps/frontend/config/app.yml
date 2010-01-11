@@ -2,6 +2,8 @@
 all:
   domain: films.leo.local
   mobile_domain: m.films.leo.local
+  support_email: no-reply@coocoorooza.com
+  support_title: Coocoorooza Bot
   user_remember_key_expiration_age:  7776000
   remember_cookie_name: 'userRememberCookies'
   pages:

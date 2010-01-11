@@ -12,17 +12,50 @@ user_ajax_registration:
   requirements:
     sf_method: [post]
     
+user_registration_done:
+  url:     /registration_done
+  param: { module: user, action: registration_done }
+
+user_activate:
+  url:     /activate/:id/:persistence_token
+  class:   sfPropelRoute
+  options:
+    model: Users
+    type: object
+  param:  { module: user, action: activate }
+  requirements:
+    id: \d+
+    persistence_token: (.*)
+    sf_method: [get]  
+
+user_forgot_pass:
+  url:     /forgot_pass
+  param: { module: user, action: forgot_pass }
+  
+user_forgot_pass_token:
+  url:     /forgot_pass_token/:id/:persistence_token
+  class:   sfPropelRoute
+  options:
+    model: Users
+    type: object
+    method_for_criteria: getActivedOne
+  param: { module: user, action: forgot_pass_token } 
+  requirements:
+    id: \d+
+    persistence_token: (.*)
+    sf_method: [get, post]  
+
 user_profile:
   url:     /profile
   param: { module: user, action: profile }
   
-user_films_list:
-  url:     /unpublic_films
-  param: { module: user, action: unpublic_films }
-  
 user_logout:
   url:     /logout
   param: { module: user, action: logout }
+  
+user_films_list:
+  url:     /unpublic_films
+  param: { module: user, action: unpublic_films }
   
 user_show:
   url:     /userinfo/:id

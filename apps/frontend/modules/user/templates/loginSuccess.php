@@ -3,6 +3,11 @@
   <table class="table_form">
     <?php echo $form ?>
     <tr>
+    	<td colspan="2">
+    		<a href="<?php echo url_for('@user_forgot_pass') ?>">Забыл пароль?</a>
+    	</td>
+    </tr>
+    <tr>
       <td colspan="2">
         <input type="submit" value="Вход" />
       </td>
