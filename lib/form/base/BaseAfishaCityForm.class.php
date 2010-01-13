@@ -16,6 +16,7 @@ abstract class BaseAfishaCityForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
+      'external_id' => new sfWidgetFormInputText(),
       'title'       => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
       'created_at'  => new sfWidgetFormDateTime(),
@@ -24,6 +25,7 @@ abstract class BaseAfishaCityForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'          => new sfValidatorPropelChoice(array('model' => 'AfishaCity', 'column' => 'id', 'required' => false)),
+      'external_id' => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'title'       => new sfValidatorString(array('max_length' => 500)),
       'description' => new sfValidatorString(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),

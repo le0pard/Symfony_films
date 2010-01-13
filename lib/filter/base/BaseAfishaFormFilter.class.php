@@ -13,6 +13,7 @@ abstract class BaseAfishaFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'external_id'       => new sfWidgetFormFilterInput(),
       'afisha_theater_id' => new sfWidgetFormPropelChoice(array('model' => 'AfishaTheater', 'add_empty' => true)),
       'title'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'logo'              => new sfWidgetFormFilterInput(),
@@ -23,6 +24,7 @@ abstract class BaseAfishaFormFilter extends BaseFormFilterPropel
     ));
 
     $this->setValidators(array(
+      'external_id'       => new sfValidatorPass(array('required' => false)),
       'afisha_theater_id' => new sfValidatorPropelChoice(array('required' => false, 'model' => 'AfishaTheater', 'column' => 'id')),
       'title'             => new sfValidatorPass(array('required' => false)),
       'logo'              => new sfValidatorPass(array('required' => false)),
@@ -48,6 +50,7 @@ abstract class BaseAfishaFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                => 'Number',
+      'external_id'       => 'Text',
       'afisha_theater_id' => 'ForeignKey',
       'title'             => 'Text',
       'logo'              => 'Text',

@@ -353,6 +353,7 @@ DROP TABLE IF EXISTS `afisha_city`;
 CREATE TABLE `afisha_city`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`external_id` VARCHAR(500) default '',
 	`title` VARCHAR(500)  NOT NULL,
 	`description` TEXT,
 	`created_at` DATETIME,
@@ -370,6 +371,7 @@ DROP TABLE IF EXISTS `afisha_theater`;
 CREATE TABLE `afisha_theater`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`external_id` VARCHAR(500) default '',
 	`afisha_city_id` INTEGER  NOT NULL,
 	`title` VARCHAR(500)  NOT NULL,
 	`logo` VARCHAR(255),
@@ -394,6 +396,7 @@ DROP TABLE IF EXISTS `afisha`;
 CREATE TABLE `afisha`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`external_id` VARCHAR(500) default '',
 	`afisha_theater_id` INTEGER  NOT NULL,
 	`title` VARCHAR(500)  NOT NULL,
 	`logo` VARCHAR(255),
@@ -418,6 +421,7 @@ DROP TABLE IF EXISTS `afisha_zal`;
 CREATE TABLE `afisha_zal`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`external_id` VARCHAR(500) default '',
 	`afisha_theater_id` INTEGER  NOT NULL,
 	`afisha_id` INTEGER  NOT NULL,
 	`title` VARCHAR(500)  NOT NULL,

@@ -122,6 +122,7 @@ propel:
    
   afisha_city:
    id:              ~
+   external_id:     { type: varchar(500), default: "" }
    title:           { type: varchar(500), required: true }
    description:     { type: longvarchar }
    created_at:      ~
@@ -129,6 +130,7 @@ propel:
    
   afisha_theater:
    id:              ~
+   external_id:     { type: varchar(500), default: "" }
    afisha_city_id:  { type: integer, foreignTable: afisha_city, foreignReference: id, required: true }
    title:           { type: varchar(500), required: true }
    logo:            { type: varchar(255) }
@@ -139,6 +141,7 @@ propel:
      
   afisha:
    id:              ~
+   external_id:     { type: varchar(500), default: "" }
    afisha_theater_id: { type: integer, foreignTable: afisha_theater, foreignReference: id, required: true }
    title:           { type: varchar(500), required: true }
    logo:            { type: varchar(255) }
@@ -149,6 +152,7 @@ propel:
    
   afisha_zal:
    id:              ~
+   external_id:     { type: varchar(500), default: "" }
    afisha_theater_id: { type: integer, foreignTable: afisha_theater, foreignReference: id, required: true, onDelete: cascade }
    afisha_id:       { type: integer, foreignTable: afisha, foreignReference: id, required: true, onDelete: cascade }
    title:           { type: varchar(500), required: true }

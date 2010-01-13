@@ -16,6 +16,7 @@ abstract class BaseAfishaTheaterForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
+      'external_id'    => new sfWidgetFormInputText(),
       'afisha_city_id' => new sfWidgetFormPropelChoice(array('model' => 'AfishaCity', 'add_empty' => false)),
       'title'          => new sfWidgetFormInputText(),
       'logo'           => new sfWidgetFormInputText(),
@@ -27,6 +28,7 @@ abstract class BaseAfishaTheaterForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'             => new sfValidatorPropelChoice(array('model' => 'AfishaTheater', 'column' => 'id', 'required' => false)),
+      'external_id'    => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'afisha_city_id' => new sfValidatorPropelChoice(array('model' => 'AfishaCity', 'column' => 'id')),
       'title'          => new sfValidatorString(array('max_length' => 500)),
       'logo'           => new sfValidatorString(array('max_length' => 255, 'required' => false)),
