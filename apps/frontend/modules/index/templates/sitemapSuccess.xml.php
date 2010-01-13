@@ -10,7 +10,7 @@
    <?php foreach($films as $film): ?>
    <url>
       <loc><?php echo url_for('film_show', $film, true) ?></loc>
-      <lastmod><?php echo strftime('%Y-%m-%d', $film->getUpdateData('U')) ?></lastmod>
+      <lastmod><?php echo strftime('%Y-%m-%d', $film->getModifiedAt('U')) ?></lastmod>
       <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
