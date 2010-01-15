@@ -113,7 +113,7 @@ class FilmPeer extends BaseFilmPeer
 
 	static public function searchAutoComplete($title){
 		$criteria = new Criteria();
-		$criteria->add(self::TITLE, $title."%", Criteria::LIKE);
+		$criteria->add(self::TITLE, "%".$title."%", Criteria::LIKE);
 		$criteria->setLimit(8);
 		return self::doSelect(self::addVisibleCriteria($criteria));
 	}

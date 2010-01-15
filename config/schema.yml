@@ -113,15 +113,23 @@ propel:
     
   news:
    id:              ~
-   user_id:         { type: integer, foreignTable: users, foreignReference: id, required: true }
    title:           { type: varchar(500), required: true }
    url:             { type: varchar(500) }
    description:     { type: longvarchar }
+   is_visible:      { type: boolean, required: true, default: 1 }
    created_at:      ~
    updated_at:      ~
    
+  afisha_country:
+   id:              ~
+   external_id:     { type: varchar(500), default: "" }
+   title:           { type: varchar(500), required: true }
+   created_at:      ~
+   updated_at:      ~ 
+   
   afisha_city:
    id:              ~
+   afisha_country_id: { type: integer, foreignTable: afisha_country, foreignReference: id, required: true }
    external_id:     { type: varchar(500), default: "" }
    title:           { type: varchar(500), required: true }
    description:     { type: longvarchar }
@@ -171,4 +179,11 @@ propel:
    description:     { type: longvarchar }
    is_visible:      { type: boolean, required: true, default: 1 }
    created_at:      ~
-   updated_at:      ~  
+   updated_at:      ~ 
+   
+  banned_ips:
+   id:              ~
+   ip:              { type: varchar(500), required: true }
+   description:     { type: longvarchar, required: true }
+   created_at:      ~
+   updated_at:      ~ 

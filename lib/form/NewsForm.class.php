@@ -12,5 +12,8 @@ class NewsForm extends BaseNewsForm
 {
   public function configure()
   {
+  	unset(
+      $this['created_at'], $this['updated_at'], $this['url']
+    );
   }
 }

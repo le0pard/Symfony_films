@@ -360,6 +360,38 @@ static_page:
     url: (.*)
     sf_method: [get]
 
+#news
+news_all:
+  url:     /news
+  param: { module: news, action: index }
+  
+news_page_all:
+  url:     /news/:page
+  param: { module: news, action: index }
+  requirements:
+    page: \d+ 
+  
+news_xml_all:
+  url:     /news.xml
+  param: { module: news, action: index, sf_format: xml }
+  
+news_atom_all:
+  url:     /news.xml
+  param: { module: news, action: index, sf_format: atom }  
+
+news_one:
+  url:     /news/:id/:url
+  class:   sfPropelRoute
+  options:
+    model: News
+    type: object
+    method_for_criteria: getVisible
+  param:  { module: news, action: show }
+  requirements:
+    id: \d+
+    url: (.*)
+    sf_method: [get]
+
 #statistic
 statistic:
   url:   /statistic

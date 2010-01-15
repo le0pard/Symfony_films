@@ -16,20 +16,20 @@ abstract class BaseNewsForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'user_id'     => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
       'title'       => new sfWidgetFormInputText(),
       'url'         => new sfWidgetFormInputText(),
       'description' => new sfWidgetFormTextarea(),
+      'is_visible'  => new sfWidgetFormInputCheckbox(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'          => new sfValidatorPropelChoice(array('model' => 'News', 'column' => 'id', 'required' => false)),
-      'user_id'     => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id')),
       'title'       => new sfValidatorString(array('max_length' => 500)),
       'url'         => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
+      'is_visible'  => new sfValidatorBoolean(),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));

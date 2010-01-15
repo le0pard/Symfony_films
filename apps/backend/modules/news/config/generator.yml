@@ -1,0 +1,41 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           News
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              News
+    plural:                Newss
+    route_prefix:          news
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions:
+        _new: { label: "Создать" }
+      fields:
+        title: { label: Заголовок }
+        is_visible: { label: Видимый? }
+
+      list:
+        title:          Новость
+        display:        [title, is_visible, updated_at]
+        max_per_page:   50
+        sort:           [updated_at, desc]
+        batch_actions:
+          _delete: { label: Удалить }
+        object_actions:
+          _edit:       { label: Редактировать }
+          _delete:     { label: Удалить, confirm: "Уверены, что хотите удалить?" }
+        actions:
+          _new: { label: Создать }
+
+      filter:
+        display: [title, is_visible]
+
+      form: ~
+      edit:
+        title: Редактировать новость %%title%%
+      new: 
+        title: Новая новость

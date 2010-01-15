@@ -330,17 +330,30 @@ DROP TABLE IF EXISTS `news`;
 CREATE TABLE `news`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`user_id` INTEGER  NOT NULL,
 	`title` VARCHAR(500)  NOT NULL,
 	`url` VARCHAR(500),
 	`description` TEXT,
+	`is_visible` TINYINT default 1 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	INDEX `news_FI_1` (`user_id`),
-	CONSTRAINT `news_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- afisha_country
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `afisha_country`;
+
+
+CREATE TABLE `afisha_country`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`external_id` VARCHAR(500) default '',
+	`title` VARCHAR(500)  NOT NULL,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -353,12 +366,17 @@ DROP TABLE IF EXISTS `afisha_city`;
 CREATE TABLE `afisha_city`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`afisha_country_id` INTEGER  NOT NULL,
 	`external_id` VARCHAR(500) default '',
 	`title` VARCHAR(500)  NOT NULL,
 	`description` TEXT,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`id`),
+	INDEX `afisha_city_FI_1` (`afisha_country_id`),
+	CONSTRAINT `afisha_city_FK_1`
+		FOREIGN KEY (`afisha_country_id`)
+		REFERENCES `afisha_country` (`id`)
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
@@ -479,6 +497,23 @@ CREATE TABLE `static_pages`
 	`sort` INTEGER default 0,
 	`description` TEXT,
 	`is_visible` TINYINT default 1 NOT NULL,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- banned_ips
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `banned_ips`;
+
+
+CREATE TABLE `banned_ips`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`ip` VARCHAR(500)  NOT NULL,
+	`description` TEXT  NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`)
