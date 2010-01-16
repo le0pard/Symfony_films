@@ -279,15 +279,6 @@ class filmActions extends sfActions
 			if ($this->getUser()->hasCredential(array('super_admin', 'admin', 'moder'), false)){
 				$this->film->setIsVisible(true);
 				$this->film->setUsersRelatedByModifiedUserId($this->getUser()->getAuthUser());
-				if (sfConfig::get('app_integration_is_twitter')){
-					try{
-						$url = $this->generateUrl('film_show', $this->film, true);
-						$t = new Twitter(sfConfig::get('app_integration_twitter_username'), sfConfig::get('app_integration_twitter_password'));
-						$t->updateStatus($this->film->getTitle()." (".$this->film->getPubYear().") ".$url);
-					} catch (Exception $e) {
-						
-					}
-				}
 				$this->getUser()->setFlash('confirm', 'Ваша публикация уже опубликована.');
 			} else {
 				$this->getUser()->setFlash('confirm', 'Ваша публикация отправленна на расмотрение.');

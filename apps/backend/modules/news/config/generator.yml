@@ -37,5 +37,13 @@ generator:
       form: ~
       edit:
         title: Редактировать новость %%title%%
+        actions:
+          _list: ~
+          _save: ~
+          _delete: ~
+          twitter:
+            name: Twitter!
+            action: twitter
+            only_for: edit
       new: 
         title: Новая новость
