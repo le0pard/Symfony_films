@@ -35,7 +35,7 @@ class filmActions extends sfActions
 		$this->form->bind($request->getParameter('film_add'), $request->getFiles('film_add'));
 		if ($this->form->isValid()){			
 			$film = $this->form->getObject();
-			$film->setUsersRelatedByUserId($this->getUser()->getAuthUser());
+			$film->setUserId($this->getUser()->getAuthUser()->getId());
 			$film->setModifiedAt(time());
 			$film->setIsVisible(false);
 			$film->setIsPublic(false);
@@ -278,15 +278,34 @@ class filmActions extends sfActions
 			$this->film->setIsPublic(true);
 			if ($this->getUser()->hasCredential(array('super_admin', 'admin', 'moder'), false)){
 				$this->film->setIsVisible(true);
-				$this->film->setUsersRelatedByModifiedUserId($this->getUser()->getAuthUser());
+				$this->film->setModifiedUserId($this->getUser()->getAuthUser()->getId());
 				$this->getUser()->setFlash('confirm', 'Ваша публикация уже опубликована.');
+				$this->film->save();
+				$this->redirect('film_show', $this->film);
 			} else {
 				$this->getUser()->setFlash('confirm', 'Ваша публикация отправленна на расмотрение.');
+				$this->film->save();
 			}
-			$this->film->save();
-			$this->redirect('@homepage');
 		}
+		$this->redirect('@homepage');
 	}
+  }
+  
+  public function executeTwitter(sfWebRequest $request){
+  	$film = $this->getRoute()->getObject();
+  	if ($this->getUser()->hasCredential(array('super_admin', 'admin'), false)){
+	  	if (sfConfig::get('app_integration_is_twitter') && $film){
+			try{
+				$url = $this->generateUrl('film_show', $film, true);
+				$t = new Twitter(sfConfig::get('app_integration_twitter_username'), sfConfig::get('app_integration_twitter_password'));
+				$t->updateStatus($film->getTitle()." (".$film->getOriginalTitle().") ".$url);
+				$this->getUser()->setFlash('notice', 'Твиттернул.');
+			} catch (Exception $e) {
+				$this->getUser()->setFlash('error', 'Не твиттернул.');	
+			}
+		}
+  	}
+    $this->redirect('film_show', $film);
   }
   
 }

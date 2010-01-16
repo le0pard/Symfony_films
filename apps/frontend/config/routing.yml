@@ -280,6 +280,17 @@ film_add_final:
     id: \d+
     sf_method: [get, post]    
 
+film_twitter:
+  url:     /film/twitter/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+  param:  { module: film, action: twitter }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
 #film one
 film_show:
   url:     /film/:id/:url

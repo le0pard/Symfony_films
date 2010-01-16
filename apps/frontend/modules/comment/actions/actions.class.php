@@ -24,8 +24,8 @@ class commentActions extends sfActions
 		$this->form->bind($params);
 		if ($this->form->isValid()){			
 			$comment = $this->form->getObject();
-			$comment->setUsers($this->getUser()->getAuthUser());
-			$comment->setFilm($this->film);
+			$comment->setUserId($this->getUser()->getAuthUser()->getId());
+			$comment->setFilmId($this->film->getId());
 			$this->form->save();
 			$this->redirect('film_show', $this->film);
 		} else {

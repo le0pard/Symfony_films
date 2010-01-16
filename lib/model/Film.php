@@ -104,8 +104,7 @@ class Film extends BaseFilm
 	}
 	
 	public function countFilmsForUser(){
-		if ($this->getUsersRelatedByUserId()){
-			$user = $this->getUsersRelatedByUserId();
+		if (($user = $this->getUsersRelatedByUserId()) == true){
 			$user->setCountOfFilms($user->countFilmsRelatedByUserId(FilmPeer::addVisibleCriteria()));
 			$user->save();
 		}
