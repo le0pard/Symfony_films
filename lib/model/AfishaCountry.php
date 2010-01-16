@@ -30,5 +30,11 @@ class AfishaCountry extends BaseAfishaCountry {
 		// is where any default values for this object are set.
 		parent::__construct();
 	}
+	
+	public function getCities(){
+		$criteria = new Criteria();
+		$criteria->addAscendingOrderByColumn(AfishaCityPeer::TITLE);
+		return $this->getAfishaCitys($criteria);
+	}
 
 } // AfishaCountry

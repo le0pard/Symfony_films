@@ -403,6 +403,42 @@ news_one:
     url: (.*)
     sf_method: [get]
 
+#afisha
+afisha:
+  url:    /afisha
+  param:  { module: afisha, action: index }
+
+afisha_get_shows_by_date:
+  url:    /afisha/city/:id/date/:year/:month/:day
+  param:  { module: afisha, action: index }
+  requirements:
+    id: \d+
+    year: ([0-9]{4})
+    month: (?:0[1-9]|1[0-2])
+    day: (?:[0][1-9]|[1-2][0-9]|3[0-1])
+  
+afisha_get_shows:
+  url:    /afisha/city/:id
+  class:   sfPropelRoute
+  options:
+    model: AfishaCity
+    type: object
+  param:  { module: afisha, action: index }
+  requirements:
+    id: \d+
+    sf_method: [get] 
+       
+afisha_get_cities:
+  url:    /afisha_get_cities/:id
+  class:   sfPropelRoute
+  options:
+    model: AfishaCountry
+    type: object
+  param:  { module: afisha, action: get_cities }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
 #statistic
 statistic:
   url:   /statistic
@@ -441,9 +477,9 @@ homepage:
   url:   /
   param: { module: index, action: index }
 
-default_index:
-  url:   /:module
-  param: { action: index }
+#default_index:
+#  url:   /:module
+#  param: { action: index }
 
-default:
-  url:   /:module/:action/*
+#default:
+#  url:   /:module/:action/*

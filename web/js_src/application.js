@@ -10,6 +10,7 @@ var FilmSiteJs = {
 		this.initAddGallerySort();
 		this.initAddLinkSort();
 		this.initGalleryMultUploader();
+		this.initAfisha();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -126,7 +127,24 @@ var FilmSiteJs = {
 		} else {
 			$('upload_gallery_form').blindDown();
 		}	
-	}	
+	},
+	initAfisha: function(){
+		if ($('afisha_country') && $('afisha_city') && $('afisha_city_box')){
+			$('afisha_country').observe('change', FilmSiteJs.changeAfishaCountry);
+			$('afisha_city').observe('change', FilmSiteJs.changeAfishaCity);
+		}
+	},
+	changeAfishaCountry: function(){
+		new Ajax.Updater('afisha_city_box', afisha_get_cities_path($F('afisha_country')), {
+			method: 'post',
+			onComplete: function(request) {
+				$('afisha_city').observe('change', FilmSiteJs.changeAfishaCity);
+			}
+		});
+	},
+	changeAfishaCity: function(){
+		location.href = afisha_get_shows_path($F('afisha_city'));
+	}
 };
 
 Event.observe(window, 'load', function(){
