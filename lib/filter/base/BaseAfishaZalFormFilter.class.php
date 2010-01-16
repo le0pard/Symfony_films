@@ -15,14 +15,12 @@ abstract class BaseAfishaZalFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'external_id'       => new sfWidgetFormFilterInput(),
       'afisha_theater_id' => new sfWidgetFormPropelChoice(array('model' => 'AfishaTheater', 'add_empty' => true)),
-      'afisha_id'         => new sfWidgetFormPropelChoice(array('model' => 'Afisha', 'add_empty' => true)),
       'title'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
       'external_id'       => new sfValidatorPass(array('required' => false)),
       'afisha_theater_id' => new sfValidatorPropelChoice(array('required' => false, 'model' => 'AfishaTheater', 'column' => 'id')),
-      'afisha_id'         => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Afisha', 'column' => 'id')),
       'title'             => new sfValidatorPass(array('required' => false)),
     ));
 
@@ -44,7 +42,6 @@ abstract class BaseAfishaZalFormFilter extends BaseFormFilterPropel
       'id'                => 'Number',
       'external_id'       => 'Text',
       'afisha_theater_id' => 'ForeignKey',
-      'afisha_id'         => 'ForeignKey',
       'title'             => 'Text',
     );
   }

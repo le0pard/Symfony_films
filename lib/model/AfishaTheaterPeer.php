@@ -20,4 +20,10 @@ require 'lib/model/om/BaseAfishaTheaterPeer.php';
  */
 class AfishaTheaterPeer extends BaseAfishaTheaterPeer {
 
+	static public function getByExternalId($external_id) {
+		$criteria = new Criteria();
+		$criteria->add(self::EXTERNAL_ID, $external_id);
+    	return self::doSelectOne($criteria);
+    }
+	
 } // AfishaTheaterPeer

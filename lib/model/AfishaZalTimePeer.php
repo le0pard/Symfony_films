@@ -20,4 +20,5 @@ require 'lib/model/om/BaseAfishaZalTimePeer.php';
  */
 class AfishaZalTimePeer extends BaseAfishaZalTimePeer {
 
+
 } // AfishaZalTimePeer

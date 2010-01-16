@@ -13,3 +13,4 @@ data/films.*
 data/sphinx/*
 lib/XmlParser.class.php
 lib/task/updateAfishaTask.class.php
+web/bill_export.phtml

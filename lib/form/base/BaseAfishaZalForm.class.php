@@ -18,7 +18,6 @@ abstract class BaseAfishaZalForm extends BaseFormPropel
       'id'                => new sfWidgetFormInputHidden(),
       'external_id'       => new sfWidgetFormInputText(),
       'afisha_theater_id' => new sfWidgetFormPropelChoice(array('model' => 'AfishaTheater', 'add_empty' => false)),
-      'afisha_id'         => new sfWidgetFormPropelChoice(array('model' => 'Afisha', 'add_empty' => false)),
       'title'             => new sfWidgetFormInputText(),
     ));
 
@@ -26,7 +25,6 @@ abstract class BaseAfishaZalForm extends BaseFormPropel
       'id'                => new sfValidatorPropelChoice(array('model' => 'AfishaZal', 'column' => 'id', 'required' => false)),
       'external_id'       => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'afisha_theater_id' => new sfValidatorPropelChoice(array('model' => 'AfishaTheater', 'column' => 'id')),
-      'afisha_id'         => new sfValidatorPropelChoice(array('model' => 'Afisha', 'column' => 'id')),
       'title'             => new sfValidatorString(array('max_length' => 500)),
     ));
 
