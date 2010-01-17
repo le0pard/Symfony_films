@@ -3,6 +3,8 @@ edit:
   credentials: [[ admin, super_admin ]]
 delete:
   is_secure:  true
-  credentials: [[ admin, super_admin ]]  
+  credentials: [[ admin, super_admin ]] 
+last_comments:
+  is_secure:  false 
 all:
   is_secure:  true
