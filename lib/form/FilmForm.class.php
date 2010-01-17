@@ -33,7 +33,7 @@ class FilmForm extends BaseFilmForm
 	  				array('theme' => 'advanced','config' => '
 							skin : "o2k7", 
 							language : "ru",
-							plugins : "safari,spellchecker,table,advimage,advlink,searchreplace,contextmenu,paste,directionality,fullscreen",
+							plugins : "safari,spellchecker,table,advimage,advlink,searchreplace,contextmenu,paste,directionality,fullscreen,inlinepopups",
 							theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect",
 							theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,code,|,forecolor,backcolor",
 							theme_advanced_toolbar_location : "top",
