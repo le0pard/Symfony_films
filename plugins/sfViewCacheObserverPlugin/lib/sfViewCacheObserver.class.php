@@ -6,22 +6,23 @@
  */
 
 class sfViewCacheObserver  {
+	static protected $cacheManager = null;
+	
 	
 	public function clearCache($url){
 	if (sfContext::hasInstance()){
-	   	$currentConfiguration = sfContext::getInstance()->getConfiguration();
-		
-		$otherConfig = ProjectConfiguration::getApplicationConfiguration(sfConfig::get('app_viewCacheObserver_project_cache', 'frontend'), sfConfig::get('app_viewCacheObserver_environment_cache', 'prod'), false);
-		$otherContext = sfContext::createInstance($otherConfig);
-
-		$cacheManager = sfContext::getInstance()->getViewCacheManager();
-		if ($cacheManager){
-			$cacheManager->remove($url);
+		if (is_null(sfViewCacheObserver::$cacheManager)){
+		   	$currentConfiguration = sfContext::getInstance()->getConfiguration();
+			$otherConfig = ProjectConfiguration::getApplicationConfiguration(sfConfig::get('app_viewCacheObserver_project_cache', 'frontend'), sfConfig::get('app_viewCacheObserver_environment_cache', 'prod'), false);
+			$otherContext = sfContext::createInstance($otherConfig);
+			sfViewCacheObserver::$cacheManager = sfContext::getInstance()->getViewCacheManager();
+			$configuration = ProjectConfiguration::getApplicationConfiguration($currentConfiguration->getApplication(), $currentConfiguration->getEnvironment(), $currentConfiguration->isDebug()); 
+ 	    	$this->context = sfContext::createInstance($configuration); 
+ 	    	unset($currentConfiguration);
 		}
-
- 	    $configuration = ProjectConfiguration::getApplicationConfiguration($currentConfiguration->getApplication(), $currentConfiguration->getEnvironment(), $currentConfiguration->isDebug()); 
- 	    $this->context = sfContext::createInstance($configuration); 
- 	    unset($currentConfiguration);
+		if (sfViewCacheObserver::$cacheManager){
+			sfViewCacheObserver::$cacheManager->remove($url, '*');
+		}
 	  }
 	}
 	

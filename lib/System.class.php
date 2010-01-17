@@ -99,7 +99,7 @@ class System {
 	//       $isChildOnly : вложенные теги не могут присутствовать нигде кроме указанного тега (по умолчанию false)
 	System::$jevix->cfgSetTagChilds('ul', 'li', false, true);
 	// 8. Устанавливаем атрибуты тегов, которые будут добавлятся автоматически
-	System::$jevix->cfgSetTagParamsAutoAdd('a', array('rel' => 'nofollow'));
+	System::$jevix->cfgSetTagParamDefault('a', 'rel', 'nofollow', true);
 	// 9. Устанавливаем автозамену
 	System::$jevix->cfgSetAutoReplace(array('+/-', '(c)', '(r)'), array('±', '©', '®'));
 	// 10. Включаем или выключаем режим XHTML. (по умолчанию включен)
@@ -145,7 +145,7 @@ class System {
 	System::$jevix->cfgSetTagChilds('ul', 'li', false, true);
 	System::$jevix->cfgSetTagChilds('ol', 'li', false, true);
 	// 8. Устанавливаем атрибуты тегов, которые будут добавлятся автоматически
-	System::$jevix->cfgSetTagParamsAutoAdd('a', array('rel' => 'nofollow'));
+	System::$jevix->cfgSetTagParamDefault('a', 'rel', 'nofollow', true);
 	// 9. Устанавливаем автозамену
 	System::$jevix->cfgSetAutoReplace(array('+/-', '(c)', '(r)'), array('±', '©', '®'));
 	// 10. Включаем или выключаем режим XHTML. (по умолчанию включен)
