@@ -22,6 +22,10 @@ abstract class BaseAfishaForm extends BaseFormPropel
       'afisha_zal_id'     => new sfWidgetFormPropelChoice(array('model' => 'AfishaZal', 'add_empty' => false)),
       'link'              => new sfWidgetFormInputText(),
       'description'       => new sfWidgetFormTextarea(),
+      'date_begin'        => new sfWidgetFormDateTime(),
+      'date_end'          => new sfWidgetFormDateTime(),
+      'times'             => new sfWidgetFormTextarea(),
+      'prices'            => new sfWidgetFormTextarea(),
       'created_at'        => new sfWidgetFormDateTime(),
       'updated_at'        => new sfWidgetFormDateTime(),
     ));
@@ -34,6 +38,10 @@ abstract class BaseAfishaForm extends BaseFormPropel
       'afisha_zal_id'     => new sfValidatorPropelChoice(array('model' => 'AfishaZal', 'column' => 'id')),
       'link'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'description'       => new sfValidatorString(array('required' => false)),
+      'date_begin'        => new sfValidatorDateTime(),
+      'date_end'          => new sfValidatorDateTime(),
+      'times'             => new sfValidatorString(array('required' => false)),
+      'prices'            => new sfValidatorString(array('required' => false)),
       'created_at'        => new sfValidatorDateTime(array('required' => false)),
       'updated_at'        => new sfValidatorDateTime(array('required' => false)),
     ));

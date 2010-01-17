@@ -443,6 +443,10 @@ CREATE TABLE `afisha`
 	`afisha_zal_id` INTEGER  NOT NULL,
 	`link` VARCHAR(255),
 	`description` TEXT,
+	`date_begin` DATETIME  NOT NULL,
+	`date_end` DATETIME  NOT NULL,
+	`times` TEXT,
+	`prices` TEXT,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
@@ -483,44 +487,23 @@ CREATE TABLE `afisha_zal`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
-#-- afisha_zal_date
+#-- afisha_time
 #-----------------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `afisha_zal_date`;
+DROP TABLE IF EXISTS `afisha_time`;
 
 
-CREATE TABLE `afisha_zal_date`
+CREATE TABLE `afisha_time`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`afisha_id` INTEGER  NOT NULL,
-	`date_begin` DATETIME  NOT NULL,
-	`date_end` DATETIME  NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `afisha_zal_date_FI_1` (`afisha_id`),
-	CONSTRAINT `afisha_zal_date_FK_1`
-		FOREIGN KEY (`afisha_id`)
-		REFERENCES `afisha` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
-
-#-----------------------------------------------------------------------------
-#-- afisha_zal_time
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_zal_time`;
-
-
-CREATE TABLE `afisha_zal_time`
-(
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`afisha_zal_date_id` INTEGER  NOT NULL,
 	`time` VARCHAR(200)  NOT NULL,
 	`price` VARCHAR(100),
 	PRIMARY KEY (`id`),
-	INDEX `afisha_zal_time_FI_1` (`afisha_zal_date_id`),
-	CONSTRAINT `afisha_zal_time_FK_1`
-		FOREIGN KEY (`afisha_zal_date_id`)
-		REFERENCES `afisha_zal_date` (`id`)
+	INDEX `afisha_time_FI_1` (`afisha_id`),
+	CONSTRAINT `afisha_time_FK_1`
+		FOREIGN KEY (`afisha_id`)
+		REFERENCES `afisha` (`id`)
 		ON DELETE CASCADE
 )Type=InnoDB;
 

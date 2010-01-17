@@ -439,6 +439,48 @@ afisha_get_cities:
     id: \d+
     sf_method: [post]
 
+afisha_cinema_by_date:
+  url:    /afisha/cinema/:id/date/:year/:month/:day
+  param:  { module: afisha, action: cinema }
+  requirements:
+    id: \d+
+    year: ([0-9]{4})
+    month: (?:0[1-9]|1[0-2])
+    day: (?:[0][1-9]|[1-2][0-9]|3[0-1])
+    sf_method: [get]
+    
+afisha_cinema:
+  url:    /afisha/cinema/:id
+  class:   sfPropelRoute
+  options:
+    model: AfishaTheater
+    type: object
+  param:  { module: afisha, action: cinema }
+  requirements:
+    id: \d+
+    sf_method: [get]    
+
+afisha_film_by_date:
+  url:    /afisha/film/:id/date/:year/:month/:day
+  param:  { module: afisha, action: film }
+  requirements:
+    id: \d+
+    year: ([0-9]{4})
+    month: (?:0[1-9]|1[0-2])
+    day: (?:[0][1-9]|[1-2][0-9]|3[0-1])
+    sf_method: [get]
+
+afisha_film:
+  url:    /afisha/film/:id
+  class:   sfPropelRoute
+  options:
+    model: AfishaFilm
+    type: object
+  param:  { module: afisha, action: film }
+  requirements:
+    id: \d+
+    sf_method: [get]
+
 #statistic
 statistic:
   url:   /statistic

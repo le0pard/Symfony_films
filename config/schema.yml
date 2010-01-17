@@ -170,6 +170,10 @@ propel:
    afisha_zal_id:   { type: integer, foreignTable: afisha_zal, foreignReference: id, required: true, onDelete: cascade }
    link:            { type: varchar(255) }
    description:     { type: longvarchar }
+   date_begin:      { type: timestamp, required: true } 
+   date_end:        { type: timestamp, required: true }
+   times:           { type: longvarchar }
+   prices:          { type: longvarchar }  
    created_at:      ~
    updated_at:      ~
    
@@ -179,15 +183,9 @@ propel:
    afisha_theater_id: { type: integer, foreignTable: afisha_theater, foreignReference: id, required: true, onDelete: cascade }
    title:           { type: varchar(500), required: true }
    
-  afisha_zal_date:
+  afisha_time:
    id:              ~
    afisha_id:         { type: integer, foreignTable: afisha, foreignReference: id, required: true, onDelete: cascade }
-   date_begin:        { type: timestamp, required: true } 
-   date_end:          { type: timestamp, required: true } 
-   
-  afisha_zal_time:
-   id:              ~
-   afisha_zal_date_id: { type: integer, foreignTable: afisha_zal_date, foreignReference: id, required: true, onDelete: cascade }
    time:              { type: varchar(200), required: true }
    price:             { type: varchar(100) }  
  
