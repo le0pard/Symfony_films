@@ -1,11 +1,11 @@
-_types:
+_latest:
   enabled:     true
   lifetime:    2592000 # 30 суток
-_film_main:
-  enabled:     true
-  lifetime:    2592000 # 30 суток
-_topNew:
+index:
   enabled:     true
   lifetime:    2592000 # 30 суток  
+show:
+  enabled:     true
+  lifetime:    2592000 # 30 суток   
 all:
   with_layout: false

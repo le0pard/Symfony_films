@@ -32,3 +32,19 @@ class AfishaFilm extends BaseAfishaFilm {
 	}
 
 } // AfishaFilm
+
+sfPropelBehavior::add('AfishaFilm', array(
+	'viewCacheObserver' => array(
+		'cache' => array(
+			'afisha/film?id=#{id}',
+			'afisha/film?day=*&id=#{id}&month=*&year=*'
+		),
+		'variables' => array(
+			'id' => 'getId'
+		),
+		'criteria' => array(
+			//'getIsVisible' => true,
+			//'getIsPublic' => true
+		)
+	)
+));

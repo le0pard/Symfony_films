@@ -1,0 +1,14 @@
+_today:
+  enabled:     true
+  lifetime:    86400 # 1 день
+index:
+  enabled:     true
+  lifetime:    86400 # 1 день  
+cinema:
+  enabled:     true
+  lifetime:    86400 # 1 день 
+film:
+  enabled:     true
+  lifetime:    86400 # 1 день 
+all:
+  with_layout: false

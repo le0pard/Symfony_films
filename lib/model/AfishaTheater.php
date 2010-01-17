@@ -21,3 +21,19 @@ require 'lib/model/om/BaseAfishaTheater.php';
 class AfishaTheater extends BaseAfishaTheater {
 
 } // AfishaTheater
+
+sfPropelBehavior::add('AfishaTheater', array(
+	'viewCacheObserver' => array(
+		'cache' => array(
+			'afisha/cinema?id=#{id}',
+			'afisha/cinema?day=*&id=#{id}&month=*&year=*'
+		),
+		'variables' => array(
+			'id' => 'getId'
+		),
+		'criteria' => array(
+			//'getIsVisible' => true,
+			//'getIsPublic' => true
+		)
+	)
+));
