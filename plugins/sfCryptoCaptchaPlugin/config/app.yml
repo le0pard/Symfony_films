@@ -2,7 +2,7 @@
 all:
   sf_crypto_captcha:
   #Dimensions
-    width:                            250                 #width of the captcha
+    width:                            200                 #width of the captcha
     height:                           60                  #height of the captcha
   #Background
     bg_red:                           238                 #quantity of red color (0->255)
@@ -16,12 +16,12 @@ all:
     char_green:                       0                   # quantity of green color  (0->255)
     char_blue:                        0                   # quantity of blue color  (0->255)
     char_random_color:                true                # random color for captcha letters
-    char_random_color_lvl:            2                   # random color brightness, from 1(very dark) to 4(very bright)
+    char_random_color_lvl:            1                   # random color brightness, from 1(very dark) to 4(very bright)
     char_transparent:                 10                  # transparency index (0->127)
     char_px_spacing:                  40                  # pixels between each letter
-    char_min_size:                    18                  # minimum character size
-    char_max_size:                    25                  # maximum character size
-    char_max_rot_angle:               30                  # maximum character rotation angle (0->360)
+    char_min_size:                    20                  # minimum character size
+    char_max_size:                    24                  # maximum character size
+    char_max_rot_angle:               10                  # maximum character rotation angle (0->360)
     char_vertical_offset:             true                # add a random vertical offset to letters
   #Fonts
     char_fonts:                       [ luggerbu.ttf ] # the randomly used fonts to generate the characters
@@ -35,19 +35,19 @@ all:
     easy_captcha_bool:                <?php rand(0,1); ?> # (0=vowel or 1=consonant), start the captcha by vowel or consonant
   #Parameters
     case_sensitive:                   false               # differentiate between letters (M and m)
-    min_chars:                        4                   # minimum characters in the captcha
-    max_chars:                        6                   # maximum characters in the captcha
+    min_chars:                        3                   # minimum characters in the captcha
+    max_chars:                        4                   # maximum characters in the captcha
     brush_size:                       1                   # size of the brush(1->25) used for the noise (points and circles and lines)
     format:                           png                 # image format (png, gif or jpg)
     hash_algo:                        sha1                # hashing function used to store the captcha
     flood_timer:                      1                   # time (seconds) between each refresh of the captcha
-    max_refresh:                      1000                # maximum refreshes per session (resets on every correct captcha)
+    max_refresh:                      200                 # maximum refreshes per session (resets on every correct captcha)
   #Effects
     effect_blur:                      false               # adds gaussian blur to the image
     effect_grayscale:                 false               # makes the captcha in grayscale (only if PHP >= 5.0.0)
   #Noise
-    noise_min_px:                     200                 # minimum noise pixels
-    noise_max_px:                     400                 # maximum noise pixels
+    noise_min_px:                     100                 # minimum noise pixels
+    noise_max_px:                     200                 # maximum noise pixels
     noise_min_lines:                  2                   # minimum noise lines 
     noise_max_lines:                  3                   # maximum noise lines
     noise_min_circles:                2                   # minimum noise circles
