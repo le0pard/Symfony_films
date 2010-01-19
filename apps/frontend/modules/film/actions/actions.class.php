@@ -308,4 +308,22 @@ class filmActions extends sfActions
     $this->redirect('film_show', $film);
   }
   
+  public function executeRaiting(sfWebRequest $request)
+  {
+  	if ($this->getRequest()->isXmlHttpRequest() && $request->hasParameter('rating')){
+		$film = $this->getRoute()->getObject();
+		$rating_val = $request->getParameter('rating');
+		if (($rating = $film->getUserRaiting($this->getUser()->getAuthUser()->getId())) == false && $rating_val > 0 && $rating_val < 11){
+			$rating = new FilmRaiting();
+			$rating->setFilmId($film->getId());
+			$rating->setUserId($this->getUser()->getAuthUser()->getId());
+			$rating->setRating($rating_val);
+			$rating->save();
+		}
+		return $this->renderPartial('film/rating', array('film' => $film, 'sf_cache_key' => $film->getId()));
+	} else {
+		return $this->renderText("");
+	}
+  } 
+  
 }

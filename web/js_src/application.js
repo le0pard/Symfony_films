@@ -11,6 +11,7 @@ var FilmSiteJs = {
 		this.initAddLinkSort();
 		this.initGalleryMultUploader();
 		this.initAfisha();
+		this.initRating();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -127,6 +128,38 @@ var FilmSiteJs = {
 		} else {
 			$('upload_gallery_form').blindDown();
 		}	
+	},
+	initRating: function(){
+		if ($('rating_film')){
+			var rating_film = new Control.Rating('rating_film',{
+				max: 10, 
+				rated: false,
+				updateOptions: {
+					method: 'post',
+					onComplete: function(request){
+						if ($('film_rating_container')){
+							$('film_rating_container').update(request.responseText);
+							if ($('rating_film_done')){
+								var rating_film_done = new Control.Rating('rating_film_done',{
+									max: 10, 
+									rated: true,
+									value: $('rating_film_done').readAttribute('rel')
+								});
+							}
+						}
+					}
+				},
+				updateParameterName: 'rating',
+				updateUrl: film_raiting_path($('rating_film').readAttribute('rel'))	
+			});
+		}
+		if ($('rating_film_done')){
+			var rating_film_done = new Control.Rating('rating_film_done',{
+				max: 10, 
+				rated: true,
+				value: $('rating_film_done').readAttribute('rel')
+			});
+		}
 	},
 	initAfisha: function(){
 		if ($('afisha_country') && $('afisha_city') && $('afisha_city_box')){

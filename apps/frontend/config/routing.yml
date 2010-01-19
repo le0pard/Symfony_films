@@ -303,7 +303,19 @@ film_show:
   requirements:
     id: \d+
     url: (.*)
-    sf_method: [get, post] 
+    sf_method: [get, post]
+    
+film_raiting:
+  url:     /film/raiting/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectOneVisible
+  param:  { module: film, action: raiting }
+  requirements:
+    id: \d+
+    sf_method: [post]
 
 #comment
 comment_add:

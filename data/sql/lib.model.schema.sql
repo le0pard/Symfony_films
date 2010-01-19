@@ -188,7 +188,8 @@ CREATE TABLE `film_raiting`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`film_id` INTEGER  NOT NULL,
 	`user_id` INTEGER  NOT NULL,
-	`raiting` INTEGER default 1 NOT NULL,
+	`rating` INTEGER default 1 NOT NULL,
+	`created_at` DATETIME,
 	PRIMARY KEY (`id`,`film_id`,`user_id`),
 	INDEX `film_raiting_FI_1` (`film_id`),
 	CONSTRAINT `film_raiting_FK_1`

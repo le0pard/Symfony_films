@@ -7,5 +7,8 @@ _film_main:
 _topNew:
   enabled:     true
   lifetime:    2592000 # 30 суток  
+_rating:
+  enabled:     true
+  lifetime:    2592000 # 30 суток  
 all:
   with_layout: false

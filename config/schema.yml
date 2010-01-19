@@ -77,7 +77,8 @@ propel:
     id:               ~
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
     user_id:          { type: integer, foreignTable: users, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
-    raiting:          { type: integer, required: true, default: 1 }
+    rating:           { type: integer, required: true, default: 1 }
+    created_at:       ~
     
   film_gallery:
     id:               ~

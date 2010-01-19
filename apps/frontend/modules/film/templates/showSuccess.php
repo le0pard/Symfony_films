@@ -6,5 +6,11 @@
 	<a href="<?php echo url_for('film_edit_step1', $film) ?>">Редактировать</a>
 <?php endif ?>
 <?php include_partial('film/film_main', array('film' => $film, 'sf_cache_key' => $film->getId())) ?>
+
+<div id="film_rating_container">
+<?php include_partial('film/rating', array('film' => $film, 'sf_cache_key' => $film->getId())) ?>
+</div>
+<div class="clear"></div>
+
 <?php include_partial('comment/comment_list', array('comments' => $pager, 'film' => $film)) ?>
 <?php include_component('comment', 'comment_form', array('film' => $film)) ?>

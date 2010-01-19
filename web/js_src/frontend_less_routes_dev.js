@@ -37,6 +37,7 @@ film_delete_step3_path = function(id){ return less_routes_prefix_url + '/film/de
 film_add_final_path = function(id){ return less_routes_prefix_url + '/film/add_final/' + id + '.html'; }
 film_twitter_path = function(id){ return less_routes_prefix_url + '/film/twitter/' + id + '.html'; }
 film_show_path = function(id, url){ return less_routes_prefix_url + '/film/' + id + '/' + url + '.html'; }
+film_raiting_path = function(id){ return less_routes_prefix_url + '/film/raiting/' + id + '.html'; }
 comment_add_path = function(id){ return less_routes_prefix_url + '/comment/add/' + id + '.html'; }
 comment_edit_path = function(id){ return less_routes_prefix_url + '/comment/edit/' + id + '.html'; }
 comment_delete_path = function(id){ return less_routes_prefix_url + '/comment/delete/' + id + '.html'; }

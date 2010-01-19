@@ -40,6 +40,14 @@ class Film extends BaseFilm
 		return $this->countFilmLinkss($criteria);
 	}
 	
+	public function getRating(){
+	  return FilmRaitingPeer::getRatingByFilm($this->getId());
+	}
+	
+	public function getUserRaiting($user_id){
+	  return FilmRaitingPeer::userAlreadyVoted($this->getId(), $user_id);
+	}
+	
 	#search add
 	public function save(PropelPDO $con = null) {
 		if (is_null($con)) {
