@@ -6,7 +6,10 @@ _film_main:
   lifetime:    2592000 # 30 суток
 _topNew:
   enabled:     true
-  lifetime:    2592000 # 30 суток  
+  lifetime:    2592000 # 30 суток
+_topRating:
+  enabled:     true
+  lifetime:    14400 # 4 часа (сам) 
 _rating:
   enabled:     true
   lifetime:    2592000 # 30 суток  

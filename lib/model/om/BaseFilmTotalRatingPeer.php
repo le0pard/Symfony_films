@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base static class for performing query and update operations on the 'film_types' table.
+ * Base static class for performing query and update operations on the 'film_total_rating' table.
  *
  * 
  *
@@ -11,58 +11,43 @@
  *
  * @package    lib.model.om
  */
-abstract class BaseFilmTypesPeer {
+abstract class BaseFilmTotalRatingPeer {
 
 	/** the default database name for this class */
 	const DATABASE_NAME = 'propel';
 
 	/** the table name for this class */
-	const TABLE_NAME = 'film_types';
+	const TABLE_NAME = 'film_total_rating';
 
 	/** the related Propel class for this table */
-	const OM_CLASS = 'FilmTypes';
+	const OM_CLASS = 'FilmTotalRating';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'lib.model.FilmTypes';
+	const CLASS_DEFAULT = 'lib.model.FilmTotalRating';
 
 	/** the related TableMap class for this table */
-	const TM_CLASS = 'FilmTypesTableMap';
+	const TM_CLASS = 'FilmTotalRatingTableMap';
 	
 	/** The total number of columns. */
-	const NUM_COLUMNS = 8;
+	const NUM_COLUMNS = 3;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** the column name for the ID field */
-	const ID = 'film_types.ID';
+	const ID = 'film_total_rating.ID';
 
-	/** the column name for the TITLE field */
-	const TITLE = 'film_types.TITLE';
+	/** the column name for the FILM_ID field */
+	const FILM_ID = 'film_total_rating.FILM_ID';
 
-	/** the column name for the URL field */
-	const URL = 'film_types.URL';
-
-	/** the column name for the LOGO field */
-	const LOGO = 'film_types.LOGO';
-
-	/** the column name for the DESCRIPTION field */
-	const DESCRIPTION = 'film_types.DESCRIPTION';
-
-	/** the column name for the IS_VISIBLE field */
-	const IS_VISIBLE = 'film_types.IS_VISIBLE';
-
-	/** the column name for the IS_NOT_MAIN field */
-	const IS_NOT_MAIN = 'film_types.IS_NOT_MAIN';
-
-	/** the column name for the CREATED_AT field */
-	const CREATED_AT = 'film_types.CREATED_AT';
+	/** the column name for the TOTAL_RATING field */
+	const TOTAL_RATING = 'film_total_rating.TOTAL_RATING';
 
 	/**
-	 * An identiy map to hold any loaded instances of FilmTypes objects.
+	 * An identiy map to hold any loaded instances of FilmTotalRating objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
 	 * queries.
-	 * @var        array FilmTypes[]
+	 * @var        array FilmTotalRating[]
 	 */
 	public static $instances = array();
 
@@ -81,11 +66,11 @@ abstract class BaseFilmTypesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Title', 'Url', 'Logo', 'Description', 'IsVisible', 'IsNotMain', 'CreatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'title', 'url', 'logo', 'description', 'isVisible', 'isNotMain', 'createdAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::TITLE, self::URL, self::LOGO, self::DESCRIPTION, self::IS_VISIBLE, self::IS_NOT_MAIN, self::CREATED_AT, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'title', 'url', 'logo', 'description', 'is_visible', 'is_not_main', 'created_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'FilmId', 'TotalRating', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'filmId', 'totalRating', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::FILM_ID, self::TOTAL_RATING, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'film_id', 'total_rating', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	/**
@@ -95,11 +80,11 @@ abstract class BaseFilmTypesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Title' => 1, 'Url' => 2, 'Logo' => 3, 'Description' => 4, 'IsVisible' => 5, 'IsNotMain' => 6, 'CreatedAt' => 7, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'title' => 1, 'url' => 2, 'logo' => 3, 'description' => 4, 'isVisible' => 5, 'isNotMain' => 6, 'createdAt' => 7, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::TITLE => 1, self::URL => 2, self::LOGO => 3, self::DESCRIPTION => 4, self::IS_VISIBLE => 5, self::IS_NOT_MAIN => 6, self::CREATED_AT => 7, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'title' => 1, 'url' => 2, 'logo' => 3, 'description' => 4, 'is_visible' => 5, 'is_not_main' => 6, 'created_at' => 7, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'FilmId' => 1, 'TotalRating' => 2, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'filmId' => 1, 'totalRating' => 2, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::FILM_ID => 1, self::TOTAL_RATING => 2, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'film_id' => 1, 'total_rating' => 2, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, )
 	);
 
 	/**
@@ -148,12 +133,12 @@ abstract class BaseFilmTypesPeer {
 	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
 	 * </code>
 	 * @param      string $alias The alias for the current table.
-	 * @param      string $column The column name for current table. (i.e. FilmTypesPeer::COLUMN_NAME).
+	 * @param      string $column The column name for current table. (i.e. FilmTotalRatingPeer::COLUMN_NAME).
 	 * @return     string
 	 */
 	public static function alias($alias, $column)
 	{
-		return str_replace(FilmTypesPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(FilmTotalRatingPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	/**
@@ -169,14 +154,9 @@ abstract class BaseFilmTypesPeer {
 	 */
 	public static function addSelectColumns(Criteria $criteria)
 	{
-		$criteria->addSelectColumn(FilmTypesPeer::ID);
-		$criteria->addSelectColumn(FilmTypesPeer::TITLE);
-		$criteria->addSelectColumn(FilmTypesPeer::URL);
-		$criteria->addSelectColumn(FilmTypesPeer::LOGO);
-		$criteria->addSelectColumn(FilmTypesPeer::DESCRIPTION);
-		$criteria->addSelectColumn(FilmTypesPeer::IS_VISIBLE);
-		$criteria->addSelectColumn(FilmTypesPeer::IS_NOT_MAIN);
-		$criteria->addSelectColumn(FilmTypesPeer::CREATED_AT);
+		$criteria->addSelectColumn(FilmTotalRatingPeer::ID);
+		$criteria->addSelectColumn(FilmTotalRatingPeer::FILM_ID);
+		$criteria->addSelectColumn(FilmTotalRatingPeer::TOTAL_RATING);
 	}
 
 	/**
@@ -195,26 +175,26 @@ abstract class BaseFilmTypesPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(FilmTypesPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(FilmTotalRatingPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			FilmTypesPeer::addSelectColumns($criteria);
+			FilmTotalRatingPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 		$criteria->setDbName(self::DATABASE_NAME); // Set the correct dbName
 
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseFilmTypesPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $criteria, $con);
 		}
 
 		// BasePeer returns a PDOStatement
@@ -233,7 +213,7 @@ abstract class BaseFilmTypesPeer {
 	 *
 	 * @param      Criteria $criteria object used to create the SELECT statement.
 	 * @param      PropelPDO $con
-	 * @return     FilmTypes
+	 * @return     FilmTotalRating
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -241,7 +221,7 @@ abstract class BaseFilmTypesPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = FilmTypesPeer::doSelect($critcopy, $con);
+		$objects = FilmTotalRatingPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -258,7 +238,7 @@ abstract class BaseFilmTypesPeer {
 	 */
 	public static function doSelect(Criteria $criteria, PropelPDO $con = null)
 	{
-		return FilmTypesPeer::populateObjects(FilmTypesPeer::doSelectStmt($criteria, $con));
+		return FilmTotalRatingPeer::populateObjects(FilmTotalRatingPeer::doSelectStmt($criteria, $con));
 	}
 	/**
 	 * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -276,12 +256,12 @@ abstract class BaseFilmTypesPeer {
 	public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		if (!$criteria->hasSelectClause()) {
 			$criteria = clone $criteria;
-			FilmTypesPeer::addSelectColumns($criteria);
+			FilmTotalRatingPeer::addSelectColumns($criteria);
 		}
 
 		// Set the correct dbName
@@ -299,14 +279,14 @@ abstract class BaseFilmTypesPeer {
 	 * to the cache in order to ensure that the same objects are always returned by doSelect*()
 	 * and retrieveByPK*() calls.
 	 *
-	 * @param      FilmTypes $value A FilmTypes object.
+	 * @param      FilmTotalRating $value A FilmTotalRating object.
 	 * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
 	 */
-	public static function addInstanceToPool(FilmTypes $obj, $key = null)
+	public static function addInstanceToPool(FilmTotalRating $obj, $key = null)
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = (string) $obj->getId();
+				$key = serialize(array((string) $obj->getId(), (string) $obj->getFilmId()));
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -320,18 +300,18 @@ abstract class BaseFilmTypesPeer {
 	 * methods in your stub classes -- you may need to explicitly remove objects
 	 * from the cache in order to prevent returning objects that no longer exist.
 	 *
-	 * @param      mixed $value A FilmTypes object or a primary key value.
+	 * @param      mixed $value A FilmTotalRating object or a primary key value.
 	 */
 	public static function removeInstanceFromPool($value)
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
-			if (is_object($value) && $value instanceof FilmTypes) {
-				$key = (string) $value->getId();
-			} elseif (is_scalar($value)) {
+			if (is_object($value) && $value instanceof FilmTotalRating) {
+				$key = serialize(array((string) $value->getId(), (string) $value->getFilmId()));
+			} elseif (is_array($value) && count($value) === 2) {
 				// assume we've been passed a primary key
-				$key = (string) $value;
+				$key = serialize(array((string) $value[0], (string) $value[1]));
 			} else {
-				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or FilmTypes object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or FilmTotalRating object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
 			}
 
@@ -346,7 +326,7 @@ abstract class BaseFilmTypesPeer {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     FilmTypes Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     FilmTotalRating Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool($key)
@@ -370,14 +350,11 @@ abstract class BaseFilmTypesPeer {
 	}
 	
 	/**
-	 * Method to invalidate the instance pool of all tables related to film_types
+	 * Method to invalidate the instance pool of all tables related to film_total_rating
 	 * by a foreign key with ON DELETE CASCADE
 	 */
 	public static function clearRelatedInstancePool()
 	{
-		// invalidate objects in FilmFilmTypesPeer instance pool, since one or more of them may be deleted by ON DELETE CASCADE rule.
-		FilmFilmTypesPeer::clearInstancePool();
-
 	}
 
 	/**
@@ -393,10 +370,10 @@ abstract class BaseFilmTypesPeer {
 	public static function getPrimaryKeyHashFromRow($row, $startcol = 0)
 	{
 		// If the PK cannot be derived from the row, return NULL.
-		if ($row[$startcol] === null) {
+		if ($row[$startcol] === null && $row[$startcol + 1] === null) {
 			return null;
 		}
-		return (string) $row[$startcol];
+		return serialize(array((string) $row[$startcol], (string) $row[$startcol + 1]));
 	}
 
 	/**
@@ -411,11 +388,11 @@ abstract class BaseFilmTypesPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = FilmTypesPeer::getOMClass(false);
+		$cls = FilmTotalRatingPeer::getOMClass(false);
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key = FilmTypesPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj = FilmTypesPeer::getInstanceFromPool($key))) {
+			$key = FilmTotalRatingPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj = FilmTotalRatingPeer::getInstanceFromPool($key))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://propel.phpdb.org/trac/ticket/509
 				// $obj->hydrate($row, 0, true); // rehydrate
@@ -424,12 +401,270 @@ abstract class BaseFilmTypesPeer {
 				$obj = new $cls();
 				$obj->hydrate($row);
 				$results[] = $obj;
-				FilmTypesPeer::addInstanceToPool($obj, $key);
+				FilmTotalRatingPeer::addInstanceToPool($obj, $key);
 			} // if key exists
 		}
 		$stmt->closeCursor();
 		return $results;
 	}
+
+	/**
+	 * Returns the number of rows matching criteria, joining the related Film table
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     int Number of matching rows.
+	 */
+	public static function doCountJoinFilm(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		// we're going to modify criteria, so copy it first
+		$criteria = clone $criteria;
+
+		// We need to set the primary table name, since in the case that there are no WHERE columns
+		// it will be impossible for the BasePeer::createSelectSql() method to determine which
+		// tables go into the FROM clause.
+		$criteria->setPrimaryTableName(FilmTotalRatingPeer::TABLE_NAME);
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			FilmTotalRatingPeer::addSelectColumns($criteria);
+		}
+		
+		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+		
+		// Set the correct dbName
+		$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+
+		$criteria->addJoin(FilmTotalRatingPeer::FILM_ID, FilmPeer::ID, $join_behavior);
+
+		// symfony_behaviors behavior
+		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
+		{
+		  call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $criteria, $con);
+		}
+
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; // no rows returned; we infer that means 0 matches.
+		}
+		$stmt->closeCursor();
+		return $count;
+	}
+
+
+	/**
+	 * Selects a collection of FilmTotalRating objects pre-filled with their Film objects.
+	 * @param      Criteria  $criteria
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     array Array of FilmTotalRating objects.
+	 * @throws     PropelException Any exceptions caught during processing will be
+	 *		 rethrown wrapped into a PropelException.
+	 */
+	public static function doSelectJoinFilm(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$criteria = clone $criteria;
+
+		// Set the correct dbName if it has not been overridden
+		if ($criteria->getDbName() == Propel::getDefaultDB()) {
+			$criteria->setDbName(self::DATABASE_NAME);
+		}
+
+		FilmTotalRatingPeer::addSelectColumns($criteria);
+		$startcol = (FilmTotalRatingPeer::NUM_COLUMNS - FilmTotalRatingPeer::NUM_LAZY_LOAD_COLUMNS);
+		FilmPeer::addSelectColumns($criteria);
+
+		$criteria->addJoin(FilmTotalRatingPeer::FILM_ID, FilmPeer::ID, $join_behavior);
+
+		// symfony_behaviors behavior
+		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
+		{
+		  call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $criteria, $con);
+		}
+
+		$stmt = BasePeer::doSelect($criteria, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = FilmTotalRatingPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = FilmTotalRatingPeer::getInstanceFromPool($key1))) {
+				// We no longer rehydrate the object, since this can cause data loss.
+				// See http://propel.phpdb.org/trac/ticket/509
+				// $obj1->hydrate($row, 0, true); // rehydrate
+			} else {
+
+				$cls = FilmTotalRatingPeer::getOMClass(false);
+
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				FilmTotalRatingPeer::addInstanceToPool($obj1, $key1);
+			} // if $obj1 already loaded
+
+			$key2 = FilmPeer::getPrimaryKeyHashFromRow($row, $startcol);
+			if ($key2 !== null) {
+				$obj2 = FilmPeer::getInstanceFromPool($key2);
+				if (!$obj2) {
+
+					$cls = FilmPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol);
+					FilmPeer::addInstanceToPool($obj2, $key2);
+				} // if obj2 already loaded
+
+				// Add the $obj1 (FilmTotalRating) to $obj2 (Film)
+				$obj2->addFilmTotalRating($obj1);
+
+			} // if joined row was not null
+
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+
+
+	/**
+	 * Returns the number of rows matching criteria, joining all related tables
+	 *
+	 * @param      Criteria $criteria
+	 * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     int Number of matching rows.
+	 */
+	public static function doCountJoinAll(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		// we're going to modify criteria, so copy it first
+		$criteria = clone $criteria;
+
+		// We need to set the primary table name, since in the case that there are no WHERE columns
+		// it will be impossible for the BasePeer::createSelectSql() method to determine which
+		// tables go into the FROM clause.
+		$criteria->setPrimaryTableName(FilmTotalRatingPeer::TABLE_NAME);
+
+		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
+			$criteria->setDistinct();
+		}
+
+		if (!$criteria->hasSelectClause()) {
+			FilmTotalRatingPeer::addSelectColumns($criteria);
+		}
+		
+		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
+		
+		// Set the correct dbName
+		$criteria->setDbName(self::DATABASE_NAME);
+
+		if ($con === null) {
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+		}
+
+		$criteria->addJoin(FilmTotalRatingPeer::FILM_ID, FilmPeer::ID, $join_behavior);
+
+		// symfony_behaviors behavior
+		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
+		{
+		  call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $criteria, $con);
+		}
+
+		$stmt = BasePeer::doCount($criteria, $con);
+
+		if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$count = (int) $row[0];
+		} else {
+			$count = 0; // no rows returned; we infer that means 0 matches.
+		}
+		$stmt->closeCursor();
+		return $count;
+	}
+
+	/**
+	 * Selects a collection of FilmTotalRating objects pre-filled with all related objects.
+	 *
+	 * @param      Criteria  $criteria
+	 * @param      PropelPDO $con
+	 * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
+	 * @return     array Array of FilmTotalRating objects.
+	 * @throws     PropelException Any exceptions caught during processing will be
+	 *		 rethrown wrapped into a PropelException.
+	 */
+	public static function doSelectJoinAll(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$criteria = clone $criteria;
+
+		// Set the correct dbName if it has not been overridden
+		if ($criteria->getDbName() == Propel::getDefaultDB()) {
+			$criteria->setDbName(self::DATABASE_NAME);
+		}
+
+		FilmTotalRatingPeer::addSelectColumns($criteria);
+		$startcol2 = (FilmTotalRatingPeer::NUM_COLUMNS - FilmTotalRatingPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		FilmPeer::addSelectColumns($criteria);
+		$startcol3 = $startcol2 + (FilmPeer::NUM_COLUMNS - FilmPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		$criteria->addJoin(FilmTotalRatingPeer::FILM_ID, FilmPeer::ID, $join_behavior);
+
+		// symfony_behaviors behavior
+		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
+		{
+		  call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $criteria, $con);
+		}
+
+		$stmt = BasePeer::doSelect($criteria, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = FilmTotalRatingPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = FilmTotalRatingPeer::getInstanceFromPool($key1))) {
+				// We no longer rehydrate the object, since this can cause data loss.
+				// See http://propel.phpdb.org/trac/ticket/509
+				// $obj1->hydrate($row, 0, true); // rehydrate
+			} else {
+				$cls = FilmTotalRatingPeer::getOMClass(false);
+
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				FilmTotalRatingPeer::addInstanceToPool($obj1, $key1);
+			} // if obj1 already loaded
+
+			// Add objects for joined Film rows
+
+			$key2 = FilmPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+			if ($key2 !== null) {
+				$obj2 = FilmPeer::getInstanceFromPool($key2);
+				if (!$obj2) {
+
+					$cls = FilmPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					FilmPeer::addInstanceToPool($obj2, $key2);
+				} // if obj2 loaded
+
+				// Add the $obj1 (FilmTotalRating) to the collection in $obj2 (Film)
+				$obj2->addFilmTotalRating($obj1);
+			} // if joined row not null
+
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+
 	/**
 	 * Returns the TableMap related to this peer.
 	 * This method is not needed for general use but a specific application could have a need.
@@ -447,10 +682,10 @@ abstract class BaseFilmTypesPeer {
 	 */
 	public static function buildTableMap()
 	{
-	  $dbMap = Propel::getDatabaseMap(BaseFilmTypesPeer::DATABASE_NAME);
-	  if (!$dbMap->hasTable(BaseFilmTypesPeer::TABLE_NAME))
+	  $dbMap = Propel::getDatabaseMap(BaseFilmTotalRatingPeer::DATABASE_NAME);
+	  if (!$dbMap->hasTable(BaseFilmTotalRatingPeer::TABLE_NAME))
 	  {
-	    $dbMap->addTableObject(new FilmTypesTableMap());
+	    $dbMap->addTableObject(new FilmTotalRatingTableMap());
 	  }
 	}
 
@@ -467,13 +702,13 @@ abstract class BaseFilmTypesPeer {
 	 */
 	public static function getOMClass($withPrefix = true)
 	{
-		return $withPrefix ? FilmTypesPeer::CLASS_DEFAULT : FilmTypesPeer::OM_CLASS;
+		return $withPrefix ? FilmTotalRatingPeer::CLASS_DEFAULT : FilmTotalRatingPeer::OM_CLASS;
 	}
 
 	/**
-	 * Method perform an INSERT on the database, given a FilmTypes or Criteria object.
+	 * Method perform an INSERT on the database, given a FilmTotalRating or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or FilmTypes object containing data that is used to create the INSERT statement.
+	 * @param      mixed $values Criteria or FilmTotalRating object containing data that is used to create the INSERT statement.
 	 * @param      PropelPDO $con the PropelPDO connection to use
 	 * @return     mixed The new primary key.
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -482,26 +717,26 @@ abstract class BaseFilmTypesPeer {
 	public static function doInsert($values, PropelPDO $con = null)
 	{
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseFilmTypesPeer:doInsert:pre') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmTotalRatingPeer:doInsert:pre') as $sf_hook)
     {
-      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseFilmTypesPeer', $values, $con))
+      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $values, $con))
       {
         return $sf_hook_retval;
       }
     }
 
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from FilmTypes object
+			$criteria = $values->buildCriteria(); // build Criteria from FilmTotalRating object
 		}
 
-		if ($criteria->containsKey(FilmTypesPeer::ID) && $criteria->keyContainsValue(FilmTypesPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.FilmTypesPeer::ID.')');
+		if ($criteria->containsKey(FilmTotalRatingPeer::ID) && $criteria->keyContainsValue(FilmTotalRatingPeer::ID) ) {
+			throw new PropelException('Cannot insert a value for auto-increment primary key ('.FilmTotalRatingPeer::ID.')');
 		}
 
 
@@ -520,18 +755,18 @@ abstract class BaseFilmTypesPeer {
 		}
 
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseFilmTypesPeer:doInsert:post') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmTotalRatingPeer:doInsert:post') as $sf_hook)
     {
-      call_user_func($sf_hook, 'BaseFilmTypesPeer', $values, $con, $pk);
+      call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $values, $con, $pk);
     }
 
 		return $pk;
 	}
 
 	/**
-	 * Method perform an UPDATE on the database, given a FilmTypes or Criteria object.
+	 * Method perform an UPDATE on the database, given a FilmTotalRating or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or FilmTypes object containing data that is used to create the UPDATE statement.
+	 * @param      mixed $values Criteria or FilmTotalRating object containing data that is used to create the UPDATE statement.
 	 * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -540,16 +775,16 @@ abstract class BaseFilmTypesPeer {
 	public static function doUpdate($values, PropelPDO $con = null)
 	{
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseFilmTypesPeer:doUpdate:pre') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmTotalRatingPeer:doUpdate:pre') as $sf_hook)
     {
-      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseFilmTypesPeer', $values, $con))
+      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $values, $con))
       {
         return $sf_hook_retval;
       }
     }
 
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
@@ -557,10 +792,13 @@ abstract class BaseFilmTypesPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 
-			$comparison = $criteria->getComparison(FilmTypesPeer::ID);
-			$selectCriteria->add(FilmTypesPeer::ID, $criteria->remove(FilmTypesPeer::ID), $comparison);
+			$comparison = $criteria->getComparison(FilmTotalRatingPeer::ID);
+			$selectCriteria->add(FilmTotalRatingPeer::ID, $criteria->remove(FilmTotalRatingPeer::ID), $comparison);
 
-		} else { // $values is FilmTypes object
+			$comparison = $criteria->getComparison(FilmTotalRatingPeer::FILM_ID);
+			$selectCriteria->add(FilmTotalRatingPeer::FILM_ID, $criteria->remove(FilmTotalRatingPeer::FILM_ID), $comparison);
+
+		} else { // $values is FilmTotalRating object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
 		}
@@ -571,36 +809,35 @@ abstract class BaseFilmTypesPeer {
 		$ret = BasePeer::doUpdate($selectCriteria, $criteria, $con);
 
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseFilmTypesPeer:doUpdate:post') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmTotalRatingPeer:doUpdate:post') as $sf_hook)
     {
-      call_user_func($sf_hook, 'BaseFilmTypesPeer', $values, $con, $ret);
+      call_user_func($sf_hook, 'BaseFilmTotalRatingPeer', $values, $con, $ret);
     }
 
     return $ret;
 	}
 
 	/**
-	 * Method to DELETE all rows from the film_types table.
+	 * Method to DELETE all rows from the film_total_rating table.
 	 *
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 */
 	public static function doDeleteAll($con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$affectedRows = 0; // initialize var to track total num of affected rows
 		try {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += FilmTypesPeer::doOnDeleteCascade(new Criteria(FilmTypesPeer::DATABASE_NAME), $con);
-			$affectedRows += BasePeer::doDeleteAll(FilmTypesPeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(FilmTotalRatingPeer::TABLE_NAME, $con);
 			// Because this db requires some delete cascade/set null emulation, we have to
 			// clear the cached instance *after* the emulation has happened (since
 			// instances get re-added by the select statement contained therein).
-			FilmTypesPeer::clearInstancePool();
-			FilmTypesPeer::clearRelatedInstancePool();
+			FilmTotalRatingPeer::clearInstancePool();
+			FilmTotalRatingPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -610,9 +847,9 @@ abstract class BaseFilmTypesPeer {
 	}
 
 	/**
-	 * Method perform a DELETE on the database, given a FilmTypes or Criteria object OR a primary key value.
+	 * Method perform a DELETE on the database, given a FilmTotalRating or Criteria object OR a primary key value.
 	 *
-	 * @param      mixed $values Criteria or FilmTypes object or primary key or array of primary keys
+	 * @param      mixed $values Criteria or FilmTotalRating object or primary key or array of primary keys
 	 *              which is used to create the DELETE statement
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -623,20 +860,20 @@ abstract class BaseFilmTypesPeer {
 	 public static function doDelete($values, PropelPDO $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			// invalidate the cache for all objects of this type, since we have no
 			// way of knowing (without running a query) what objects should be invalidated
 			// from the cache based on this Criteria.
-			FilmTypesPeer::clearInstancePool();
+			FilmTotalRatingPeer::clearInstancePool();
 
 			// rename for clarity
 			$criteria = clone $values;
-		} elseif ($values instanceof FilmTypes) {
+		} elseif ($values instanceof FilmTotalRating) {
 			// invalidate the cache for this single object
-			FilmTypesPeer::removeInstanceFromPool($values);
+			FilmTotalRatingPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else {
@@ -645,11 +882,22 @@ abstract class BaseFilmTypesPeer {
 
 
 			$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(FilmTypesPeer::ID, (array) $values, Criteria::IN);
+			// primary key is composite; we therefore, expect
+			// the primary key passed to be an array of pkey
+			// values
+			if (count($values) == count($values, COUNT_RECURSIVE)) {
+				// array is not multi-dimensional
+				$values = array($values);
+			}
 
-			foreach ((array) $values as $singleval) {
-				// we can invalidate the cache for this single object
-				FilmTypesPeer::removeInstanceFromPool($singleval);
+			foreach ($values as $value) {
+
+				$criterion = $criteria->getNewCriterion(FilmTotalRatingPeer::ID, $value[0]);
+				$criterion->addAnd($criteria->getNewCriterion(FilmTotalRatingPeer::FILM_ID, $value[1]));
+				$criteria->addOr($criterion);
+
+				// we can invalidate the cache for this single PK
+				FilmTotalRatingPeer::removeInstanceFromPool($value);
 			}
 		}
 
@@ -662,19 +910,9 @@ abstract class BaseFilmTypesPeer {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += FilmTypesPeer::doOnDeleteCascade($criteria, $con);
-			
-				// Because this db requires some delete cascade/set null emulation, we have to
-				// clear the cached instance *after* the emulation has happened (since
-				// instances get re-added by the select statement contained therein).
-				if ($values instanceof Criteria) {
-					FilmTypesPeer::clearInstancePool();
-				} else { // it's a PK or object
-					FilmTypesPeer::removeInstanceFromPool($values);
-				}
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
-			FilmTypesPeer::clearRelatedInstancePool();
+			FilmTotalRatingPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -684,56 +922,24 @@ abstract class BaseFilmTypesPeer {
 	}
 
 	/**
-	 * This is a method for emulating ON DELETE CASCADE for DBs that don't support this
-	 * feature (like MySQL or SQLite).
-	 *
-	 * This method is not very speedy because it must perform a query first to get
-	 * the implicated records and then perform the deletes by calling those Peer classes.
-	 *
-	 * This method should be used within a transaction if possible.
-	 *
-	 * @param      Criteria $criteria
-	 * @param      PropelPDO $con
-	 * @return     int The number of affected rows (if supported by underlying database driver).
-	 */
-	protected static function doOnDeleteCascade(Criteria $criteria, PropelPDO $con)
-	{
-		// initialize var to track total num of affected rows
-		$affectedRows = 0;
-
-		// first find the objects that are implicated by the $criteria
-		$objects = FilmTypesPeer::doSelect($criteria, $con);
-		foreach ($objects as $obj) {
-
-
-			// delete related FilmFilmTypes objects
-			$criteria = new Criteria(FilmFilmTypesPeer::DATABASE_NAME);
-			
-			$criteria->add(FilmFilmTypesPeer::FILM_GENRE_ID, $obj->getId());
-			$affectedRows += FilmFilmTypesPeer::doDelete($criteria, $con);
-		}
-		return $affectedRows;
-	}
-
-	/**
-	 * Validates all modified columns of given FilmTypes object.
+	 * Validates all modified columns of given FilmTotalRating object.
 	 * If parameter $columns is either a single column name or an array of column names
 	 * than only those columns are validated.
 	 *
 	 * NOTICE: This does not apply to primary or foreign keys for now.
 	 *
-	 * @param      FilmTypes $obj The object to validate.
+	 * @param      FilmTotalRating $obj The object to validate.
 	 * @param      mixed $cols Column name or array of column names.
 	 *
 	 * @return     mixed TRUE if all columns are valid or the error message of the first invalid column.
 	 */
-	public static function doValidate(FilmTypes $obj, $cols = null)
+	public static function doValidate(FilmTotalRating $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(FilmTypesPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(FilmTypesPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(FilmTotalRatingPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(FilmTotalRatingPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -749,60 +955,32 @@ abstract class BaseFilmTypesPeer {
 
 		}
 
-		return BasePeer::doValidate(FilmTypesPeer::DATABASE_NAME, FilmTypesPeer::TABLE_NAME, $columns);
+		return BasePeer::doValidate(FilmTotalRatingPeer::DATABASE_NAME, FilmTotalRatingPeer::TABLE_NAME, $columns);
 	}
 
 	/**
-	 * Retrieve a single object by pkey.
-	 *
-	 * @param      int $pk the primary key.
-	 * @param      PropelPDO $con the connection to use
-	 * @return     FilmTypes
+	 * Retrieve object using using composite pkey values.
+	 * @param      int $id
+	 * @param      int $film_id
+	 * @param      PropelPDO $con
+	 * @return     FilmTotalRating
 	 */
-	public static function retrieveByPK($pk, PropelPDO $con = null)
-	{
-
-		if (null !== ($obj = FilmTypesPeer::getInstanceFromPool((string) $pk))) {
-			return $obj;
+	public static function retrieveByPK($id, $film_id, PropelPDO $con = null) {
+		$key = serialize(array((string) $id, (string) $film_id));
+ 		if (null !== ($obj = FilmTotalRatingPeer::getInstanceFromPool($key))) {
+ 			return $obj;
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmTotalRatingPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
+		$criteria = new Criteria(FilmTotalRatingPeer::DATABASE_NAME);
+		$criteria->add(FilmTotalRatingPeer::ID, $id);
+		$criteria->add(FilmTotalRatingPeer::FILM_ID, $film_id);
+		$v = FilmTotalRatingPeer::doSelect($criteria, $con);
 
-		$criteria = new Criteria(FilmTypesPeer::DATABASE_NAME);
-		$criteria->add(FilmTypesPeer::ID, $pk);
-
-		$v = FilmTypesPeer::doSelect($criteria, $con);
-
-		return !empty($v) > 0 ? $v[0] : null;
+		return !empty($v) ? $v[0] : null;
 	}
-
-	/**
-	 * Retrieve multiple objects by pkey.
-	 *
-	 * @param      array $pks List of primary keys
-	 * @param      PropelPDO $con the connection to use
-	 * @throws     PropelException Any exceptions caught during processing will be
-	 *		 rethrown wrapped into a PropelException.
-	 */
-	public static function retrieveByPKs($pks, PropelPDO $con = null)
-	{
-		if ($con === null) {
-			$con = Propel::getConnection(FilmTypesPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-		}
-
-		$objs = null;
-		if (empty($pks)) {
-			$objs = array();
-		} else {
-			$criteria = new Criteria(FilmTypesPeer::DATABASE_NAME);
-			$criteria->add(FilmTypesPeer::ID, $pks, Criteria::IN);
-			$objs = FilmTypesPeer::doSelect($criteria, $con);
-		}
-		return $objs;
-	}
-
 	// symfony behavior
 	
 	/**
@@ -830,15 +1008,15 @@ abstract class BaseFilmTypesPeer {
 	{
 	  if (preg_match('/^do(Select|Count)(Join(All(Except)?)?|Stmt)?/', $method, $match))
 	  {
-	    return sprintf('BaseFilmTypesPeer:%s:%1$s', 'Count' == $match[1] ? 'doCount' : $match[0]);
+	    return sprintf('BaseFilmTotalRatingPeer:%s:%1$s', 'Count' == $match[1] ? 'doCount' : $match[0]);
 	  }
 	
 	  throw new LogicException(sprintf('Unrecognized function "%s"', $method));
 	}
 
-} // BaseFilmTypesPeer
+} // BaseFilmTotalRatingPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseFilmTypesPeer::buildTableMap();
+BaseFilmTotalRatingPeer::buildTableMap();
 

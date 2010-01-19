@@ -204,6 +204,26 @@ CREATE TABLE `film_raiting`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- film_total_rating
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `film_total_rating`;
+
+
+CREATE TABLE `film_total_rating`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`film_id` INTEGER  NOT NULL,
+	`total_rating` DECIMAL(10,1) default 0 NOT NULL,
+	PRIMARY KEY (`id`,`film_id`),
+	INDEX `film_total_rating_FI_1` (`film_id`),
+	CONSTRAINT `film_total_rating_FK_1`
+		FOREIGN KEY (`film_id`)
+		REFERENCES `film` (`id`)
+		ON DELETE CASCADE
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- film_gallery
 #-----------------------------------------------------------------------------
 

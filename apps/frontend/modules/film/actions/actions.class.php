@@ -318,12 +318,33 @@ class filmActions extends sfActions
 			$rating->setFilmId($film->getId());
 			$rating->setUserId($this->getUser()->getAuthUser()->getId());
 			$rating->setRating($rating_val);
-			$rating->save();
+			if ($rating->save()){
+				$this->updateGlobalRaiting($film);
+			}
 		}
 		return $this->renderPartial('film/rating', array('film' => $film, 'sf_cache_key' => $film->getId()));
 	} else {
 		return $this->renderText("");
 	}
   } 
+  
+  
+  protected function updateGlobalRaiting($film){
+  	if ($film){
+  		if (($ratings = $film->getFilmTotalRatings()) == true){
+  			$rating = null;
+  			foreach($ratings as $row){
+  				$rating = $row;
+  			}
+  			$rating->setTotalRating($film->getRating());
+  			$rating->save();
+  		} else {
+  			$rating = new FilmTotalRating();
+  			$rating->setFilmId($film->getId());
+  			$rating->setTotalRating($film->getRating());
+  			$rating->save();
+  		}
+  	}
+  }
   
 }

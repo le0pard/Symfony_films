@@ -80,6 +80,11 @@ propel:
     rating:           { type: integer, required: true, default: 1 }
     created_at:       ~
     
+  film_total_rating:
+    id:               ~
+    film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
+    total_rating:     { type: decimal, required: true, size: 10, scale: 1, default: 0 }
+    
   film_gallery:
     id:               ~
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
