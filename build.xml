@@ -29,9 +29,14 @@
 				<file name="dragdrop.js" />
 				<file name="slider.js" />
 				<file name="controls.js" />
+				
 				<file name="lightbox.js" />
+				
 				<file name="livepipe.js" />
 				<file name="rating.js" />
+				
+				<file name="scroll.js" />
+				
 				<file name="frontend_less_routes_dev.js" />
 				<file name="application.js" />
 			</filelist>

@@ -1,7 +1,6 @@
 <?php include_component('user', 'card') ?>
 <?php include_component('film', 'types', array('sf_cache_key' => 'types')) ?>
 <?php include_component('comment', 'last_comments', array('sf_cache_key' => 'last_comments')) ?>
-<?php include_component('afisha', 'today', array('sf_cache_key' => 'afisha')) ?>
 
 <div class="right_card">
 	<div class="header">
