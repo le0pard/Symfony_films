@@ -1,9 +1,10 @@
 prod:
   logger:
-    class:   sfNoLogger
+    class:   sfFileLogger
     param:
       level:   err
       loggers: ~
+      file:    %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
                
 cli:
   controller:
