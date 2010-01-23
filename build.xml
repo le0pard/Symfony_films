@@ -33,6 +33,7 @@
 				<file name="lightbox.js" />
 				
 				<file name="livepipe.js" />
+				<file name="textarea.js" />
 				<file name="rating.js" />
 				
 				<file name="scroll.js" />
@@ -50,6 +51,7 @@
 					<file name="reset.css" />
 					<file name="main.css" />
 					<file name="lightbox.css" />
+					<file name="textarea.css" />
 				</filelist>
 			</concat>
 		</target>

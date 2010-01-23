@@ -12,6 +12,7 @@ var FilmSiteJs = {
 		this.initGalleryMultUploader();
 		this.initAfisha();
 		this.initRating();
+		this.initProfileTextarea();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -177,7 +178,35 @@ var FilmSiteJs = {
 	},
 	changeAfishaCity: function(){
 		location.href = afisha_get_shows_path($F('afisha_city'));
-	}
+	},
+	initProfileTextarea: function(){
+		if ($('profile_about')){
+
+			var textarea = new Control.TextArea('profile_about');  
+			var toolbar = new Control.TextArea.ToolBar(textarea);  
+			toolbar.container.id = 'markdown_toolbar'; //for css styles
+					
+			toolbar.addButton('Bold',function(){  
+				this.wrapSelection('<b>','</b>');  
+			},{  
+				id: 'markdown_bold_button'  
+			});  
+			toolbar.addButton('Italics',function(){  
+				this.wrapSelection('<i>','</i>');  
+			},{  
+				id: 'markdown_italics_button'  
+			});  
+			toolbar.addButton('Link',function(){  
+				var selection = this.getSelection();  
+				var response = prompt('Укажите ссылку','');  
+				if(response == null) return;  
+				var url = (response == '' ? 'http://link_url/' : response).replace(/^(?!(f|ht)tps?:\/\/)/,'http://');
+				this.replaceSelection('<a href="' + url + '">' + (selection == '' ? 'Link Text' : selection) + '</a>');  
+			},{  
+				id: 'markdown_link_button'  
+			});
+		}	
+	}	
 };
 
 Event.observe(window, 'load', function(){
