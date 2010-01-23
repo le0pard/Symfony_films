@@ -1,5 +1,4 @@
 <hr />
-<?php use_javascript('tiny_mce/tiny_mce.js') ?>
 <?php if (isset($form)): ?>
 <form id="comment_add" action="
 <?php if (isset($method) && 'edit' == $method && isset($comment)): ?>
