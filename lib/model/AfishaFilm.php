@@ -37,7 +37,8 @@ sfPropelBehavior::add('AfishaFilm', array(
 	'viewCacheObserver' => array(
 		'cache' => array(
 			'afisha/film?id=#{id}',
-			'afisha/film?day=*&id=#{id}&month=*&year=*'
+			'afisha/film?day=*&id=#{id}&month=*&year=*',
+			'afisha/film?day=*&id=#{id}&month=*&year=*&city_id=*'
 		),
 		'variables' => array(
 			'id' => 'getId'
