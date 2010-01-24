@@ -6,9 +6,15 @@
 <?php endif ?>
 </h2>
 Год: <?php echo $film->getYear() ?><br />
-Постер: <img style="max-width:200px;max-height:200px;" src="<?php echo $film->getPoster() ?>" /><br />
+<?php if ($film->getPoster()): ?>
+Постер: <img src="/uploads/afisha_films/<?php echo $film->getPoster() ?>" /><br />
+<?php endif ?>
 Ссылка: <?php echo $film->getLink() ?><br />
 Описание: <?php echo $film->getDescription(ESC_RAW) ?><br />
+Рейтинг: 
+<a target="_blank" href="http://kino-teatr.ua/ru/main/film_rating/film_id/<?php echo $film->getExternalId() ?>.phtml" title="<?php echo $film->getTitle()?>">
+	<img alt="Рейтинг фильма Аватар" src="http://kino-teatr.ua/rating_<?php echo $film->getExternalId() ?>.gif">
+</a><br />
 
 
 <?php if (isset($film)): ?>
