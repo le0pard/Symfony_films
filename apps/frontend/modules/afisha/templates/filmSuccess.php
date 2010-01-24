@@ -1,4 +1,4 @@
-<?php include_component('afisha', 'selectors') ?>
+<?php include_component('afisha', 'selectors', array('film' => $film, 'selected_city' => $city)) ?>
 <h2>
 <?php echo $film->getTitle()?>
 <?php if ($film->getOrigTitle()):?>
@@ -22,7 +22,7 @@
 	<ul>
 <?php foreach($date_range as $date):?>
 		<li>
-			<a href="<?php echo url_for('@afisha_film_by_date?id='.$film->getId().'&year='.$date['y'].'&month='.$date['m'].'&day='.$date['d']) ?>">
+			<a href="<?php echo url_for('@afisha_film_city_by_date?id='.$film->getId().'&year='.$date['y'].'&month='.$date['m'].'&day='.$date['d'].'&city_id='.$city->getId()) ?>">
 				<strong><?php echo $date['d'];?></strong>
 				<span><?php echo $date['m'];?>/<?php echo $date['y'];?></span>
 				<spam><?php echo $days_of_week[$date['w']]; ?></spam>

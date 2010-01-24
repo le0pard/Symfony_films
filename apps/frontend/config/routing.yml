@@ -493,6 +493,29 @@ afisha_film:
     id: \d+
     sf_method: [get]
 
+afisha_film_city:
+  url:    /afisha/film/:id/city/:city_id
+  class:   sfPropelRoute
+  options:
+    model: AfishaFilm
+    type: object
+  param:  { module: afisha, action: film }
+  requirements:
+    id: \d+
+    city_id: \d+
+    sf_method: [get]
+
+afisha_film_city_by_date:
+  url:    /afisha/film/:id/city/:city_id/date/:year/:month/:day
+  param:  { module: afisha, action: film }
+  requirements:
+    id: \d+
+    year: ([0-9]{4})
+    month: (?:0[1-9]|1[0-2])
+    day: (?:[0][1-9]|[1-2][0-9]|3[0-1])
+    city_id: \d+
+    sf_method: [get]
+
 #statistic
 statistic:
   url:   /statistic

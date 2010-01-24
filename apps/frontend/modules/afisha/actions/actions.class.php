@@ -71,10 +71,17 @@ class afishaActions extends sfActions
   	} elseif ($request->hasParameter('id')){	
   		$this->film = $this->getRoute()->getObject();
   	}
+  	
+  	if ($request->hasParameter('city_id')){
+  		$this->city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+  		$this->forward404Unless($this->city);
+  	} else {
+  		$this->city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+  	}
 
 	$this->getAllDates($request);
   	
-  	$this->afisha = AfishaPeer::getByDateRangeAndFilm($this->selected_day['t'], $this->selected_day['t'], $this->film->getId());
+  	$this->afisha = AfishaPeer::getByDateRangeAndFilm($this->selected_day['t'], $this->selected_day['t'], $this->film->getId(), $this->city->getId());
   }
   
   protected function getAllDates(sfWebRequest $request) {

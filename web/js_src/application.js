@@ -177,7 +177,11 @@ var FilmSiteJs = {
 		});
 	},
 	changeAfishaCity: function(){
-		location.href = afisha_get_shows_path($F('afisha_city'));
+		if ($('afisha_film_id')){
+			location.href = afisha_film_city_path($F('afisha_film_id'),$F('afisha_city'));
+		} else {	
+			location.href = afisha_get_shows_path($F('afisha_city'));
+		}
 	},
 	initTextarea: function(){
 		var textarea_id = null;

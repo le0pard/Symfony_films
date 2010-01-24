@@ -5,6 +5,9 @@
 		<?php endforeach?>
 	</select>
 	<?php if ($selected_country):?>
+	<?php if (isset($film)):?>
+		<input type="hidden" id="afisha_film_id" value="<?php echo $film->getId()?>" />
+	<?php endif ?>
 	<div id="afisha_city_box">
 		<select id="afisha_city">
 			<option value="">-- Выберите город --</option>
