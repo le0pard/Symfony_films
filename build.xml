@@ -8,17 +8,42 @@
 
 	<taskdef name="yuicompress" classname="com.yahoo.platform.yui.compressor.YUICompressTask">
 		<classpath>
-			<fileset dir="/home/leo/programs/libs/yuicompressor">
+			<fileset dir="/home/leo/programs/projects/symfony_films/ext_libs/yui">
 				<include name="*.jar"/>
 			</fileset>
 		</classpath>
 	</taskdef>
-
+	
+	<taskdef name="smartsprites" classname="org.carrot2.labs.smartsprites.ant.SmartSpritesTask">
+      <classpath>
+        <fileset dir="/home/leo/programs/projects/symfony_films/ext_libs/sprites">
+          <include name="*.jar" />
+        </fileset>
+      </classpath>
+    </taskdef>
+	
 	<target name="build-lib" depends="minify-js, minify-css, concat-js-files, concat-css-files">
 		<echo>Done.</echo>
 	</target>
-
-
+	
+	<target name="process-sprites"
+	          description="Performs CSS sprite processing">
+		<echo>Create sprites</echo>
+		<smartsprites documentrootdir="./web" 
+					  rootdir="${src_css.dir}" 
+	                  outputdir="${dest_css.dir}"
+	                  cssfileencoding="UTF-8"
+	                  cssfilesuffix="-sprite"
+	                  loglevel="INFO"
+	                  spritepngdepth="AUTO"
+	                  spritepngie6="false">
+	      <fileset dir="${src_css.dir}">
+	      	<exclude name="*-sprite.css" />
+	        <include name="*.css" />
+	      </fileset>
+	    </smartsprites>
+	</target>
+		
 	<target name="concat-js-files">
 		<echo>Concatenating js files</echo>
 		<concat destfile="${dest_js.dir}/all.js">
