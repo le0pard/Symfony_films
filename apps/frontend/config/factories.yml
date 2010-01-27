@@ -54,8 +54,15 @@ all:
     class: sfSessionStorage
     param:
       session_name: filmUserSession
-      timeout: 21600
-      
+  
+  user:
+    class: myUser
+    param:
+      timeout:         21600
+      logging:         %SF_LOGGING_ENABLED%
+      use_flash:       true
+      default_culture: %SF_DEFAULT_CULTURE%
+          
   mailer:
     param:
       delivery_strategy: single_address
