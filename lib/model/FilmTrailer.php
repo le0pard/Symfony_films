@@ -39,3 +39,11 @@ class FilmTrailer extends BaseFilmTrailer {
 	}
 
 } // FilmTrailer
+
+sfPropelBehavior::add('FilmTrailer', array(
+	'viewCacheObserver' => array(
+		'belongs_to_depend' => array(
+			'getFilm'
+		)
+	)
+));
