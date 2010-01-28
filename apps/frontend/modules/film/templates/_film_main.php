@@ -1,4 +1,3 @@
-<?php /*use_javascript('scroll.min.js', 'last')*/ ?>
 <?php if ($film): ?>
 <div id="main_film">
 	<h1>
@@ -106,6 +105,19 @@
 			</a>
 		<?php endforeach ?>
 	</div>
+	
+	<?php if ($film->countFilmTrailers() > 0):?>
+	<div>
+		<?php foreach ($film->getTrailers() as $trailer):?>
+			<div id="trailers_box_<?php echo $trailer->getId() ?>">
+				<div id="trailers_box_display_<?php echo $trailer->getId() ?>" style="display:none;">
+				<?php include_partial('film/trailer', array('trailer' => $trailer, 'film' => $film)) ?>
+				</div>
+				<a onclick="javascript:$('trailers_box_display_<?php echo $trailer->getId() ?>').toggle(); Effect.ScrollTo('trailers_box_<?php echo $trailer->getId() ?>'); return false;" href="#">Показать / Скрыть</a>
+			</div>
+		<?php endforeach ?>
+	</div>
+	<?php endif ?>
 	
 	<div class="film_info">
 		<div class="catalog">

@@ -27,7 +27,8 @@ class filmActions extends sfActions
 	$this->pager->setPage($request->getParameter('page', 1));
 	$this->pager->init();
   }
-  
+
+/* Step 1 */  
   public function executeAdd_step1(sfWebRequest $request)
   {
     $this->form = new FrontFilmForm();
@@ -59,7 +60,8 @@ class filmActions extends sfActions
 		}
 	}
   }
-  
+
+/* Step 2*/  
   protected function callStep2Forms(){
   	$this->film = $this->getRoute()->getObject();
 	$this->form = new sfForm();
@@ -176,7 +178,8 @@ class filmActions extends sfActions
 	$this->redirect('film_add_step2', $film);
   }
   
-  
+
+/* Step 3*/  
   protected function callStep3Forms(){
   	$this->film = $this->getRoute()->getObject();
 	$this->form = new sfForm();
@@ -268,7 +271,98 @@ class filmActions extends sfActions
 	$this->redirect('film_add_step3', $film);
   }
   
+/* Step 4 */ 
+  protected function callStep4Forms(){
+  	$this->film = $this->getRoute()->getObject();
+	if (sfConfig::get('app_films_max_trailers', 3) > $this->film->countFilmTrailers()){
+		$this->form = new FrontFilmTrailerForm();
+	}
+	$this->forms = new sfForm();
+  	if (!$this->film->isNew()){
+		$i = 1;
+		foreach ($this->film->getTrailers() as $subitems) {  
+			$subitems_form = new FrontFilmTrailerForm($subitems);  
+			$this->forms->embedForm('trailer_'.$subitems->getId(), $subitems_form);
+			$this->forms->getWidgetSchema()->setLabel('trailer_'.$subitems->getId(), 'Трейлер #'.$i);
+			$i++;
+		}
+	}
+  }
   
+  public function executeAdd_step4(sfWebRequest $request)
+  {
+  	$this->callStep4Forms();
+	
+	if ($request->isMethod('post')){
+		if ($request->hasParameter('film_trailer') && isset($this->form)){
+			$this->form->bind($request->getParameter('film_trailer'), $request->getFiles('film_trailer'));
+			if ($this->form->isValid()){
+				$trailer = $this->form->getObject();
+				$trailer->setFilmId($this->film->getId());
+				$this->form->save();
+				$this->getUser()->setFlash('confirm', 'Трейлер успешно добавлен.');
+				$this->redirect('film_add_step4', $this->film);
+			}
+		}
+	}
+	
+  }
+  
+  public function executeSort_step4(sfWebRequest $request)
+  {
+
+	if ($request->isXmlHttpRequest() && $request->isMethod('post')){
+		$this->film = $this->getRoute()->getObject();
+		$params = $request->getParameter('add_trailer_list');
+		if ($this->film && $params){
+			foreach($params as $key=>$row){
+				$trailer = FilmTrailerPeer::retrieveByPK($row, $this->film->getId());
+				if ($trailer){
+					$trailer->setSort($key);
+					$trailer->save();
+				}
+			}
+		}
+	}
+	return $this->renderText('');
+  }
+  
+  public function executeDelete_trailer(sfWebRequest $request)
+  {
+  	$this->film_trailer = $this->getRoute()->getObject();
+    $film = $this->film_trailer->getFilm();
+    if ($film){
+		if (($film->getUserId() == $this->getUser()->getAuthUser()->getId() && !$film->getIsPublic()) || $this->getUser()->hasCredential(array('admin', 'super_admin', 'moder'), false)){
+			$this->getUser()->setFlash('confirm', 'Трейлер успешно удален.');
+			$this->film_trailer->delete();
+		}
+    }
+	$this->redirect('film_add_step4', $film);
+  }
+  
+  public function executeEdit_step4(sfWebRequest $request)
+  {
+  	$this->callStep4Forms();
+	
+	if ($request->isMethod('post')){
+		if ($request->hasParameter('film_trailer')){
+			$params = $request->getParameter('film_trailer');
+			$all_forms = $this->forms->getEmbeddedForms();
+			if (isset($all_forms['trailer_'.$params['id']])){
+				$this->form_edit = $all_forms['trailer_'.$params['id']];
+				$this->form_edit->bind($params, $request->getFiles('film_trailer'));
+				if ($this->form_edit->isValid()){
+					$this->form_edit->save();
+					$this->getUser()->setFlash('confirm', 'Данные успешно обновленны.');
+					$this->redirect('film_add_step4', $this->film);
+				}
+			}
+		}
+	}
+	$this->setTemplate('add_step4');
+  }
+  
+/* Final step */  
   public function executeAdd_final(sfWebRequest $request)
   {
   	$this->film = $this->getRoute()->getObject();
@@ -290,7 +384,8 @@ class filmActions extends sfActions
 		$this->redirect('@homepage');
 	}
   }
-  
+
+/* Twitter */
   public function executeTwitter(sfWebRequest $request){
   	$film = $this->getRoute()->getObject();
   	if ($this->getUser()->hasCredential(array('super_admin', 'admin'), false)){
@@ -307,7 +402,8 @@ class filmActions extends sfActions
   	}
     $this->redirect('film_show', $film);
   }
-  
+
+/* Raiting */
   public function executeRaiting(sfWebRequest $request)
   {
   	if ($this->getRequest()->isXmlHttpRequest() && $request->hasParameter('rating')){

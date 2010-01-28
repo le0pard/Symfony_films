@@ -9,6 +9,7 @@ var FilmSiteJs = {
 		/*this.initGallery();*/
 		this.initAddGallerySort();
 		this.initAddLinkSort();
+		this.initAddTrailerSort();
 		this.initGalleryMultUploader();
 		this.initAfisha();
 		this.initRating();
@@ -117,6 +118,16 @@ var FilmSiteJs = {
 		    });
 		}	
 	},
+	initAddTrailerSort: function(){
+		if ($('add_trailer_list') && $('js_add_film_id')){
+			Sortable.create("add_trailer_list", {
+		        tag: 'li', handles:$$('#add_trailer_list div.sort_cursor'),
+		        onUpdate: function(){
+					new Ajax.Request(film_sort_step4_path($F('js_add_film_id')),{ method: "post", postBody: Sortable.serialize('add_trailer_list')});
+				}  
+		    });
+		}
+	},	
 	initGalleryMultUploader: function(){
 		if ($('upload_gallery_form') && $('upload_gallery_link') && $('uploadLink')){
 			$('upload_gallery_link').observe('click', FilmSiteJs.showHideMultUploader);

@@ -95,6 +95,15 @@ propel:
   film_film_types:
     film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
     film_genre_id:    { type: integer, foreignTable: film_types, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
+    
+  film_trailer:
+    id:               ~
+    film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
+    trailer_type:     { type: integer, default: 0 }
+    trailer_code:     { type: varchar(500), required: true }
+    sort:             { type: integer, default: 0 }
+    created_at:       ~
+    updated_at:       ~
 
   comments:
    id:               ~

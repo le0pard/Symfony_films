@@ -40,6 +40,12 @@ class Film extends BaseFilm
 		return $this->countFilmLinkss($criteria);
 	}
 	
+	public function getTrailers(){
+		$criteria = new Criteria();
+		$criteria->addAscendingOrderByColumn(FilmTrailerPeer::SORT);
+		return $this->getFilmTrailers($criteria);
+	}
+	
 	public function getRating(){
 	  return FilmRaitingPeer::getRatingByFilm($this->getId());
 	}

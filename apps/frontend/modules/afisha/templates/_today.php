@@ -1,3 +1,4 @@
+<?php if ($city && $afisha):?>
 <div>
 <h2>
 Афиша &laquo;<?php echo $city->getTitle()?>&raquo;
@@ -7,4 +8,5 @@
 	<?php echo $show->getAfishaFilm()->getTitle()?></a>
 <?php endforeach?>
 <a href="<?php echo url_for('@afisha') ?>">Вся афиша</a>
-</div>	
+</div>
+<?php endif ?>

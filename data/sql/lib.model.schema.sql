@@ -269,6 +269,30 @@ CREATE TABLE `film_film_types`
 )Type=InnoDB;
 
 #-----------------------------------------------------------------------------
+#-- film_trailer
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `film_trailer`;
+
+
+CREATE TABLE `film_trailer`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`film_id` INTEGER  NOT NULL,
+	`trailer_type` INTEGER default 0,
+	`trailer_code` VARCHAR(500)  NOT NULL,
+	`sort` INTEGER default 0,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`,`film_id`),
+	INDEX `film_trailer_FI_1` (`film_id`),
+	CONSTRAINT `film_trailer_FK_1`
+		FOREIGN KEY (`film_id`)
+		REFERENCES `film` (`id`)
+		ON DELETE CASCADE
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
 #-- comments
 #-----------------------------------------------------------------------------
 

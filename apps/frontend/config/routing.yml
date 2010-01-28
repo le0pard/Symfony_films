@@ -267,6 +267,53 @@ film_delete_step3:
   requirements:
     id: \d+
     sf_method: [get]
+
+film_add_step4:
+  url:     /film/add4/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectEditFilm
+  param:  { module: film, action: add_step4 }
+  requirements:
+    id: \d+
+    sf_method: [get, post]
+    
+film_edit_step4:
+  url:     /film/edit4/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectEditFilm
+  param:  { module: film, action: edit_step4 }
+  requirements:
+    id: \d+
+    sf_method: [get, post]    
+
+film_sort_step4:
+  url:     /film/sort4/:id
+  class:   sfPropelRoute
+  options:
+    model: Film
+    type: object
+    method_for_criteria: doSelectEditFilm
+  param:  { module: film, action: sort_step4 }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
+film_delete_step4:
+  url:     /film/delete_trailer/:id
+  class:   sfPropelRoute
+  options:
+    model: FilmTrailer
+    type: object
+  param:  { module: film, action: delete_trailer }
+  requirements:
+    id: \d+
+    sf_method: [get]
     
 film_add_final:
   url:     /film/add_final/:id
