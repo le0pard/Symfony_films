@@ -24,6 +24,10 @@
 	<?php include_component('static', 'menu', array('sf_cache_key' => 'menu')) ?>
 	<div class="clear"></div>
 	<!--HEADER-->
+	<?php if (has_slot('top_content')): ?>
+  		<?php include_slot('top_content') ?>
+  		<div class="clear"></div>
+	<?php endif ?>
 	<!--FLASH-->
 	<?php if ($sf_user->hasFlash('confirm')): ?>
 		<div id="information_messages">
