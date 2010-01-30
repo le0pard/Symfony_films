@@ -107,13 +107,11 @@
 	</div>
 	
 	<?php if ($film->countFilmTrailers() > 0):?>
-	<div>
+	<a onclick="javascript:$('trailers_box').toggle(); if ($('trailers_box').visible()) { Effect.ScrollTo('trailers_box'); } return false;" href="#">Показать / Скрыть</a>
+	<div id="trailers_box" style="display:none">
 		<?php foreach ($film->getTrailers() as $trailer):?>
-			<div id="trailers_box_<?php echo $trailer->getId() ?>">
-				<div id="trailers_box_display_<?php echo $trailer->getId() ?>" style="display:none;">
-				<?php include_partial('film/trailer', array('trailer' => $trailer, 'film' => $film)) ?>
-				</div>
-				<a onclick="javascript:$('trailers_box_display_<?php echo $trailer->getId() ?>').toggle(); Effect.ScrollTo('trailers_box_<?php echo $trailer->getId() ?>'); return false;" href="#">Показать / Скрыть</a>
+			<div>
+			<?php include_partial('film/trailer', array('trailer' => $trailer, 'film' => $film)) ?>
 			</div>
 		<?php endforeach ?>
 	</div>
