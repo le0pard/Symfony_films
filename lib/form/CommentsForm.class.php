@@ -14,7 +14,7 @@ class CommentsForm extends BaseCommentsForm
   {
   	unset(
       $this['created_at'], $this['updated_at'],
-      $this['user_id'], $this['film_id']
+      $this['user_id'], $this['film_id'], $this['ip']
     );
 	
 	$this->setWidgets(array(

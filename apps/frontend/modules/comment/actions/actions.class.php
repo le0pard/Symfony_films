@@ -26,6 +26,7 @@ class commentActions extends sfActions
 			$comment = $this->form->getObject();
 			$comment->setUserId($this->getUser()->getAuthUser()->getId());
 			$comment->setFilmId($this->film->getId());
+			$comment->setIp($request->getHttpHeader('addr','remote'));
 			$this->form->save();
 			$this->redirect('film_show', $this->film);
 		} else {
@@ -41,7 +42,7 @@ class commentActions extends sfActions
   	if ($request->isMethod('post')){
   		$params = $request->getParameter('comments');
 		$this->form->bind($params);
-		if ($this->form->isValid()){			
+		if ($this->form->isValid()){
 			$this->form->save();
 			$this->redirect('film_show', $this->form->getObject()->getFilm());
 		} else {

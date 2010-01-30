@@ -110,6 +110,7 @@ propel:
    user_id:          { type: integer, foreignTable: users, foreignReference: id, required: true }
    film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
    description:      { type: longvarchar }
+   ip:               { type: varchar(100) }
    created_at:       ~
    updated_at:       ~
    

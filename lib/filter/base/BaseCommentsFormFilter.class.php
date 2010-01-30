@@ -15,6 +15,7 @@ abstract class BaseCommentsFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'user_id'     => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
       'description' => new sfWidgetFormFilterInput(),
+      'ip'          => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
@@ -22,6 +23,7 @@ abstract class BaseCommentsFormFilter extends BaseFormFilterPropel
     $this->setValidators(array(
       'user_id'     => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Users', 'column' => 'id')),
       'description' => new sfValidatorPass(array('required' => false)),
+      'ip'          => new sfValidatorPass(array('required' => false)),
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
@@ -45,6 +47,7 @@ abstract class BaseCommentsFormFilter extends BaseFormFilterPropel
       'user_id'     => 'ForeignKey',
       'film_id'     => 'ForeignKey',
       'description' => 'Text',
+      'ip'          => 'Text',
       'created_at'  => 'Date',
       'updated_at'  => 'Date',
     );

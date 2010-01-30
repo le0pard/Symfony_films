@@ -305,6 +305,7 @@ CREATE TABLE `comments`
 	`user_id` INTEGER  NOT NULL,
 	`film_id` INTEGER  NOT NULL,
 	`description` TEXT,
+	`ip` VARCHAR(100),
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`,`film_id`),

@@ -19,6 +19,7 @@ abstract class BaseCommentsForm extends BaseFormPropel
       'user_id'     => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
       'film_id'     => new sfWidgetFormInputHidden(),
       'description' => new sfWidgetFormTextarea(),
+      'ip'          => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -28,6 +29,7 @@ abstract class BaseCommentsForm extends BaseFormPropel
       'user_id'     => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id')),
       'film_id'     => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),
+      'ip'          => new sfValidatorString(array('max_length' => 100, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
