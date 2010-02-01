@@ -18,6 +18,7 @@ CREATE TABLE `users`
 	`email` VARCHAR(100)  NOT NULL,
 	`website_blog` VARCHAR(500),
 	`avatar` VARCHAR(500),
+	`gender` INTEGER default 0,
 	`about` TEXT,
 	`last_login` DATETIME,
 	`is_active` TINYINT default 0 NOT NULL,
@@ -583,7 +584,7 @@ DROP TABLE IF EXISTS `banned_ips`;
 CREATE TABLE `banned_ips`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`ip` VARCHAR(500)  NOT NULL,
+	`ip` VARCHAR(100)  NOT NULL,
 	`description` TEXT  NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,

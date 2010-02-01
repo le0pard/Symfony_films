@@ -10,7 +10,7 @@
  */
 class FrontFilmTrailerForm extends BaseFilmTrailerForm
 {
-  private $trailer_types = array(' -- Выберите источник видео -- ', 'Youtube', 'Vimeo', 'Rutube');
+  protected static $trailer_types = array(' -- Выберите источник видео -- ', 'Youtube', 'Vimeo', 'Rutube');
 	
   public function configure()
   {
@@ -21,16 +21,15 @@ class FrontFilmTrailerForm extends BaseFilmTrailerForm
     
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'trailer_type' => new sfWidgetFormSelect(array('multiple' => false, 'choices' => $this->trailer_types)),
+      'trailer_type' => new sfWidgetFormSelect(array('multiple' => false, 'choices' => self::$trailer_types)),
       'trailer_code' => new sfWidgetFormInputText()
     ));
 
     $this->setValidators(array(
       'id'           => new sfValidatorPropelChoice(array('model' => 'FilmTrailer', 'column' => 'id', 'required' => false)),
-      'trailer_type' => new sfValidatorInteger(array('min' => 1, 'max' => 10, 'required' => true), 
+      'trailer_type' => new sfValidatorChoice(array('choices' => array_keys(self::$trailer_types), 'required' => true), 
     					array('required' => 'Нужно указать источник видео.', 
-							  'min' => 'Нужно указать источник видео.',
-    						  'max' => 'Нужно указать источник видео.')),
+							  'invalid' => 'Нужно указать источник видео.')),
       'trailer_code' => new sfValidatorString(array('max_length' => 500, 'required' => true), 
     					array('required' => 'Код нужно указать.', 
 							  'max_length' => 'Cлишком длинный код (Максимальная длинна %max_length% символов).'))

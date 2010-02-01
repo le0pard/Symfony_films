@@ -24,7 +24,7 @@ abstract class BaseBannedIpsForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'          => new sfValidatorPropelChoice(array('model' => 'BannedIps', 'column' => 'id', 'required' => false)),
-      'ip'          => new sfValidatorString(array('max_length' => 500)),
+      'ip'          => new sfValidatorString(array('max_length' => 100)),
       'description' => new sfValidatorString(),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),

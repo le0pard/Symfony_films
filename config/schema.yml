@@ -6,6 +6,7 @@ propel:
     email:            { type: varchar(100), required: true, index: unique }
     website_blog:     { type: varchar(500) }
     avatar:           { type: varchar(500) }
+    gender:           { type: integer, default: 0 }
     about:            { type: longvarchar }
     last_login:       { type: timestamp }
     is_active:        { type: boolean, required: true, default: 0 }
@@ -219,7 +220,7 @@ propel:
    
   banned_ips:
    id:              ~
-   ip:              { type: varchar(500), required: true }
+   ip:              { type: varchar(100), required: true }
    description:     { type: longvarchar, required: true }
    created_at:      ~
    updated_at:      ~ 

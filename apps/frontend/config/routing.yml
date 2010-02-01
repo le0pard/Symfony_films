@@ -49,6 +49,10 @@ user_profile:
   url:     /profile
   param: { module: user, action: profile }
   
+user_change_password:
+  url:     /change_password
+  param: { module: user, action: change_password }  
+  
 user_logout:
   url:     /logout
   param: { module: user, action: logout }

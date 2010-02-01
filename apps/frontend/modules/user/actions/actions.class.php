@@ -144,32 +144,59 @@ EOF
   public function executeProfile(sfWebRequest $request){
   	$this->user_data = $this->getUser()->getAuthUser();
   	$this->form = new ProfileForm($this->user_data);
+  	$this->change_pass_form = new ChangePasswordForm();
+  	
 	if ($request->isMethod('post')){
 		$this->form->bind($request->getParameter('profile'), $request->getFiles('profile'));
 		if ($this->form->isValid()){
 			$values = $this->form->getValues();
 			$this->form->save();
-			//verlihub begin
-			if (sfConfig::get('app_integration_is_verlihub')){
-				$verli_config = sfConfig::get('app_integration_verlihub_config');
-				$verl_hub = new VerlihubMysql(
-					$verli_config['host'],
-					$verli_config['user'],
-					$verli_config['password'],
-					$verli_config['database']
-				);
-				$verl_hub->change_password_for_user($this->user_data->getLogin(), $values['password']);
-			}
-			//verlihub end
-			//jabber begin
-			if (sfConfig::get('app_integration_is_jabber')){
-				JabberOpenfire::edit_user($this->user_data->getLogin(), $values['password'], $this->user_data->getEmail());
-			}
-			//jabber end
 			$this->getUser()->setFlash('confirm', 'Профиль обновлен.');
 			$this->redirect('@user_profile');			
 		}
 	}
+  }
+  
+  public function executeChange_password(sfWebRequest $request){
+  	$this->user_data = $this->getUser()->getAuthUser();
+  	$this->form = new ProfileForm($this->user_data);
+  	$this->change_pass_form = new ChangePasswordForm();
+  	
+  	if ($request->isMethod('post')){
+  		$this->change_pass_form->bind($request->getParameter('change_password'), $request->getFiles('change_password'));
+		if ($this->change_pass_form->isValid()){
+			$values = $this->change_pass_form->getValues();
+			
+			if (md5($values['old_password']) == $this->user_data->getPassword()){
+				$this->user_data->setPassword($values['password']);
+				$this->user_data->save();
+				//verlihub begin
+				if (sfConfig::get('app_integration_is_verlihub') && $values['verlihub_change'] == 1){
+					$verli_config = sfConfig::get('app_integration_verlihub_config');
+					$verl_hub = new VerlihubMysql(
+						$verli_config['host'],
+						$verli_config['user'],
+						$verli_config['password'],
+						$verli_config['database']
+					);
+					$verl_hub->change_password_for_user($this->user_data->getLogin(), $values['password']);
+				}
+				//verlihub end
+				//jabber begin
+				if (sfConfig::get('app_integration_is_jabber') && $values['jabber_change'] == 1){
+					JabberOpenfire::edit_user($this->user_data->getLogin(), $values['password'], $this->user_data->getEmail());
+				}
+				//jabber end
+
+				$this->getUser()->setFlash('confirm', 'Пароль изменен.');
+			} else {
+				$this->getUser()->setFlash('error', 'Старый пароль неверный.');
+			}
+			
+			$this->redirect('@user_profile');
+		}
+  	}
+  	$this->setTemplate('profile');
   }
   
   public function executeForgot_pass(sfWebRequest $request){
