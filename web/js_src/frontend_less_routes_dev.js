@@ -10,6 +10,7 @@ user_activate_path = function(id, persistence_token){ return less_routes_prefix_
 user_forgot_pass_path = function(){ return less_routes_prefix_url + '/forgot_pass.html'; }
 user_forgot_pass_token_path = function(id, persistence_token){ return less_routes_prefix_url + '/forgot_pass_token/' + id + '/' + persistence_token + '.html'; }
 user_profile_path = function(){ return less_routes_prefix_url + '/profile.html'; }
+user_change_password_path = function(){ return less_routes_prefix_url + '/change_password.html'; }
 user_logout_path = function(){ return less_routes_prefix_url + '/logout.html'; }
 user_films_list_path = function(){ return less_routes_prefix_url + '/unpublic_films.html'; }
 user_show_path = function(id){ return less_routes_prefix_url + '/userinfo/' + id + '.html'; }
