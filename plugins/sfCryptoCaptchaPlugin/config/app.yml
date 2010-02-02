@@ -2,7 +2,7 @@
 all:
   sf_crypto_captcha:
   #Dimensions
-    width:                            200                 #width of the captcha
+    width:                            220                 #width of the captcha
     height:                           60                  #height of the captcha
   #Background
     bg_red:                           238                 #quantity of red color (0->255)
@@ -35,8 +35,8 @@ all:
     easy_captcha_bool:                <?php rand(0,1); ?> # (0=vowel or 1=consonant), start the captcha by vowel or consonant
   #Parameters
     case_sensitive:                   false               # differentiate between letters (M and m)
-    min_chars:                        3                   # minimum characters in the captcha
-    max_chars:                        4                   # maximum characters in the captcha
+    min_chars:                        4                   # minimum characters in the captcha
+    max_chars:                        5                   # maximum characters in the captcha
     brush_size:                       1                   # size of the brush(1->25) used for the noise (points and circles and lines)
     format:                           png                 # image format (png, gif or jpg)
     hash_algo:                        sha1                # hashing function used to store the captcha
