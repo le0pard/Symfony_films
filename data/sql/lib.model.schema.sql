@@ -147,6 +147,7 @@ CREATE TABLE `film_links`
 	`title` VARCHAR(200)  NOT NULL,
 	`url` VARCHAR(500)  NOT NULL,
 	`sort` INTEGER default 0,
+	`hash` VARCHAR(10),
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`,`film_id`),
@@ -588,7 +589,8 @@ CREATE TABLE `banned_ips`
 	`description` TEXT  NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `banned_ips_U_1` (`ip`)
 )Type=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier

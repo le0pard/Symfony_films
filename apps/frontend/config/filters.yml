@@ -1,3 +1,6 @@
+banned:
+  class: BannedFilter
+
 rendering: ~
 
 remember:

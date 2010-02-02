@@ -58,7 +58,7 @@ class System {
       $string .= substr($pool, rand(0, 61), 1);
     }
 
-    return md5($string);
+    return substr(md5($string), 0, $len);
   }
   
   static public function strip_tags_attributes($string,$allowtags=NULL,$allowattributes=NULL){

@@ -61,6 +61,7 @@ propel:
     title:            { type: varchar(200), required: true }
     url:              { type: varchar(500), required: true }
     sort:             { type: integer, default: 0 }
+    hash:             { type: varchar(10) }
     created_at:       ~
     updated_at:       ~ 
     
@@ -220,7 +221,7 @@ propel:
    
   banned_ips:
    id:              ~
-   ip:              { type: varchar(100), required: true }
+   ip:              { type: varchar(100), required: true, index: unique }
    description:     { type: longvarchar, required: true }
    created_at:      ~
    updated_at:      ~ 

@@ -20,4 +20,20 @@ require 'lib/model/om/BaseBannedIpsPeer.php';
  */
 class BannedIpsPeer extends BaseBannedIpsPeer {
 
+	static public function isBannedByIp($ip){
+		$criteria = new Criteria();
+		$criteria->add(self::IP, $ip);
+		if (self::doCount($criteria) > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	static public function getByIp($ip){
+		$criteria = new Criteria();
+		$criteria->add(self::IP, $ip);
+		return self::doSelectOne($criteria);
+	}
+	
 } // BannedIpsPeer

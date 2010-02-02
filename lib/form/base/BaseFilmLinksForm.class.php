@@ -20,6 +20,7 @@ abstract class BaseFilmLinksForm extends BaseFormPropel
       'title'      => new sfWidgetFormInputText(),
       'url'        => new sfWidgetFormInputText(),
       'sort'       => new sfWidgetFormInputText(),
+      'hash'       => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BaseFilmLinksForm extends BaseFormPropel
       'title'      => new sfValidatorString(array('max_length' => 200)),
       'url'        => new sfValidatorString(array('max_length' => 500)),
       'sort'       => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
+      'hash'       => new sfValidatorString(array('max_length' => 10, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));

@@ -5,6 +5,7 @@ class FilmLinks extends BaseFilmLinks
 	public function save(PropelPDO $con = null) {
 		if ($this->isNew()){
 			$this->setSort(FilmLinksPeer::getCountByFilm($this->getFilm()->getId()));
+			$this->setHash(System::generateRandomKey(8));
 		}
 		return parent::save($con);
 	}

@@ -30,6 +30,10 @@ abstract class BaseBannedIpsForm extends BaseFormPropel
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'BannedIps', 'column' => array('ip')))
+    );
+
     $this->widgetSchema->setNameFormat('banned_ips[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

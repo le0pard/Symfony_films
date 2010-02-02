@@ -1,3 +1,12 @@
+banned_ips:
+  class: sfPropelRouteCollection
+  options:
+    model:                BannedIps
+    module:               banned
+    prefix_path:          /banned
+    column:               id
+    with_wildcard_routes: true
+
 news:
   class: sfPropelRouteCollection
   options:

@@ -34,4 +34,12 @@ class indexActions extends sfActions
   {
 	
   }
+  
+  public function executeBanned(sfWebRequest $request)
+  {
+  	$this->banned = BannedIpsPeer::getByIp($request->getHttpHeader('addr','remote'));
+  	$this->forward404Unless($this->banned);
+  	
+	$this->setLayout(false);
+  }
 }
