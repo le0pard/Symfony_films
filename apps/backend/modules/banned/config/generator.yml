@@ -15,9 +15,7 @@ generator:
       actions:
         _new: { label: Создать }
       fields:
-        title: { label: Название }
-        is_visible: { label: Видимый? }
-        is_not_main: { label: Не на главной? }
+        ip: { label: IP }
 
       list:
         title:          Забаненые
