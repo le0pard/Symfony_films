@@ -31,5 +31,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     // for compatibility / remove and enable only the plugins you want
     $this->enableAllPluginsExcept(array('sfDoctrinePlugin'));
 	self::autoLoad();
+    $this->enablePlugins('sfImageTransformPlugin');
   }
 }

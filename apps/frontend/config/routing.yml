@@ -585,15 +585,26 @@ sitemap:
   url:   /sitemap.xml
   param: { module: index, action: sitemap, sf_format: xml }
 
-  
-# default rules
+
+# mobile routes
+film_poster_mobile:
+  url:    /mobile/film_poster/:id
+  param:  { module: mobile, action: film_poster, sf_format: mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    id: \d+
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+
 homepage_mobile:
   url:    /
   param:  { module: index, action: index, sf_format: mobile }
   class:  sfRequestHostRoute
   requirements:
     sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
-    
+
+
+  
+# default rules
 homepage_standard:
   url:   /
   param: { module: index, action: index }
@@ -604,6 +615,8 @@ homepage_standard:
 homepage:
   url:   /
   param: { module: index, action: index }
+
+
 
 #default_index:
 #  url:   /:module
