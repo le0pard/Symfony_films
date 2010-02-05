@@ -10,7 +10,7 @@ class RegistrationForm extends BaseUsersForm{
 	  $this['about'], $this['avatar'],
 	  $this['website_blog'], $this['film_raiting_list'],
 	  $this['users_users_group_list'], $this['count_of_films'],
-	  $this['persistence_token']
+	  $this['persistence_token'], $this['password_salt']
     );
 	
     $this->setValidators(array(
