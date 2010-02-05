@@ -13,7 +13,8 @@ abstract class BaseMessagesFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'user_id'      => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
+      'from_user_id' => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
+      'to_user_id'   => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
       'message_type' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'description'  => new sfWidgetFormFilterInput(),
       'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
@@ -21,7 +22,8 @@ abstract class BaseMessagesFormFilter extends BaseFormFilterPropel
     ));
 
     $this->setValidators(array(
-      'user_id'      => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Users', 'column' => 'id')),
+      'from_user_id' => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Users', 'column' => 'id')),
+      'to_user_id'   => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Users', 'column' => 'id')),
       'message_type' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'description'  => new sfValidatorPass(array('required' => false)),
       'created_at'   => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
@@ -44,7 +46,8 @@ abstract class BaseMessagesFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'           => 'Number',
-      'user_id'      => 'ForeignKey',
+      'from_user_id' => 'ForeignKey',
+      'to_user_id'   => 'ForeignKey',
       'message_type' => 'Number',
       'description'  => 'Text',
       'created_at'   => 'Date',

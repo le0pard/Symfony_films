@@ -13,15 +13,23 @@ class UsersPeer extends BaseUsersPeer
 	static public function getActiveUser($login, $password){
 		$criteria = self::addActiveCriteria();
 		$criteria->add(self::LOGIN, $login);
-		$criteria->add(self::PASSWORD, md5($password));
 	    $user = self::doSelectOne($criteria);
 	    if (!$user){
 	    	$criteria = self::addActiveCriteria();
 			$criteria->add(self::EMAIL, $login);
-			$criteria->add(self::PASSWORD, md5($password));
 		    $user = self::doSelectOne($criteria);
 	    }
-	    return $user;
+	    
+	    if (!$user){
+	    	return false;
+	    } else {
+	    	if ($user->getPassword() == crypt($password, $user->getPasswordSalt())){
+	    		return $user;
+	    	} else {
+	    		return false;
+	    	}
+	    }
+	    
     }
     
 	static public function getUserByEmail($email){

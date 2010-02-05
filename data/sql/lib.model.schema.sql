@@ -15,6 +15,7 @@ CREATE TABLE `users`
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
 	`login` VARCHAR(100)  NOT NULL,
 	`password` VARCHAR(100)  NOT NULL,
+	`password_salt` VARCHAR(100)  NOT NULL,
 	`email` VARCHAR(100)  NOT NULL,
 	`website_blog` VARCHAR(500),
 	`avatar` VARCHAR(500),
@@ -332,15 +333,20 @@ DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages`
 (
 	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`user_id` INTEGER  NOT NULL,
+	`from_user_id` INTEGER,
+	`to_user_id` INTEGER  NOT NULL,
 	`message_type` INTEGER  NOT NULL,
 	`description` TEXT,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`),
-	INDEX `messages_FI_1` (`user_id`),
+	INDEX `messages_FI_1` (`from_user_id`),
 	CONSTRAINT `messages_FK_1`
-		FOREIGN KEY (`user_id`)
+		FOREIGN KEY (`from_user_id`)
+		REFERENCES `users` (`id`),
+	INDEX `messages_FI_2` (`to_user_id`),
+	CONSTRAINT `messages_FK_2`
+		FOREIGN KEY (`to_user_id`)
 		REFERENCES `users` (`id`)
 )Type=InnoDB;
 
@@ -382,6 +388,26 @@ CREATE TABLE `news`
 	`url` VARCHAR(500),
 	`description` TEXT,
 	`is_visible` TINYINT default 1 NOT NULL,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`)
+)Type=InnoDB;
+
+#-----------------------------------------------------------------------------
+#-- film_news
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `film_news`;
+
+
+CREATE TABLE `film_news`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(500)  NOT NULL,
+	`url` VARCHAR(500),
+	`img` VARCHAR(500),
+	`description` TEXT,
+	`is_visible` TINYINT default 0 NOT NULL,
 	`created_at` DATETIME,
 	`updated_at` DATETIME,
 	PRIMARY KEY (`id`)

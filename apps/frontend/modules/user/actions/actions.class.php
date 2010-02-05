@@ -167,7 +167,7 @@ EOF
 		if ($this->change_pass_form->isValid()){
 			$values = $this->change_pass_form->getValues();
 			
-			if (md5($values['old_password']) == $this->user_data->getPassword()){
+			if (crypt($values['old_password'], $this->user_data->getPasswordSalt()) == $this->user_data->getPassword()){
 				$this->user_data->setPassword($values['password']);
 				$this->user_data->save();
 				//verlihub begin

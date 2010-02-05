@@ -15,6 +15,7 @@ abstract class BaseUsersFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'login'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'password'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'password_salt'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'email'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'website_blog'           => new sfWidgetFormFilterInput(),
       'avatar'                 => new sfWidgetFormFilterInput(),
@@ -34,6 +35,7 @@ abstract class BaseUsersFormFilter extends BaseFormFilterPropel
     $this->setValidators(array(
       'login'                  => new sfValidatorPass(array('required' => false)),
       'password'               => new sfValidatorPass(array('required' => false)),
+      'password_salt'          => new sfValidatorPass(array('required' => false)),
       'email'                  => new sfValidatorPass(array('required' => false)),
       'website_blog'           => new sfValidatorPass(array('required' => false)),
       'avatar'                 => new sfValidatorPass(array('required' => false)),
@@ -118,6 +120,7 @@ abstract class BaseUsersFormFilter extends BaseFormFilterPropel
       'id'                     => 'Number',
       'login'                  => 'Text',
       'password'               => 'Text',
+      'password_salt'          => 'Text',
       'email'                  => 'Text',
       'website_blog'           => 'Text',
       'avatar'                 => 'Text',

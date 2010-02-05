@@ -16,7 +16,8 @@ abstract class BaseMessagesForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'user_id'      => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
+      'from_user_id' => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => true)),
+      'to_user_id'   => new sfWidgetFormPropelChoice(array('model' => 'Users', 'add_empty' => false)),
       'message_type' => new sfWidgetFormInputText(),
       'description'  => new sfWidgetFormTextarea(),
       'created_at'   => new sfWidgetFormDateTime(),
@@ -25,7 +26,8 @@ abstract class BaseMessagesForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'           => new sfValidatorPropelChoice(array('model' => 'Messages', 'column' => 'id', 'required' => false)),
-      'user_id'      => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id')),
+      'from_user_id' => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
+      'to_user_id'   => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id')),
       'message_type' => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'description'  => new sfValidatorString(array('required' => false)),
       'created_at'   => new sfValidatorDateTime(array('required' => false)),

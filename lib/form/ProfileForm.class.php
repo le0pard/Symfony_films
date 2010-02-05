@@ -10,7 +10,7 @@ class ProfileForm extends BaseUsersForm{
       $this['created_at'], $this['updated_at'],
       $this['is_active'], $this['is_super_admin'], 
 	  $this['last_login'], $this['right_id'],
-	  $this['login'], $this['email'], $this['password'],
+	  $this['login'], $this['email'], $this['password'], $this['password_salt'], 
 	  $this['film_raiting_list'], $this['users_users_group_list'],
 	  $this['count_of_films'], $this['persistence_token']
     );

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base static class for performing query and update operations on the 'afisha_country' table.
+ * Base static class for performing query and update operations on the 'film_news' table.
  *
  * 
  *
@@ -11,49 +11,58 @@
  *
  * @package    lib.model.om
  */
-abstract class BaseAfishaCountryPeer {
+abstract class BaseFilmNewsPeer {
 
 	/** the default database name for this class */
 	const DATABASE_NAME = 'propel';
 
 	/** the table name for this class */
-	const TABLE_NAME = 'afisha_country';
+	const TABLE_NAME = 'film_news';
 
 	/** the related Propel class for this table */
-	const OM_CLASS = 'AfishaCountry';
+	const OM_CLASS = 'FilmNews';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'lib.model.AfishaCountry';
+	const CLASS_DEFAULT = 'lib.model.FilmNews';
 
 	/** the related TableMap class for this table */
-	const TM_CLASS = 'AfishaCountryTableMap';
+	const TM_CLASS = 'FilmNewsTableMap';
 	
 	/** The total number of columns. */
-	const NUM_COLUMNS = 5;
+	const NUM_COLUMNS = 8;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
 	/** the column name for the ID field */
-	const ID = 'afisha_country.ID';
-
-	/** the column name for the EXTERNAL_ID field */
-	const EXTERNAL_ID = 'afisha_country.EXTERNAL_ID';
+	const ID = 'film_news.ID';
 
 	/** the column name for the TITLE field */
-	const TITLE = 'afisha_country.TITLE';
+	const TITLE = 'film_news.TITLE';
+
+	/** the column name for the URL field */
+	const URL = 'film_news.URL';
+
+	/** the column name for the IMG field */
+	const IMG = 'film_news.IMG';
+
+	/** the column name for the DESCRIPTION field */
+	const DESCRIPTION = 'film_news.DESCRIPTION';
+
+	/** the column name for the IS_VISIBLE field */
+	const IS_VISIBLE = 'film_news.IS_VISIBLE';
 
 	/** the column name for the CREATED_AT field */
-	const CREATED_AT = 'afisha_country.CREATED_AT';
+	const CREATED_AT = 'film_news.CREATED_AT';
 
 	/** the column name for the UPDATED_AT field */
-	const UPDATED_AT = 'afisha_country.UPDATED_AT';
+	const UPDATED_AT = 'film_news.UPDATED_AT';
 
 	/**
-	 * An identiy map to hold any loaded instances of AfishaCountry objects.
+	 * An identiy map to hold any loaded instances of FilmNews objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
 	 * queries.
-	 * @var        array AfishaCountry[]
+	 * @var        array FilmNews[]
 	 */
 	public static $instances = array();
 
@@ -72,11 +81,11 @@ abstract class BaseAfishaCountryPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'ExternalId', 'Title', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'externalId', 'title', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::EXTERNAL_ID, self::TITLE, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'external_id', 'title', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Title', 'Url', 'Img', 'Description', 'IsVisible', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'title', 'url', 'img', 'description', 'isVisible', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::TITLE, self::URL, self::IMG, self::DESCRIPTION, self::IS_VISIBLE, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'title', 'url', 'img', 'description', 'is_visible', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	/**
@@ -86,11 +95,11 @@ abstract class BaseAfishaCountryPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'ExternalId' => 1, 'Title' => 2, 'CreatedAt' => 3, 'UpdatedAt' => 4, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'externalId' => 1, 'title' => 2, 'createdAt' => 3, 'updatedAt' => 4, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::EXTERNAL_ID => 1, self::TITLE => 2, self::CREATED_AT => 3, self::UPDATED_AT => 4, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'external_id' => 1, 'title' => 2, 'created_at' => 3, 'updated_at' => 4, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Title' => 1, 'Url' => 2, 'Img' => 3, 'Description' => 4, 'IsVisible' => 5, 'CreatedAt' => 6, 'UpdatedAt' => 7, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'title' => 1, 'url' => 2, 'img' => 3, 'description' => 4, 'isVisible' => 5, 'createdAt' => 6, 'updatedAt' => 7, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::TITLE => 1, self::URL => 2, self::IMG => 3, self::DESCRIPTION => 4, self::IS_VISIBLE => 5, self::CREATED_AT => 6, self::UPDATED_AT => 7, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'title' => 1, 'url' => 2, 'img' => 3, 'description' => 4, 'is_visible' => 5, 'created_at' => 6, 'updated_at' => 7, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
 	);
 
 	/**
@@ -139,12 +148,12 @@ abstract class BaseAfishaCountryPeer {
 	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
 	 * </code>
 	 * @param      string $alias The alias for the current table.
-	 * @param      string $column The column name for current table. (i.e. AfishaCountryPeer::COLUMN_NAME).
+	 * @param      string $column The column name for current table. (i.e. FilmNewsPeer::COLUMN_NAME).
 	 * @return     string
 	 */
 	public static function alias($alias, $column)
 	{
-		return str_replace(AfishaCountryPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(FilmNewsPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	/**
@@ -160,11 +169,14 @@ abstract class BaseAfishaCountryPeer {
 	 */
 	public static function addSelectColumns(Criteria $criteria)
 	{
-		$criteria->addSelectColumn(AfishaCountryPeer::ID);
-		$criteria->addSelectColumn(AfishaCountryPeer::EXTERNAL_ID);
-		$criteria->addSelectColumn(AfishaCountryPeer::TITLE);
-		$criteria->addSelectColumn(AfishaCountryPeer::CREATED_AT);
-		$criteria->addSelectColumn(AfishaCountryPeer::UPDATED_AT);
+		$criteria->addSelectColumn(FilmNewsPeer::ID);
+		$criteria->addSelectColumn(FilmNewsPeer::TITLE);
+		$criteria->addSelectColumn(FilmNewsPeer::URL);
+		$criteria->addSelectColumn(FilmNewsPeer::IMG);
+		$criteria->addSelectColumn(FilmNewsPeer::DESCRIPTION);
+		$criteria->addSelectColumn(FilmNewsPeer::IS_VISIBLE);
+		$criteria->addSelectColumn(FilmNewsPeer::CREATED_AT);
+		$criteria->addSelectColumn(FilmNewsPeer::UPDATED_AT);
 	}
 
 	/**
@@ -183,26 +195,26 @@ abstract class BaseAfishaCountryPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(AfishaCountryPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(FilmNewsPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			AfishaCountryPeer::addSelectColumns($criteria);
+			FilmNewsPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 		$criteria->setDbName(self::DATABASE_NAME); // Set the correct dbName
 
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 		// symfony_behaviors behavior
 		foreach (sfMixer::getCallables(self::getMixerPreSelectHook(__FUNCTION__)) as $sf_hook)
 		{
-		  call_user_func($sf_hook, 'BaseAfishaCountryPeer', $criteria, $con);
+		  call_user_func($sf_hook, 'BaseFilmNewsPeer', $criteria, $con);
 		}
 
 		// BasePeer returns a PDOStatement
@@ -221,7 +233,7 @@ abstract class BaseAfishaCountryPeer {
 	 *
 	 * @param      Criteria $criteria object used to create the SELECT statement.
 	 * @param      PropelPDO $con
-	 * @return     AfishaCountry
+	 * @return     FilmNews
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -229,7 +241,7 @@ abstract class BaseAfishaCountryPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = AfishaCountryPeer::doSelect($critcopy, $con);
+		$objects = FilmNewsPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -246,7 +258,7 @@ abstract class BaseAfishaCountryPeer {
 	 */
 	public static function doSelect(Criteria $criteria, PropelPDO $con = null)
 	{
-		return AfishaCountryPeer::populateObjects(AfishaCountryPeer::doSelectStmt($criteria, $con));
+		return FilmNewsPeer::populateObjects(FilmNewsPeer::doSelectStmt($criteria, $con));
 	}
 	/**
 	 * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -264,12 +276,12 @@ abstract class BaseAfishaCountryPeer {
 	public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		if (!$criteria->hasSelectClause()) {
 			$criteria = clone $criteria;
-			AfishaCountryPeer::addSelectColumns($criteria);
+			FilmNewsPeer::addSelectColumns($criteria);
 		}
 
 		// Set the correct dbName
@@ -287,10 +299,10 @@ abstract class BaseAfishaCountryPeer {
 	 * to the cache in order to ensure that the same objects are always returned by doSelect*()
 	 * and retrieveByPK*() calls.
 	 *
-	 * @param      AfishaCountry $value A AfishaCountry object.
+	 * @param      FilmNews $value A FilmNews object.
 	 * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
 	 */
-	public static function addInstanceToPool(AfishaCountry $obj, $key = null)
+	public static function addInstanceToPool(FilmNews $obj, $key = null)
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
@@ -308,18 +320,18 @@ abstract class BaseAfishaCountryPeer {
 	 * methods in your stub classes -- you may need to explicitly remove objects
 	 * from the cache in order to prevent returning objects that no longer exist.
 	 *
-	 * @param      mixed $value A AfishaCountry object or a primary key value.
+	 * @param      mixed $value A FilmNews object or a primary key value.
 	 */
 	public static function removeInstanceFromPool($value)
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
-			if (is_object($value) && $value instanceof AfishaCountry) {
+			if (is_object($value) && $value instanceof FilmNews) {
 				$key = (string) $value->getId();
 			} elseif (is_scalar($value)) {
 				// assume we've been passed a primary key
 				$key = (string) $value;
 			} else {
-				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or AfishaCountry object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or FilmNews object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
 			}
 
@@ -334,7 +346,7 @@ abstract class BaseAfishaCountryPeer {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     AfishaCountry Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     FilmNews Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool($key)
@@ -358,7 +370,7 @@ abstract class BaseAfishaCountryPeer {
 	}
 	
 	/**
-	 * Method to invalidate the instance pool of all tables related to afisha_country
+	 * Method to invalidate the instance pool of all tables related to film_news
 	 * by a foreign key with ON DELETE CASCADE
 	 */
 	public static function clearRelatedInstancePool()
@@ -396,11 +408,11 @@ abstract class BaseAfishaCountryPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = AfishaCountryPeer::getOMClass(false);
+		$cls = FilmNewsPeer::getOMClass(false);
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key = AfishaCountryPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj = AfishaCountryPeer::getInstanceFromPool($key))) {
+			$key = FilmNewsPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj = FilmNewsPeer::getInstanceFromPool($key))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://propel.phpdb.org/trac/ticket/509
 				// $obj->hydrate($row, 0, true); // rehydrate
@@ -409,7 +421,7 @@ abstract class BaseAfishaCountryPeer {
 				$obj = new $cls();
 				$obj->hydrate($row);
 				$results[] = $obj;
-				AfishaCountryPeer::addInstanceToPool($obj, $key);
+				FilmNewsPeer::addInstanceToPool($obj, $key);
 			} // if key exists
 		}
 		$stmt->closeCursor();
@@ -432,10 +444,10 @@ abstract class BaseAfishaCountryPeer {
 	 */
 	public static function buildTableMap()
 	{
-	  $dbMap = Propel::getDatabaseMap(BaseAfishaCountryPeer::DATABASE_NAME);
-	  if (!$dbMap->hasTable(BaseAfishaCountryPeer::TABLE_NAME))
+	  $dbMap = Propel::getDatabaseMap(BaseFilmNewsPeer::DATABASE_NAME);
+	  if (!$dbMap->hasTable(BaseFilmNewsPeer::TABLE_NAME))
 	  {
-	    $dbMap->addTableObject(new AfishaCountryTableMap());
+	    $dbMap->addTableObject(new FilmNewsTableMap());
 	  }
 	}
 
@@ -452,13 +464,13 @@ abstract class BaseAfishaCountryPeer {
 	 */
 	public static function getOMClass($withPrefix = true)
 	{
-		return $withPrefix ? AfishaCountryPeer::CLASS_DEFAULT : AfishaCountryPeer::OM_CLASS;
+		return $withPrefix ? FilmNewsPeer::CLASS_DEFAULT : FilmNewsPeer::OM_CLASS;
 	}
 
 	/**
-	 * Method perform an INSERT on the database, given a AfishaCountry or Criteria object.
+	 * Method perform an INSERT on the database, given a FilmNews or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or AfishaCountry object containing data that is used to create the INSERT statement.
+	 * @param      mixed $values Criteria or FilmNews object containing data that is used to create the INSERT statement.
 	 * @param      PropelPDO $con the PropelPDO connection to use
 	 * @return     mixed The new primary key.
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -467,26 +479,26 @@ abstract class BaseAfishaCountryPeer {
 	public static function doInsert($values, PropelPDO $con = null)
 	{
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseAfishaCountryPeer:doInsert:pre') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmNewsPeer:doInsert:pre') as $sf_hook)
     {
-      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseAfishaCountryPeer', $values, $con))
+      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseFilmNewsPeer', $values, $con))
       {
         return $sf_hook_retval;
       }
     }
 
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from AfishaCountry object
+			$criteria = $values->buildCriteria(); // build Criteria from FilmNews object
 		}
 
-		if ($criteria->containsKey(AfishaCountryPeer::ID) && $criteria->keyContainsValue(AfishaCountryPeer::ID) ) {
-			throw new PropelException('Cannot insert a value for auto-increment primary key ('.AfishaCountryPeer::ID.')');
+		if ($criteria->containsKey(FilmNewsPeer::ID) && $criteria->keyContainsValue(FilmNewsPeer::ID) ) {
+			throw new PropelException('Cannot insert a value for auto-increment primary key ('.FilmNewsPeer::ID.')');
 		}
 
 
@@ -505,18 +517,18 @@ abstract class BaseAfishaCountryPeer {
 		}
 
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseAfishaCountryPeer:doInsert:post') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmNewsPeer:doInsert:post') as $sf_hook)
     {
-      call_user_func($sf_hook, 'BaseAfishaCountryPeer', $values, $con, $pk);
+      call_user_func($sf_hook, 'BaseFilmNewsPeer', $values, $con, $pk);
     }
 
 		return $pk;
 	}
 
 	/**
-	 * Method perform an UPDATE on the database, given a AfishaCountry or Criteria object.
+	 * Method perform an UPDATE on the database, given a FilmNews or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or AfishaCountry object containing data that is used to create the UPDATE statement.
+	 * @param      mixed $values Criteria or FilmNews object containing data that is used to create the UPDATE statement.
 	 * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -525,16 +537,16 @@ abstract class BaseAfishaCountryPeer {
 	public static function doUpdate($values, PropelPDO $con = null)
 	{
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseAfishaCountryPeer:doUpdate:pre') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmNewsPeer:doUpdate:pre') as $sf_hook)
     {
-      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseAfishaCountryPeer', $values, $con))
+      if (false !== $sf_hook_retval = call_user_func($sf_hook, 'BaseFilmNewsPeer', $values, $con))
       {
         return $sf_hook_retval;
       }
     }
 
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
@@ -542,10 +554,10 @@ abstract class BaseAfishaCountryPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 
-			$comparison = $criteria->getComparison(AfishaCountryPeer::ID);
-			$selectCriteria->add(AfishaCountryPeer::ID, $criteria->remove(AfishaCountryPeer::ID), $comparison);
+			$comparison = $criteria->getComparison(FilmNewsPeer::ID);
+			$selectCriteria->add(FilmNewsPeer::ID, $criteria->remove(FilmNewsPeer::ID), $comparison);
 
-		} else { // $values is AfishaCountry object
+		} else { // $values is FilmNews object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
 		}
@@ -556,35 +568,35 @@ abstract class BaseAfishaCountryPeer {
 		$ret = BasePeer::doUpdate($selectCriteria, $criteria, $con);
 
     // symfony_behaviors behavior
-    foreach (sfMixer::getCallables('BaseAfishaCountryPeer:doUpdate:post') as $sf_hook)
+    foreach (sfMixer::getCallables('BaseFilmNewsPeer:doUpdate:post') as $sf_hook)
     {
-      call_user_func($sf_hook, 'BaseAfishaCountryPeer', $values, $con, $ret);
+      call_user_func($sf_hook, 'BaseFilmNewsPeer', $values, $con, $ret);
     }
 
     return $ret;
 	}
 
 	/**
-	 * Method to DELETE all rows from the afisha_country table.
+	 * Method to DELETE all rows from the film_news table.
 	 *
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 */
 	public static function doDeleteAll($con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$affectedRows = 0; // initialize var to track total num of affected rows
 		try {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += BasePeer::doDeleteAll(AfishaCountryPeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(FilmNewsPeer::TABLE_NAME, $con);
 			// Because this db requires some delete cascade/set null emulation, we have to
 			// clear the cached instance *after* the emulation has happened (since
 			// instances get re-added by the select statement contained therein).
-			AfishaCountryPeer::clearInstancePool();
-			AfishaCountryPeer::clearRelatedInstancePool();
+			FilmNewsPeer::clearInstancePool();
+			FilmNewsPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -594,9 +606,9 @@ abstract class BaseAfishaCountryPeer {
 	}
 
 	/**
-	 * Method perform a DELETE on the database, given a AfishaCountry or Criteria object OR a primary key value.
+	 * Method perform a DELETE on the database, given a FilmNews or Criteria object OR a primary key value.
 	 *
-	 * @param      mixed $values Criteria or AfishaCountry object or primary key or array of primary keys
+	 * @param      mixed $values Criteria or FilmNews object or primary key or array of primary keys
 	 *              which is used to create the DELETE statement
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -607,20 +619,20 @@ abstract class BaseAfishaCountryPeer {
 	 public static function doDelete($values, PropelPDO $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			// invalidate the cache for all objects of this type, since we have no
 			// way of knowing (without running a query) what objects should be invalidated
 			// from the cache based on this Criteria.
-			AfishaCountryPeer::clearInstancePool();
+			FilmNewsPeer::clearInstancePool();
 
 			// rename for clarity
 			$criteria = clone $values;
-		} elseif ($values instanceof AfishaCountry) {
+		} elseif ($values instanceof FilmNews) {
 			// invalidate the cache for this single object
-			AfishaCountryPeer::removeInstanceFromPool($values);
+			FilmNewsPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else {
@@ -629,11 +641,11 @@ abstract class BaseAfishaCountryPeer {
 
 
 			$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(AfishaCountryPeer::ID, (array) $values, Criteria::IN);
+			$criteria->add(FilmNewsPeer::ID, (array) $values, Criteria::IN);
 
 			foreach ((array) $values as $singleval) {
 				// we can invalidate the cache for this single object
-				AfishaCountryPeer::removeInstanceFromPool($singleval);
+				FilmNewsPeer::removeInstanceFromPool($singleval);
 			}
 		}
 
@@ -648,7 +660,7 @@ abstract class BaseAfishaCountryPeer {
 			$con->beginTransaction();
 			
 			$affectedRows += BasePeer::doDelete($criteria, $con);
-			AfishaCountryPeer::clearRelatedInstancePool();
+			FilmNewsPeer::clearRelatedInstancePool();
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -658,24 +670,24 @@ abstract class BaseAfishaCountryPeer {
 	}
 
 	/**
-	 * Validates all modified columns of given AfishaCountry object.
+	 * Validates all modified columns of given FilmNews object.
 	 * If parameter $columns is either a single column name or an array of column names
 	 * than only those columns are validated.
 	 *
 	 * NOTICE: This does not apply to primary or foreign keys for now.
 	 *
-	 * @param      AfishaCountry $obj The object to validate.
+	 * @param      FilmNews $obj The object to validate.
 	 * @param      mixed $cols Column name or array of column names.
 	 *
 	 * @return     mixed TRUE if all columns are valid or the error message of the first invalid column.
 	 */
-	public static function doValidate(AfishaCountry $obj, $cols = null)
+	public static function doValidate(FilmNews $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(AfishaCountryPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(AfishaCountryPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(FilmNewsPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(FilmNewsPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -691,7 +703,7 @@ abstract class BaseAfishaCountryPeer {
 
 		}
 
-		return BasePeer::doValidate(AfishaCountryPeer::DATABASE_NAME, AfishaCountryPeer::TABLE_NAME, $columns);
+		return BasePeer::doValidate(FilmNewsPeer::DATABASE_NAME, FilmNewsPeer::TABLE_NAME, $columns);
 	}
 
 	/**
@@ -699,23 +711,23 @@ abstract class BaseAfishaCountryPeer {
 	 *
 	 * @param      int $pk the primary key.
 	 * @param      PropelPDO $con the connection to use
-	 * @return     AfishaCountry
+	 * @return     FilmNews
 	 */
 	public static function retrieveByPK($pk, PropelPDO $con = null)
 	{
 
-		if (null !== ($obj = AfishaCountryPeer::getInstanceFromPool((string) $pk))) {
+		if (null !== ($obj = FilmNewsPeer::getInstanceFromPool((string) $pk))) {
 			return $obj;
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria = new Criteria(AfishaCountryPeer::DATABASE_NAME);
-		$criteria->add(AfishaCountryPeer::ID, $pk);
+		$criteria = new Criteria(FilmNewsPeer::DATABASE_NAME);
+		$criteria->add(FilmNewsPeer::ID, $pk);
 
-		$v = AfishaCountryPeer::doSelect($criteria, $con);
+		$v = FilmNewsPeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -731,16 +743,16 @@ abstract class BaseAfishaCountryPeer {
 	public static function retrieveByPKs($pks, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(AfishaCountryPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		$objs = null;
 		if (empty($pks)) {
 			$objs = array();
 		} else {
-			$criteria = new Criteria(AfishaCountryPeer::DATABASE_NAME);
-			$criteria->add(AfishaCountryPeer::ID, $pks, Criteria::IN);
-			$objs = AfishaCountryPeer::doSelect($criteria, $con);
+			$criteria = new Criteria(FilmNewsPeer::DATABASE_NAME);
+			$criteria->add(FilmNewsPeer::ID, $pks, Criteria::IN);
+			$objs = FilmNewsPeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
@@ -772,15 +784,15 @@ abstract class BaseAfishaCountryPeer {
 	{
 	  if (preg_match('/^do(Select|Count)(Join(All(Except)?)?|Stmt)?/', $method, $match))
 	  {
-	    return sprintf('BaseAfishaCountryPeer:%s:%1$s', 'Count' == $match[1] ? 'doCount' : $match[0]);
+	    return sprintf('BaseFilmNewsPeer:%s:%1$s', 'Count' == $match[1] ? 'doCount' : $match[0]);
 	  }
 	
 	  throw new LogicException(sprintf('Unrecognized function "%s"', $method));
 	}
 
-} // BaseAfishaCountryPeer
+} // BaseFilmNewsPeer
 
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-BaseAfishaCountryPeer::buildTableMap();
+BaseFilmNewsPeer::buildTableMap();
 

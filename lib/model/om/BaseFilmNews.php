@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base class that represents a row from the 'user_friends' table.
+ * Base class that represents a row from the 'film_news' table.
  *
  * 
  *
@@ -11,45 +11,65 @@
  *
  * @package    lib.model.om
  */
-abstract class BaseUserFriends extends BaseObject  implements Persistent {
+abstract class BaseFilmNews extends BaseObject  implements Persistent {
 
 
 	/**
 	 * The Peer class.
 	 * Instance provides a convenient way of calling static methods on a class
 	 * that calling code may not be able to identify.
-	 * @var        UserFriendsPeer
+	 * @var        FilmNewsPeer
 	 */
 	protected static $peer;
 
 	/**
-	 * The value for the user_id field.
+	 * The value for the id field.
 	 * @var        int
 	 */
-	protected $user_id;
+	protected $id;
 
 	/**
-	 * The value for the friend_id field.
-	 * @var        int
+	 * The value for the title field.
+	 * @var        string
 	 */
-	protected $friend_id;
+	protected $title;
 
 	/**
-	 * The value for the commit field.
+	 * The value for the url field.
+	 * @var        string
+	 */
+	protected $url;
+
+	/**
+	 * The value for the img field.
+	 * @var        string
+	 */
+	protected $img;
+
+	/**
+	 * The value for the description field.
+	 * @var        string
+	 */
+	protected $description;
+
+	/**
+	 * The value for the is_visible field.
 	 * Note: this column has a database default value of: false
 	 * @var        boolean
 	 */
-	protected $commit;
+	protected $is_visible;
 
 	/**
-	 * @var        Users
+	 * The value for the created_at field.
+	 * @var        string
 	 */
-	protected $aUsersRelatedByUserId;
+	protected $created_at;
 
 	/**
-	 * @var        Users
+	 * The value for the updated_at field.
+	 * @var        string
 	 */
-	protected $aUsersRelatedByFriendId;
+	protected $updated_at;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -67,7 +87,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 
 	// symfony behavior
 	
-	const PEER = 'UserFriendsPeer';
+	const PEER = 'FilmNewsPeer';
 
 	/**
 	 * Applies default values to this object.
@@ -77,11 +97,11 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function applyDefaultValues()
 	{
-		$this->commit = false;
+		$this->is_visible = false;
 	}
 
 	/**
-	 * Initializes internal state of BaseUserFriends object.
+	 * Initializes internal state of BaseFilmNews object.
 	 * @see        applyDefaults()
 	 */
 	public function __construct()
@@ -91,102 +111,358 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	}
 
 	/**
-	 * Get the [user_id] column value.
+	 * Get the [id] column value.
 	 * 
 	 * @return     int
 	 */
-	public function getUserId()
+	public function getId()
 	{
-		return $this->user_id;
+		return $this->id;
 	}
 
 	/**
-	 * Get the [friend_id] column value.
+	 * Get the [title] column value.
 	 * 
-	 * @return     int
+	 * @return     string
 	 */
-	public function getFriendId()
+	public function getTitle()
 	{
-		return $this->friend_id;
+		return $this->title;
 	}
 
 	/**
-	 * Get the [commit] column value.
+	 * Get the [url] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getUrl()
+	{
+		return $this->url;
+	}
+
+	/**
+	 * Get the [img] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getImg()
+	{
+		return $this->img;
+	}
+
+	/**
+	 * Get the [description] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
+	/**
+	 * Get the [is_visible] column value.
 	 * 
 	 * @return     boolean
 	 */
-	public function getCommit()
+	public function getIsVisible()
 	{
-		return $this->commit;
+		return $this->is_visible;
 	}
 
 	/**
-	 * Set the value of [user_id] column.
+	 * Get the [optionally formatted] temporal [created_at] column value.
+	 * 
+	 *
+	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
+	 *							If format is NULL, then the raw DateTime object will be returned.
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+	 * @throws     PropelException - if unable to parse/validate the date/time value.
+	 */
+	public function getCreatedAt($format = 'Y-m-d H:i:s')
+	{
+		if ($this->created_at === null) {
+			return null;
+		}
+
+
+		if ($this->created_at === '0000-00-00 00:00:00') {
+			// while technically this is not a default value of NULL,
+			// this seems to be closest in meaning.
+			return null;
+		} else {
+			try {
+				$dt = new DateTime($this->created_at);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->created_at, true), $x);
+			}
+		}
+
+		if ($format === null) {
+			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
+			return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
+	}
+
+	/**
+	 * Get the [optionally formatted] temporal [updated_at] column value.
+	 * 
+	 *
+	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
+	 *							If format is NULL, then the raw DateTime object will be returned.
+	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+	 * @throws     PropelException - if unable to parse/validate the date/time value.
+	 */
+	public function getUpdatedAt($format = 'Y-m-d H:i:s')
+	{
+		if ($this->updated_at === null) {
+			return null;
+		}
+
+
+		if ($this->updated_at === '0000-00-00 00:00:00') {
+			// while technically this is not a default value of NULL,
+			// this seems to be closest in meaning.
+			return null;
+		} else {
+			try {
+				$dt = new DateTime($this->updated_at);
+			} catch (Exception $x) {
+				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->updated_at, true), $x);
+			}
+		}
+
+		if ($format === null) {
+			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
+			return $dt;
+		} elseif (strpos($format, '%') !== false) {
+			return strftime($format, $dt->format('U'));
+		} else {
+			return $dt->format($format);
+		}
+	}
+
+	/**
+	 * Set the value of [id] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     UserFriends The current object (for fluent API support)
+	 * @return     FilmNews The current object (for fluent API support)
 	 */
-	public function setUserId($v)
+	public function setId($v)
 	{
 		if ($v !== null) {
 			$v = (int) $v;
 		}
 
-		if ($this->user_id !== $v) {
-			$this->user_id = $v;
-			$this->modifiedColumns[] = UserFriendsPeer::USER_ID;
-		}
-
-		if ($this->aUsersRelatedByUserId !== null && $this->aUsersRelatedByUserId->getId() !== $v) {
-			$this->aUsersRelatedByUserId = null;
+		if ($this->id !== $v) {
+			$this->id = $v;
+			$this->modifiedColumns[] = FilmNewsPeer::ID;
 		}
 
 		return $this;
-	} // setUserId()
+	} // setId()
 
 	/**
-	 * Set the value of [friend_id] column.
+	 * Set the value of [title] column.
 	 * 
-	 * @param      int $v new value
-	 * @return     UserFriends The current object (for fluent API support)
+	 * @param      string $v new value
+	 * @return     FilmNews The current object (for fluent API support)
 	 */
-	public function setFriendId($v)
+	public function setTitle($v)
 	{
 		if ($v !== null) {
-			$v = (int) $v;
+			$v = (string) $v;
 		}
 
-		if ($this->friend_id !== $v) {
-			$this->friend_id = $v;
-			$this->modifiedColumns[] = UserFriendsPeer::FRIEND_ID;
-		}
-
-		if ($this->aUsersRelatedByFriendId !== null && $this->aUsersRelatedByFriendId->getId() !== $v) {
-			$this->aUsersRelatedByFriendId = null;
+		if ($this->title !== $v) {
+			$this->title = $v;
+			$this->modifiedColumns[] = FilmNewsPeer::TITLE;
 		}
 
 		return $this;
-	} // setFriendId()
+	} // setTitle()
 
 	/**
-	 * Set the value of [commit] column.
+	 * Set the value of [url] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     FilmNews The current object (for fluent API support)
+	 */
+	public function setUrl($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->url !== $v) {
+			$this->url = $v;
+			$this->modifiedColumns[] = FilmNewsPeer::URL;
+		}
+
+		return $this;
+	} // setUrl()
+
+	/**
+	 * Set the value of [img] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     FilmNews The current object (for fluent API support)
+	 */
+	public function setImg($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->img !== $v) {
+			$this->img = $v;
+			$this->modifiedColumns[] = FilmNewsPeer::IMG;
+		}
+
+		return $this;
+	} // setImg()
+
+	/**
+	 * Set the value of [description] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     FilmNews The current object (for fluent API support)
+	 */
+	public function setDescription($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->description !== $v) {
+			$this->description = $v;
+			$this->modifiedColumns[] = FilmNewsPeer::DESCRIPTION;
+		}
+
+		return $this;
+	} // setDescription()
+
+	/**
+	 * Set the value of [is_visible] column.
 	 * 
 	 * @param      boolean $v new value
-	 * @return     UserFriends The current object (for fluent API support)
+	 * @return     FilmNews The current object (for fluent API support)
 	 */
-	public function setCommit($v)
+	public function setIsVisible($v)
 	{
 		if ($v !== null) {
 			$v = (boolean) $v;
 		}
 
-		if ($this->commit !== $v || $this->isNew()) {
-			$this->commit = $v;
-			$this->modifiedColumns[] = UserFriendsPeer::COMMIT;
+		if ($this->is_visible !== $v || $this->isNew()) {
+			$this->is_visible = $v;
+			$this->modifiedColumns[] = FilmNewsPeer::IS_VISIBLE;
 		}
 
 		return $this;
-	} // setCommit()
+	} // setIsVisible()
+
+	/**
+	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
+	 * 
+	 * @param      mixed $v string, integer (timestamp), or DateTime value.  Empty string will
+	 *						be treated as NULL for temporal objects.
+	 * @return     FilmNews The current object (for fluent API support)
+	 */
+	public function setCreatedAt($v)
+	{
+		// we treat '' as NULL for temporal objects because DateTime('') == DateTime('now')
+		// -- which is unexpected, to say the least.
+		if ($v === null || $v === '') {
+			$dt = null;
+		} elseif ($v instanceof DateTime) {
+			$dt = $v;
+		} else {
+			// some string/numeric value passed; we normalize that so that we can
+			// validate it.
+			try {
+				if (is_numeric($v)) { // if it's a unix timestamp
+					$dt = new DateTime('@'.$v, new DateTimeZone('UTC'));
+					// We have to explicitly specify and then change the time zone because of a
+					// DateTime bug: http://bugs.php.net/bug.php?id=43003
+					$dt->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+				} else {
+					$dt = new DateTime($v);
+				}
+			} catch (Exception $x) {
+				throw new PropelException('Error parsing date/time value: ' . var_export($v, true), $x);
+			}
+		}
+
+		if ( $this->created_at !== null || $dt !== null ) {
+			// (nested ifs are a little easier to read in this case)
+
+			$currNorm = ($this->created_at !== null && $tmpDt = new DateTime($this->created_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
+
+			if ( ($currNorm !== $newNorm) // normalized values don't match 
+					)
+			{
+				$this->created_at = ($dt ? $dt->format('Y-m-d H:i:s') : null);
+				$this->modifiedColumns[] = FilmNewsPeer::CREATED_AT;
+			}
+		} // if either are not null
+
+		return $this;
+	} // setCreatedAt()
+
+	/**
+	 * Sets the value of [updated_at] column to a normalized version of the date/time value specified.
+	 * 
+	 * @param      mixed $v string, integer (timestamp), or DateTime value.  Empty string will
+	 *						be treated as NULL for temporal objects.
+	 * @return     FilmNews The current object (for fluent API support)
+	 */
+	public function setUpdatedAt($v)
+	{
+		// we treat '' as NULL for temporal objects because DateTime('') == DateTime('now')
+		// -- which is unexpected, to say the least.
+		if ($v === null || $v === '') {
+			$dt = null;
+		} elseif ($v instanceof DateTime) {
+			$dt = $v;
+		} else {
+			// some string/numeric value passed; we normalize that so that we can
+			// validate it.
+			try {
+				if (is_numeric($v)) { // if it's a unix timestamp
+					$dt = new DateTime('@'.$v, new DateTimeZone('UTC'));
+					// We have to explicitly specify and then change the time zone because of a
+					// DateTime bug: http://bugs.php.net/bug.php?id=43003
+					$dt->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+				} else {
+					$dt = new DateTime($v);
+				}
+			} catch (Exception $x) {
+				throw new PropelException('Error parsing date/time value: ' . var_export($v, true), $x);
+			}
+		}
+
+		if ( $this->updated_at !== null || $dt !== null ) {
+			// (nested ifs are a little easier to read in this case)
+
+			$currNorm = ($this->updated_at !== null && $tmpDt = new DateTime($this->updated_at)) ? $tmpDt->format('Y-m-d H:i:s') : null;
+			$newNorm = ($dt !== null) ? $dt->format('Y-m-d H:i:s') : null;
+
+			if ( ($currNorm !== $newNorm) // normalized values don't match 
+					)
+			{
+				$this->updated_at = ($dt ? $dt->format('Y-m-d H:i:s') : null);
+				$this->modifiedColumns[] = FilmNewsPeer::UPDATED_AT;
+			}
+		} // if either are not null
+
+		return $this;
+	} // setUpdatedAt()
 
 	/**
 	 * Indicates whether the columns in this object are only set to default values.
@@ -198,7 +474,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function hasOnlyDefaultValues()
 	{
-			if ($this->commit !== false) {
+			if ($this->is_visible !== false) {
 				return false;
 			}
 
@@ -224,9 +500,14 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	{
 		try {
 
-			$this->user_id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->friend_id = ($row[$startcol + 1] !== null) ? (int) $row[$startcol + 1] : null;
-			$this->commit = ($row[$startcol + 2] !== null) ? (boolean) $row[$startcol + 2] : null;
+			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
+			$this->title = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+			$this->url = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+			$this->img = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->description = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->is_visible = ($row[$startcol + 5] !== null) ? (boolean) $row[$startcol + 5] : null;
+			$this->created_at = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->updated_at = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -236,10 +517,10 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 			}
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 3; // 3 = UserFriendsPeer::NUM_COLUMNS - UserFriendsPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 8; // 8 = FilmNewsPeer::NUM_COLUMNS - FilmNewsPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating UserFriends object", $e);
+			throw new PropelException("Error populating FilmNews object", $e);
 		}
 	}
 
@@ -259,12 +540,6 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	public function ensureConsistency()
 	{
 
-		if ($this->aUsersRelatedByUserId !== null && $this->user_id !== $this->aUsersRelatedByUserId->getId()) {
-			$this->aUsersRelatedByUserId = null;
-		}
-		if ($this->aUsersRelatedByFriendId !== null && $this->friend_id !== $this->aUsersRelatedByFriendId->getId()) {
-			$this->aUsersRelatedByFriendId = null;
-		}
 	} // ensureConsistency
 
 	/**
@@ -288,13 +563,13 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(UserFriendsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		// We don't need to alter the object instance pool; we're just modifying this instance
 		// already in the pool.
 
-		$stmt = UserFriendsPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+		$stmt = FilmNewsPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
 		$row = $stmt->fetch(PDO::FETCH_NUM);
 		$stmt->closeCursor();
 		if (!$row) {
@@ -304,8 +579,6 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->aUsersRelatedByUserId = null;
-			$this->aUsersRelatedByFriendId = null;
 		} // if (deep)
 	}
 
@@ -325,14 +598,14 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(UserFriendsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		
 		$con->beginTransaction();
 		try {
 			$ret = $this->preDelete($con);
 			// symfony_behaviors behavior
-			foreach (sfMixer::getCallables('BaseUserFriends:delete:pre') as $callable)
+			foreach (sfMixer::getCallables('BaseFilmNews:delete:pre') as $callable)
 			{
 			  if ($ret = call_user_func($callable, $this, $con))
 			  {
@@ -341,10 +614,10 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 			}
 
 			if ($ret) {
-				UserFriendsPeer::doDelete($this, $con);
+				FilmNewsPeer::doDelete($this, $con);
 				$this->postDelete($con);
 				// symfony_behaviors behavior
-				foreach (sfMixer::getCallables('BaseUserFriends:delete:post') as $callable)
+				foreach (sfMixer::getCallables('BaseFilmNews:delete:post') as $callable)
 				{
 				  call_user_func($callable, $this, $con);
 				}
@@ -378,7 +651,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(UserFriendsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(FilmNewsPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		
 		$con->beginTransaction();
@@ -386,7 +659,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 		try {
 			$ret = $this->preSave($con);
 			// symfony_behaviors behavior
-			foreach (sfMixer::getCallables('BaseUserFriends:save:pre') as $callable)
+			foreach (sfMixer::getCallables('BaseFilmNews:save:pre') as $callable)
 			{
 			  if (is_integer($affectedRows = call_user_func($callable, $this, $con)))
 			  {
@@ -394,8 +667,20 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 			  }
 			}
 
+			// symfony_timestampable behavior
+			if ($this->isModified() && !$this->isColumnModified(FilmNewsPeer::UPDATED_AT))
+			{
+			  $this->setUpdatedAt(time());
+			}
+
 			if ($isInsert) {
 				$ret = $ret && $this->preInsert($con);
+				// symfony_timestampable behavior
+				if (!$this->isColumnModified(FilmNewsPeer::CREATED_AT))
+				{
+				  $this->setCreatedAt(time());
+				}
+
 			} else {
 				$ret = $ret && $this->preUpdate($con);
 			}
@@ -408,13 +693,13 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 				}
 				$this->postSave($con);
 				// symfony_behaviors behavior
-				foreach (sfMixer::getCallables('BaseUserFriends:save:post') as $callable)
+				foreach (sfMixer::getCallables('BaseFilmNews:save:post') as $callable)
 				{
 				  call_user_func($callable, $this, $con, $affectedRows);
 				}
 
 				$con->commit();
-				UserFriendsPeer::addInstanceToPool($this);
+				FilmNewsPeer::addInstanceToPool($this);
 				return $affectedRows;
 			}
 		} catch (PropelException $e) {
@@ -440,37 +725,23 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 		if (!$this->alreadyInSave) {
 			$this->alreadyInSave = true;
 
-			// We call the save method on the following object(s) if they
-			// were passed to this object by their coresponding set
-			// method.  This object relates to these object(s) by a
-			// foreign key reference.
-
-			if ($this->aUsersRelatedByUserId !== null) {
-				if ($this->aUsersRelatedByUserId->isModified() || $this->aUsersRelatedByUserId->isNew()) {
-					$affectedRows += $this->aUsersRelatedByUserId->save($con);
-				}
-				$this->setUsersRelatedByUserId($this->aUsersRelatedByUserId);
+			if ($this->isNew() ) {
+				$this->modifiedColumns[] = FilmNewsPeer::ID;
 			}
-
-			if ($this->aUsersRelatedByFriendId !== null) {
-				if ($this->aUsersRelatedByFriendId->isModified() || $this->aUsersRelatedByFriendId->isNew()) {
-					$affectedRows += $this->aUsersRelatedByFriendId->save($con);
-				}
-				$this->setUsersRelatedByFriendId($this->aUsersRelatedByFriendId);
-			}
-
 
 			// If this object has been modified, then save it to the database.
 			if ($this->isModified()) {
 				if ($this->isNew()) {
-					$pk = UserFriendsPeer::doInsert($this, $con);
+					$pk = FilmNewsPeer::doInsert($this, $con);
 					$affectedRows += 1; // we are assuming that there is only 1 row per doInsert() which
 										 // should always be true here (even though technically
 										 // BasePeer::doInsert() can insert multiple rows).
 
+					$this->setId($pk);  //[IMV] update autoincrement primary key
+
 					$this->setNew(false);
 				} else {
-					$affectedRows += UserFriendsPeer::doUpdate($this, $con);
+					$affectedRows += FilmNewsPeer::doUpdate($this, $con);
 				}
 
 				$this->resetModified(); // [HL] After being saved an object is no longer 'modified'
@@ -542,25 +813,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 			$failureMap = array();
 
 
-			// We call the validate method on the following object(s) if they
-			// were passed to this object by their coresponding set
-			// method.  This object relates to these object(s) by a
-			// foreign key reference.
-
-			if ($this->aUsersRelatedByUserId !== null) {
-				if (!$this->aUsersRelatedByUserId->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aUsersRelatedByUserId->getValidationFailures());
-				}
-			}
-
-			if ($this->aUsersRelatedByFriendId !== null) {
-				if (!$this->aUsersRelatedByFriendId->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aUsersRelatedByFriendId->getValidationFailures());
-				}
-			}
-
-
-			if (($retval = UserFriendsPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = FilmNewsPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -583,7 +836,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = UserFriendsPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = FilmNewsPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		$field = $this->getByPosition($pos);
 		return $field;
 	}
@@ -599,13 +852,28 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	{
 		switch($pos) {
 			case 0:
-				return $this->getUserId();
+				return $this->getId();
 				break;
 			case 1:
-				return $this->getFriendId();
+				return $this->getTitle();
 				break;
 			case 2:
-				return $this->getCommit();
+				return $this->getUrl();
+				break;
+			case 3:
+				return $this->getImg();
+				break;
+			case 4:
+				return $this->getDescription();
+				break;
+			case 5:
+				return $this->getIsVisible();
+				break;
+			case 6:
+				return $this->getCreatedAt();
+				break;
+			case 7:
+				return $this->getUpdatedAt();
 				break;
 			default:
 				return null;
@@ -626,11 +894,16 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true)
 	{
-		$keys = UserFriendsPeer::getFieldNames($keyType);
+		$keys = FilmNewsPeer::getFieldNames($keyType);
 		$result = array(
-			$keys[0] => $this->getUserId(),
-			$keys[1] => $this->getFriendId(),
-			$keys[2] => $this->getCommit(),
+			$keys[0] => $this->getId(),
+			$keys[1] => $this->getTitle(),
+			$keys[2] => $this->getUrl(),
+			$keys[3] => $this->getImg(),
+			$keys[4] => $this->getDescription(),
+			$keys[5] => $this->getIsVisible(),
+			$keys[6] => $this->getCreatedAt(),
+			$keys[7] => $this->getUpdatedAt(),
 		);
 		return $result;
 	}
@@ -647,7 +920,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = UserFriendsPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = FilmNewsPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -663,13 +936,28 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	{
 		switch($pos) {
 			case 0:
-				$this->setUserId($value);
+				$this->setId($value);
 				break;
 			case 1:
-				$this->setFriendId($value);
+				$this->setTitle($value);
 				break;
 			case 2:
-				$this->setCommit($value);
+				$this->setUrl($value);
+				break;
+			case 3:
+				$this->setImg($value);
+				break;
+			case 4:
+				$this->setDescription($value);
+				break;
+			case 5:
+				$this->setIsVisible($value);
+				break;
+			case 6:
+				$this->setCreatedAt($value);
+				break;
+			case 7:
+				$this->setUpdatedAt($value);
 				break;
 		} // switch()
 	}
@@ -693,11 +981,16 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = UserFriendsPeer::getFieldNames($keyType);
+		$keys = FilmNewsPeer::getFieldNames($keyType);
 
-		if (array_key_exists($keys[0], $arr)) $this->setUserId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFriendId($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setCommit($arr[$keys[2]]);
+		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
+		if (array_key_exists($keys[1], $arr)) $this->setTitle($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setUrl($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setImg($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setDescription($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setIsVisible($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setCreatedAt($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setUpdatedAt($arr[$keys[7]]);
 	}
 
 	/**
@@ -707,11 +1000,16 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(UserFriendsPeer::DATABASE_NAME);
+		$criteria = new Criteria(FilmNewsPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(UserFriendsPeer::USER_ID)) $criteria->add(UserFriendsPeer::USER_ID, $this->user_id);
-		if ($this->isColumnModified(UserFriendsPeer::FRIEND_ID)) $criteria->add(UserFriendsPeer::FRIEND_ID, $this->friend_id);
-		if ($this->isColumnModified(UserFriendsPeer::COMMIT)) $criteria->add(UserFriendsPeer::COMMIT, $this->commit);
+		if ($this->isColumnModified(FilmNewsPeer::ID)) $criteria->add(FilmNewsPeer::ID, $this->id);
+		if ($this->isColumnModified(FilmNewsPeer::TITLE)) $criteria->add(FilmNewsPeer::TITLE, $this->title);
+		if ($this->isColumnModified(FilmNewsPeer::URL)) $criteria->add(FilmNewsPeer::URL, $this->url);
+		if ($this->isColumnModified(FilmNewsPeer::IMG)) $criteria->add(FilmNewsPeer::IMG, $this->img);
+		if ($this->isColumnModified(FilmNewsPeer::DESCRIPTION)) $criteria->add(FilmNewsPeer::DESCRIPTION, $this->description);
+		if ($this->isColumnModified(FilmNewsPeer::IS_VISIBLE)) $criteria->add(FilmNewsPeer::IS_VISIBLE, $this->is_visible);
+		if ($this->isColumnModified(FilmNewsPeer::CREATED_AT)) $criteria->add(FilmNewsPeer::CREATED_AT, $this->created_at);
+		if ($this->isColumnModified(FilmNewsPeer::UPDATED_AT)) $criteria->add(FilmNewsPeer::UPDATED_AT, $this->updated_at);
 
 		return $criteria;
 	}
@@ -726,9 +1024,9 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(UserFriendsPeer::DATABASE_NAME);
+		$criteria = new Criteria(FilmNewsPeer::DATABASE_NAME);
 
-		$criteria->add(UserFriendsPeer::USER_ID, $this->user_id);
+		$criteria->add(FilmNewsPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -739,18 +1037,18 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function getPrimaryKey()
 	{
-		return $this->getUserId();
+		return $this->getId();
 	}
 
 	/**
-	 * Generic method to set the primary key (user_id column).
+	 * Generic method to set the primary key (id column).
 	 *
 	 * @param      int $key Primary key.
 	 * @return     void
 	 */
 	public function setPrimaryKey($key)
 	{
-		$this->setUserId($key);
+		$this->setId($key);
 	}
 
 	/**
@@ -759,21 +1057,31 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 * If desired, this method can also make copies of all associated (fkey referrers)
 	 * objects.
 	 *
-	 * @param      object $copyObj An object of UserFriends (or compatible) type.
+	 * @param      object $copyObj An object of FilmNews (or compatible) type.
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
 	 * @throws     PropelException
 	 */
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
-		$copyObj->setUserId($this->user_id);
+		$copyObj->setTitle($this->title);
 
-		$copyObj->setFriendId($this->friend_id);
+		$copyObj->setUrl($this->url);
 
-		$copyObj->setCommit($this->commit);
+		$copyObj->setImg($this->img);
+
+		$copyObj->setDescription($this->description);
+
+		$copyObj->setIsVisible($this->is_visible);
+
+		$copyObj->setCreatedAt($this->created_at);
+
+		$copyObj->setUpdatedAt($this->updated_at);
 
 
 		$copyObj->setNew(true);
+
+		$copyObj->setId(NULL); // this is a auto-increment column, so set to default value
 
 	}
 
@@ -786,7 +1094,7 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 * objects.
 	 *
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     UserFriends Clone of current object.
+	 * @return     FilmNews Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy($deepCopy = false)
@@ -805,106 +1113,14 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 * same instance for all member of this class. The method could therefore
 	 * be static, but this would prevent one from overriding the behavior.
 	 *
-	 * @return     UserFriendsPeer
+	 * @return     FilmNewsPeer
 	 */
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new UserFriendsPeer();
+			self::$peer = new FilmNewsPeer();
 		}
 		return self::$peer;
-	}
-
-	/**
-	 * Declares an association between this object and a Users object.
-	 *
-	 * @param      Users $v
-	 * @return     UserFriends The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setUsersRelatedByUserId(Users $v = null)
-	{
-		if ($v === null) {
-			$this->setUserId(NULL);
-		} else {
-			$this->setUserId($v->getId());
-		}
-
-		$this->aUsersRelatedByUserId = $v;
-
-		// Add binding for other direction of this 1:1 relationship.
-		if ($v !== null) {
-			$v->setUserFriendsRelatedByUserId($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Users object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Users The associated Users object.
-	 * @throws     PropelException
-	 */
-	public function getUsersRelatedByUserId(PropelPDO $con = null)
-	{
-		if ($this->aUsersRelatedByUserId === null && ($this->user_id !== null)) {
-			$this->aUsersRelatedByUserId = UsersPeer::retrieveByPk($this->user_id);
-			// Because this foreign key represents a one-to-one relationship, we will create a bi-directional association.
-			$this->aUsersRelatedByUserId->setUserFriendsRelatedByUserId($this);
-		}
-		return $this->aUsersRelatedByUserId;
-	}
-
-	/**
-	 * Declares an association between this object and a Users object.
-	 *
-	 * @param      Users $v
-	 * @return     UserFriends The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setUsersRelatedByFriendId(Users $v = null)
-	{
-		if ($v === null) {
-			$this->setFriendId(NULL);
-		} else {
-			$this->setFriendId($v->getId());
-		}
-
-		$this->aUsersRelatedByFriendId = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Users object, it will not be re-added.
-		if ($v !== null) {
-			$v->addUserFriendsRelatedByFriendId($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Users object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Users The associated Users object.
-	 * @throws     PropelException
-	 */
-	public function getUsersRelatedByFriendId(PropelPDO $con = null)
-	{
-		if ($this->aUsersRelatedByFriendId === null && ($this->friend_id !== null)) {
-			$this->aUsersRelatedByFriendId = UsersPeer::retrieveByPk($this->friend_id);
-			/* The following can be used additionally to
-			   guarantee the related object contains a reference
-			   to this object.  This level of coupling may, however, be
-			   undesirable since it could result in an only partially populated collection
-			   in the referenced object.
-			   $this->aUsersRelatedByFriendId->addUserFriendssRelatedByFriendId($this);
-			 */
-		}
-		return $this->aUsersRelatedByFriendId;
 	}
 
 	/**
@@ -921,8 +1137,6 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 		if ($deep) {
 		} // if ($deep)
 
-			$this->aUsersRelatedByUserId = null;
-			$this->aUsersRelatedByFriendId = null;
 	}
 
 	// symfony_behaviors behavior
@@ -932,9 +1146,9 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	 */
 	public function __call($method, $arguments)
 	{
-	  if (!$callable = sfMixer::getCallable('BaseUserFriends:'.$method))
+	  if (!$callable = sfMixer::getCallable('BaseFilmNews:'.$method))
 	  {
-	    throw new sfException(sprintf('Call to undefined method BaseUserFriends::%s', $method));
+	    throw new sfException(sprintf('Call to undefined method BaseFilmNews::%s', $method));
 	  }
 	
 	  array_unshift($arguments, $this);
@@ -942,4 +1156,4 @@ abstract class BaseUserFriends extends BaseObject  implements Persistent {
 	  return call_user_func_array($callable, $arguments);
 	}
 
-} // BaseUserFriends
+} // BaseFilmNews

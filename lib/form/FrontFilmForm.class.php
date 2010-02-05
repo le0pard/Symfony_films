@@ -10,6 +10,21 @@
  */
 class FrontFilmForm extends BaseFilmForm
 {
+
+  protected static $film_types = array("" => ' -- Не указано -- ', 
+  									   "CamRip" => "CamRip (CAM)",
+  									   "Telesync" => "Telesync (TS)",
+  									   "Screener" => "Screener (SCR)",
+  									   "Workprint" => "Workprint (WP)",
+  									   "Telecine" => "Telecine (TC)",
+  									   "TVRip" => "TVRip",
+  									   "VHSRip" => "VHSRip",
+  									   "SATRip" => "SATRip/DSRip",
+  									   "HDTVRip" => "HDTVRip",
+  									   "PDTVRip" => "PDTVRip",
+  									   "DVDRip" => "DVDRip/LDRip"
+  									);
+	
   public function configure()
   {
   	unset(
@@ -33,7 +48,7 @@ class FrontFilmForm extends BaseFilmForm
       'about'                => new sfWidgetFormTextarea(array(), 
 					array('rows' => 5, 'cols' => 50, 'class' => 'TinyMCE')),
       'country'              => new sfWidgetFormInputText(),
-      'duration'             => new sfWidgetFormInputText(),
+      'duration'             => new sfWidgetFormSelect(array('multiple' => false, 'choices' => self::$film_types)),
       'file_info'            => new sfWidgetFormTextarea()
     ));
 
@@ -58,9 +73,8 @@ class FrontFilmForm extends BaseFilmForm
       'country'              => new sfValidatorString(array('max_length' => 80, 'required' => true), 
 	  						array('required' => 'Страна должна быть указана.', 
 								  'max_length' => '"%value%" слишком длинное (Максимальная длинна %max_length% символа).')),
-      'duration'             => new sfValidatorString(array('max_length' => 100, 'required' => true), 
-	  						array('required' => 'Укажите качество видео.', 
-								  'max_length' => '"%value%" слишком длинное (Максимальная длинна %max_length% символа).')),
+      'duration'             => new sfValidatorChoice(array('choices' => array_keys(self::$film_types), 'required' => true), 
+	  							array('required' => 'Укажите качество видео.', 'invalid' => 'Неверно.')),
       'file_info'            => new sfValidatorString(array('required' => true), 
 	  						array('required' => 'Нужно указать эту информацию.')),
       'film_film_types_list' => new sfValidatorPropelChoice(array('model' => 'FilmTypes', 'required' => true, 'multiple' => true), 

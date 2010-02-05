@@ -10,7 +10,9 @@ class Users extends BaseUsers
 		if (!$password && 0 == strlen($password)){
 			return false;
 		}
-		parent::setPassword(md5($password));
+		$salt = "$2a$07$".System::generateRandomKey(20)."$";
+		parent::setPasswordSalt($salt);
+		parent::setPassword(crypt($password, $salt));
     }
 	
 	public function getUnpublicFilms(){
