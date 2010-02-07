@@ -1,6 +1,6 @@
 <?php slot('top_content') ?>
-<?php include_component('news', 'latest', array('sf_cache_key' => 'latest')) ?>
-<?php include_component('afisha', 'today', array('sf_cache_key' => 'afisha')) ?>
+	<?php include_component('news', 'latest', array('sf_cache_key' => 'latest')) ?>
+	<?php include_component('afisha', 'today', array('sf_cache_key' => 'afisha')) ?>
 <?php end_slot() ?>
 
 <?php include_component('film', 'topNew', array('sf_cache_key' => 'top_new')) ?>

@@ -3,6 +3,8 @@
  * 
  */
 var FilmSiteJs = {
+	scrollPadding: -70,
+
 	init: function(){
 		this.initRegForm();
 		this.initSearchForm();
@@ -14,6 +16,7 @@ var FilmSiteJs = {
 		this.initAfisha();
 		this.initRating();
 		this.initTextarea();
+		this.initAfishaTopFilms();
 	},
 	initRegForm: function(){
 		if ($('registration_form')) {
@@ -236,6 +239,66 @@ var FilmSiteJs = {
 				this.replaceSelection('<img src="' + img_url + '" alt="' + (selection == '' ? 'Image Alt Text' : selection) + '" />');  
 			},{  
 				id: 'markdown_image_button'  
+			});
+		}
+	},
+	initAfishaTopFilms: function(){
+		if ($('scrl_left_afisha') && $('scrl_right_afisha')){
+			
+			var element_width = $('afisha_list_1').getWidth();
+			$('afisha_today_box').scrollLeft = element_width * 5 + 10;
+			var scroll_offset = element_width * 3;
+			
+			Position.prepare();
+			var container_x = Position.cumulativeOffset($('afisha_today_box'))[0];
+			var scroll_right = true;
+			$('scrl_left_afisha').observe('click', function(event){
+				new Effect.Scroll('afisha_today_box', {x:(container_x + FilmSiteJs.scrollPadding), y:0, 
+					beforeSetup: function(effect){
+						var childs = $('afisha_today_box').childElements();
+						if (childs.length && childs[0] && childs[childs.length - 1] && !scroll_right){
+							var el1 = childs[childs.length - 1].cloneNode(true);
+							var el2 = childs[childs.length - 2].cloneNode(true);
+							var el3 = childs[childs.length - 3].cloneNode(true);
+							
+							childs[childs.length - 1].remove();
+							childs[childs.length - 2].remove();
+							childs[childs.length - 3].remove();
+							
+							childs[0].insert({before: el3});
+							childs[0].insert({before: el2});
+							childs[0].insert({before: el1});
+						} else {
+							scroll_right = false;
+						}	
+						$('afisha_today_box').scrollLeft = container_x + scroll_offset + FilmSiteJs.scrollPadding;
+					}
+				});
+			});
+
+			$('scrl_right_afisha').observe('click', function(event){
+				new Effect.Scroll('afisha_today_box', {x:(container_x + scroll_offset + FilmSiteJs.scrollPadding), y:0,
+					beforeSetup: function(effect){
+						var childs = $('afisha_today_box').childElements();
+						if (childs.length && childs[0] && childs[childs.length - 1] && scroll_right){
+							var el1 = childs[0].cloneNode(true);
+							var el2 = childs[1].cloneNode(true);
+							var el3 = childs[2].cloneNode(true);
+							
+							childs[0].remove();
+							childs[1].remove();
+							childs[2].remove();
+							
+							childs[childs.length - 1].insert({after: el3});
+							childs[childs.length - 1].insert({after: el2});
+							childs[childs.length - 1].insert({after: el1});
+						} else {
+							scroll_right = true;
+						}	
+						$('afisha_today_box').scrollLeft = container_x + FilmSiteJs.scrollPadding;
+						
+					}
+				});
 			});
 		}
 	}	

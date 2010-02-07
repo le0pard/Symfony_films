@@ -1,11 +1,14 @@
-<h2>Новости</h2>
-<div>
-	<ul>
-<?php foreach($news as $key=>$row): ?>
-	<li>
-		<a href="<?php echo url_for('news_one', $row) ?>"><?php echo $row->getTitle();?></a>
-	</li>
-<?php endforeach ?>
-	</ul>
-<a href="<?php echo url_for('@news_all') ?>">Все новости</a>
+<div id="news">
+	<div class="r_container">
+		<h2>
+			<a href="<?php echo url_for('@news_all') ?>">Новости</a>
+		</h2>
+		<?php foreach($news as $key=>$row): ?>
+			<div>
+				<h3>
+				<a href="<?php echo url_for('news_one', $row) ?>"><?php echo $row->getTitle();?></a>
+				</h3><?php echo strftime('%d.%m.%Y', $row->getUpdatedAt('U')); ?>
+			</div>
+		<?php endforeach ?>	
+	</div>
 </div>

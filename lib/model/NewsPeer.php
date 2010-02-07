@@ -17,7 +17,7 @@ class NewsPeer extends BaseNewsPeer
     	return self::doSelectOne(self::addVisibleCriteria($criteria));
     }
     
-    static public function getLatest($count = 5){
+    static public function getLatest($count = 4){
     	$criteria = self::addVisibleCriteria();
     	$criteria->setLimit($count);
     	return self::doSelect($criteria);

@@ -54,7 +54,7 @@ class searchActions extends sfActions
 		return $this->renderText("");
 	}
 	$this->search_res = FilmPeer::searchAutoComplete($query);
-	$s_text = "<ul>";
+	$s_text = '<ul id="autofill">';
 	foreach($this->search_res as $row){
 		$s_text.= "<li>".$row->getTitle()."</li>";
 	}
