@@ -246,10 +246,6 @@ var FilmSiteJs = {
 	initAfishaTopFilms: function(){
 		if ($('scrl_left_afisha') && $('scrl_right_afisha')){
 			
-			var element_width = $('afisha_list_1').getWidth();
-			var scroll_offset = $('afisha_today_box').getWidth();
-			
-			Position.prepare();
 			var scroll_counter = 1;
 			$('afisha_today_box').scrollLeft = 0;
 			

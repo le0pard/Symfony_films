@@ -5,7 +5,12 @@ Object.extend(Object.extend(Effect.Scroll.prototype, Effect.Base.prototype), {
     var options = Object.extend({
       x:    0,
       y:    0,
-      mode: 'absolute'
+      mode: 'absolute',
+      afterFinishInternal: function(effect){
+    	
+      },
+      beforeSetup:  function(){
+      }	  
     } , arguments[1] || {}  );
     this.start(options);
   },
@@ -18,7 +23,7 @@ Object.extend(Object.extend(Effect.Scroll.prototype, Effect.Base.prototype), {
 
     this.originalLeft=this.element.scrollLeft;
     this.originalTop=this.element.scrollTop;
-    
+
     if(this.options.mode == 'absolute') {
       this.options.x -= this.originalLeft;
       this.options.y -= this.originalTop;
@@ -29,7 +34,7 @@ Object.extend(Object.extend(Effect.Scroll.prototype, Effect.Base.prototype), {
   update: function(position) {   
     this.element.scrollLeft = this.options.x * position + this.originalLeft;
     this.element.scrollTop  = this.options.y * position + this.originalTop;
-  }
+  }  
 });
 
 Element.addMethods({

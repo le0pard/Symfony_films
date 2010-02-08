@@ -28,31 +28,27 @@
 		  			<?php include_slot('top_content') ?>
 				</div>
 			<?php endif ?>
-		<!--FLASH-->
-		<?php if ($sf_user->hasFlash('confirm')): ?>
-			<div id="information_messages">
-				<ul class="confirm">
-					<li><?php echo $sf_user->getFlash('confirm') ?></li>
-				</ul>
+			<!--FLASH-->
+			<?php if ($sf_user->hasFlash('confirm')): ?>
+				<div id="information_messages">
+					<ul class="confirm">
+						<li><?php echo $sf_user->getFlash('confirm') ?></li>
+					</ul>
+				</div>
+			<?php endif; ?>
+			<?php if ($sf_user->hasFlash('error')): ?>
+				<div id="information_messages">
+					<ul class="error">
+						<li><?php echo $sf_user->getFlash('error') ?></li>
+					</ul>
+				</div>
+			<?php endif; ?>
+			<!--FLASH-->
+		<div id="content_body">
+			<div id="sidebar">	
+			<?php include_partial('global/right_panel') ?>
 			</div>
-		<?php endif; ?>
-		<?php if ($sf_user->hasFlash('error')): ?>
-			<div id="information_messages">
-				<ul class="error">
-					<li><?php echo $sf_user->getFlash('error') ?></li>
-				</ul>
-			</div>
-		<?php endif; ?>
-		<!--FLASH-->
-		<div id="content">
-			<div class="left_content">
-				<?php echo $sf_content ?>
-			</div>
-			<div class="clear"></div>
-			<div class="right_content">
-				<?php include_partial('global/right_panel') ?>
-			</div>
-			<div class="clear"></div>
+			<?php echo $sf_content ?>
 		</div>
 		<div class="clear"></div>
 		<!--FOOTER-->
