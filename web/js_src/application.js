@@ -3,7 +3,7 @@
  * 
  */
 var FilmSiteJs = {
-	scrollPadding: -70,
+	scrollPadding: 0,
 
 	init: function(){
 		this.initRegForm();
@@ -246,14 +246,14 @@ var FilmSiteJs = {
 		if ($('scrl_left_afisha') && $('scrl_right_afisha')){
 			
 			var element_width = $('afisha_list_1').getWidth();
-			$('afisha_today_box').scrollLeft = element_width * 5 + 10;
-			var scroll_offset = element_width * 3;
+			var scroll_offset = $('afisha_today_box').getWidth();
 			
 			Position.prepare();
-			var container_x = Position.cumulativeOffset($('afisha_today_box'))[0];
-			var scroll_right = true;
+			var container_x = element_width * 5 + FilmSiteJs.scrollPadding;
+			$('afisha_today_box').scrollLeft = container_x;
+			var scroll_right = false;
 			$('scrl_left_afisha').observe('click', function(event){
-				new Effect.Scroll('afisha_today_box', {x:(container_x + FilmSiteJs.scrollPadding), y:0, 
+				new Effect.Scroll('afisha_today_box', {x:(container_x), y:0, 
 					beforeSetup: function(effect){
 						var childs = $('afisha_today_box').childElements();
 						if (childs.length && childs[0] && childs[childs.length - 1] && !scroll_right){
@@ -271,13 +271,13 @@ var FilmSiteJs = {
 						} else {
 							scroll_right = false;
 						}	
-						$('afisha_today_box').scrollLeft = container_x + scroll_offset + FilmSiteJs.scrollPadding;
+						$('afisha_today_box').scrollLeft = container_x + scroll_offset;
 					}
 				});
 			});
 
 			$('scrl_right_afisha').observe('click', function(event){
-				new Effect.Scroll('afisha_today_box', {x:(container_x + scroll_offset + FilmSiteJs.scrollPadding), y:0,
+				new Effect.Scroll('afisha_today_box', {x:(container_x + scroll_offset), y:0,
 					beforeSetup: function(effect){
 						var childs = $('afisha_today_box').childElements();
 						if (childs.length && childs[0] && childs[childs.length - 1] && scroll_right){
@@ -295,7 +295,7 @@ var FilmSiteJs = {
 						} else {
 							scroll_right = true;
 						}	
-						$('afisha_today_box').scrollLeft = container_x + FilmSiteJs.scrollPadding;
+						$('afisha_today_box').scrollLeft = container_x;
 						
 					}
 				});
