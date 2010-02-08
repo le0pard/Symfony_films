@@ -4,6 +4,7 @@
  */
 var FilmSiteJs = {
 	scrollPadding: 0,
+	maxScrollAfisha: 4,
 
 	init: function(){
 		this.initRegForm();
@@ -249,56 +250,27 @@ var FilmSiteJs = {
 			var scroll_offset = $('afisha_today_box').getWidth();
 			
 			Position.prepare();
-			var container_x = element_width * 5 + FilmSiteJs.scrollPadding;
-			$('afisha_today_box').scrollLeft = container_x;
-			var scroll_right = false;
+			var scroll_counter = 1;
+			$('afisha_today_box').scrollLeft = 0;
+			
 			$('scrl_left_afisha').observe('click', function(event){
-				new Effect.Scroll('afisha_today_box', {x:(container_x), y:0, 
-					beforeSetup: function(effect){
-						var childs = $('afisha_today_box').childElements();
-						if (childs.length && childs[0] && childs[childs.length - 1] && !scroll_right){
-							var el1 = childs[childs.length - 1].cloneNode(true);
-							var el2 = childs[childs.length - 2].cloneNode(true);
-							var el3 = childs[childs.length - 3].cloneNode(true);
-							
-							childs[childs.length - 1].remove();
-							childs[childs.length - 2].remove();
-							childs[childs.length - 3].remove();
-							
-							childs[0].insert({before: el3});
-							childs[0].insert({before: el2});
-							childs[0].insert({before: el1});
-						} else {
-							scroll_right = false;
-						}	
-						$('afisha_today_box').scrollLeft = container_x + scroll_offset;
-					}
-				});
+				scroll_counter = scroll_counter - 1;
+				if (scroll_counter < 1) scroll_counter = 1;
+
+				$('afisha_today_box').scrollToByX('afisha_list_' + ((scroll_counter - 1)*3 + 1));
+				if ($('afisha_pager')){
+					$('afisha_pager').update(scroll_counter);
+				}
 			});
 
 			$('scrl_right_afisha').observe('click', function(event){
-				new Effect.Scroll('afisha_today_box', {x:(container_x + scroll_offset), y:0,
-					beforeSetup: function(effect){
-						var childs = $('afisha_today_box').childElements();
-						if (childs.length && childs[0] && childs[childs.length - 1] && scroll_right){
-							var el1 = childs[0].cloneNode(true);
-							var el2 = childs[1].cloneNode(true);
-							var el3 = childs[2].cloneNode(true);
-							
-							childs[0].remove();
-							childs[1].remove();
-							childs[2].remove();
-							
-							childs[childs.length - 1].insert({after: el3});
-							childs[childs.length - 1].insert({after: el2});
-							childs[childs.length - 1].insert({after: el1});
-						} else {
-							scroll_right = true;
-						}	
-						$('afisha_today_box').scrollLeft = container_x;
-						
-					}
-				});
+				scroll_counter = scroll_counter + 1;
+				if (scroll_counter > FilmSiteJs.maxScrollAfisha) scroll_counter = FilmSiteJs.maxScrollAfisha;
+
+				$('afisha_today_box').scrollToByX('afisha_list_' + ((scroll_counter - 1)*3 + 1));
+				if ($('afisha_pager')){
+					$('afisha_pager').update(scroll_counter);
+				}	
 			});
 		}
 	}	

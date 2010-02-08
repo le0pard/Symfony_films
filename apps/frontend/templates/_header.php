@@ -10,7 +10,9 @@
 	</div>
 
 	<div id="logo">
-		<img src="/images/logo.png" alt="Coocoorooza" title="Coocoorooza" />
+		<a href="<?php echo url_for('@homepage') ?>">
+			<img src="/images/logo.png" alt="Coocoorooza" title="Coocoorooza" />
+		</a>
 	</div>
 
 	<ul id="menu_2">
