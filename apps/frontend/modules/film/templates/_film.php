@@ -8,6 +8,7 @@
 		<a href="<?php echo url_for('film_show', $film) ?>"><?php echo $film->getTitle(); ?></a>
 	</div>
 	<div>
-	<?php echo $film->getDirector() ?>, <?php echo $film->getPubYear() ?> <img src="/images/emotion.png" class="vote_smile" alt="<?php echo $film->getRating();?>" title="Говно" />
+	<?php echo $film->getDirector() ?>, <?php echo $film->getPubYear() ?>
+	<img src="/images/emotion.png" class="vote_smile" alt="alt" title="Говно" />
 	</div>
 </div>

@@ -2,6 +2,7 @@
 
 class FilmPeer extends BaseFilmPeer
 {
+	
 	static public function addVisibleCriteria(Criteria $criteria = null) {
 	    if (is_null($criteria)) {
 	    	$criteria = new Criteria();
@@ -124,6 +125,7 @@ class FilmPeer extends BaseFilmPeer
 	    }
 	    $criteria->add(self::IS_VISIBLE, true);
 		$criteria->setLimit(sfConfig::get('app_films_top_new', 10));
+		//$criteria->addJoin(self::ID, FilmTotalRatingPeer::FILM_ID, Criteria::LEFT_JOIN);
 		$criteria->addDescendingOrderByColumn(self::MODIFIED_AT);
 		return self::doSelect($criteria);
 	}

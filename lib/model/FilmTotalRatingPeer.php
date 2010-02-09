@@ -27,4 +27,11 @@ class FilmTotalRatingPeer extends BaseFilmTotalRatingPeer {
 		return self::doSelectJoinFilm($criteria);
 	}
 	
+	static public function getByFilmId($film_id){
+		$criteria = new Criteria();
+		$criteria->add(self::FILM_ID, $film_id);
+		$criteria->addDescendingOrderByColumn(self::TOTAL_RATING);
+		return self::doSelectOne($criteria);
+	}
+	
 } // FilmTotalRatingPeer
