@@ -1,6 +1,6 @@
-<div id="last_comments">
+<div class="round" id="last_comments">
 	<div class="r_container">
-		<h2><a href="<?php echo url_for('@comments_last_list') ?>">Последние комментарии</a></h2>
+		<h2 class="top_plate"><a href="<?php echo url_for('@comments_last_list') ?>">Последние комментарии</a></h2>
 		<ul>
 			<?php foreach($comments as $row): ?>
 			<?php if ($row->getFilm() && $row->getUsers()): ?>

@@ -46,14 +46,17 @@
 			<!--FLASH-->
 		<div id="content_body">
 			<div id="sidebar">	
-			<?php include_partial('global/right_panel') ?>
+				<?php include_partial('global/right_panel') ?>
 			</div>
-			<?php echo $sf_content ?>
+			<div id="content">
+				<?php echo $sf_content ?>
+			</div>	
 		</div>
-		<div class="clear"></div>
 		<!--FOOTER-->
 	   	<?php include_partial('global/footer') ?>
 		<!--FOOTER-->
-		<?php include_partial('global/google_analytics') ?>
+	</div>
+  </div>
+  <?php include_partial('global/google_analytics') ?>
   </body>
 </html>

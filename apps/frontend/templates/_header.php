@@ -5,7 +5,7 @@
 		</div>
 		
 		<div id="twitter">
-			<a href="http://twitter.com/coocoorooza" target="_blank">Twitter</a>
+			<a href="http://twitter.com/coocoorooza">Twitter</a>
 		</div>
 	</div>
 

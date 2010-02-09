@@ -43,7 +43,7 @@ class sfPosterFile extends sfValidatedFile{
 		}
 
 		// copy the temp file to the destination file
-		$thumbnail = new sfThumbnail(180, 250, false, true, 95, 'sfImageMagickAdapter', array('method' => 'shave_all'));
+		$thumbnail = new sfThumbnail(170, 235, false, true, 100, 'sfImageMagickAdapter', array('method' => 'shave_all'));
 		$thumbnail->loadFile($this->getTempName());
 		$thumbnail->save($smallFile);
 		

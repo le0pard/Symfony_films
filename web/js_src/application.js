@@ -244,29 +244,75 @@ var FilmSiteJs = {
 		}
 	},
 	initAfishaTopFilms: function(){
-		if ($('scrl_left_afisha') && $('scrl_right_afisha')){
+		if ($('scrl_left_afisha') && $('scrl_right_afisha') && $('afisha_list_2')){
 			
-			var scroll_counter = 1;
-			$('afisha_today_box').scrollLeft = 0;
+			var element = 'afisha_today_box';
+			var child = 'afisha_list_2';
+			var scroll_counter = 2;
+			var is_scroll = false;
+			
+			$(element).scrollLeft = Position.cumulativeOffset($(child))[0] - Position.cumulativeOffset($(element))[0];
 			
 			$('scrl_left_afisha').observe('click', function(event){
+				
+				if (is_scroll){
+					return false;
+				}	
+				
 				scroll_counter = scroll_counter - 1;
-				if (scroll_counter < 1) scroll_counter = 1;
+				if (scroll_counter < 1) scroll_counter = FilmSiteJs.maxScrollAfisha;
 
-				$('afisha_today_box').scrollToByX('afisha_list_' + ((scroll_counter - 1)*3 + 1));
-				if ($('afisha_pager')){
-					$('afisha_pager').update(scroll_counter);
-				}
+				Position.prepare();
+				container_x = Position.cumulativeOffset($(element))[0];
+				element_x = Position.cumulativeOffset($(child))[0];
+				new Effect.Scroll(element, {x:(element_x-container_x), y:0,
+					beforeSetup: function(effect){
+						var childs = $(element).childElements();
+						if (childs.length && childs[0] && childs[childs.length - 1]){
+							var el = childs[childs.length - 1].cloneNode(true);
+							childs[childs.length - 1].remove();
+							childs[0].insert({before: el});
+						}
+						$(element).scrollLeft = Position.cumulativeOffset($(child))[0] - Position.cumulativeOffset($(element))[0];
+						is_scroll = true;
+					},
+					afterFinishInternal: function(effect){
+						child = 'afisha_list_' + scroll_counter;
+						is_scroll = false;
+					}
+				});
+
 			});
 
 			$('scrl_right_afisha').observe('click', function(event){
+				
+				if (is_scroll){
+					return false;
+				}
+				
 				scroll_counter = scroll_counter + 1;
-				if (scroll_counter > FilmSiteJs.maxScrollAfisha) scroll_counter = FilmSiteJs.maxScrollAfisha;
+				if (scroll_counter > FilmSiteJs.maxScrollAfisha) scroll_counter = 1;
+				
+				Position.prepare();
+				container_x = Position.cumulativeOffset($(element))[0];
+				element_x = Position.cumulativeOffset($(child))[0];
+				new Effect.Scroll(element, {x:(element_x-container_x), y:0,
+					beforeSetup: function(effect){
+						var childs = $(element).childElements();
+						if (childs.length && childs[0] && childs[childs.length - 1]){
+							var el = childs[0].cloneNode(true);
+							childs[0].remove();
+							childs[childs.length - 1].insert({after: el});
+						}
+						$(element).scrollLeft = Position.cumulativeOffset($(child))[0] - Position.cumulativeOffset($(element))[0];
+						is_scroll = true;
+					},
+					afterFinishInternal: function(effect){
+						child = 'afisha_list_' + scroll_counter;
+						is_scroll = false;
+					}
+				});
 
-				$('afisha_today_box').scrollToByX('afisha_list_' + ((scroll_counter - 1)*3 + 1));
-				if ($('afisha_pager')){
-					$('afisha_pager').update(scroll_counter);
-				}	
 			});
 		}
 	}	

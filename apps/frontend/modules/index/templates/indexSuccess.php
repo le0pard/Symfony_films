@@ -4,5 +4,7 @@
 <?php end_slot() ?>
 
 <?php include_component('film', 'topNew', array('sf_cache_key' => 'top_new')) ?>
+<div id="raitings">
 <?php include_component('user', 'topUsers', array('sf_cache_key' => 'top_user')) ?>
 <?php include_component('film', 'topRating', array('sf_cache_key' => 'top_films')) ?>
+</div>

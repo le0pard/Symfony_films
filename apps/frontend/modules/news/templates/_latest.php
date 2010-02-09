@@ -1,6 +1,6 @@
-<div id="news">
+<div id="news" class="round">
 	<div class="r_container">
-		<h2>
+		<h2 class="top_plate">
 			<a href="<?php echo url_for('@news_all') ?>">Новости</a>
 		</h2>
 		<?php foreach($news as $key=>$row): ?>
