@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
   	<?php use_javascript('tiny_mce/tiny_mce.js') ?>
-	<?php use_stylesheet('main.css') ?>
+	<?php //use_stylesheet('main.css') ?>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <?php include_title() ?>

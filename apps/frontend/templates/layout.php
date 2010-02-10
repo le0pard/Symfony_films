@@ -30,17 +30,13 @@
 			<?php endif ?>
 			<!--FLASH-->
 			<?php if ($sf_user->hasFlash('confirm')): ?>
-				<div id="information_messages">
-					<ul class="confirm">
-						<li><?php echo $sf_user->getFlash('confirm') ?></li>
-					</ul>
+				<div id="flash_success" class="success">
+					<div><?php echo $sf_user->getFlash('confirm') ?></div>
 				</div>
 			<?php endif; ?>
 			<?php if ($sf_user->hasFlash('error')): ?>
-				<div id="information_messages">
-					<ul class="error">
-						<li><?php echo $sf_user->getFlash('error') ?></li>
-					</ul>
+				<div id="flash_error" class="error">
+					<div><?php echo $sf_user->getFlash('error') ?></div>
 				</div>
 			<?php endif; ?>
 			<!--FLASH-->

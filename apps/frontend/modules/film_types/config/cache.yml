@@ -1,8 +1,8 @@
 index:
   enabled:     true
-  lifetime:    2592000 # 30 суток
+  lifetime:    14400 # 4 часа
 show:
   enabled:     true
-  lifetime:    2592000 # 30 суток
+  lifetime:    14400 # 4 часа
 all:
   with_layout: false

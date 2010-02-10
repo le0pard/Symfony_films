@@ -509,7 +509,8 @@ float:left;
 width:92%;
 margin-right:0;
 margin-left:0;
-left:4%
+left:4%;
+margin-bottom:1em;
 }
 
 .error div,.notice div,.success div {
