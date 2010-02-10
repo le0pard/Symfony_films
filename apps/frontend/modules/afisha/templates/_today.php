@@ -8,6 +8,7 @@
 		<a id="scrl_right_afisha" class="top_plate scrl_right">→</a>
 		<div id="afisha_today_box" class="lists">
 			<?php $i = 1;?>
+			<?php $rkey = 0;?>
 			<ul id="afisha_list_<?php echo $i;?>">
 			<?php foreach($afisha as $key=>$show):?>
 				<?php if ($key % 3 == 0 && $key != 0):?>
@@ -23,8 +24,9 @@
 				<?php if (($key+1) % 3 == 0 && $key != 0):?>
 				</ul><?php $i++;?>
 				<?php endif?>
+				<?php $rkey = $key;?>
 			<?php endforeach?>
-			<?php if (($key+1) % 3 != 0):?>
+			<?php if ($rkey && ($rkey+1) % 3 != 0):?>
 				</ul>
 			<?php endif?>
 		</div>
