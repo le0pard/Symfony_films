@@ -11,21 +11,21 @@
 	<?php if (1 == $pager->getPage()): ?>
 		<span class="disabled prev_page">&laquo; Сюда</span>
 	<?php else: ?>
-		<a class="prev_page" href="<?php echo url_for('@film_types_all_pages?page='.$pager->getPreviousPage()) ?>">&laquo; Сюда</a>
+		<a class="prev_page" href="<?php echo url_for('film_types', $film_type) ?>?page=<?php echo $pager->getPreviousPage() ?>">&laquo; Сюда</a>
 	<?php endif ?>
 
     <?php foreach ($pager->getLinks(15) as $page): ?>
       <?php if ($page == $pager->getPage()): ?>
         <span class="current"><?php echo $page ?></span>
       <?php else: ?>
-        <a href="<?php echo url_for('@film_types_all_pages?page='.$page) ?>"><?php echo $page ?></a>
+        <a href="<?php echo url_for('film_types', $film_type) ?>?page=<?php echo $page ?>"><?php echo $page ?></a>
       <?php endif; ?>
     <?php endforeach; ?>
  	
 	<?php if ($pager->getLastPage() == $pager->getPage()): ?>
 		<span class="disabled next_page">Туда &raquo;</span>
 	<?php else: ?>
-    	<a class="next_page" href="<?php echo url_for('@film_types_all_pages?page='.$pager->getNextPage()) ?>">Туда &raquo;</a>
+    	<a class="next_page" href="<?php echo url_for('film_types', $film_type) ?>?page=<?php echo $pager->getNextPage() ?>">Туда &raquo;</a>
 	<?php endif ?>
     
 </div> 
