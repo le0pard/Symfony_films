@@ -21,6 +21,7 @@ class film_typesActions extends sfActions
 		'Film',
 		sfConfig::get('app_pages_main_page')
 	);
+	$this->pager->setPeerMethod('doSelectJoinRaiting');
 	$this->pager->setCriteria(FilmPeer::addVisibleCriteria());
 	$this->pager->setPage($request->getParameter('page', 1));
 	$this->pager->init();
@@ -34,7 +35,8 @@ class film_typesActions extends sfActions
 		'FilmFilmTypes',
 		sfConfig::get('app_pages_catalog_page', 60)
 	);
-	$this->pager->setPeerMethod('doSelectJoinFilm');
+	//$this->pager->setPeerMethod('doSelectJoinFilm');
+	$this->pager->setPeerMethod('doSelectJoinFilmAndRaiting');
 	$this->pager->setPeerCountMethod('doCountJoinFilm');
 	$criteria = FilmFilmTypesPeer::addCatalogCriteria($this->film_type);
 	$criteria = FilmPeer::addVisibleCriteria($criteria);

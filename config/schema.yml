@@ -85,7 +85,7 @@ propel:
     
   film_total_rating:
     id:               ~
-    film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
+    film_id:          { type: integer, foreignTable: film, foreignReference: id, required: true, onDelete: cascade }
     total_rating:     { type: decimal, required: true, size: 10, scale: 1, default: 0 }
     
   film_gallery:

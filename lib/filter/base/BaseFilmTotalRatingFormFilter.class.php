@@ -13,10 +13,12 @@ abstract class BaseFilmTotalRatingFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'film_id'      => new sfWidgetFormPropelChoice(array('model' => 'Film', 'add_empty' => true)),
       'total_rating' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
+      'film_id'      => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Film', 'column' => 'id')),
       'total_rating' => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
     ));
 

@@ -9,6 +9,6 @@
 	</div>
 	<div>
 	<?php echo $film->getDirector() ?>, <?php echo $film->getPubYear() ?>
-	<img src="/images/emotion.png" class="vote_smile" alt="alt" title="Говно" />
+	<img src="/images/emotion.png" class="vote_smile" alt="<?php echo $film->getFilmRaitingNum();?>" title="Говно" />
 	</div>
 </div>

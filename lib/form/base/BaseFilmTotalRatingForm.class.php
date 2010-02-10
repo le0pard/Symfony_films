@@ -16,13 +16,13 @@ abstract class BaseFilmTotalRatingForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'film_id'      => new sfWidgetFormInputHidden(),
+      'film_id'      => new sfWidgetFormPropelChoice(array('model' => 'Film', 'add_empty' => false)),
       'total_rating' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'           => new sfValidatorPropelChoice(array('model' => 'FilmTotalRating', 'column' => 'id', 'required' => false)),
-      'film_id'      => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
+      'film_id'      => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id')),
       'total_rating' => new sfValidatorNumber(),
     ));
 

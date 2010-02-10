@@ -3,6 +3,63 @@
 class FilmPeer extends BaseFilmPeer
 {
 	
+	public static function doSelectJoinRaiting(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
+	{
+		$criteria = clone $criteria;
+
+		// Set the correct dbName if it has not been overridden
+		if ($criteria->getDbName() == Propel::getDefaultDB()) {
+			$criteria->setDbName(self::DATABASE_NAME);
+		}
+
+		FilmPeer::addSelectColumns($criteria);
+		$startcol2 = (FilmPeer::NUM_COLUMNS - FilmPeer::NUM_LAZY_LOAD_COLUMNS);
+
+		FilmTotalRatingPeer::addSelectColumns($criteria);
+
+		$criteria->addJoin(FilmPeer::ID, FilmTotalRatingPeer::FILM_ID, $join_behavior);
+
+		$stmt = BasePeer::doSelect($criteria, $con);
+		$results = array();
+
+		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+			$key1 = FilmPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj1 = FilmPeer::getInstanceFromPool($key1))) {
+				// We no longer rehydrate the object, since this can cause data loss.
+				// See http://propel.phpdb.org/trac/ticket/509
+				// $obj1->hydrate($row, 0, true); // rehydrate
+			} else {
+				$cls = FilmPeer::getOMClass(false);
+
+				$obj1 = new $cls();
+				$obj1->hydrate($row);
+				FilmPeer::addInstanceToPool($obj1, $key1);
+			} // if obj1 already loaded
+
+			// Add objects for joined Users rows
+
+			$key2 = FilmTotalRatingPeer::getPrimaryKeyHashFromRow($row, $startcol2);
+			if ($key2 !== null) {
+				$obj2 = FilmTotalRatingPeer::getInstanceFromPool($key2);
+				if (!$obj2) {
+
+					$cls = FilmTotalRatingPeer::getOMClass(false);
+
+					$obj2 = new $cls();
+					$obj2->hydrate($row, $startcol2);
+					FilmTotalRatingPeer::addInstanceToPool($obj2, $key2);
+				} // if obj2 loaded
+
+				// Add the $obj1 (Film) to the collection in $obj2 (Users)
+				$obj1->setFilmRaitingNum($obj2->getTotalRating());
+			} // if joined row not null
+
+			$results[] = $obj1;
+		}
+		$stmt->closeCursor();
+		return $results;
+	}
+	
 	static public function addVisibleCriteria(Criteria $criteria = null) {
 	    if (is_null($criteria)) {
 	    	$criteria = new Criteria();
@@ -125,9 +182,8 @@ class FilmPeer extends BaseFilmPeer
 	    }
 	    $criteria->add(self::IS_VISIBLE, true);
 		$criteria->setLimit(sfConfig::get('app_films_top_new', 10));
-		//$criteria->addJoin(self::ID, FilmTotalRatingPeer::FILM_ID, Criteria::LEFT_JOIN);
 		$criteria->addDescendingOrderByColumn(self::MODIFIED_AT);
-		return self::doSelect($criteria);
+		return self::doSelectJoinRaiting($criteria);
 	}
 
 }

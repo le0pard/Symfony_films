@@ -2,8 +2,18 @@
 
 class Film extends BaseFilm
 {
+	private $filmRaitingNum = 0;
+	
 	public function __toString(){
     	return sprintf('%s (%s)', $this->getTitle(), $this->getOriginalTitle());
+    }
+    
+    public function setFilmRaitingNum($num){
+    	$this->filmRaitingNum = $num;
+    }
+    
+	public function getFilmRaitingNum(){
+    	return $this->filmRaitingNum;
     }
 	
 	public function setTitle($title){
