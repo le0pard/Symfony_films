@@ -2,7 +2,7 @@
 
 function captcha_image()
 {
-  $ret = '<img id="captcha_img" src="'.url_for('sfCryptoCaptcha/captcha?random='.time()).'" alt="Captcha Image">';
+  $ret = '<img id="captcha_img" src="'.url_for('sfCryptoCaptcha/captcha?random='.time()).'" alt="Captcha Image" />';
 	return $ret;
 }
 
@@ -25,6 +25,6 @@ function captcha_reload_button()
 	$suffix = substr($refresh_url, $suffix_offset, $delimiter_length);
 	
   $onclick = 'javascript:document.getElementById(\'captcha_img\').src=\''.$normal_url.'/\'+Math.round(Math.random(0)*1000)+1+\''.$suffix.'\'';
-	$ret = '<a style="cursor:pointer" onclick="'.$onclick.'">'.image_tag($refresh_image).'</a>';
+	$ret = '<a style="cursor:pointer" onclick="'.$onclick.'">'.image_tag($refresh_image, array('alt' => 'Refresh')).'</a>';
 	return $ret;
 }
