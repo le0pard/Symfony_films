@@ -58,11 +58,11 @@ var FilmSiteJs = {
 		  onComplete: function(request) {
 		  	var jdata = request.responseText.evalJSON(true);
 			if (jdata.error){
-				$('registration_login').addClassName('ajax_error');
-				$('registration_login').removeClassName('ajax_notice');
+				$('registration_login').addClassName('ajax_input_error');
+				$('registration_login').removeClassName('ajax_input_notice');
 			} else {
-				$('registration_login').addClassName('ajax_notice');
-				$('registration_login').removeClassName('ajax_error');
+				$('registration_login').addClassName('ajax_input_notice');
+				$('registration_login').removeClassName('ajax_input_error');
 			}
 		  }
 		});
@@ -74,11 +74,11 @@ var FilmSiteJs = {
 		  onComplete: function(request) {
 		  	var jdata = request.responseText.evalJSON(true);
 			if (jdata.error){
-				$('registration_email').addClassName('ajax_error');
-				$('registration_email').removeClassName('ajax_notice');
+				$('registration_email').addClassName('ajax_input_error');
+				$('registration_email').removeClassName('ajax_input_notice');
 			} else {
-				$('registration_email').addClassName('ajax_notice');
-				$('registration_email').removeClassName('ajax_error');
+				$('registration_email').addClassName('ajax_input_notice');
+				$('registration_email').removeClassName('ajax_input_error');
 			}
 		  }
 		});

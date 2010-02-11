@@ -1,3 +1,13 @@
+input.ajax_input_error{
+	background-color: #FCF6D0 !important;
+	border:1px solid #F00 !important
+}
+
+input.ajax_input_notice{
+	background-color: #FCF6D0 !important;
+	border:1px solid #060 !important
+}
+
 .round {
 position:relative !important;
 z-index:49;
@@ -1334,7 +1344,7 @@ margin-top:3em
 }
 
 #content_body #sidebar #register .userinfo {
-padding:1em 2em
+padding:2em 2em 1em 2em
 }
 
 #content_body #sidebar #register .userinfo p {
@@ -1364,7 +1374,7 @@ margin-top:1em
 #content_body #sidebar #category_list ul {
 list-style:none;
 margin:0;
-padding:1em 2em
+padding:2em 2em 1em 2em
 }
 
 #content_body #sidebar #category_list ul li a {

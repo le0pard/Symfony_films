@@ -48,7 +48,7 @@ class RegistrationForm extends BaseUsersForm{
 	));
 	
 	$this->widgetSchema['rights'] = new sfWidgetFormInputCheckbox(array(
-      'label' => '&nbsp;',
+      'label' => 'Ознакомлен и согласен с правилами',
 	  'value_attribute_value' => 1
     ), array('value' => 1));
 	
@@ -63,7 +63,7 @@ class RegistrationForm extends BaseUsersForm{
 		'password_confirmation' => 'Повторите введенный Вами пароль',
 		'email' => 'Пожалуйста, введите верный e-mail (не показывается на сайте)',
 		'captcha' => 'Нам нужны эти циферки',
-		'rights' => 'Ознакомлен и согласен с правилами'
+		'rights' => ''
 	));
 
 	

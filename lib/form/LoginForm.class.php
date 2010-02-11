@@ -28,6 +28,7 @@ class LoginForm extends BaseForm{
     ));
 	
 	$this->validatorSchema->setOption('allow_extra_fields', true);
+	$this->getWidgetSchema()->getFormFormatter()->setHelpFormat('%help%');
 
   }
 }
