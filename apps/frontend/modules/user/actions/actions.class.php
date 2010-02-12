@@ -27,7 +27,7 @@ class userActions extends sfActions
 			$data = UsersPeer::getActiveUser($values['login'], $values['password']);
 			if ($data){
 				$this->getUser()->signIn($data, $values['not_remember'] ? false : true);
-				$this->getUser()->setFlash('confirm', sprintf('Добро пожаловать %s.', $data->getLogin()));
+				$this->getUser()->setFlash('confirm', sprintf('Добро пожаловать, %s.', $data->getLogin()));
 				$this->redirect('@homepage');
 			} else {
 				$this->getUser()->setFlash('error', 'Неверный логин или пароль', false);

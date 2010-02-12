@@ -16,6 +16,9 @@
 	<div class="permited">Разрешены теги: <ul><li>&#60;a&#62;</li><li>&#60;img&#62;</li><li>&#60;i&#62;</li><li>&#60;b&#62;</li><li>&#60;u&#62;</li><li>&#60;em&#62;</li><li>&#60;strong&#62;</li><li>&#60;nobr&#62;</li><li>&#60;li&#62;</li><li>&#60;ol&#62;</li><li>&#60;ul&#62;</li><li>&#60;br&#62;</li><li>&#60;pre&#62;</li><li>&#60;code&#62;</li></ul></div>
 
 	<div class="submit">
+		<?php if ($form->isCSRFProtected()) : ?> 
+	  	  <?php echo $form[$form->getCSRFFieldName()]->render(); ?>
+	    <?php endif ?>
 		<input class="big" type="submit" value="
 		<?php if (isset($method) && 'edit' == $method): ?>
 			Редактировать

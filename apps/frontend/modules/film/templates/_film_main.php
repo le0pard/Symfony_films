@@ -72,7 +72,7 @@
 </div>
 <?php if ($film->countFilmTrailers() > 0):?>
 <div id="film_trailers">
-	<a onclick="javascript:$('trailers_box').toggle(); if ($('trailers_box').visible()) { Effect.ScrollTo('trailers_box'); } return false;" href="#">Показать / Скрыть</a>
+	<a onclick="javascript:$('trailers_box').toggle(); if ($('trailers_box').visible()) { Effect.ScrollTo('trailers_box'); } return false;" href="#">Показать / Скрыть трейлеры</a>
 	<div id="trailers_box" style="display:none">
 		<?php foreach ($film->getTrailers() as $trailer):?>
 			<div>
