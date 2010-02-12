@@ -1,6 +1,7 @@
 _types:
   enabled:     true
   lifetime:    2592000 # 30 суток
+  contextual:  true
 _film_main:
   enabled:     true
   lifetime:    2592000 # 30 суток
