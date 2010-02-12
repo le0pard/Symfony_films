@@ -15,6 +15,7 @@
 	<div>
 	  <?php echo $form['password']->renderError()?>
 	  <?php echo $form['password']->render(array("id" => "password"))?>
+	  <div style="padding-bottom:15px;"><a href="<?php echo url_for('@user_forgot_pass') ?>">Забыли пароль?</a></div>
 	  <div class="tip"><?php echo $form['password']->renderHelp()?></div>
 	</div>
 	<div>

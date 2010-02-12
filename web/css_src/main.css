@@ -1125,11 +1125,6 @@ display:inline;
 margin:0 0.2em
 }
 
-#content_body #film_forms #add_comment div span {
-display:block;
-font-weight:400
-}
-
 #content_body #film_forms #add_comment div.permited {
 width:auto;
 color:#000;

@@ -29,5 +29,7 @@
 			wmode="window" width="445" height="364" allowFullScreen="true" ></EMBED>
 	</OBJECT><br />
 	<?php endif ?>
+	<!--  
 	<?php echo preview_trailer_link($trailer) ?><br />
+	-->
 <?php endif ?>

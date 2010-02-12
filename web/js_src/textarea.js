@@ -114,6 +114,7 @@ Control.TextArea.ToolBar = Class.create(    {
         Object.extend(a,attrs || {});
         if(link_text){
             var span = document.createElement('span');
+            span.className = 'non';
             span.innerHTML = link_text;
             a.appendChild(span);
         }
