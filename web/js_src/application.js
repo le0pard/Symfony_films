@@ -124,7 +124,7 @@ var FilmSiteJs = {
 	initAddGallerySort: function(){
 		if ($('add_gallery_list') && $('js_add_film_id')){
 			Sortable.create("add_gallery_list", {
-		        tag: 'li', handles:$$('#add_gallery_list div.sort_cursor'),
+		        tag: 'li', handles:$$('#add_gallery_list a.drag_right'),
 		        onUpdate: function(){
 					new Ajax.Request(film_sort_step2_path($F('js_add_film_id')),{ method: "post", postBody: Sortable.serialize('add_gallery_list')});
 				}  

@@ -34,13 +34,15 @@ class FrontFilmGalleryForm extends BaseFilmGalleryForm
 	if ($this->getObject()->isNew()){
 		$this->redefineFieldsByDef();
 	} else {
+		$del_link = '<span class="delete"><a onclick="javascript:return confirm(\'Действительно удалить скриншот?\');" href="'.sfContext::getInstance()->getRouting()->generate('film_delete_gallery', $this->getObject()).'">Удалить</a></span>';
+		
 		$this->widgetSchema['thumb_img'] = new sfWidgetFormInputFileEditable(array(
-	      'label'     => '&nbsp;',
+	      'label'     => 'Добавить скриншот',
 	      'file_src'  => '/uploads/gallery/'.$this->getObject()->getFilmId().'/'.$this->getObject()->getThumbImg(),
 	      'is_image'  => true,
 		  'delete_label' => 'Удалить?',
 	      'edit_mode' => !$this->isNew(),
-	      'template'  => '<div class="gallery_cell">%file% %input%</div>',
+	      'template'  => '<div class="img">%file%</div><div class="file">%input% <input type="submit" value="Обновить" /> '.$del_link.'</div>',
 	    ));
 		$this->validatorSchema['thumb_img'] = new sfValidatorFile(array(
 		  'required'   => true,
@@ -49,7 +51,7 @@ class FrontFilmGalleryForm extends BaseFilmGalleryForm
 		  'mime_types' => 'web_images',
 		  'validated_file_class' => 'sfGalleryFile'
 		), array('required' => 'А где картинка?', 'max_size' => 'Загружать до '.round((sfConfig::get('app_films_gallery_size')/1048576), 3).' Мб!', 'mime_types' => 'Загружать можно только картинки!'));
-		$this->widgetSchema->setHelp('thumb_img', '<span class="delete"><a onclick="javascript:return confirm(\'Действительно удалить скриншот?\');" href="'.sfContext::getInstance()->getRouting()->generate('film_delete_gallery', $this->getObject()).'">Удалить</a></span>');
+		$this->widgetSchema->setHelp('thumb_img', '');
 	}
 	
 	$this->widgetSchema->setNameFormat('gallery[%s]');
@@ -59,12 +61,12 @@ class FrontFilmGalleryForm extends BaseFilmGalleryForm
   
   public function redefineFieldsByDef(){
   	$this->widgetSchema['thumb_img'] = new sfWidgetFormInputFileEditable(array(
-      'label'     => '&nbsp;',
+      'label'     => 'Добавить скриншот',
       'file_src'  => '/uploads/gallery/'.$this->getDefault('film_id').'/'.$this->getObject()->getThumbImg(),
       'is_image'  => true,
 	  'delete_label' => 'Удалить?',
       'edit_mode' => !$this->isNew(),
-      'template'  => '<div class="gallery_cell">%file% %input%</div>',
+      'template'  => '<div>%file% %input% <input type="submit" value="Обновить" /></div>',
     ));
 	$this->validatorSchema['thumb_img'] = new sfValidatorFile(array(
 	  'required'   => true,
