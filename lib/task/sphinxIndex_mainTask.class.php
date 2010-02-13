@@ -29,6 +29,7 @@ EOF;
 	$root_dir = sfConfig::get('sf_root_dir');
 	$sphinx_config = sfConfig::get('app_sphinx_search_config', '/config/sphinx.conf');
 	
-	system($indexer_bin." --config ".$root_dir.$sphinx_config." --rotate --all");
+	//system($indexer_bin." --config ".$root_dir.$sphinx_config." --rotate --all");
+	system($indexer_bin." --config ".$root_dir.$sphinx_config." --all");
   }
 }

@@ -8,7 +8,6 @@
  * @package    symfony_films
  * @subpackage form
  * @author     leopard
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseFilmTypesForm extends BaseFormPropel
 {

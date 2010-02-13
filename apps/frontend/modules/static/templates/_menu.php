@@ -1,11 +1,12 @@
 <div id="menu_1">
 	<ul>
-		<li>
-			<span>Пункт1</span>
-		</li>
 		<?php foreach($static_pages as $key=>$row): ?>
 		<li>
-			<a href="<?php echo url_for('static_page', $row) ?>"><?php echo $row->getTitle() ?></a>
+			<?php if ('show' == $sf_params->get('action') && 'static' == $sf_params->get('module') && $row->getId() == $sf_params->get('id')):?>
+				<span><?php echo $row->getTitle() ?></span>
+			<?php else:?>
+				<a href="<?php echo url_for('static_page', $row) ?>"><?php echo $row->getTitle() ?></a>
+			<?php endif ?>
 		</li>
 		<?php endforeach ?>
 	</ul>

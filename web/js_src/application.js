@@ -31,14 +31,32 @@ var FilmSiteJs = {
 		}
 	},
 	initSearchForm: function(){
-		if ($('search_field')){
-			new Ajax.Autocompleter('search_field', 
+		if ($('search_field_input')){
+			new Ajax.Autocompleter('search_field_input', 
 			'search_field_auto_complete', 
 			search_auto_complete_path(), {
 				minChars: 3,
 				indicator: 'search_indicator',
 				frequency: 1
 			});
+			
+			$('search_field_input').observe('focus', function(event){
+				if ($F('search_field_input') == 'Поиск'){
+					$('search_field_input').value = '';
+				}
+			});
+			
+			$('search_field_input').observe('blur', function(event){
+				if ($F('search_field_input') == ''){
+					$('search_field_input').value = 'Поиск';
+				}
+			});
+			
+			if ($('search_tip') && $('search_tip_descr')){
+				$('search_tip').observe('click', function(event){
+					$('search_tip_descr').toggle();
+				});
+			}	
 		}
 	},
 /*	
@@ -154,8 +172,8 @@ var FilmSiteJs = {
 				updateOptions: {
 					method: 'post',
 					onComplete: function(request){
-						if ($('film_rating_container')){
-							$('film_rating_container').update(request.responseText);
+						if ($('film_vote')){
+							$('film_vote').update(request.responseText);
 							if ($('rating_film_done')){
 								var rating_film_done = new Control.Rating('rating_film_done',{
 									max: 10, 

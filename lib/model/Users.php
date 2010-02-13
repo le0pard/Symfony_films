@@ -14,6 +14,19 @@ class Users extends BaseUsers
 		parent::setPasswordSalt($salt);
 		parent::setPassword(crypt($password, $salt));
     }
+    
+	public function getViewAvatar(){
+		if (is_null($this->getAvatar()) || $this->getAvatar() == ''){
+			return 'default/blank_ava.jpg';
+		} else {
+			return $this->getAvatar();
+		}
+    }
+    
+    public function getGenderName(){
+    	$gender = array('Не определился', 'Мужской', 'Женский');
+    	return $gender[$this->getGender()];
+    }
 	
 	public function getUnpublicFilms(){
 		return FilmPeer::doSelect(FilmPeer::doSelectUnpublicCriteria());

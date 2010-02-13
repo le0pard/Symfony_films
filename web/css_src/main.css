@@ -1028,7 +1028,8 @@ max-width:540px
 display:inline-block;
 background:url(data:image/gif;base64,R0lGODlhCQBtAJECADQ0NGZmZjk5OQAAACH5BAEAAAIALAAAAAAJAG0AAAIyjI+pa+LqBHysWgOy3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zve+fwkuIhNJgihMGgoAOw==) repeat-x;
 margin:0 0.7em 1em 0;
-padding:15px 5px
+padding:15px 5px;
+vertical-align:top
 }
 
 #content_body #frames ul li a {
@@ -1174,7 +1175,7 @@ border-color:#767676
 
 #content_body #comments ul li .author a {
 display:block;
-font-size:0.8em
+font-size:1em
 }
 
 #content_body #comments ul li .comment {

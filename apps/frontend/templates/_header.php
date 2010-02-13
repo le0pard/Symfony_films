@@ -31,7 +31,7 @@
 		<form action="<?php echo url_for('@search') ?>" method="get">
 			<div>
 				<div id="search_field_auto_complete" class="autocomplete"></div>
-				<input id="search_field" name="s" type="text" value="Поиск" />
+				<input id="search_field_input" name="s" type="text" value="Поиск" />
 				<div class="loader">
 					<img id="search_indicator" src="/images/ajax-loader.gif"  alt="Загрузка" style="display:none;" />
 				</div>

@@ -18,7 +18,7 @@ class searchActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
 	if (!$this->query = $request->getParameter('s')) {
-		$this->redirect($this->generateUrl('@homepage'));
+		$this->redirect('@homepage');
 	}
 	
 	if ('sphinx' == sfConfig::get('app_search_method')){

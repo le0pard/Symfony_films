@@ -43,7 +43,7 @@ class sfAvatarFile extends sfValidatedFile{
 		}
 
 		// copy the temp file to the destination file
-		$thumbnail = new sfThumbnail(120, 120, true, false, 95, 'sfGDAdapter');
+		$thumbnail = new sfThumbnail(64, 64, false, false, 95, 'sfGDAdapter');
 		$thumbnail->loadFile($this->getTempName());
 		$thumbnail->save($file);
 
