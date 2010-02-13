@@ -1,9 +1,8 @@
 .rating_container {  
-clear:both;
+white-space: nowrap
 } 
 .rating_container a {  
-float:left;  
-display:block;  
+display:inline-block; 
 width:25px;  
 height:25px;  
 border:0;  

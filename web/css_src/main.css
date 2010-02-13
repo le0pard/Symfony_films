@@ -404,7 +404,6 @@ max-height:10em
 }
 
 form .rows {
-border-bottom:1px dashed;
 width:auto !important;
 margin:1em 0
 }
@@ -440,19 +439,25 @@ top:.05em;
 width:auto !important
 }
 
-input[type=button],input[type=submit] {
+input[type=button],input[type=submit], a.button {
 background:#98c825 !important;
 color:#FFF !important;
 border:none !important;
 width:auto !important;
-font-size:1.3em;
+font-size:1.3em !important;
 cursor:pointer !important;
-margin-top:0.5em;
-padding-top:0.15em;
-padding-bottom:0.15em
+margin-top:0.5em !important;
+padding-top:0.15em !important;
+padding-bottom:0.15em !important
 }
 
-input[type=button]:hover,input[type=submit]:hover {
+a.button{
+	display:inline-block;
+	text-decoration:none;
+	padding:0.3em 0.5em !important
+}
+
+input[type=button]:hover,input[type=submit]:hover, a.button:hover {
 background:#afdc44 !important
 }
 
@@ -1540,11 +1545,17 @@ margin-bottom:0
 float:left
 }
 
-.form_body:after,#supervisor2:after,.clearfix:after,#top:after,#top_add:after,#top_add #cinema_posters div .lists li:after,#content_body:after,#content_body #new:after,#content_body #raitings:after,#content_body #film_forms:after,#content_body #comments ul li:after,#content_body #about_cat:after,#content_body #userinfo_ava:after,#content_body #userinfo_site:after,#content_body #userinfo_about:after,#content_body #search_result li:after,.digg_pagination:after {
+.form_body:after,#supervisor2:after,.clearfix:after,#top:after,#top_add:after,#top_add #cinema_posters div .lists li:after,#content_body:after,#content_body #new:after,#content_body #raitings:after,#content_body #film_forms:after,#content_body #comments ul li:after,#content_body #about_cat:after,#content_body #userinfo_ava:after,#content_body #userinfo_site:after,#content_body #userinfo_about:after,.digg_pagination:after {
 content:"";
 display:block;
 height:0;
 clear:both
+}
+
+#content_body #search_result li:after{
+content:"";
+display:block;
+height:0
 }
 
 #top #menu_1 ul,#content_body #frames ul,#content_body #film_links ul,#content_body #draft_list ul {
@@ -1589,4 +1600,23 @@ padding:0
 
 #content_body #sidebar #category_list ul li,#content_body #sidebar #last_comments ul li {
 line-height:1.5em
+}
+
+#add_gallery_list{
+	list-style:none;
+	padding-left:0;
+}
+
+#add_gallery_list .img{
+	float: left; 
+	width: 100px
+}
+
+#add_gallery_list .file{
+	margin-left: 110px; 
+	min-height: 100px
+}
+
+#add_gallery_list li{
+border-bottom:1px dashed;
 }
