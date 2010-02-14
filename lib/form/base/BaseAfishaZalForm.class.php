@@ -24,7 +24,7 @@ abstract class BaseAfishaZalForm extends BaseFormPropel
       'id'                => new sfValidatorPropelChoice(array('model' => 'AfishaZal', 'column' => 'id', 'required' => false)),
       'external_id'       => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'afisha_theater_id' => new sfValidatorPropelChoice(array('model' => 'AfishaTheater', 'column' => 'id')),
-      'title'             => new sfValidatorString(array('max_length' => 500)),
+      'title'             => new sfValidatorString(array('max_length' => 500, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('afisha_zal[%s]');

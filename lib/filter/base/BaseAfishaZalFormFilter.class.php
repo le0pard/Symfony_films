@@ -14,7 +14,7 @@ abstract class BaseAfishaZalFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'external_id'       => new sfWidgetFormFilterInput(),
       'afisha_theater_id' => new sfWidgetFormPropelChoice(array('model' => 'AfishaTheater', 'add_empty' => true)),
-      'title'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'title'             => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(

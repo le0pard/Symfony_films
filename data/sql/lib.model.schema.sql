@@ -1,623 +1,655 @@
 
-# This is a fix for InnoDB in MySQL >= 4.1.x
-# It "suspends judgement" for fkey relationships until are tables are set.
-SET FOREIGN_KEY_CHECKS = 0;
+-----------------------------------------------------------------------------
+-- users
+-----------------------------------------------------------------------------
 
-#-----------------------------------------------------------------------------
-#-- users
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
+DROP TABLE "users" CASCADE;
 
 
-CREATE TABLE `users`
+CREATE TABLE "users"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`login` VARCHAR(100)  NOT NULL,
-	`password` VARCHAR(100)  NOT NULL,
-	`password_salt` VARCHAR(100)  NOT NULL,
-	`email` VARCHAR(100)  NOT NULL,
-	`website_blog` VARCHAR(500),
-	`avatar` VARCHAR(500),
-	`gender` INTEGER default 0,
-	`about` TEXT,
-	`last_login` DATETIME,
-	`is_active` TINYINT default 0 NOT NULL,
-	`persistence_token` VARCHAR(200) default '',
-	`is_super_admin` TINYINT default 0 NOT NULL,
-	`count_of_films` INTEGER default 0,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `users_U_1` (`login`),
-	UNIQUE KEY `users_U_2` (`email`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"login" VARCHAR(100)  NOT NULL,
+	"password" VARCHAR(100)  NOT NULL,
+	"password_salt" VARCHAR(100)  NOT NULL,
+	"email" VARCHAR(100)  NOT NULL,
+	"website_blog" VARCHAR(500),
+	"avatar" VARCHAR(500),
+	"gender" INTEGER default 0,
+	"about" TEXT,
+	"last_login" TIMESTAMP,
+	"is_active" BOOLEAN default 'f' NOT NULL,
+	"persistence_token" VARCHAR(200) default '',
+	"is_super_admin" BOOLEAN default 'f' NOT NULL,
+	"count_of_films" INTEGER default 0,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id"),
+	CONSTRAINT "users_U_1" UNIQUE ("login"),
+	CONSTRAINT "users_U_2" UNIQUE ("email")
+);
 
-#-----------------------------------------------------------------------------
-#-- users_group
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users_group`;
+COMMENT ON TABLE "users" IS '';
 
 
-CREATE TABLE `users_group`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- users_group
+-----------------------------------------------------------------------------
+
+DROP TABLE "users_group" CASCADE;
+
+
+CREATE TABLE "users_group"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`name` VARCHAR(255)  NOT NULL,
-	`description` TEXT,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `users_group_U_1` (`name`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"name" VARCHAR(255)  NOT NULL,
+	"description" TEXT,
+	PRIMARY KEY ("id"),
+	CONSTRAINT "users_group_U_1" UNIQUE ("name")
+);
 
-#-----------------------------------------------------------------------------
-#-- users_users_group
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users_users_group`;
+COMMENT ON TABLE "users_group" IS '';
 
 
-CREATE TABLE `users_users_group`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- users_users_group
+-----------------------------------------------------------------------------
+
+DROP TABLE "users_users_group" CASCADE;
+
+
+CREATE TABLE "users_users_group"
 (
-	`user_id` INTEGER  NOT NULL,
-	`group_id` INTEGER  NOT NULL,
-	PRIMARY KEY (`user_id`,`group_id`),
-	CONSTRAINT `users_users_group_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
-		ON DELETE CASCADE,
-	INDEX `users_users_group_FI_2` (`group_id`),
-	CONSTRAINT `users_users_group_FK_2`
-		FOREIGN KEY (`group_id`)
-		REFERENCES `users_group` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"user_id" INTEGER  NOT NULL,
+	"group_id" INTEGER  NOT NULL,
+	PRIMARY KEY ("user_id","group_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- users_remember_key
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users_remember_key`;
+COMMENT ON TABLE "users_users_group" IS '';
 
 
-CREATE TABLE `users_remember_key`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- users_remember_key
+-----------------------------------------------------------------------------
+
+DROP TABLE "users_remember_key" CASCADE;
+
+
+CREATE TABLE "users_remember_key"
 (
-	`user_id` INTEGER  NOT NULL,
-	`remember_key` VARCHAR(32),
-	`ip_address` VARCHAR(50)  NOT NULL,
-	`created_at` DATETIME,
-	PRIMARY KEY (`user_id`,`ip_address`),
-	CONSTRAINT `users_remember_key_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"user_id" INTEGER  NOT NULL,
+	"remember_key" VARCHAR(32),
+	"ip_address" VARCHAR(50)  NOT NULL,
+	"created_at" TIMESTAMP,
+	PRIMARY KEY ("user_id","ip_address")
+);
 
-#-----------------------------------------------------------------------------
-#-- film
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film`;
+COMMENT ON TABLE "users_remember_key" IS '';
 
 
-CREATE TABLE `film`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film
+-----------------------------------------------------------------------------
+
+DROP TABLE "film" CASCADE;
+
+
+CREATE TABLE "film"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`user_id` INTEGER  NOT NULL,
-	`title` VARCHAR(500)  NOT NULL,
-	`original_title` VARCHAR(500)  NOT NULL,
-	`normal_logo` VARCHAR(255),
-	`thumb_logo` VARCHAR(255),
-	`url` VARCHAR(500),
-	`pub_year` INTEGER,
-	`director` VARCHAR(255),
-	`cast` VARCHAR(1000),
-	`about` TEXT,
-	`country` VARCHAR(500),
-	`duration` VARCHAR(500),
-	`file_info` TEXT,
-	`is_visible` TINYINT default 1 NOT NULL,
-	`is_private` TINYINT default 0 NOT NULL,
-	`is_public` TINYINT default 0 NOT NULL,
-	`modified_user_id` INTEGER,
-	`modified_at` DATETIME,
-	`modified_text` VARCHAR(500),
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	INDEX `film_FI_1` (`user_id`),
-	CONSTRAINT `film_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`),
-	INDEX `film_FI_2` (`modified_user_id`),
-	CONSTRAINT `film_FK_2`
-		FOREIGN KEY (`modified_user_id`)
-		REFERENCES `users` (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"user_id" INTEGER  NOT NULL,
+	"title" VARCHAR(500)  NOT NULL,
+	"original_title" VARCHAR(500)  NOT NULL,
+	"normal_logo" VARCHAR(255),
+	"thumb_logo" VARCHAR(255),
+	"url" VARCHAR(500),
+	"pub_year" INTEGER,
+	"director" VARCHAR(255),
+	"cast" VARCHAR(1000),
+	"about" TEXT,
+	"country" VARCHAR(500),
+	"duration" VARCHAR(500),
+	"file_info" TEXT,
+	"is_visible" BOOLEAN default 't' NOT NULL,
+	"is_private" BOOLEAN default 'f' NOT NULL,
+	"is_public" BOOLEAN default 'f' NOT NULL,
+	"modified_user_id" INTEGER,
+	"modified_at" TIMESTAMP,
+	"modified_text" VARCHAR(500),
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_links
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_links`;
+COMMENT ON TABLE "film" IS '';
 
 
-CREATE TABLE `film_links`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_links
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_links" CASCADE;
+
+
+CREATE TABLE "film_links"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`film_id` INTEGER  NOT NULL,
-	`title` VARCHAR(200)  NOT NULL,
-	`url` VARCHAR(500)  NOT NULL,
-	`sort` INTEGER default 0,
-	`hash` VARCHAR(10),
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`,`film_id`),
-	INDEX `film_links_FI_1` (`film_id`),
-	CONSTRAINT `film_links_FK_1`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"film_id" INTEGER  NOT NULL,
+	"title" VARCHAR(200)  NOT NULL,
+	"url" VARCHAR(500)  NOT NULL,
+	"sort" INTEGER default 0,
+	"hash" VARCHAR(10),
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id","film_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_types
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_types`;
+COMMENT ON TABLE "film_links" IS '';
 
 
-CREATE TABLE `film_types`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_types
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_types" CASCADE;
+
+
+CREATE TABLE "film_types"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`title` VARCHAR(500)  NOT NULL,
-	`url` VARCHAR(500)  NOT NULL,
-	`logo` VARCHAR(500)  NOT NULL,
-	`description` TEXT,
-	`is_visible` TINYINT default 1 NOT NULL,
-	`is_not_main` TINYINT default 0 NOT NULL,
-	`created_at` DATETIME,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"title" VARCHAR(500)  NOT NULL,
+	"url" VARCHAR(500)  NOT NULL,
+	"logo" VARCHAR(500)  NOT NULL,
+	"description" TEXT,
+	"is_visible" BOOLEAN default 't' NOT NULL,
+	"is_not_main" BOOLEAN default 'f' NOT NULL,
+	"created_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_raiting
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_raiting`;
+COMMENT ON TABLE "film_types" IS '';
 
 
-CREATE TABLE `film_raiting`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_raiting
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_raiting" CASCADE;
+
+
+CREATE TABLE "film_raiting"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`film_id` INTEGER  NOT NULL,
-	`user_id` INTEGER  NOT NULL,
-	`rating` INTEGER default 1 NOT NULL,
-	`created_at` DATETIME,
-	PRIMARY KEY (`id`,`film_id`,`user_id`),
-	INDEX `film_raiting_FI_1` (`film_id`),
-	CONSTRAINT `film_raiting_FK_1`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE,
-	INDEX `film_raiting_FI_2` (`user_id`),
-	CONSTRAINT `film_raiting_FK_2`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"film_id" INTEGER  NOT NULL,
+	"user_id" INTEGER  NOT NULL,
+	"rating" INTEGER default 1 NOT NULL,
+	"created_at" TIMESTAMP,
+	PRIMARY KEY ("id","film_id","user_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_total_rating
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_total_rating`;
+COMMENT ON TABLE "film_raiting" IS '';
 
 
-CREATE TABLE `film_total_rating`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_total_rating
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_total_rating" CASCADE;
+
+
+CREATE TABLE "film_total_rating"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`film_id` INTEGER  NOT NULL,
-	`total_rating` DECIMAL(10,1) default 0 NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `film_total_rating_FI_1` (`film_id`),
-	CONSTRAINT `film_total_rating_FK_1`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"film_id" INTEGER  NOT NULL,
+	"total_rating" DECIMAL(10,1) default 0 NOT NULL,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_gallery
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_gallery`;
+COMMENT ON TABLE "film_total_rating" IS '';
 
 
-CREATE TABLE `film_gallery`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_gallery
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_gallery" CASCADE;
+
+
+CREATE TABLE "film_gallery"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`film_id` INTEGER  NOT NULL,
-	`thumb_img` VARCHAR(500)  NOT NULL,
-	`normal_img` VARCHAR(500)  NOT NULL,
-	`sort` INTEGER default 0,
-	PRIMARY KEY (`id`,`film_id`),
-	INDEX `film_gallery_FI_1` (`film_id`),
-	CONSTRAINT `film_gallery_FK_1`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"film_id" INTEGER  NOT NULL,
+	"thumb_img" VARCHAR(500)  NOT NULL,
+	"normal_img" VARCHAR(500)  NOT NULL,
+	"sort" INTEGER default 0,
+	PRIMARY KEY ("id","film_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_film_types
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_film_types`;
+COMMENT ON TABLE "film_gallery" IS '';
 
 
-CREATE TABLE `film_film_types`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_film_types
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_film_types" CASCADE;
+
+
+CREATE TABLE "film_film_types"
 (
-	`film_id` INTEGER  NOT NULL,
-	`film_genre_id` INTEGER  NOT NULL,
-	PRIMARY KEY (`film_id`,`film_genre_id`),
-	CONSTRAINT `film_film_types_FK_1`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE,
-	INDEX `film_film_types_FI_2` (`film_genre_id`),
-	CONSTRAINT `film_film_types_FK_2`
-		FOREIGN KEY (`film_genre_id`)
-		REFERENCES `film_types` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"film_id" INTEGER  NOT NULL,
+	"film_genre_id" INTEGER  NOT NULL,
+	PRIMARY KEY ("film_id","film_genre_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_trailer
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_trailer`;
+COMMENT ON TABLE "film_film_types" IS '';
 
 
-CREATE TABLE `film_trailer`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_trailer
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_trailer" CASCADE;
+
+
+CREATE TABLE "film_trailer"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`film_id` INTEGER  NOT NULL,
-	`trailer_type` INTEGER default 0,
-	`trailer_code` VARCHAR(500)  NOT NULL,
-	`sort` INTEGER default 0,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`,`film_id`),
-	INDEX `film_trailer_FI_1` (`film_id`),
-	CONSTRAINT `film_trailer_FK_1`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"film_id" INTEGER  NOT NULL,
+	"trailer_type" INTEGER default 0,
+	"trailer_code" VARCHAR(500)  NOT NULL,
+	"sort" INTEGER default 0,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id","film_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- comments
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `comments`;
+COMMENT ON TABLE "film_trailer" IS '';
 
 
-CREATE TABLE `comments`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- comments
+-----------------------------------------------------------------------------
+
+DROP TABLE "comments" CASCADE;
+
+
+CREATE TABLE "comments"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`user_id` INTEGER  NOT NULL,
-	`film_id` INTEGER  NOT NULL,
-	`description` TEXT,
-	`ip` VARCHAR(100),
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`,`film_id`),
-	INDEX `comments_FI_1` (`user_id`),
-	CONSTRAINT `comments_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`),
-	INDEX `comments_FI_2` (`film_id`),
-	CONSTRAINT `comments_FK_2`
-		FOREIGN KEY (`film_id`)
-		REFERENCES `film` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"user_id" INTEGER  NOT NULL,
+	"film_id" INTEGER  NOT NULL,
+	"description" TEXT,
+	"ip" VARCHAR(100),
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id","film_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- messages
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `messages`;
+COMMENT ON TABLE "comments" IS '';
 
 
-CREATE TABLE `messages`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- messages
+-----------------------------------------------------------------------------
+
+DROP TABLE "messages" CASCADE;
+
+
+CREATE TABLE "messages"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`from_user_id` INTEGER,
-	`to_user_id` INTEGER  NOT NULL,
-	`message_type` INTEGER  NOT NULL,
-	`description` TEXT,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	INDEX `messages_FI_1` (`from_user_id`),
-	CONSTRAINT `messages_FK_1`
-		FOREIGN KEY (`from_user_id`)
-		REFERENCES `users` (`id`),
-	INDEX `messages_FI_2` (`to_user_id`),
-	CONSTRAINT `messages_FK_2`
-		FOREIGN KEY (`to_user_id`)
-		REFERENCES `users` (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"from_user_id" INTEGER,
+	"to_user_id" INTEGER  NOT NULL,
+	"message_type" INTEGER  NOT NULL,
+	"description" TEXT,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- user_friends
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `user_friends`;
+COMMENT ON TABLE "messages" IS '';
 
 
-CREATE TABLE `user_friends`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- user_friends
+-----------------------------------------------------------------------------
+
+DROP TABLE "user_friends" CASCADE;
+
+
+CREATE TABLE "user_friends"
 (
-	`user_id` INTEGER  NOT NULL,
-	`friend_id` INTEGER  NOT NULL,
-	`commit` TINYINT default 0 NOT NULL,
-	PRIMARY KEY (`user_id`),
-	CONSTRAINT `user_friends_FK_1`
-		FOREIGN KEY (`user_id`)
-		REFERENCES `users` (`id`)
-		ON DELETE CASCADE,
-	INDEX `user_friends_FI_2` (`friend_id`),
-	CONSTRAINT `user_friends_FK_2`
-		FOREIGN KEY (`friend_id`)
-		REFERENCES `users` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"user_id" INTEGER  NOT NULL,
+	"friend_id" INTEGER  NOT NULL,
+	"commit" BOOLEAN default 'f' NOT NULL,
+	PRIMARY KEY ("user_id")
+);
 
-#-----------------------------------------------------------------------------
-#-- news
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `news`;
+COMMENT ON TABLE "user_friends" IS '';
 
 
-CREATE TABLE `news`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- news
+-----------------------------------------------------------------------------
+
+DROP TABLE "news" CASCADE;
+
+
+CREATE TABLE "news"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`title` VARCHAR(500)  NOT NULL,
-	`url` VARCHAR(500),
-	`description` TEXT,
-	`is_visible` TINYINT default 1 NOT NULL,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"title" VARCHAR(500)  NOT NULL,
+	"url" VARCHAR(500),
+	"description" TEXT,
+	"is_visible" BOOLEAN default 't' NOT NULL,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- film_news
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `film_news`;
+COMMENT ON TABLE "news" IS '';
 
 
-CREATE TABLE `film_news`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- film_news
+-----------------------------------------------------------------------------
+
+DROP TABLE "film_news" CASCADE;
+
+
+CREATE TABLE "film_news"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`title` VARCHAR(500)  NOT NULL,
-	`url` VARCHAR(500),
-	`img` VARCHAR(500),
-	`description` TEXT,
-	`is_visible` TINYINT default 0 NOT NULL,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"title" VARCHAR(500)  NOT NULL,
+	"url" VARCHAR(500),
+	"img" VARCHAR(500),
+	"description" TEXT,
+	"is_visible" BOOLEAN default 'f' NOT NULL,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha_country
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_country`;
+COMMENT ON TABLE "film_news" IS '';
 
 
-CREATE TABLE `afisha_country`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha_country
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha_country" CASCADE;
+
+
+CREATE TABLE "afisha_country"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`external_id` VARCHAR(500) default '',
-	`title` VARCHAR(500)  NOT NULL,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"external_id" VARCHAR(500) default '',
+	"title" VARCHAR(500)  NOT NULL,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha_city
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_city`;
+COMMENT ON TABLE "afisha_country" IS '';
 
 
-CREATE TABLE `afisha_city`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha_city
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha_city" CASCADE;
+
+
+CREATE TABLE "afisha_city"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`afisha_country_id` INTEGER  NOT NULL,
-	`external_id` VARCHAR(500) default '',
-	`title` VARCHAR(500)  NOT NULL,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	INDEX `afisha_city_FI_1` (`afisha_country_id`),
-	CONSTRAINT `afisha_city_FK_1`
-		FOREIGN KEY (`afisha_country_id`)
-		REFERENCES `afisha_country` (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"afisha_country_id" INTEGER  NOT NULL,
+	"external_id" VARCHAR(500) default '',
+	"title" VARCHAR(500)  NOT NULL,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha_theater
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_theater`;
+COMMENT ON TABLE "afisha_city" IS '';
 
 
-CREATE TABLE `afisha_theater`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha_theater
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha_theater" CASCADE;
+
+
+CREATE TABLE "afisha_theater"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`external_id` VARCHAR(500) default '',
-	`afisha_city_id` INTEGER  NOT NULL,
-	`title` VARCHAR(500)  NOT NULL,
-	`link` VARCHAR(255),
-	`address` VARCHAR(500),
-	`phone` VARCHAR(500),
-	`description` TEXT,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	INDEX `afisha_theater_FI_1` (`afisha_city_id`),
-	CONSTRAINT `afisha_theater_FK_1`
-		FOREIGN KEY (`afisha_city_id`)
-		REFERENCES `afisha_city` (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"external_id" VARCHAR(500) default '',
+	"afisha_city_id" INTEGER  NOT NULL,
+	"title" VARCHAR(500)  NOT NULL,
+	"link" VARCHAR(255),
+	"address" VARCHAR(500),
+	"phone" VARCHAR(500),
+	"description" TEXT,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha_film
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_film`;
+COMMENT ON TABLE "afisha_theater" IS '';
 
 
-CREATE TABLE `afisha_film`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha_film
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha_film" CASCADE;
+
+
+CREATE TABLE "afisha_film"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`external_id` VARCHAR(500) default '',
-	`title` VARCHAR(500)  NOT NULL,
-	`orig_title` VARCHAR(500),
-	`year` INTEGER,
-	`poster` VARCHAR(255),
-	`link` VARCHAR(255),
-	`description` TEXT,
-	`video_tag` VARCHAR(255),
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"external_id" VARCHAR(500) default '',
+	"title" VARCHAR(500)  NOT NULL,
+	"orig_title" VARCHAR(500),
+	"year" INTEGER,
+	"poster" VARCHAR(255),
+	"link" VARCHAR(255),
+	"description" TEXT,
+	"video_tag" VARCHAR(255),
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha`;
+COMMENT ON TABLE "afisha_film" IS '';
 
 
-CREATE TABLE `afisha`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha" CASCADE;
+
+
+CREATE TABLE "afisha"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`external_id` VARCHAR(500) default '',
-	`afisha_theater_id` INTEGER  NOT NULL,
-	`afisha_film_id` INTEGER  NOT NULL,
-	`afisha_zal_id` INTEGER  NOT NULL,
-	`link` VARCHAR(255),
-	`description` TEXT,
-	`date_begin` DATETIME  NOT NULL,
-	`date_end` DATETIME  NOT NULL,
-	`times` TEXT,
-	`prices` TEXT,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	INDEX `afisha_FI_1` (`afisha_theater_id`),
-	CONSTRAINT `afisha_FK_1`
-		FOREIGN KEY (`afisha_theater_id`)
-		REFERENCES `afisha_theater` (`id`),
-	INDEX `afisha_FI_2` (`afisha_film_id`),
-	CONSTRAINT `afisha_FK_2`
-		FOREIGN KEY (`afisha_film_id`)
-		REFERENCES `afisha_film` (`id`),
-	INDEX `afisha_FI_3` (`afisha_zal_id`),
-	CONSTRAINT `afisha_FK_3`
-		FOREIGN KEY (`afisha_zal_id`)
-		REFERENCES `afisha_zal` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"external_id" VARCHAR(500) default '',
+	"afisha_theater_id" INTEGER  NOT NULL,
+	"afisha_film_id" INTEGER  NOT NULL,
+	"afisha_zal_id" INTEGER  NOT NULL,
+	"link" VARCHAR(255),
+	"description" TEXT,
+	"date_begin" TIMESTAMP  NOT NULL,
+	"date_end" TIMESTAMP  NOT NULL,
+	"times" TEXT,
+	"prices" TEXT,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha_zal
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_zal`;
+COMMENT ON TABLE "afisha" IS '';
 
 
-CREATE TABLE `afisha_zal`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha_zal
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha_zal" CASCADE;
+
+
+CREATE TABLE "afisha_zal"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`external_id` VARCHAR(500) default '',
-	`afisha_theater_id` INTEGER  NOT NULL,
-	`title` VARCHAR(500)  NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `afisha_zal_FI_1` (`afisha_theater_id`),
-	CONSTRAINT `afisha_zal_FK_1`
-		FOREIGN KEY (`afisha_theater_id`)
-		REFERENCES `afisha_theater` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"external_id" VARCHAR(500) default '',
+	"afisha_theater_id" INTEGER  NOT NULL,
+	"title" VARCHAR(500),
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- afisha_time
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `afisha_time`;
+COMMENT ON TABLE "afisha_zal" IS '';
 
 
-CREATE TABLE `afisha_time`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- afisha_time
+-----------------------------------------------------------------------------
+
+DROP TABLE "afisha_time" CASCADE;
+
+
+CREATE TABLE "afisha_time"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`afisha_id` INTEGER  NOT NULL,
-	`time` VARCHAR(200)  NOT NULL,
-	`price` VARCHAR(100),
-	PRIMARY KEY (`id`),
-	INDEX `afisha_time_FI_1` (`afisha_id`),
-	CONSTRAINT `afisha_time_FK_1`
-		FOREIGN KEY (`afisha_id`)
-		REFERENCES `afisha` (`id`)
-		ON DELETE CASCADE
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"afisha_id" INTEGER  NOT NULL,
+	"time" VARCHAR(200)  NOT NULL,
+	"price" VARCHAR(100),
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- static_pages
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `static_pages`;
+COMMENT ON TABLE "afisha_time" IS '';
 
 
-CREATE TABLE `static_pages`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- static_pages
+-----------------------------------------------------------------------------
+
+DROP TABLE "static_pages" CASCADE;
+
+
+CREATE TABLE "static_pages"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`title` VARCHAR(500)  NOT NULL,
-	`url` VARCHAR(500),
-	`sort` INTEGER default 0,
-	`description` TEXT,
-	`is_visible` TINYINT default 1 NOT NULL,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"title" VARCHAR(500)  NOT NULL,
+	"url" VARCHAR(500),
+	"sort" INTEGER default 0,
+	"description" TEXT,
+	"is_visible" BOOLEAN default 't' NOT NULL,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id")
+);
 
-#-----------------------------------------------------------------------------
-#-- banned_ips
-#-----------------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `banned_ips`;
+COMMENT ON TABLE "static_pages" IS '';
 
 
-CREATE TABLE `banned_ips`
+SET search_path TO public;
+-----------------------------------------------------------------------------
+-- banned_ips
+-----------------------------------------------------------------------------
+
+DROP TABLE "banned_ips" CASCADE;
+
+
+CREATE TABLE "banned_ips"
 (
-	`id` INTEGER  NOT NULL AUTO_INCREMENT,
-	`ip` VARCHAR(100)  NOT NULL,
-	`description` TEXT  NOT NULL,
-	`created_at` DATETIME,
-	`updated_at` DATETIME,
-	PRIMARY KEY (`id`),
-	UNIQUE KEY `banned_ips_U_1` (`ip`)
-)Type=InnoDB;
+	"id" serial  NOT NULL,
+	"ip" VARCHAR(100)  NOT NULL,
+	"description" TEXT  NOT NULL,
+	"created_at" TIMESTAMP,
+	"updated_at" TIMESTAMP,
+	PRIMARY KEY ("id"),
+	CONSTRAINT "banned_ips_U_1" UNIQUE ("ip")
+);
 
-# This restores the fkey checks, after having unset them earlier
-SET FOREIGN_KEY_CHECKS = 1;
+COMMENT ON TABLE "banned_ips" IS '';
+
+
+SET search_path TO public;
+ALTER TABLE "users_users_group" ADD CONSTRAINT "users_users_group_FK_1" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "users_users_group" ADD CONSTRAINT "users_users_group_FK_2" FOREIGN KEY ("group_id") REFERENCES "users_group" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "users_remember_key" ADD CONSTRAINT "users_remember_key_FK_1" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film" ADD CONSTRAINT "film_FK_1" FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "film" ADD CONSTRAINT "film_FK_2" FOREIGN KEY ("modified_user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "film_links" ADD CONSTRAINT "film_links_FK_1" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_raiting" ADD CONSTRAINT "film_raiting_FK_1" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_raiting" ADD CONSTRAINT "film_raiting_FK_2" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_total_rating" ADD CONSTRAINT "film_total_rating_FK_1" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_gallery" ADD CONSTRAINT "film_gallery_FK_1" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_film_types" ADD CONSTRAINT "film_film_types_FK_1" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_film_types" ADD CONSTRAINT "film_film_types_FK_2" FOREIGN KEY ("film_genre_id") REFERENCES "film_types" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "film_trailer" ADD CONSTRAINT "film_trailer_FK_1" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "comments" ADD CONSTRAINT "comments_FK_1" FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "comments" ADD CONSTRAINT "comments_FK_2" FOREIGN KEY ("film_id") REFERENCES "film" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "messages" ADD CONSTRAINT "messages_FK_1" FOREIGN KEY ("from_user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "messages" ADD CONSTRAINT "messages_FK_2" FOREIGN KEY ("to_user_id") REFERENCES "users" ("id");
+
+ALTER TABLE "user_friends" ADD CONSTRAINT "user_friends_FK_1" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "user_friends" ADD CONSTRAINT "user_friends_FK_2" FOREIGN KEY ("friend_id") REFERENCES "users" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "afisha_city" ADD CONSTRAINT "afisha_city_FK_1" FOREIGN KEY ("afisha_country_id") REFERENCES "afisha_country" ("id");
+
+ALTER TABLE "afisha_theater" ADD CONSTRAINT "afisha_theater_FK_1" FOREIGN KEY ("afisha_city_id") REFERENCES "afisha_city" ("id");
+
+ALTER TABLE "afisha" ADD CONSTRAINT "afisha_FK_1" FOREIGN KEY ("afisha_theater_id") REFERENCES "afisha_theater" ("id");
+
+ALTER TABLE "afisha" ADD CONSTRAINT "afisha_FK_2" FOREIGN KEY ("afisha_film_id") REFERENCES "afisha_film" ("id");
+
+ALTER TABLE "afisha" ADD CONSTRAINT "afisha_FK_3" FOREIGN KEY ("afisha_zal_id") REFERENCES "afisha_zal" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "afisha_zal" ADD CONSTRAINT "afisha_zal_FK_1" FOREIGN KEY ("afisha_theater_id") REFERENCES "afisha_theater" ("id") ON DELETE CASCADE;
+
+ALTER TABLE "afisha_time" ADD CONSTRAINT "afisha_time_FK_1" FOREIGN KEY ("afisha_id") REFERENCES "afisha" ("id") ON DELETE CASCADE;
