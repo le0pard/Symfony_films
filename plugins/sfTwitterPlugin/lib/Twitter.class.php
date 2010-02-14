@@ -167,6 +167,8 @@ class Twitter
 
     // set options
     curl_setopt_array($curl, $options);
+    //curl_setopt($curl, CURLOPT_HTTPPROXYTUNNEL, 1);
+    //curl_setopt($curl, CURLOPT_PROXY, "coocoorooza.com:80");
 
     // execute
     $response = curl_exec($curl);

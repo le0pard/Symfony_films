@@ -63,7 +63,7 @@
 				
 				<file name="scroll.js" />
 				
-				<file name="frontend_less_routes_dev.js" />
+				<file name="frontend_less_routes_.js" />
 				<file name="application.js" />
 			</filelist>
 		</concat>
