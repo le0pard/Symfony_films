@@ -211,7 +211,7 @@ propel:
    id:              ~
    external_id:     { type: varchar(500), default: "" }
    afisha_theater_id: { type: integer, foreignTable: afisha_theater, foreignReference: id, required: true, onDelete: cascade }
-   title:           { type: varchar(500), required: true }
+   title:           { type: varchar(500) }
    
   afisha_time:
    id:              ~

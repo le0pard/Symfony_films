@@ -2,8 +2,8 @@
 .git
 .externalToolBuilders
 web/uploads/*
-log/*.log
-log/*.pid
+logs/*.log
+logs/*.pid
 cache/*
 config/databases.yml
 config/sphinx.conf
@@ -13,8 +13,6 @@ data/films.*
 data/sphinx/*
 lib/XmlParser.class.php
 lib/task/updateAfishaTask.class.php
-web/bill_export.phtml
-web/bill_export.phtml.1
 apps/frontend/config/app.yml
 apps/backend/config/app.yml
 ext_libs/*

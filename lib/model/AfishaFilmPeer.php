@@ -25,5 +25,16 @@ class AfishaFilmPeer extends BaseAfishaFilmPeer {
 		$criteria->add(self::EXTERNAL_ID, $external_id);
     	return self::doSelectOne($criteria);
     }
+    
+	static public function getForTop($limit = null) {
+		$criteria = new Criteria();
+		if ($limit){
+			$criteria->setLimit($limit);
+		}
+		$criteria->add(AfishaFilmPeer::POSTER, NULL, Criteria::NOT_EQUAL);
+		$criteria->addDescendingOrderByColumn(AfishaFilmPeer::EXTERNAL_ID);
+		$criteria->addAscendingOrderByColumn(AfishaFilmPeer::TITLE);
+    	return self::doSelect($criteria);
+    }
 	
 } // AfishaFilmPeer

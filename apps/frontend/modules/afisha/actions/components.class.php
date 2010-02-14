@@ -13,10 +13,7 @@ class afishaComponents extends sfComponents
 	}
 	
 	public function executeToday(){
-  		$this->city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
-  		if ($this->city){
-  			$this->afisha = AfishaPeer::getForTop($this->city->getId(), 12);
-  		}
+		$this->afisha_films = AfishaFilmPeer::getForTop(12);
 	}
 
 }

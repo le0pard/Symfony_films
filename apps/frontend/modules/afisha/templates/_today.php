@@ -1,8 +1,8 @@
-<?php if ($city && $afisha):?>
+<?php if (isset($afisha_films)):?>
 <div class="round" id="cinema_posters">
 	<div class="r_container">
 		<h2 class="top_plate">
-			<a href="<?php echo url_for('@afisha') ?>">Афиши &laquo;<?php echo $city->getTitle()?>&raquo;</a>
+			<a href="<?php echo url_for('@afisha') ?>">Афиша</a>
 		</h2>
 		<a id="scrl_left_afisha" class="top_plate scrl_left">←</a>
 		<a id="scrl_right_afisha" class="top_plate scrl_right">→</a>
@@ -10,16 +10,16 @@
 			<?php $i = 1;?>
 			<?php $rkey = 0;?>
 			<ul id="afisha_list_<?php echo $i;?>">
-			<?php foreach($afisha as $key=>$show):?>
+			<?php foreach($afisha_films as $key=>$show):?>
 				<?php if ($key % 3 == 0 && $key != 0):?>
 				<ul id="afisha_list_<?php echo $i;?>">
 				<?php endif?>
 				<li>
-				<a href="<?php echo url_for('afisha_film', $show->getAfishaFilm()) ?>">
-				<span><img style="max-width:100px;max-height:140px;" src="/uploads/afisha_films/<?php echo $show->getAfishaFilm()->getPoster() ?>" alt="<?php echo $show->getAfishaFilm()->getTitle()?>" /></span>
+				<a href="<?php echo url_for('afisha_film', $show) ?>">
+				<span><img style="max-width:100px;max-height:140px;" src="/uploads/afisha_films/<?php echo $show->getPoster() ?>" alt="<?php echo $show->getTitle()?>" /></span>
 				</a>
-				<div><h5><?php echo $show->getAfishaFilm()->getTitle()?></h5> <h6><?php echo $show->getAfishaFilm()->getYear()?></h6> 
-				<a href="<?php echo url_for('afisha_film', $show->getAfishaFilm()) ?>">Посмотреть в&nbsp;кинотеатрах</a></div>
+				<div><h5><?php echo $show->getTitle()?></h5> <h6><?php echo $show->getYear()?></h6> 
+				<a href="<?php echo url_for('afisha_film', $show) ?>">Посмотреть в&nbsp;кинотеатрах</a></div>
 				</li>
 				<?php if (($key+1) % 3 == 0 && $key != 0):?>
 				</ul><?php $i++;?>

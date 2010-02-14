@@ -9,19 +9,6 @@ class AfishaPeer extends BaseAfishaPeer
     	return self::doSelectOne($criteria);
     }
     
-	static public function getForTop($city_id, $limit = null) {
-		$criteria = new Criteria();
-		$criteria->add(AfishaTheaterPeer::AFISHA_CITY_ID, $city_id);
-		if ($limit){
-			$criteria->setLimit($limit);
-		}
-		$criteria->add(AfishaFilmPeer::POSTER, NULL, Criteria::NOT_EQUAL);
-		$criteria->addDescendingOrderByColumn(AfishaFilmPeer::EXTERNAL_ID);
-		$criteria->addAscendingOrderByColumn(AfishaFilmPeer::TITLE);
-		$criteria->addGroupByColumn(AfishaFilmPeer::ID);
-    	return self::doSelectJoinAll($criteria);
-    }
-    
 	static public function getByDateRangeAndCity($date_begin, $date_end, $city_id, $limit = null) {
 		$criteria = new Criteria();
 		$cton1 = $criteria->getNewCriterion(self::DATE_BEGIN, $date_begin, Criteria::LESS_EQUAL);

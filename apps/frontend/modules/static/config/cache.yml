@@ -1,6 +1,7 @@
 _menu:
   enabled:     true
   lifetime:    2592000 # 30 суток
+  contextual:  true
 show:
   enabled:     true
   lifetime:    2592000 # 30 суток  
