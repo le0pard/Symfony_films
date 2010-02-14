@@ -116,8 +116,8 @@ class Film extends BaseFilm
 		$this->getPubYear(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('director',
 		$this->getDirector(), 'UTF-8'));
-		$doc->addField(Zend_Search_Lucene_Field::UnStored('cast',
-		$this->getCast(), 'UTF-8'));
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('cast_people',
+		$this->getCastPeople(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('country',
 		$this->getCountry(), 'UTF-8'));
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('about',

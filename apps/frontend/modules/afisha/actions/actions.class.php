@@ -25,6 +25,7 @@ class afishaActions extends sfActions
   		$this->city = $this->getRoute()->getObject();
   	} else {
   		$this->city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+  		$this->forward404Unless($this->city);
   	}
   	
   	$this->getAllDates($request);

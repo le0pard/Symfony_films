@@ -134,7 +134,7 @@ var FilmSiteJs = {
 	initAddLinkSort: function(){
 		if ($('add_link_list') && $('js_add_film_id')){
 			Sortable.create("add_link_list", {
-		        tag: 'li', handles:$$('#add_link_list div.sort_cursor'),
+		        tag: 'li', handles:$$('#add_link_list a.drag_right'),
 		        onUpdate: function(){
 					new Ajax.Request(film_sort_step3_path($F('js_add_film_id')),{ method: "post", postBody: Sortable.serialize('add_link_list')});
 				}  
@@ -144,7 +144,7 @@ var FilmSiteJs = {
 	initAddTrailerSort: function(){
 		if ($('add_trailer_list') && $('js_add_film_id')){
 			Sortable.create("add_trailer_list", {
-		        tag: 'li', handles:$$('#add_trailer_list div.sort_cursor'),
+		        tag: 'li', handles:$$('#add_trailer_list a.drag_right'),
 		        onUpdate: function(){
 					new Ajax.Request(film_sort_step4_path($F('js_add_film_id')),{ method: "post", postBody: Sortable.serialize('add_trailer_list')});
 				}  

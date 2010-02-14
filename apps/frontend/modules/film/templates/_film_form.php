@@ -54,12 +54,12 @@
 </div>
 
 <div>
-  <?php echo $form['cast']->renderLabel()?>
+  <?php echo $form['cast_people']->renderLabel()?>
 </div>
 <div>
-  <?php echo $form['cast']->renderError()?>
-  <?php echo $form['cast']->render()?>
-  <div class="tip"><?php echo $form['cast']->renderHelp()?></div>
+  <?php echo $form['cast_people']->renderError()?>
+  <?php echo $form['cast_people']->render()?>
+  <div class="tip"><?php echo $form['cast_people']->renderHelp()?></div>
 </div>
 
 <div>

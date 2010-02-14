@@ -42,7 +42,7 @@ propel:
     url:              { type: varchar(500) }
     pub_year:         { type: integer }
     director:         { type: varchar(255) }
-    cast:             { type: varchar(1000) }
+    cast_people:      { type: varchar(1000) }
     about:            { type: longvarchar }
     country:          { type: varchar(500) }
     duration:         { type: varchar(500) }

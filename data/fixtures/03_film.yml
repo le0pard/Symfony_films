@@ -6,6 +6,7 @@ Film:
     original_title: 'Film #<?php echo $i ?>'
     pub_year: 2005
     director: 'Крутой парень <?php echo $i ?>'
+    cast_people: ''
     about: |-    
       Много текста Just like the partials, components accept additional parameters in the shape of an associative
       array. The parameters are available to the partial under their name, and in the component via
@@ -23,6 +24,7 @@ Film:
     original_title: 'Test Film #<?php echo $i ?>'
     pub_year: 2008
     director: 'Coll <?php echo $i ?>'
+    cast_people: ''
     about: |-    
       Just like the partials, components accept additional parameters in the shape of an associative
       array. The parameters are available to the partial under their name, and in the component via

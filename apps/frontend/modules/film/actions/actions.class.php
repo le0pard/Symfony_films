@@ -392,8 +392,14 @@ class filmActions extends sfActions
 	  	if (sfConfig::get('app_integration_is_twitter') && $film){
 			try{
 				$url = $this->generateUrl('film_show', $film, true);
+				$url = $this->bitLyUrl($url);
 				$t = new Twitter(sfConfig::get('app_integration_twitter_username'), sfConfig::get('app_integration_twitter_password'));
-				$t->updateStatus($film->getTitle()." (".$film->getOriginalTitle().") ".$url);
+				$str = $film->getTitle()." (".$film->getOriginalTitle().") ".$url;
+				if (strlen($str) > 140){
+					$str = $film->getTitle()." ".$url;
+				}
+				
+				$t->updateStatus($str);
 				$this->getUser()->setFlash('notice', 'Твиттернул.');
 			} catch (Exception $e) {
 				$this->getUser()->setFlash('error', 'Не твиттернул.');	
@@ -441,6 +447,16 @@ class filmActions extends sfActions
   			$rating->save();
   		}
   	}
+  }
+  
+  protected function bitLyUrl($url){
+		$api_call = file_get_contents("http://api.bit.ly/shorten?version=2.0.1&longUrl=".$url."&login=".sfConfig::get('app_integration_bitly_login')."&apiKey=".sfConfig::get('app_integration_bitly_api'));
+		$bitlyinfo=json_decode(utf8_encode($api_call),true);
+		if ($bitlyinfo['errorCode']==0) {
+			return $bitlyinfo['results'][urldecode($url)]['shortUrl'];
+		} else {
+			return $url;
+		}
   }
   
 }

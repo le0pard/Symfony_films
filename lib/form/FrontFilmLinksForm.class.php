@@ -19,18 +19,17 @@ class FrontFilmLinksForm extends BaseFilmLinksForm
   public function configure()
   {
   	unset(
-      $this['created_at'], $this['updated_at']
+      $this['created_at'], $this['updated_at'],
+      $this['film_id']
     );
 	$this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'film_id'    => new sfWidgetFormInputHidden(),
       'title'      => new sfWidgetFormInputText(),
       'url'        => new sfWidgetFormInputText()
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorPropelChoice(array('model' => 'FilmLinks', 'column' => 'id', 'required' => false)),
-      'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => true)),
       'title'      => new sfValidatorString(array('max_length' => 100, 'required' => true), 
 	  					array('required' => 'Название для ссылки нужно указать.', 
 							  'max_length' => 'Cлишком длинное название (Максимальная длинна %max_length% символа).')),

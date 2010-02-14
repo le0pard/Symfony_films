@@ -934,7 +934,8 @@ margin-left:1%;
 text-align:center;
 padding-bottom:1em;
 display:inline-block;
-vertical-align:top
+vertical-align:top;
+height:356px
 }
 
 #content_body #content .film_item span {
@@ -970,6 +971,11 @@ line-height:1.1em;
 margin:0 auto
 }
 
+#content_body #content .film_item div div.info {
+width:auto;
+margin:0 32px 0 0;
+}
+
 #content_body #content .film_item div a.vote {
 display:inline;
 width:auto;
@@ -982,7 +988,7 @@ border-bottom:none
 
 #content_body #new {
 text-align:center;
-height:1360px;
+height:1424px;
 position:relative
 }
 
@@ -1602,21 +1608,21 @@ padding:0
 line-height:1.5em
 }
 
-#add_gallery_list{
+.add_list{
 	list-style:none;
 	padding-left:0;
 }
 
-#add_gallery_list .img{
+.add_list .img{
 	float: left; 
 	width: 100px
 }
 
-#add_gallery_list .file{
+.add_list .file{
 	margin-left: 110px; 
 	min-height: 100px
 }
 
-#add_gallery_list li{
+.add_list li{
 border-bottom:1px dashed;
 }

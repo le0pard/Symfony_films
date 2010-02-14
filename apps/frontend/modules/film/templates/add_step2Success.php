@@ -4,7 +4,7 @@
 <?php use_javascript('uploader.js', 'last') ?>
 <input type="hidden" id="js_add_film_id" value="<?php echo $film->getId() ?>" />
 <div id="entrance">
-  <h1>Добавить скриншоты</h1>
+  <h1>Скриншоты к &laquo;<?php echo $film->getTitle() ?>&raquo;</h1>
   <?php include_partial('film/add_panel', array('film' => $film)) ?>
   
   	<div>
@@ -40,10 +40,12 @@
 	</div>
   </form>
   <?php else: ?>
-  <div>Максимально возможно загрузить <?php echo sfConfig::get('app_films_max_gallery', 10) ?> скриншотов.</div>
+  <div>
+  	<h2>Максимально возможно загрузить <?php echo sfConfig::get('app_films_max_gallery', 10) ?> скриншотов.</h2>
+  </div>
   <?php endif ?>
   
-  <ul id="add_gallery_list">
+  <ul id="add_gallery_list" class="add_list">
     <?php foreach($form->getEmbeddedForms() as $key=>$row): ?>
 	<li id="gallery_<?php echo $row->getObject()->getId() ?>">
 		<a class="drag_right">

@@ -109,7 +109,7 @@ CREATE TABLE "film"
 	"url" VARCHAR(500),
 	"pub_year" INTEGER,
 	"director" VARCHAR(255),
-	"cast" VARCHAR(1000),
+	"cast_people" VARCHAR(1000),
 	"about" TEXT,
 	"country" VARCHAR(500),
 	"duration" VARCHAR(500),
