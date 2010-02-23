@@ -1,14 +1,20 @@
-<div id="film_vote">
+<?php use_helper('Rating') ?>
 <?php if ($sf_user->isAnonymous()): ?>
-	Рейтинг: <div id="rating_film_done" class="rating_container" rel="<?php echo $film->getRating();?>"></div>
-	<span><?php echo $film->getRating();?></span>
+<div id="film_vote">
+	Рейтинг: <?php echo rating_smile_for_film($film->getRating());?>
+</div>	
 <?php else:?>
 	<?php if (($rating = $film->getUserRaiting($sf_user->getAuthUser()->getId())) == true):?>
-		Рейтинг: <div id="rating_film_done" class="rating_container" rel="<?php echo $film->getRating();?>"></div>
-		<span><?php echo $film->getRating();?> / Ваша оценка: <?php echo $rating->getRating();?></span>
+		<?php if (isset($ajax)): ?>
+			Рейтинг: <?php echo rating_smile_for_film($film->getRating());?>
+		<?php else: ?>
+		<div id="film_vote">
+			Рейтинг: <?php echo rating_smile_for_film($film->getRating());?>
+		</div>
+		<?php endif ?>
 	<?php else:?>
-		Ваша оценка :
-		<div id="rating_film" class="rating_container" rel="<?php echo $film->getId();?>"></div>
+	<div id="film_vote">
+		Ваша оценка : <div id="rating_film" class="rating_container" rel="<?php echo $film->getId();?>"></div>
+	</div>	
 	<?php endif ?>	
 <?php endif ?>
-</div>

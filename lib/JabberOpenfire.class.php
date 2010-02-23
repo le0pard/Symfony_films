@@ -3,8 +3,8 @@
 // 
 
 class JabberOpenfire {
-	static private $secret = 'secret_key_here';
-	static private $url = 'http://127.0.0.1:9090/plugins/userService/userservice';
+	static private $secret = '5hxjGNNMwCCAQ9BY';
+	static private $url = 'http://coocoorooza.com:9091/plugins/userService/userservice';
 	
 	static public function add_user($username, $password, $email){
 		$content = file_get_contents(self::$url."?type=add&secret=".self::$secret.

@@ -1,3 +1,4 @@
+<?php use_helper('Rating') ?>
 <div class="film_item">
 	<a href="<?php echo url_for('film_show', $film) ?>">
 		<span>
@@ -8,7 +9,7 @@
 		<a href="<?php echo url_for('film_show', $film) ?>"><?php echo $film->getTitle(); ?></a>
 	</div>
 	<div>
-		<img src="/images/emotion.png" class="vote_smile" alt="<?php echo $film->getFilmRaitingNum();?>" title="Говно" />
+		<?php echo rating_smile_for_film($film->getFilmRaitingNum());?>
 		<div class="info">
 			<?php echo $film->getDirector() ?>, <?php echo $film->getPubYear() ?>
 		</div>

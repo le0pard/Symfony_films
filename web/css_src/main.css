@@ -756,7 +756,6 @@ position:relative
 }
 
 #top_add #news {
-background:#FFF url(/images/pers1.png) right bottom no-repeat;
 float:left;
 width:27%;
 left:4%;
@@ -770,7 +769,6 @@ color:#868686
 }
 
 #top_add #news div div {
-margin-right:90px;
 margin-left:1em
 }
 

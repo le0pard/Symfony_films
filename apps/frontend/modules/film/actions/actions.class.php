@@ -424,7 +424,7 @@ class filmActions extends sfActions
 				$this->updateGlobalRaiting($film);
 			}
 		}
-		return $this->renderPartial('film/rating', array('film' => $film, 'sf_cache_key' => $film->getId()));
+		return $this->renderPartial('film/rating', array('film' => $film, 'sf_cache_key' => $film->getId(), 'ajax' => true));
 	} else {
 		return $this->renderText("");
 	}
