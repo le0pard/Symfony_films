@@ -13,7 +13,7 @@ function rating_smile_for_film($rating){
 			$img = 'src="/images/coocoo_smiles/normal.png" alt="Нормально" title="Нормально ('.$rating.')"';
 		} elseif ($rating >= 6 && $rating < 8){
 			$img = 'src="/images/coocoo_smiles/good.png" alt="Круто" title="Круто ('.$rating.')"';
-		} elseif ($rating >= 8 && $rating < 10){
+		} elseif ($rating >= 8 && $rating <= 10){
 			$img = 'src="/images/coocoo_smiles/awesome.png" alt="Очень круто" title="Очень круто ('.$rating.')"';
 		} else {
 			$img = 'src="/images/coocoo_smiles/normal.png" alt="Нормально" title="Нормально ('.$rating.')"';
