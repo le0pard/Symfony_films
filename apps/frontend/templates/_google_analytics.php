@@ -2,6 +2,7 @@
 
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', '<?php echo sfConfig::get('app_google_analytics_code', "UA-XXXXX-XX");?>']);
+_gaq.push(['_setDomainName', '.coocoorooza.com']);
 _gaq.push(['_trackPageview']);
 
 (function() {

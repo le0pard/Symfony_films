@@ -68,13 +68,13 @@ all:
       delivery_strategy: single_address
       delivery_address:  leopard_ne@bigmir.net
       
-  view_cache:
-    class: sfMemcacheCache
-    param:
-      host: 127.0.0.1
-      port: 11211
-      persistent: true
-      storeCacheInfo: true
+#  view_cache:
+#    class: sfMemcacheCache
+#    param:
+#      host: 127.0.0.1
+#      port: 11211
+#      persistent: true
+#      storeCacheInfo: true
 
 #  view_cache:
 #    class: sfFileCache
@@ -82,14 +82,14 @@ all:
 #      automatic_cleaning_factor: 0
 #      cache_dir:                 %SF_TEMPLATE_CACHE_DIR%
 
-#  view_cache:
-#    class: sfRedisCache
-#    param:
-#      class:                     redis
-#      host:                      127.0.0.1
-#      mode:                      shared
-#      port:                      6379
-#      prefix:                    %SF_APP_DIR%/template
+  view_cache:
+    class: sfRedisCache
+    param:
+      class:                     redis
+      host:                      127.0.0.1
+      mode:                      shared
+      port:                      6379
+      prefix:                    %SF_APP_DIR%/template
 
 #all:
 #  controller:

@@ -31,14 +31,6 @@ all:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
 
-  view_cache:
-    class: sfRedisCache
-    param:
-      class:                     redis
-      host:                      127.0.0.1
-      mode:                      shared
-      port:                      6379
-      prefix:                    %SF_APP_DIR%/template
 #all:
 #  controller:
 #    class: sfFrontWebController
