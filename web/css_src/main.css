@@ -318,43 +318,35 @@ margin-left:1.5em
 }
 
 table {
-border:0;
-width:100%;
-margin:1em 0;
-padding:0
-}
-
-table thead td,table thead th {
-border-bottom:10px solid;
-border-bottom-color:#ddd;
-vertical-align:middle;
-padding:0.1em
-}
-
-table tfoot td,table tfoot th {
-vertical-align:middle;
-text-align:right;
-border-top:10px solid;
-border-top-color:#ddd;
-padding:0.5em
-}
-
-table tbody th,table tbody td {
-text-align:left;
-vertical-align:top
-}
-
-table thead th {
-text-align:left;
-vertical-align:top;
-padding:0.5em
-}
-
-table thead th address {
-font-size:0.7em;
-font-style:normal;
-font-weight:400
-}
+  border: 0;
+  width: 100%;
+  margin: 1em 0 1em 0;
+  padding: 0; }
+  table thead td, table thead th {
+    background: #dddddd;
+    text-align: left;
+    padding: 0.5em;
+    vertical-align: top;
+    font-weight: bold; }
+    table thead td address, table thead th address {
+      font-size: 0.7em;
+      font-style: normal;
+      font-weight: normal; }
+  table tfoot td, table tfoot th {
+    padding: 0.5em;
+    vertical-align: middle; }
+  table tfoot td, table tfoot th {
+    text-align: right;
+    border-top: 10px solid;
+      border-top-color: #dddddd; }
+  table tbody th, table tbody td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.5em;
+    border-bottom: 1px dashed;
+      border-bottom-color: #c3c3c3; }
+  table tbody tr:hover {
+    background: #e9e9e9; }
 
 fieldset {
 border:1px solid;
@@ -1605,6 +1597,121 @@ padding:0
 #content_body #sidebar #category_list ul li,#content_body #sidebar #last_comments ul li {
 line-height:1.5em
 }
+
+
+#affiche_dates {
+  background: #fcfcfc; }
+  #affiche_dates ul {
+    margin: 0;
+    padding: 1em 0;
+    text-align: center; }
+    #affiche_dates ul li {
+      list-style: none;
+      display: inline-block;
+      text-align: center;
+      width: 9%;
+      padding: 0;
+      margin: 0;
+      font-weight: bold;
+      font-size: 0.9em;
+      color: #aaaaaa; }
+      #affiche_dates ul li a, #affiche_dates ul li span {
+        display: inline-block;
+        width: 49px;
+        height: 36px;
+        padding: 10px 0 0 0;
+        background: url(../images/aff_dates_green.png) no-repeat;
+        text-shadow: 0 -1px #c5c5c5;
+        color: #98c825;
+        text-decoration: none; }
+        #affiche_dates ul li a strong, #affiche_dates ul li span strong {
+          display: block;
+          font-size: 2em;
+          line-height: 0.75em; }
+      #affiche_dates ul li span {
+        color: #fcc863;
+        background: url(../images/aff_dates_orange.png) no-repeat; }
+  #affiche_dates .aff_location {
+    padding-bottom: 1em; }
+    #affiche_dates .aff_location .country, #affiche_dates .aff_location .city {
+      width: 25%;
+      display: inline-block;
+      padding-right: 2em; }
+
+.affiche_data {
+  position: relative;
+  margin-top: 4em; }
+  .affiche_data .label {
+    top: -2em!important; }
+  .affiche_data .all {
+    position: absolute;
+    top: -2.7em;
+    right: 0;
+    text-align: right; }
+
+.select {
+  position: relative;
+  height: 2em; }
+  .select .round {
+    width: 100%;
+    position: absolute!important;
+    z-index: 99; }
+    .select .round .r_container {
+      min-height: 1.6em;
+      padding: 0;
+      background: url(data:image/gif;base64,R0lGODlhEgASALMPALLSZajJWsPcifv9+LrWd+3z4OHsxtTkruz02vDz6KrKW7bXaKbHWLXWZ/b29v///yH5BAEAAA8ALAAAAAASABIAAAR88MlJq704652HEYQgGENWCEuqCsiFqLDaUoPQ3HgulJPREAdCAzBcHAQAAwV5cBQWgKjBYQAIKFFCwoGQOhwEIlah0FKbDoEiugSQCd+vmnztBcgKtAGvUE4GBAEBDAAFCYGCBDwTBQoMj5CPCgUXh5GPBJQYHgJ3I4sUEQA7) no-repeat top right; }
+      .select .round .r_container .select_top, .select .round .r_container .select_list div {
+        padding: 0 0.5em; }
+    .select .round .select_list {
+      display: none; }
+      .select .round .select_list div:hover {
+        background: #98c825;
+        cursor: pointer; }
+    .select .round:hover .select_list {
+      display: block; }
+
+#cinema_info {
+  padding: 0 0 2em 0; }
+  #cinema_info .back {
+    display: inline-block;
+    padding: 0.5em 1em 0.5em 2em;
+    background: #98c825 url(data:image/gif;base64,R0lGODlhFAAgAJEDAPb29vX19fT09AAAACH5BAEAAAMALAAAAAAUACAAAAJNhI+JoZ0xnIRRKlrtwVnzPg3iqAGf6I0q+Kxq6JLNuc5x3d7vouMGfUP0XLyhbGNE5YY2ZlMHC0aJFmCJVjIIfKXtMetlabzZxLZsLgAAOw==) left no-repeat;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 1em; }
+    #cinema_info .back:hover {
+      background-color: #afdc44;
+      color: white !important; }
+  #cinema_info .cinema_name {
+    display: inline-block;
+    vertical-align: top;
+    padding-right: 2em; }
+    #cinema_info .cinema_name .poster {
+      display: inline-block;
+      height: 250px;
+      width: 180px;
+      overflow: hidden;
+      position: relative;
+      text-align: left; }
+      #cinema_info .cinema_name .poster img {
+        margin: 4px 0 0 5px; }
+      #cinema_info .cinema_name .poster:before {
+        content: "";
+        height: 250px;
+        width: 180px;
+        position: absolute;
+        background: url(../images/poster_template.png) no-repeat; }
+  #cinema_info .cinema_address {
+    display: inline-block;
+    vertical-align: top;
+    width: auto!important; }
+  #cinema_info #film_desc {
+    display: inline-block;
+    vertical-align: top; }
+    #cinema_info #film_desc ul {
+      width: auto; }
+
+
 
 .add_list{
 	list-style:none;

@@ -1,29 +1,20 @@
-<?php include_component('afisha', 'selectors') ?>
-<h2><?php echo $cinema->getTitle()?></h2>
-Адрес: <?php echo $cinema->getAddress()?><br />
-Телефон: <?php echo $cinema->getPhone()?><br />
-Про него: <?php echo $cinema->getDescription(ESC_RAW) ?><br />
-
-<?php if (isset($cinema)): ?>
+<h1><?php echo $cinema->getTitle()?></h1>
+<div id="cinema_info">
 <div>
-	<ul>
-<?php foreach($date_range as $date):?>
-		<li>
-			<a href="<?php echo url_for('@afisha_cinema_by_date?id='.$cinema->getId().'&year='.$date['y'].'&month='.$date['m'].'&day='.$date['d']) ?>">
-				<strong><?php echo $date['d'];?></strong>
-				<span><?php echo $date['m'];?>/<?php echo $date['y'];?></span>
-				<spam><?php echo $days_of_week[$date['w']]; ?></spam>
-				<?php if ($date_today['t'] == $date['t']):?>
-					сегодня
-				<?php endif ?>
-				<?php if ($selected_day['t'] == $date['t']):?>
-					selected
-				<?php endif ?>
-			</a>
-		</li>
-<?php endforeach ?>
-	</ul>
+	<a class="back" href="<?php echo url_for('@afisha') ?>">Назад на афишу</a>
 </div>
-<?php endif ?>
+<div class="cinema_name">
+	<h1><?php echo $cinema->getTitle()?></h1>
+</div>
+<div class="cinema_address">
+	<h4>тел. <?php echo $cinema->getPhone()?><br />
+	<?php echo $cinema->getAddress()?></h4>
+</div>
+<div class="cinema_desc">
+	<?php echo $cinema->getDescription(ESC_RAW) ?>
+</div>
+</div>
+
+<?php include_component('afisha', 'selectors', array('selected_day' => $selected_day, 'selected_by_cinema' => $cinema)) ?>
 
 <?php include_partial('afisha/list', array('afisha' => $afisha)) ?>

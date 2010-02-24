@@ -1,5 +1,7 @@
 index:
   enabled:     false
   lifetime:    14400 # 4 часа
+error404:
+  enabled:     false
 all:
   with_layout: false

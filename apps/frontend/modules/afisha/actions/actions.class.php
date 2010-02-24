@@ -86,15 +86,6 @@ class afishaActions extends sfActions
   }
   
   protected function getAllDates(sfWebRequest $request) {
-  	$this->days_of_week = array("Вск", "Пнд", "Втр", "Срд", "Чтв", "Птн", "Сбт");
-  	
-    $today = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
-  	$this->date_today = array('y' => date('Y',$today), 'm' => date('m',$today), 'd' => date('d',$today), 't' => date('c', $today), 'w' => date('w', $today));
-  	
-  	$first_day = $today - 7*86400;
-  	$last_day = $today + 7*86400;
-	$this->date_range = $this->createDateRangeArray($first_day, $last_day);
-	
 	if ($request->hasParameter('year') && $request->hasParameter('month') && $request->hasParameter('day')){
 		$selected_day = mktime(0, 0, 0, $request->getParameter('month'), $request->getParameter('day'), $request->getParameter('year'));
 		$this->selected_day = array('y' => date('Y',$selected_day), 'm' => date('m',$selected_day), 'd' => date('d',$selected_day), 't' => date('c', $selected_day), 'w' => date('w', $selected_day));
@@ -102,20 +93,6 @@ class afishaActions extends sfActions
 		$selected_day = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
   		$this->selected_day = array('y' => date('Y',$selected_day), 'm' => date('m',$selected_day), 'd' => date('d',$selected_day), 't' => date('c', $selected_day), 'w' => date('w', $selected_day));
 	}
-  }
-  
-  protected function createDateRangeArray($iDateFrom, $iDateTo) {
-	  $aryRange=array();
-	
-	  if ($iDateTo>=$iDateFrom) {
-	    array_push($aryRange,array('y' => date('Y',$iDateFrom), 'm' => date('m',$iDateFrom), 'd' => date('d',$iDateFrom), 't' => date('c', $iDateFrom), 'w' => date('w', $iDateFrom)));
-	
-	    while ($iDateFrom<$iDateTo) {
-	      $iDateFrom+=86400; // add 24 hours
-	      array_push($aryRange,array('y' => date('Y',$iDateFrom), 'm' => date('m',$iDateFrom), 'd' => date('d',$iDateFrom), 't' => date('c', $iDateFrom), 'w' => date('w', $iDateFrom)));
-	    }
-	  }
-	  return $aryRange;
   }
 
 }

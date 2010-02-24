@@ -1,42 +1,39 @@
-<?php include_component('afisha', 'selectors', array('film' => $film, 'selected_city' => $city)) ?>
-<h2>
-<?php echo $film->getTitle()?>
-<?php if ($film->getOrigTitle()):?>
- / <?php echo $film->getOrigTitle()?>
-<?php endif ?>
-</h2>
-Год: <?php echo $film->getYear() ?><br />
-<?php if ($film->getPoster()): ?>
-Постер: <img src="/uploads/afisha_films/<?php echo $film->getPoster() ?>" /><br />
-<?php endif ?>
-Ссылка: <?php echo $film->getLink() ?><br />
-Описание: <?php echo $film->getDescription(ESC_RAW) ?><br />
-Рейтинг: 
-<a target="_blank" href="http://kino-teatr.ua/ru/main/film_rating/film_id/<?php echo $film->getExternalId() ?>.phtml" title="<?php echo $film->getTitle()?>">
-	<img alt="Рейтинг фильма Аватар" src="http://kino-teatr.ua/rating_<?php echo $film->getExternalId() ?>.gif">
-</a><br />
-
-
-<?php if (isset($film)): ?>
-<div>
-	<ul>
-<?php foreach($date_range as $date):?>
-		<li>
-			<a href="<?php echo url_for('@afisha_film_city_by_date?id='.$film->getId().'&year='.$date['y'].'&month='.$date['m'].'&day='.$date['d'].'&city_id='.$city->getId()) ?>">
-				<strong><?php echo $date['d'];?></strong>
-				<span><?php echo $date['m'];?>/<?php echo $date['y'];?></span>
-				<spam><?php echo $days_of_week[$date['w']]; ?></spam>
-				<?php if ($date_today['t'] == $date['t']):?>
-					сегодня
-				<?php endif ?>
-				<?php if ($selected_day['t'] == $date['t']):?>
-					selected
-				<?php endif ?>
-			</a>
-		</li>
-<?php endforeach ?>
-	</ul>
+<h1><?php echo $film->getTitle()?></h1>
+<div id="cinema_info">
+  <div>
+	<a class="back" href="<?php echo url_for('@afisha') ?>">Назад на афишу</a>
+	<h1>
+	<?php echo $film->getTitle()?>
+	<?php if ($film->getOrigTitle()):?>
+	 / <?php echo $film->getOrigTitle()?>
+	<?php endif ?>
+	</h1>
 </div>
-<?php endif ?>
+<div class="cinema_name">
+	<span class="poster"><img src="/uploads/afisha_films/<?php echo $film->getPoster() ?>" alt="<?php echo $film->getTitle()?>" title="<?php echo $film->getTitle()?>" /></span>
+</div>
+<div id="film_desc">
+  <ul>
+	<li><strong>Название в прокате: </strong><span><?php echo $film->getTitle()?></span></li>
+	<li><strong>Оригинальное название: </strong><span><?php echo $film->getOrigTitle()?></span></li>
+
+	<li><strong>Год: </strong><span><?php echo $film->getYear() ?></span></li>
+	<li><strong>Ссылка: </strong><span><?php echo $film->getLink() ?></span></li>
+	<li><strong>Рейтинг: </strong>
+	<span>
+	<a target="_blank" href="http://kino-teatr.ua/ru/main/film_rating/film_id/<?php echo $film->getExternalId() ?>.phtml" title="<?php echo $film->getTitle()?>">
+	<img alt="Рейтинг фильма Аватар" src="http://kino-teatr.ua/rating_<?php echo $film->getExternalId() ?>.gif">
+	</a>
+	</span>
+	</li>
+	
+  </ul>
+</div>
+<div class="cinema_desc">
+	<?php echo $film->getDescription(ESC_RAW) ?>
+</div>
+</div>
+
+<?php include_component('afisha', 'selectors', array('selected_day' => $selected_day, 'selected_city' => $city, 'selected_by_film' => $film)) ?>
 
 <?php include_partial('afisha/list', array('afisha' => $afisha)) ?>
