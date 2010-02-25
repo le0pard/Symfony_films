@@ -18,6 +18,9 @@ class statisticActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     
+  	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', Статистика');
+    $response->addMeta('description', sfConfig::get('app_http_description').' Статистика');
   }
   
   public function executeCathegory_films() {

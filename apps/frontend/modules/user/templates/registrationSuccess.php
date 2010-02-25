@@ -1,4 +1,9 @@
 <?php use_helper('sfCryptoCaptcha') ?>
+
+<?php slot('title') ?>
+  Регистрация - Coocoorooza
+<?php end_slot(); ?>
+
 <div id="entrance">
 	<h1>Регистрация</h1>
 	<form id="registration_form" action="<?php echo url_for('@user_registration') ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>

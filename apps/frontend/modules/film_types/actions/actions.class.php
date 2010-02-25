@@ -25,6 +25,11 @@ class film_typesActions extends sfActions
 	$this->pager->setCriteria(FilmPeer::addVisibleCriteria());
 	$this->pager->setPage($request->getParameter('page', 1));
 	$this->pager->init();
+	
+	
+	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', все жанры');
+    $response->addMeta('description', sfConfig::get('app_http_description').' Все жанры кино');
   }
   
   public function executeShow(sfWebRequest $request)
@@ -43,5 +48,9 @@ class film_typesActions extends sfActions
 	$this->pager->setCriteria($criteria);
 	$this->pager->setPage($request->getParameter('page', 1));
 	$this->pager->init();
+	
+	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', '.$this->film_type->getTitle().' жанр кино');
+    $response->addMeta('description', sfConfig::get('app_http_description').' '.$this->film_type->getTitle().' жанр кино');
   }
 }

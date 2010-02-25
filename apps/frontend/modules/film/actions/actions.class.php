@@ -26,6 +26,10 @@ class filmActions extends sfActions
 	$this->pager->setCriteria(CommentsPeer::getByFilmId($this->film->getId()));
 	$this->pager->setPage($request->getParameter('page', 1));
 	$this->pager->init();
+	
+	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', '.$this->film->getTitle().', '.$this->film->getOriginalTitle().', год '.$this->film->getPubYear());
+    $response->addMeta('description', sfConfig::get('app_http_description').' '.sprintf('%s / %s (%s)', $this->film->getTitle(), $this->film->getOriginalTitle(), $this->film->getPubYear()));
   }
 
 /* Step 1 */  

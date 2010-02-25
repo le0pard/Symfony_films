@@ -1,3 +1,7 @@
+<?php slot('title') ?>
+  <?php echo sprintf('%s - %s', $film_type->getTitle(), 'Coocoorooza') ?>
+<?php end_slot(); ?>
+
 <?php include_partial('film_types/cathegory', array('cathegory' => $film_type)) ?>
 
 <div id="cat_films">

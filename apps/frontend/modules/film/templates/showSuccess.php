@@ -1,5 +1,5 @@
 <?php slot('title') ?>
-  <?php echo sprintf('%s / %s (%s)', $film->getTitle(), $film->getOriginalTitle(), $film->getPubYear()) ?>
+  <?php echo sprintf('%s / %s (%s) - Coocoorooza', $film->getTitle(), $film->getOriginalTitle(), $film->getPubYear()) ?>
 <?php end_slot(); ?>
 
 <?php if($sf_user->hasCredential(array('admin', 'super_admin'), false)): ?>

@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  Все жанры кино - Coocoorooza
+<?php end_slot(); ?>
 <div id="cat_films">
 	<h1 class="label">Все жанры</h1>
 	<?php foreach($pager->getResults() as $key=>$row): ?>

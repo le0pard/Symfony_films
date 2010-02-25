@@ -1,4 +1,9 @@
 <?php use_helper('sfLucene') ?>
+
+<?php slot('title') ?>
+  Поиск - Coocoorooza
+<?php end_slot(); ?>
+
 <div class="round" id="search_field">
 	<div class="r_container">
 	  <form action="<?php echo url_for('@search') ?>" method="get">

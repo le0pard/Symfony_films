@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  Воин кукурузы <?php echo $user_data->getLogin() ?> - Coocoorooza
+<?php end_slot(); ?>
 <div id="entrance">
   <h1>Воин кукурузы "<?php echo $user_data->getLogin() ?>"</h1>
   <div id="userinfo_ava"><h3>Аватарка</h3>

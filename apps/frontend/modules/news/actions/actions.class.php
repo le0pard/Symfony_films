@@ -24,10 +24,18 @@ class newsActions extends sfActions
 	$this->pager->setCriteria(NewsPeer::addVisibleCriteria());
 	$this->pager->setPage($request->getParameter('page', 1));
 	$this->pager->init();
+	
+	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', новости');
+    $response->addMeta('description', sfConfig::get('app_http_description').' Новости');
   }
   
   public function executeShow(sfWebRequest $request)
   {
   	$this->news = $this->getRoute()->getObject();
+  	
+  	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', новости, '.$this->news->getTitle());
+    $response->addMeta('description', sfConfig::get('app_http_description').' '.$this->news->getTitle());
   }
 }

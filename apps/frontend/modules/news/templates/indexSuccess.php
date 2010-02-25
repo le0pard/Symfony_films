@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  Архив новостей - Coocoorooza
+<?php end_slot(); ?>
 <div id="entrance">
   <h1>Архив новостей</h1>
   <div id="draft_list">

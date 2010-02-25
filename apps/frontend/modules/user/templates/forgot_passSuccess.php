@@ -1,4 +1,7 @@
 <?php use_helper('sfCryptoCaptcha') ?>
+<?php slot('title') ?>
+  Восстановление пароля - Coocoorooza
+<?php end_slot(); ?>
 <div id="entrance">
   <h1>Восстановление пароля</h1>
   <form action="<?php echo url_for('@user_forgot_pass') ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>

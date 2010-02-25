@@ -17,7 +17,7 @@ class indexActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    
+  	
   }
   
   public function executeSitemap(sfWebRequest $request)

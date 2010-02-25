@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  Редактирование профиля - Coocoorooza
+<?php end_slot(); ?>
 <div id="entrance">
   <h1>Редактирование профиля</h1>
   <form action="<?php echo url_for('@user_profile') ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>

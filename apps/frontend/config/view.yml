@@ -4,8 +4,8 @@ default:
 
   metas:
     #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
+    description:  Coocoorooza - ресурс, обеспечивает быстрый обмен фильмами и сериалами, информацией про новинки кино и индустрии.
+    keywords:     Coocoorooza, кукуруза, фильмы, сериалы, лучшее
     language:     ru
     robots:       index, follow
 

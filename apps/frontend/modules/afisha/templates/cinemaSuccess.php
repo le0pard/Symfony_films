@@ -1,3 +1,7 @@
+<?php slot('title') ?>
+  <?php echo sprintf('%s. тел. %s, %s - Coocoorooza', $cinema->getTitle(), $cinema->getPhone(), $cinema->getAddress()) ?>
+<?php end_slot(); ?>
+
 <h1><?php echo $cinema->getTitle()?></h1>
 <div id="cinema_info">
 <div>

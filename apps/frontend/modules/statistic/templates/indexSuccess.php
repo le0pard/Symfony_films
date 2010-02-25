@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  Статистика - Coocoorooza
+<?php end_slot(); ?>
 <h1>Статистика</h1>
 <h2>Категории фильмов</h2>
 <div>

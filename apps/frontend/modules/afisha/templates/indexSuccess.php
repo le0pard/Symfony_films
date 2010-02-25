@@ -1,3 +1,7 @@
+<?php slot('title') ?>
+  Афиша кинотеатров - Coocoorooza
+<?php end_slot(); ?>
+
 <?php include_component('afisha', 'selectors', array('selected_day' => $selected_day, 'selected_city' => $city, 'selected_by_city' => $city)) ?>
 
 <?php if ($afisha):?>

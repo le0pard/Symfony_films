@@ -46,6 +46,10 @@ class searchActions extends sfActions
 	} else {
 		$this->search_res = FilmPeer::getForLuceneQuery($this->query);
 	}
+	
+	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', Поиск');
+    $response->addMeta('description', sfConfig::get('app_http_description').' Поиск');
   }
   
   public function executeAuto_complete(sfWebRequest $request)

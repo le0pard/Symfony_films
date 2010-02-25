@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  <?php echo sprintf('%s (%s) - Coocoorooza', $film->getTitle(), $film->getOrigTitle()) ?>
+<?php end_slot(); ?>
 <h1><?php echo $film->getTitle()?></h1>
 <div id="cinema_info">
   <div>

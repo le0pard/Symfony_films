@@ -18,5 +18,9 @@ class staticActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->static_page = $this->getRoute()->getObject();
+    
+    $response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', '.$this->static_page->getTitle());
+    $response->addMeta('description', sfConfig::get('app_http_description').' '.$this->static_page->getTitle());
   }
 }
