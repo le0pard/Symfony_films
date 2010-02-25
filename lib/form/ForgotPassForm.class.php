@@ -12,7 +12,7 @@ class ForgotPassForm extends BaseForm{
 	  'captcha' => 'Картинка'
 	));
 	$this->widgetSchema->setHelps(array(
-	  'email' => 'Введите email, кот орый вы указывали при регистрации.',
+	  'email' => 'Введите email, который вы указывали при регистрации.',
 	  'captcha' => 'Повторите циферки на картинке.'
 	));
 	
