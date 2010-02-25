@@ -31,9 +31,10 @@ class AfishaFilmPeer extends BaseAfishaFilmPeer {
 		if ($limit){
 			$criteria->setLimit($limit);
 		}
-		$criteria->add(AfishaFilmPeer::POSTER, NULL, Criteria::NOT_EQUAL);
-		$criteria->addDescendingOrderByColumn(AfishaFilmPeer::EXTERNAL_ID);
-		$criteria->addAscendingOrderByColumn(AfishaFilmPeer::TITLE);
+		$criteria->add(self::POSTER, NULL, Criteria::NOT_EQUAL);
+		$criteria->addDescendingOrderByColumn(self::ID);
+		//$criteria->addDescendingOrderByColumn(self::EXTERNAL_ID);
+		//$criteria->addAscendingOrderByColumn(self::TITLE);
     	return self::doSelect($criteria);
     }
 	
