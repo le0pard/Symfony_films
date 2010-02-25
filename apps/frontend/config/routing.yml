@@ -568,6 +568,23 @@ afisha_film_city_by_date:
     city_id: \d+
     sf_method: [get]
 
+#static pages
+static_page_verlihub:
+  url:   /statistic_verlihub
+  param: { module: static_page, action: verlihub }
+
+static_page_jabber:
+  url:   /statistic_jabber
+  param: { module: static_page, action: jabber }
+  
+static_page_rules:
+  url:   /statistic_rules
+  param: { module: static_page, action: rules }
+  
+static_page_contacts:
+  url:   /statistic_contacts
+  param: { module: static_page, action: contacts }
+
 #statistic
 statistic:
   url:   /statistic

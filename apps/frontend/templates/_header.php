@@ -17,13 +17,13 @@
 
 	<ul id="menu_2">
 		<li>
-			<a href="#">Категории</a>
+			<a href="<?php echo url_for('@static_page_rules') ?>">Правила</a>
 		</li>
 		<li>
-			<a href="#">Категории</a>
+			<a href="<?php echo url_for('@static_page_verlihub') ?>">DC++: мануал</a>
 		</li>
 		<li>
-			<a href="#">Категории</a>
+			<a href="<?php echo url_for('@static_page_jabber') ?>">Jabber: мануал</a>
 		</li>
 	</ul>
 
