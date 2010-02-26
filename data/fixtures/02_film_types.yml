@@ -1,108 +1,88 @@
 FilmTypes:
-  comedy:
-    title: 'Комедия'
+
+  arthouse:
+    title: Артхаус
     description: |-
-      Жанр художественного произведения, характерезующийся юмором или сатирическим подходом
+      <p><strong>Артхаус</strong> (англ. Art house, букв. «дом искусств», «арт дома»; также называемый «art cinema», «art movie» или «art film») — термин обозначающий фильм, который будет смотреть катастрофическое меньшинство зрителей в этом самом массовом из искусств. 
+      Art film (худ.фильм) - категория в кинематографе, включающая в себя некоммерческие, самостоятельно сделанные фильмы-самовыражения, как иностранные, так и созданные внутри страны. 
+      Как правило артхаус-продукция направлена на нишевую, а не на массовую аудиторию.</p>
+    logo: ""
+
+  boevik:
+    title: Боевик
+    description: |-
+      <p><strong>Боевик</strong> (англ. action movie, букв. фильм действия, э́кшн-фильм) — жанр кинематографа, в котором основное внимание уделяется насилию: перестрелкам, дракам, погоням и т. п. Большинство боевиков иллюстрируют известный тезис «добро должно быть с кулаками». 
+      Экшен-фильмы часто обладают высоким бюджетом, изобилуют каскадёрскими трюками и спецэффектами.</p>
+    logo: ""
+    
+  priklychenij:
+    title: Приключенческий фильм
+    description: |-
+      <p><strong>Приключенческий фильм</strong> — жанр киноискусства. 
+      В отличие от боевика, в приключенческих фильмах акцент смещён с грубого насилия на смекалку персонажей, умение перехитрить, обмануть злодея. 
+      В приключенческих фильмах героям предстоит оригинально выпутаться из сложных ситуаций. 
+      «Хэппи-энд» также очень вероятен.</p>
     logo: ""
     
   drama:
-    title: 'Драма'
+    title: Драма
     description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
+      <p><strong>Драма</strong> — литературный (драматический) и кинематографический жанр. 
+      Драмы специфически изображают, как правило, частную жизнь человека и его конфликт с обществом. 
+      При этом акцент часто делается на общечеловеческих противоречиях, воплощённых в поведении и поступках конкретных персонажей.
+      </p>
     logo: ""
 
     
-  boevik:
-    title: 'Боевик'
-    is_visible: false
+  komedia:
+    title: Комедия
     description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
+      <p><strong>Кинокомедия</strong> — комедия на киноэкране. 
+      К этому жанру киноискусства относятся фильмы, которые ставят целью рассмешить зрителя, вызвать улыбку, улучшить настроение. 
+      Вместе с драмой, фильмами ужасов и научной фантастикой, комедия — один из основных жанров кинофильмов. 
+      Кинокомедия появилась почти одновременно с возникновением кинематографа.</p>
     logo: ""
     
-  detektiv:
-    title: 'Детектив'
+  bibliographia:
+    title: Фильм-биография
     description: |-
-      Жанр художественного произведения, характерезующийся юмором или сатирическим подходом
+      <p><strong>Фильм-биография</strong> (Биографическая картина, англ. biopic - biographical picture) — фильм, который показывает драматические моменты в жизни человека или людей. 
+      В отличие от «картины, основанной на подлинной истории», или «исторических фильмов» фильм-биография пытается всесторонне передать жизнеописание личности, или хотя бы годы, сыгравшие наиболее важную роль в жизни человека.</p>
     logo: ""
     
-  erotika:
-    title: 'Эротика'
+  criminal:
+    title: Криминальный фильм
     description: |-
-      Жанр художественного произведения, характерезующийся юмором или сатирическим подходом
+      <p><strong>Криминальный фильм</strong> (англ. crime films, букв. «фильмы преступления») — жанр кинематографа, где недавно совершенное или готовящееся преступление является основой сюжета. 
+      Часто в сюжете фильмов прорисовываются детали, и особенности методов ведения незаконной деятельности. 
+      Жанр оправдывает действия главных персонажей фильма, в общепринятом смысле называемые преступными, в пользу их справедливости. 
+      Зачастую зритель становится соучастником действия происходящего в фильме.</p>
     logo: ""
     
-  priklychenija:
-    title: 'Приключения'
+  documental:
+    title: Документальное кино
     description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
-    logo: ""
-      
-  yjas:
-    title: 'Ужас'
-    description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
+      <p><strong>Документальное кино</strong> (или неигровое кино) — вид кинематографа. 
+      Документальным называется фильм, в основу которого легли съёмки подлинных событий и лиц. 
+      Реконструкции подлинных событий не относятся к документальному кино.</p>
     logo: ""
   
-  fantastic:
-    title: 'Фантастика'
+  family_film:
+    title: Семейный фильм
     description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
+      <p><strong>Семейный фильм</strong> — детские фильмы и фильмы, предназначенные для просмотра всей семьёй. Фильмы этого жанра зачастую лишены насилия, имеют множество элементов мелодрамы и комедии с незамысловатым юмором.</p>
     logo: ""
-      
-  multfilm:
-    title: 'Мультфильм'
+    
+  fentazy:
+    title: Фэнтези
     description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
+      <p><strong>Фэнтези</strong> (от англ. fantasy — «фантазия») — вид фантастической литературы, основанный на использовании мифологических и сказочных мотивов. В современном виде сформировался в начале XX века. 
+      Произведения фэнтези чаще всего напоминают историко-приключенческий роман, действие которого происходит в вымышленном мире, близком к реальному Средневековью, герои которого сталкиваются со сверхъестественными явлениями и существами. Зачастую фэнтези построено на основе архетипических сюжетов.</p>
     logo: ""
-      
-  fentezi:
-    title: 'Фентези'
+    
+  vestern:
+    title: Вестерн
     description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
-    logo: ""
-      
-  triller:
-    title: 'Триллер'
-    description: |-
-      You can include components in components, or in the global layout, as in any regular
-      template. Like actions, components’ execute methods can pass variables to the related partial
-      and have access to the same shortcuts. But the similarities stop there. A component doesn’t
-      handle security or validation, cannot be called from the Internet (only from the application
-      itself), and doesn’t have various return possibilities. That’s why a component is faster to
-      execute than an action.
+      <p><strong>Вестерн</strong> (англ. western, букв. — западный) — направление искусства, характерное для США, может включать в себя различные жанры, например, комедию, боевик, детектив, триллер и даже фантастику; вестерн характерен для кинематографа, телевидения, литературы, живописи и других видов искусств. 
+      Действие в вестернах в основном происходит во второй половине XIX века на Диком Западе — будущих западных штатах США, а также и в Западной Канаде и в Мексике.</p>
     logo: ""
