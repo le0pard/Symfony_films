@@ -129,6 +129,7 @@ class FilmPeer extends BaseFilmPeer
 	     $criteria = new Criteria();
 	  }
 	  $criteria->add(self::IS_VISIBLE, false);
+	  $criteria->add(self::IS_PUBLIC, true);
 	  return $criteria; 
 	}
 	

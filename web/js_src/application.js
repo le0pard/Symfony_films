@@ -337,7 +337,7 @@ var FilmSiteJs = {
 	},
 	initFlashHider: function(){
 		if ($('flash_success') || $('flash_error')){
-			setTimeout(FilmSiteJs.flashHiderOn, 5000);
+			setTimeout(FilmSiteJs.flashHiderOn, 10000);
 		}	
 	},
 	flashHiderOn: function(){
