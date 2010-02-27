@@ -124,6 +124,24 @@ class FilmPeer extends BaseFilmPeer
 	  return self::doSelectOne(self::doSelectUnpublicCriteria($criteria));
 	}
 	
+	static public function doSelectUnvisibleCriteria(Criteria $criteria = null) {
+	  if (is_null($criteria)) {
+	     $criteria = new Criteria();
+	  }
+	  $criteria->add(self::IS_VISIBLE, false);
+	  return $criteria; 
+	}
+	
+	static public function doCountUnvisible(Criteria $criteria = null)
+	{
+	  return self::doCount(self::doSelectUnvisibleCriteria($criteria));
+	}
+	
+	static public function doSelectUnvisible(Criteria $criteria = null)
+	{
+	  return self::doSelect(self::doSelectUnvisibleCriteria($criteria));
+	}
+	
 	//search
 	static public function getLuceneIndex()
 	{

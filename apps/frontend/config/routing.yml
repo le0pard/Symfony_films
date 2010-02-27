@@ -61,6 +61,10 @@ user_films_list:
   url:     /unpublic_films
   param: { module: user, action: unpublic_films }
   
+user_moder_films_list:
+  url:     /unvisible_films
+  param: { module: user, action: unvisible_films }  
+  
 user_show:
   url:     /userinfo/:id
   class:   sfPropelRoute

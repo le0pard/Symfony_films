@@ -1,6 +1,9 @@
 UsersGroup:
   admin:
-    name: 'admin'
+    name: admin
     
   super_admin:
-    name: 'super_admin'
+    name: super_admin
+    
+  moder:
+    name: moder

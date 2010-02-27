@@ -1,4 +1,4 @@
 UsersUsersGroup:
   admin_leo:
-    user_id: 'leo'
-    group_id: 'super_admin'
+    user_id: leo
+    group_id: super_admin

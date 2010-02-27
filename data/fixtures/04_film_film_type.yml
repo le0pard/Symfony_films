@@ -1,11 +1,11 @@
-FilmFilmTypes:
-<?php for ($i = 1; $i <= 120; $i++): ?>
+#FilmFilmTypes:
+<?php /*for ($i = 1; $i <= 120; $i++): ?>
   film_type<?php echo $i ?>:
     film_id: 'film<?php echo $i ?>'
     film_genre_id: komedia
-<?php endfor; ?>
-<?php for ($i = 1000; $i <= 1070; $i++): ?>
+<?php endfor; */ ?>
+<?php /*for ($i = 1000; $i <= 1070; $i++): ?>
   film_type<?php echo $i ?>:
     film_id: 'film<?php echo $i ?>'
     film_genre_id: priklychenij
-<?php endfor; ?>
+<?php endfor; */?>

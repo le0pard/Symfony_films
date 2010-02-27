@@ -8,6 +8,7 @@ class FilmTypesPeer extends BaseFilmTypesPeer
 	    	$criteria = new Criteria();
 	  }
 	  $criteria->add(self::IS_VISIBLE, true);
+	  $criteria->addAscendingOrderByColumn(self::TITLE);
 	  return $criteria;
 	}
 	

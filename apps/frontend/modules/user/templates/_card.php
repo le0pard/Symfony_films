@@ -27,6 +27,9 @@
     <div><a href="<?php echo url_for('@user_films_list') ?>">Неопубликованное
     <?php if ($unp_films_count > 0): ?><strong> (<?php echo $unp_films_count; ?>)</strong><?php endif ?>
     </a></div>
+    <?php if($sf_user->hasCredential(array('admin', 'super_admin', 'moder'), false)): ?>
+    <div><a style="color:#300;" href="<?php echo url_for('@user_moder_films_list') ?>">Ждут рецензирования (<?php echo $count_moder_unvisible?>)</a></div>
+    <?php endif ?>
     <div><a href="<?php echo url_for('@user_profile') ?>">Профайл</a></div>
     <div><a href="<?php echo url_for('@user_logout') ?>">Выход</a></div>
 </div>

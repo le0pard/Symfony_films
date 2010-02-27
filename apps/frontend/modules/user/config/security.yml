@@ -2,8 +2,11 @@ profile:
   is_secure:   true    # The update action is only for authenticated
 change_password:
   is_secure:   true    # The update action is only for authenticated  
-list_unpublic_films:
+unpublic_films:
   is_secure:   true
+unvisible_films:
+  is_secure:   true
+  credentials: [[ admin, super_admin, moder ]]
 logout:
   is_secure:   true    # Only for authenticated users
 all:

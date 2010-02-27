@@ -28,7 +28,7 @@ class FilmForm extends BaseFilmForm
 	  'film_film_types_list' => new sfWidgetFormPropelChoice(array('model' => 'FilmTypes', 'multiple' => true), array('size' => 8)),
       'pub_year'             => new sfWidgetFormSelect(array('multiple' => false, 'choices' => array_combine($years, $years))),
       'director'             => new sfWidgetFormInputText(),
-      'cast'                 => new sfWidgetFormInputText(),
+      'cast_people'          => new sfWidgetFormInputText(),
       'about'                => new sfWidgetFormTextareaTinyMCE(
 	  				array('theme' => 'advanced','config' => '
 							skin : "o2k7", 
@@ -68,7 +68,7 @@ class FilmForm extends BaseFilmForm
       'director'             => new sfValidatorString(array('required' => true, 'max_length' => 150), 
 	  						array('required' => 'Режисер должнен быть указан.', 
 								  'max_length' => '"%value%" слишком длинное (Максимальная длинна %max_length% символа).')),
-      'cast'                 => new sfValidatorString(array('max_length' => 1000, 'required' => false), 
+      'cast_people'         => new sfValidatorString(array('max_length' => 1000, 'required' => false), 
 	  						array('max_length' => 'Слишком длинное (Максимальная длинна %max_length% символа).')),
       'about'                => new sfValidatorString(array('required' => true), array('required' => 'Нужно указать эту информацию.')),
       'country'              => new sfValidatorString(array('max_length' => 80, 'required' => true), 
@@ -129,7 +129,7 @@ class FilmForm extends BaseFilmForm
 	  'thumb_logo' => 'Постер к фильму',
 	  'pub_year' => 'Год выпуска',
 	  'director' => 'Режисер',
-	  'cast' => 'В ролях',
+	  'cast_people' => 'В ролях',
 	  'about' => 'О чем картина',
 	  'country' => 'Страна выпуска',
 	  'duration' => 'Качество видео',

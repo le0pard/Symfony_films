@@ -56,12 +56,13 @@ class userActions extends sfActions
 				$message = $this->getMailer()->compose(
 				      array(sfConfig::get('app_support_email') => sfConfig::get('app_support_title')),
 				      $user->getEmail(),
-				      'Пользователь успешно зарегестрирован',
+				      'Пользователь успешно зарегестрирован на Coocoorooza',
 <<<EOF
-Пользователь успешно зарегестрирован.
+Пользователь успешно зарегестрирован на http://coocoorooza.com.
 				 
 Для активации своего акаунта перейдите по ссылке {$this->generateUrl('user_activate', $user, true)}.
-				 
+
+Спасибо за ваш интерес к ресурсу.
 Coocoorooza Bot.
 EOF
 );
@@ -215,10 +216,10 @@ EOF
 				$message = $this->getMailer()->compose(
 				      array(sfConfig::get('app_support_email') => sfConfig::get('app_support_title')),
 				      $data->getEmail(),
-				      'Запрос на изменение пароля',
+				      'Запрос на изменение пароля на Coocoorooza',
 <<<EOF
 Сброс пароля по ссылке {$this->generateUrl('user_forgot_pass_token', $data, true)}.
-				 
+Если вы не запрашивали сброс пароля, то проигнорируйте это письмо.				 
 Coocoorooza Bot.
 EOF
 );
@@ -283,6 +284,12 @@ EOF
   {
 	$this->user_data = $this->getUser()->getAuthUser();
 	$this->film_list = $this->user_data->getUnpublicFilms();
+  }
+  
+  public function executeUnvisible_films(sfWebRequest $request)
+  {
+	$this->user_data = $this->getUser()->getAuthUser();
+	$this->film_list = FilmPeer::doSelectUnvisible();
   }
   
   public function executeSecure(){

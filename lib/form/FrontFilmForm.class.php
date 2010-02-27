@@ -118,7 +118,7 @@ class FrontFilmForm extends BaseFilmForm
 	  'film_film_types_list'   => 'Категория',
 	  'thumb_logo' => 'Постер к фильму',
 	  'pub_year' => 'Год выпуска',
-	  'director' => 'Режисер',
+	  'director' => 'Режиссер',
 	  'cast_people' => 'В ролях',
 	  'about' => 'О чем картина',
 	  'country' => 'Страна выпуска',
