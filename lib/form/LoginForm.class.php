@@ -14,7 +14,7 @@ class LoginForm extends BaseForm{
 	  'not_remember' => 'Чужой компьютер'
 	));
 	$this->widgetSchema->setHelps(array(
-	  'login' => 'Логин или email чуствителен к регистру.',
+	  'login' => 'Логин или email не чуствителен к регистру.',
 	  'password' => 'Внимание! Пароль чуствителен к регистру.',
 	  'not_remember' => 'Если требуется что бы вход на сайт автоматически НЕ производился'
 	));
