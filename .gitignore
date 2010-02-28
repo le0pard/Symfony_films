@@ -17,3 +17,4 @@ apps/frontend/config/app.yml
 apps/backend/config/app.yml
 ext_libs/*
 apps/frontend/config/*
+config/propel.ini
