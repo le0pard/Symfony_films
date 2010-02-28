@@ -64,5 +64,10 @@
 	</li>
 	<?php endforeach ?>
   </ul>
+  
+  <div class="add_film_listers">
+  	<a class="button l" href="<?php echo url_for('film_edit_step2', $film) ?>"><span>Назад</span></a>
+  	<a class="button" href="<?php echo url_for('film_add_step4', $film) ?>"><span>Дальше</span></a>
+  </div>
 
 </div>

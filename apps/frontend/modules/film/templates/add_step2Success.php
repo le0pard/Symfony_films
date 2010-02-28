@@ -64,8 +64,8 @@
   </ul>
 
   <div class="add_film_listers">
-  	<input  class="big l" type="submit" value="Назад" /> 
-  	<input  class="big" type="submit" value="Дальше" />
+  	<a class="button l" href="<?php echo url_for('film_edit_step1', $film) ?>"><span>Назад</span></a>
+  	<a class="button" href="<?php echo url_for('film_add_step3', $film) ?>"><span>Дальше</span></a>
   </div>
 
 </div>
