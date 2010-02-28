@@ -8,7 +8,7 @@
 				<?php $user = $row->getUsers(); ?>
 				<li>
 				<a class="author" href="<?php echo url_for('user_show', $user) ?>"><?php echo $user->getLogin() ?></a> → 
-				<a class="film" href="<?php echo url_for('film_show', $film) ?>"><?php echo $film->getTitle(); ?></a>
+				<a class="film" href="<?php echo url_for('film_show', $film) ?>#comments"><?php echo $film->getTitle(); ?></a>
 				</li>
 				<?php endif ?>
 			<?php endforeach ?>

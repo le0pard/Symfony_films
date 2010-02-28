@@ -11,4 +11,5 @@
 
 <?php include_component('comment', 'comment_form', array('film' => $film)) ?>
 
+<a name="comments"></a>
 <?php include_partial('comment/comment_list', array('comments' => $pager, 'film' => $film)) ?>
