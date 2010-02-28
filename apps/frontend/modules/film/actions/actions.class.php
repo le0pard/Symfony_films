@@ -371,7 +371,9 @@ class filmActions extends sfActions
   {
   	$this->film = $this->getRoute()->getObject();
     if ($request->isMethod('post')){
-		if ($request->hasParameter('pub')){
+		if ($request->hasParameter('pub') 
+			&& $this->film->getGalleryCount() >= sfConfig::get('app_films_min_gallery', 3) 
+			&& $this->film->getLinksCount() >= sfConfig::get('app_films_min_links', 1)){
 			$this->film->setModifiedAt(time());
 			$this->film->setIsPublic(true);
 			if ($this->getUser()->hasCredential(array('super_admin', 'admin', 'moder'), false)){
