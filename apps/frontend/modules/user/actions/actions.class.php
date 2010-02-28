@@ -101,6 +101,7 @@ EOF
 		$output = Array();
 		if ($request->getParameter('login')){
 			$cr = new Criteria();
+			$cr->setIgnoreCase(true);
 			$cr->add(UsersPeer::LOGIN, $request->getParameter('login'));
         	$user_count = UsersPeer::doCount($cr);
 			if ($user_count > 0){
@@ -111,6 +112,7 @@ EOF
 		}
 		if ($request->getParameter('email')){
 			$cr = new Criteria();
+			$cr->setIgnoreCase(true);
 			$cr->add(UsersPeer::EMAIL, $request->getParameter('email'));
         	$user_count = UsersPeer::doCount($cr);
 			if ($user_count > 0){

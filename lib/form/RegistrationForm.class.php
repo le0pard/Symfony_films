@@ -73,9 +73,9 @@ class RegistrationForm extends BaseUsersForm{
 	
 	$this->validatorSchema->setPostValidator(
 	 	new sfValidatorAnd(array(
-	 		new sfValidatorPropelUnique(array('model' => 'Users', 'column' => array('login')), array('invalid' => 'Такой логин уже зарегестрирован')),
+	 		new sfValidatorUserUnique(array('model' => 'Users', 'column' => array('login')), array('invalid' => 'Такой логин уже зарегестрирован')),
 	 	    new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'password_confirmation', array(), array('invalid' => 'Пароли должны совпадать.')),
-	 		new sfValidatorPropelUnique(array('model' => 'Users', 'column' => array('email')), array('invalid' => 'Такой email уже зарегестрирован'))
+	 		new sfValidatorUserUnique(array('model' => 'Users', 'column' => array('email')), array('invalid' => 'Такой email уже зарегестрирован'))
 	 )));
 
   }

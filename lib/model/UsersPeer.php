@@ -12,10 +12,12 @@ class UsersPeer extends BaseUsersPeer
 	
 	static public function getActiveUser($login, $password){
 		$criteria = self::addActiveCriteria();
+		$criteria->setIgnoreCase(true);
 		$criteria->add(self::LOGIN, $login);
 	    $user = self::doSelectOne($criteria);
 	    if (!$user){
 	    	$criteria = self::addActiveCriteria();
+	    	$criteria->setIgnoreCase(true);
 			$criteria->add(self::EMAIL, $login);
 		    $user = self::doSelectOne($criteria);
 	    }
