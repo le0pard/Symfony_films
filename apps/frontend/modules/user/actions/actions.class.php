@@ -29,7 +29,11 @@ class userActions extends sfActions
 				$this->getUser()->signIn($data, $values['not_remember'] ? false : true);
 				$this->getUser()->setFlash('confirm', sprintf('Добро пожаловать, %s.', $data->getLogin()));
 				$referer = $this->getRequest()->getReferer();
-                $this->redirect($referer ? $referer : '@homepage'); 
+				if ($referer && $this->getRequest()->getUri() != $referer){
+                	$this->redirect($referer); 
+				} else {
+					$this->redirect('@homepage'); 
+				}
 			} else {
 				$this->getUser()->setFlash('error', 'Неверный логин или пароль', false);
 			}
