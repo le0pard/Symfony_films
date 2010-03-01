@@ -8,9 +8,9 @@
 		<?php if ($form->isCSRFProtected()) : ?> 
 			<?php echo $form[$form->getCSRFFieldName()]->render(); ?>
 		<?php endif ?>
-		<input class="big l" type="submit" value="Обновить" />
-		<a class="l button" style="margin-left:10px;" onclick="javascript: return confirm('Вы уверены, что хотите удалить &laquo;<?php echo $film->getTitle() ?>&raquo; ?');" href="<?php echo url_for('film_delete_step1', $film) ?>">Удалить</a>
-		<a class="button" href="<?php echo url_for('film_add_step2', $film) ?>"><span>Дальше</span></a>
+		<input class="css_button l" type="submit" value="Обновить" />
+		<a class="l css_button" style="margin-left:10px;" onclick="javascript: return confirm('Вы уверены, что хотите удалить &laquo;<?php echo $film->getTitle() ?>&raquo; ?');" href="<?php echo url_for('film_delete_step1', $film) ?>">Удалить</a>
+		<a class="css_button" href="<?php echo url_for('film_add_step2', $film) ?>"><span>Дальше</span></a>
 	</div>
   </form>
 </div>

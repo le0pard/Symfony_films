@@ -42,7 +42,7 @@ class FrontFilmGalleryForm extends BaseFilmGalleryForm
 	      'is_image'  => true,
 		  'delete_label' => 'Удалить?',
 	      'edit_mode' => !$this->isNew(),
-	      'template'  => '<div class="img">%file%</div><div class="file">%input% <input type="submit" value="Обновить" /> '.$del_link.'</div>',
+	      'template'  => '<div class="img">%file%</div><div class="file">%input% <input class="css_button" type="submit" value="Обновить" /> '.$del_link.'</div>',
 	    ));
 		$this->validatorSchema['thumb_img'] = new sfValidatorFile(array(
 		  'required'   => true,
@@ -66,7 +66,7 @@ class FrontFilmGalleryForm extends BaseFilmGalleryForm
       'is_image'  => true,
 	  'delete_label' => 'Удалить?',
       'edit_mode' => !$this->isNew(),
-      'template'  => '<div>%file% %input% <input type="submit" value="Обновить" /></div>',
+      'template'  => '<div>%file% %input% <input class="css_button" type="submit" value="Обновить" /></div>',
     ));
 	$this->validatorSchema['thumb_img'] = new sfValidatorFile(array(
 	  'required'   => true,

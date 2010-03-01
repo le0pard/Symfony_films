@@ -20,7 +20,7 @@
 		<?php if ($form->isCSRFProtected()) : ?> 
 	  	  <?php echo $form[$form->getCSRFFieldName()]->render(); ?>
 	    <?php endif ?>
-		<input  class="big" type="submit" value="Сменить пароль" />
+		<input  class="css_button" type="submit" value="Сменить пароль" />
 	</div>
 
   </form>

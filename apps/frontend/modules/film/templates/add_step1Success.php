@@ -7,7 +7,7 @@
 		<?php if ($form->isCSRFProtected()) : ?> 
 			<?php echo $form[$form->getCSRFFieldName()]->render(); ?>
 		<?php endif ?>
-		<input  class="big" type="submit" value="Добавить" />
+		<input class="css_button" type="submit" value="Добавить" />
 	</div>
 
   </form>

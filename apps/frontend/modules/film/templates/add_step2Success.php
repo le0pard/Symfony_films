@@ -35,7 +35,7 @@
   		<?php if ($form_add->isCSRFProtected()) : ?> 
   			<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
   		<?php endif ?>
-  		&nbsp;<input type="submit" value="Загрузить" />
+  		&nbsp;<input class="css_button" type="submit" value="Загрузить" />
 	  <div class="tip"><?php echo $form_add['thumb_img']->renderHelp(); ?></div>
 	</div>
   </form>
@@ -64,8 +64,8 @@
   </ul>
 
   <div class="add_film_listers">
-  	<a class="button l" href="<?php echo url_for('film_edit_step1', $film) ?>"><span>Назад</span></a>
-  	<a class="button" href="<?php echo url_for('film_add_step3', $film) ?>"><span>Дальше</span></a>
+  	<a class="css_button l" href="<?php echo url_for('film_edit_step1', $film) ?>"><span>Назад</span></a>
+  	<a class="css_button" href="<?php echo url_for('film_add_step3', $film) ?>"><span>Дальше</span></a>
   </div>
 
 </div>

@@ -11,7 +11,7 @@
 			<?php echo $form['login']->render()?>
 			<h5><?php echo $form['password']->renderLabel()?></h5>
 			<?php echo $form['password']->render()?>
-			<input type="submit" value="Вход" />
+			<input class="small css_button" type="submit" value="Вход" />
 			<a href="<?php echo url_for('@user_registration') ?>">Регистрация</a>
 		</div>
 	</form>
@@ -23,7 +23,7 @@
 <div class="r_container userinfo">
 	<h2 class="top_plate">Ваш кабинет</h2>
 	<p>Привет, <a href="<?php echo url_for('user_show', $sf_user->getAuthUser()) ?>"><?php echo $sf_user->getAuthUser()->getLogin() ?></a>!</p>
-    <div><a href="<?php echo url_for('@film_add_step1') ?>" class="big">Добавить фильм</a></div>
+    <div><a style="margin:3px 0;" class="css_button" href="<?php echo url_for('@film_add_step1') ?>">Добавить фильм</a></div>
     <div><a href="<?php echo url_for('@user_films_list') ?>">Неопубликованное
     <?php if ($unp_films_count > 0): ?><strong> (<?php echo $unp_films_count; ?>)</strong><?php endif ?>
     </a></div>

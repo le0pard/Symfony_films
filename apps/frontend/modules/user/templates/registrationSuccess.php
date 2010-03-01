@@ -49,7 +49,7 @@
 			<?php if ($form->isCSRFProtected()) : ?> 
 		  	  <?php echo $form[$form->getCSRFFieldName()]->render(); ?>
 		    <?php endif ?>
-			<input  class="big" type="submit" value="Регистрация" />
+			<input  class="css_button" type="submit" value="Регистрация" />
 		</div>
 	</div>
 	<div class="form_info">

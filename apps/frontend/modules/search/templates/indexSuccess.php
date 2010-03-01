@@ -10,7 +10,7 @@
 		<div><label for="search">Поиск</label></div>
 		<div style="white-space:nowrap">
 		<input id="search" type="text"  name="s" value="<?php echo $query?>" />&nbsp;
-		<input type="submit" value="Найти" /></div>
+		<input class="css_button" type="submit" value="Найти" /></div>
 	  </form>
 	  <div class="tip"><a id="search_tip" href="javascript:return false;">Справка</a></div>
 	  <div id="search_tip_descr" style="display:none;">

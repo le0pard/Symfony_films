@@ -19,7 +19,7 @@
 	  	  <?php if ($form_add->isCSRFProtected()) : ?> 
   			<?php echo $form_add[$form_add->getCSRFFieldName()]->render(); ?>
   		  <?php endif ?>
-		  <input type="submit" value="Добавить" />
+		  <input class="css_button" type="submit" value="Добавить" />
 		</fieldset>
 	  </div>
 	</form>
@@ -56,7 +56,7 @@
 		  	  <?php if ($row->isCSRFProtected()) : ?> 
 	  			<?php echo $row[$row->getCSRFFieldName()]->render(); ?>
 	  		  <?php endif ?>
-	        <input type="submit" value="Обновить" />
+	        <input class="css_button" type="submit" value="Обновить" />
 			<a onclick="javascript:return confirm('Действительно удалить ссылку?');" href="<?php echo url_for('film_delete_step3', $row->getObject()) ?>">Удалить</a>
 		   </div>	
 		</div>	
@@ -66,8 +66,8 @@
   </ul>
   
   <div class="add_film_listers">
-  	<a class="button l" href="<?php echo url_for('film_edit_step2', $film) ?>"><span>Назад</span></a>
-  	<a class="button" href="<?php echo url_for('film_add_step4', $film) ?>"><span>Дальше</span></a>
+  	<a class="css_button l" href="<?php echo url_for('film_edit_step2', $film) ?>"><span>Назад</span></a>
+  	<a class="css_button" href="<?php echo url_for('film_add_step4', $film) ?>"><span>Дальше</span></a>
   </div>
 
 </div>

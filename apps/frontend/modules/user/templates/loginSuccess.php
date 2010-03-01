@@ -25,7 +25,7 @@
 		<?php if ($form->isCSRFProtected()) : ?> 
 			<?php echo $form[$form->getCSRFFieldName()]->render(array("id" => "log_csrf_token")); ?>
 		<?php endif ?>
-		<input type="submit" class="big" value="Вход" />
+		<input type="submit" class="css_button" value="Вход" />
 	</div>
   </form>
 

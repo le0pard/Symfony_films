@@ -7,7 +7,7 @@ class CommentsPeer extends BaseCommentsPeer
 		if ($film_id){
 	    	$criteria->add(self::FILM_ID, $film_id);
 		}
-	    $criteria->addAscendingOrderByColumn(self::CREATED_AT);
+	    $criteria->addDescendingOrderByColumn(self::CREATED_AT);
 	    return $criteria;
     }
 }

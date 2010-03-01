@@ -44,7 +44,7 @@
 		<?php if ($form->isCSRFProtected()) : ?> 
 			<?php echo $form[$form->getCSRFFieldName()]->render(); ?>
 		<?php endif ?>
-		<input  class="big" type="submit" value="Обновить" />
+		<input  class="css_button" type="submit" value="Обновить" />
 	</div>
 
   </form>
@@ -92,7 +92,7 @@
 			<?php if ($change_pass_form->isCSRFProtected()) : ?> 
 				<?php echo $change_pass_form[$change_pass_form->getCSRFFieldName()]->render(); ?>
 			<?php endif ?>
-			<input  class="big" type="submit" value="Изменить пароль" />
+			<input  class="css_button" type="submit" value="Изменить пароль" />
 		</div>
 	</form>
 </div>

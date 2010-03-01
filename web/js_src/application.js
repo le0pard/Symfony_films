@@ -337,14 +337,14 @@ var FilmSiteJs = {
 	},
 	initFlashHider: function(){
 		if ($('flash_success') || $('flash_error')){
-			setTimeout(FilmSiteJs.flashHiderOn, 10000);
+			setTimeout(FilmSiteJs.flashHiderOn, 30000);
 		}	
 	},
 	flashHiderOn: function(){
 		if ($('flash_success')){
-			Effect.BlindUp('flash_success', {duration: 0.8, scaleMode: 'contents'});
+			Effect.BlindUp('flash_success', {duration: 1, scaleMode: 'contents'});
 		} else if ($('flash_error')){
-			Effect.BlindUp('flash_error', {duration: 0.8, scaleMode: 'contents'});
+			Effect.BlindUp('flash_error', {duration: 1, scaleMode: 'contents'});
 		}
 	}	
 };
