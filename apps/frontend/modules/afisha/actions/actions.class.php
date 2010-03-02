@@ -39,7 +39,7 @@ class afishaActions extends sfActions
 	if ($this->getRequest()->isXmlHttpRequest()){
 		$country = $this->getRoute()->getObject();
 		$selecter = '<select id="afisha_city">';
-		$selecter_options = '<option value="">-- Выберите город --</option>';
+		$selecter_options = '<option value="">** Выберите город **</option>';
 		foreach($country->getCities() as $city){
 			$selecter_options .= '<option value="'.$city->getId().'">'.$city->getTitle().'</option>';
 		}
@@ -83,6 +83,17 @@ class afishaActions extends sfActions
 	$this->getAllDates($request);
   	
   	$this->afisha = AfishaPeer::getByDateRangeAndFilm($this->selected_day['t'], $this->selected_day['t'], $this->film->getId(), $this->city->getId());
+  }
+  
+  public function executeFilms_today_ajax(sfWebRequest $request){
+  	if (!$city_id = $request->getParameter('city_id')) {
+		return $this->renderText("");
+	}
+	$selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+  	$this->forward404Unless($selected_city);
+	$afisha_films = AfishaPeer::getForTodayFilms($selected_city);
+	$selected_country = $selected_city->getAfishaCountry();
+	return $this->renderPartial('afisha/today_films_li', array('selected_country' => $selected_country, 'selected_city' => $selected_city, 'afisha_films' => $afisha_films));
   }
   
   protected function getAllDates(sfWebRequest $request) {

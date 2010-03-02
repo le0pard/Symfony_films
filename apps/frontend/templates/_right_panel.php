@@ -1,5 +1,9 @@
 <?php include_component('user', 'card') ?>
-<?php include_component('film', 'types', array('sf_cache_key' => 'types')) ?>
+<?php if ('afisha' == $sf_params->get('module')):?>
+	<?php include_component('afisha', 'today_films', array('sf_cache_key' => 'today_films')) ?>
+<?php else:?>
+	<?php include_component('film', 'types', array('sf_cache_key' => 'types')) ?>
+<?php endif ?>
 <?php include_component('comment', 'last_comments', array('sf_cache_key' => 'last_comments')) ?>
 <div class="round" id="statistic" style="margin-top: 3em;">
 	<div class="r_container">

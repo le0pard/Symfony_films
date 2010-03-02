@@ -572,6 +572,10 @@ afisha_film_city_by_date:
     city_id: \d+
     sf_method: [get]
 
+afisha_films_today_ajax:
+  url:    /afisha_films_today
+  param:  { module: afisha, action: films_today_ajax }
+
 #static pages
 static_page_verlihub:
   url:   /statistic_verlihub

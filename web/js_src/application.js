@@ -4,7 +4,7 @@
  */
 var FilmSiteJs = {
 	scrollPadding: 0,
-	maxScrollAfisha: 4,
+	maxScrollAfisha: 5,
 
 	init: function(){
 		this.initFlashHider();
@@ -197,9 +197,12 @@ var FilmSiteJs = {
 		}
 	},
 	initAfisha: function(){
-		if ($('afisha_country') && $('afisha_city') && $('afisha_city_box')){
-			$('afisha_country').observe('change', FilmSiteJs.changeAfishaCountry);
+		if ($('afisha_city') && $('afisha_city_box')){
+			/*$('afisha_country').observe('change', FilmSiteJs.changeAfishaCountry);*/
 			$('afisha_city').observe('change', FilmSiteJs.changeAfishaCity);
+		}
+		if ($('afisha_today_films_list') && $('afisha_today_films_list_box')){
+			$('afisha_today_films_list').observe('change', FilmSiteJs.changeAfishaCityToday);
 		}
 	},
 	changeAfishaCountry: function(){
@@ -217,6 +220,12 @@ var FilmSiteJs = {
 			location.href = afisha_get_shows_path($F('afisha_city'));
 		}
 	},
+	changeAfishaCityToday: function(){
+		new Ajax.Updater('afisha_today_films_list_box', afisha_films_today_ajax_path(), {
+			method: 'post',
+			postBody: "city_id=" + $F('afisha_today_films_list')
+		});
+	},	
 	initTextarea: function(){
 		var textarea_id = null;
 		if ($('profile_about')){
@@ -263,11 +272,11 @@ var FilmSiteJs = {
 		}
 	},
 	initAfishaTopFilms: function(){
-		if ($('scrl_left_afisha') && $('scrl_right_afisha') && $('afisha_list_2')){
+		if ($('scrl_left_afisha') && $('scrl_right_afisha') && $('afisha_list_3')){
 			
 			var element = 'afisha_today_box';
-			var child = 'afisha_list_2';
-			var scroll_counter = 2;
+			var child = 'afisha_list_3';
+			var scroll_counter = 3;
 			var is_scroll = false;
 			
 			$(element).scrollLeft = Position.cumulativeOffset($(child))[0] - Position.cumulativeOffset($(element))[0];

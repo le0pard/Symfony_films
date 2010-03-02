@@ -26,15 +26,20 @@ class AfishaFilmPeer extends BaseAfishaFilmPeer {
     	return self::doSelectOne($criteria);
     }
     
-	static public function getForTop($limit = null) {
+    static public function getFilmsByIds($ids){
+    	$criteria = new Criteria();
+		$criteria->add(self::ID, $ids, Criteria::IN);
+		$criteria->addAscendingOrderByColumn(self::TITLE);
+    	return self::doSelect($criteria);
+    }
+    
+	static public function getForTop($ids) {
 		$criteria = new Criteria();
-		if ($limit){
-			$criteria->setLimit($limit);
-		}
+		$criteria->add(self::ID, $ids, Criteria::IN);
 		$criteria->add(self::POSTER, NULL, Criteria::NOT_EQUAL);
-		$criteria->addDescendingOrderByColumn(self::ID);
-		//$criteria->addDescendingOrderByColumn(self::EXTERNAL_ID);
-		//$criteria->addAscendingOrderByColumn(self::TITLE);
+		$criteria->addDescendingOrderByColumn(self::EXTERNAL_ID);
+		$criteria->addAscendingOrderByColumn(self::TITLE);
+		$criteria->setLimit(15);
     	return self::doSelect($criteria);
     }
 	

@@ -12,17 +12,30 @@ class afishaComponents extends sfComponents
 		$this->date_range = $this->createDateRangeArray($first_day, $last_day);
 		
 		if ($this->selected_city){
-			$this->countries = AfishaCountryPeer::forSelector();
+			//$this->countries = AfishaCountryPeer::forSelector();
 			$this->selected_country = $this->selected_city->getAfishaCountry();
 		} else {
-			$this->countries = AfishaCountryPeer::forSelector();
+			//$this->countries = AfishaCountryPeer::forSelector();
 			$this->selected_country = AfishaCountryPeer::getByTitle(sfConfig::get('app_default_country', "Украина"));
 			$this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
 		}
 	}
 	
 	public function executeToday(){
-		$this->afisha_films = AfishaFilmPeer::getForTop(12);
+		//$this->afisha_films = AfishaFilmPeer::getForTop(12);
+		$city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+		if ($city){
+			$this->afisha_films = AfishaPeer::getForTopMain($city);
+		}
+	}
+	
+	public function executeToday_films(){
+		//$this->afisha_films = AfishaFilmPeer::getForTop(12);
+		$this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+		if ($this->selected_city){
+			$this->afisha_films = AfishaPeer::getForTodayFilms($this->selected_city);
+			$this->selected_country = $this->selected_city->getAfishaCountry();
+		}
 	}
 	
   protected function createDateRangeArray($iDateFrom, $iDateTo) {
