@@ -223,7 +223,13 @@ var FilmSiteJs = {
 	changeAfishaCityToday: function(){
 		new Ajax.Updater('afisha_today_films_list_box', afisha_films_today_ajax_path(), {
 			method: 'post',
-			postBody: "city_id=" + $F('afisha_today_films_list')
+			postBody: "city_id=" + $F('afisha_today_films_list'),
+			onComplete: function(){
+				$('afisha_today_films_loader').hide();
+			},
+			onLoading: function(){
+				$('afisha_today_films_loader').show();
+			}
 		});
 	},	
 	initTextarea: function(){
