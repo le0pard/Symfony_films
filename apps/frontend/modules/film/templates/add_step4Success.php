@@ -65,13 +65,13 @@
   <ul id="add_trailer_list" class="add_list">
 	<?php foreach($forms->getEmbeddedForms() as $row): ?>
 	<li id="trailer_<?php echo $row->getObject()->getId() ?>">
-	<a class="drag_right">
-		<img title="Сортировать" src="/images/drag1.gif" alt="Сортировать" />
-	</a>
 	<form action="<?php echo url_for('film_edit_step4', $film) ?>" method="POST" <?php $row->isMultipart() and print 'enctype="multipart/form-data"' ?>>
 		<div class="rows">
 			<div>
 	  	   	  <?php echo $row['trailer_type']->renderLabel() ?>
+	  	   	  	<a class="drag_right">
+					<img title="Сортировать" src="/images/drag1.gif" alt="Сортировать" />
+				</a>
 			  <?php echo $row['trailer_type']->renderError() ?>
 			  <?php echo $row['trailer_type']->render() ?>
 			  <?php echo $row['trailer_code']->renderLabel() ?>

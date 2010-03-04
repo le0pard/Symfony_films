@@ -10,7 +10,7 @@
   </div>
 
   <div id="userinfo_site"><h3>Сайт/блог</h3>
-	<a href="<?php echo $user_data->getWebsiteBlog() ?>" rel="nofollow"><?php echo $user_data->getWebsiteBlog() ?></a>
+	<?php echo $user_data->getWebsiteBlog() ?>
 	<h3>Опубликовано фильмов: </h3>
 	<span><?php echo $user_data->getCountOfFilms()?></span>
 	<h3>Коментариев: </h3>

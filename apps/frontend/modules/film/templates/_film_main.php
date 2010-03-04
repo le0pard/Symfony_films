@@ -1,4 +1,6 @@
 <?php if ($film): ?>
+
+<?php use_helper('Film') ?>
 <h1><?php echo $film->getTitle() ?>
 <?php if ($film->getOriginalTitle()): ?> (<?php echo $film->getOriginalTitle() ?>)<?php endif ?>, 
 <?php echo $film->getPubYear() ?></h1>
@@ -47,10 +49,8 @@
 		<span>
 			<?php foreach($film->getFilmFilmTypessJoinFilmTypes() as $key=>$row):?>
 				<?php if ($key > 0):?>, <?php endif?>
-				<a href="<?php echo url_for('film_types', $row->getFilmTypes()) ?>">
-					<?php echo $row->getFilmTypes()->getTitle() ?>
-				</a>
-			<?php endforeach ?>
+					<a href="<?php echo url_for('film_types', $row->getFilmTypes()) ?>"><?php echo $row->getFilmTypes()->getTitle() ?></a>
+				<?php endforeach ?>
 		</span>
 	</li>
 
@@ -62,7 +62,7 @@
 
 	<li><strong>Информация о файлах: </strong>
 		<span>
-			<?php echo nl2br($film->getFileInfo()) ?>
+			<?php echo file_info_format($film->getFileInfo()) ?>
 		</span>
 	</li>
   </ul>

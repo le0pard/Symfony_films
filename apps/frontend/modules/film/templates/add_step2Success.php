@@ -48,15 +48,15 @@
   <ul id="add_gallery_list" class="add_list">
     <?php foreach($form->getEmbeddedForms() as $key=>$row): ?>
 	<li id="gallery_<?php echo $row->getObject()->getId() ?>">
-		<a class="drag_right">
+		<div class="drag_right">
 			<img title="Сортировать" src="/images/drag1.gif" alt="Сортировать" />
-		</a>
+		</div>
 		<form action="<?php echo url_for('film_edit_step2', $film) ?>" method="post" <?php $form->isMultipart() and print 'enctype="multipart/form-data"' ?>>
 			<div class="rows">
 		  		<?php echo $row['thumb_img']->renderError() ?>
 		  		<?php echo $row['id']->render(); ?>
 		  		<?php echo $row['film_id']->render(); ?>
-			  <?php echo $row['thumb_img']->render() ?>
+			    <?php echo $row['thumb_img']->render() ?>
 			</div>
 		</form>
 	</li>

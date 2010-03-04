@@ -22,7 +22,8 @@ class FrontFilmForm extends BaseFilmForm
   									   "SATRip" => "SATRip/DSRip",
   									   "HDTVRip" => "HDTVRip",
   									   "PDTVRip" => "PDTVRip",
-  									   "DVDRip" => "DVDRip/LDRip"
+  									   "DVDRip" => "DVDRip/LDRip",
+  									   "HDRip" => "HDRip"
   									);
 	
   public function configure()

@@ -405,8 +405,7 @@ width:auto
 }
 
 form div,form .rows div {
-width:300px;
-position:relative
+width:300px
 }
 
 form div input,form div select,form div textarea,form .rows div input,form .rows div select,form .rows div textarea {
@@ -475,12 +474,16 @@ border-left-color:#535353
 cursor:move
 }
 
-.drag_right {
+div.drag_right {
 cursor:move;
-position:absolute;
-left:-25px;
-top:1.5em;
-margin-left:4px
+margin-left:4px;
+float:left;
+width:20px;
+}
+
+a.drag_right {
+cursor:move;
+width:20px;
 }
 
 .add_film_listers {
@@ -1729,7 +1732,7 @@ line-height:1.5em
 }
 
 .add_list .file{
-	margin-left: 110px; 
+	margin-left: 130px; 
 	min-height: 100px
 }
 

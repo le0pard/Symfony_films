@@ -39,13 +39,13 @@
   <ul id="add_link_list"  class="add_list">
 	<?php foreach($form->getEmbeddedForms() as $row): ?>
 	<li id="link_<?php echo $row->getObject()->getId() ?>">
-	<a class="drag_right">
-		<img title="Сортировать" src="/images/drag1.gif" alt="Сортировать" />
-	</a>
 	<form action="<?php echo url_for('film_edit_step3', $film) ?>" method="POST" <?php $row->isMultipart() and print 'enctype="multipart/form-data"' ?>>
 		<div class="rows">
 			<div>
 	  	   	  <?php echo $row['title']->renderLabel() ?>
+	  	   	  	<a class="drag_right">
+					<img title="Сортировать" src="/images/drag1.gif" alt="Сортировать" />
+				</a>
 			  <?php echo $row['title']->renderError() ?>
 			  <?php echo $row['title']->render() ?>
 			  <?php echo $row['url']->renderLabel() ?>
