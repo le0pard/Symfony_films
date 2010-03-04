@@ -40,7 +40,8 @@ EOF;
 		'afisha/film?day=*&id=*&month=*&year=*',
     	'afisha/film?day=*&id=#{id}&month=*&year=*&city_id=*',
     	'afisha/cinema?id=*',
-		'afisha/cinema?day=*&id=*&month=*&year=*'
+		'afisha/cinema?day=*&id=*&month=*&year=*',
+    	'@sf_cache_partial?module=afisha&action=_today_films&sf_cache_key=today_films'
     );
 	
     $context = sfContext::createInstance($this->configuration);
