@@ -24,21 +24,27 @@
 
 <?php if ('sphinx' == sfConfig::get('app_search_method') && isset($pager) && isset($sphinx)): ?>
 	
-	<?php if ($sphinx->getLastWarning()): ?>
-	Warning: <?php echo $sphinx->getLastWarning() ?>
-	<?php endif ?>
-	<ul id="search_result">
-	<?php foreach($pager->getResults() as $key=>$row): ?>
-		<?php include_partial('search/search_row', array('row' => $row, 'query' => $query)) ?>
-	<?php endforeach ?>
-	</ul>
+	<?php if (count($pager->getResults()) > 0):?>
+		<?php if ($sphinx->getLastWarning()): ?>
+		Warning: <?php echo $sphinx->getLastWarning() ?>
+		<?php endif ?>
+		<ul id="search_result">
+		<?php foreach($pager->getResults() as $key=>$row): ?>
+			<?php include_partial('search/search_row', array('row' => $row, 'query' => $query)) ?>
+		<?php endforeach ?>
+		</ul>
+	<?php else:?>
+		<div class="search_not_found">По вашему запросу ничего не найдено. Попробуйте изменить его.</div>
+	<?php endif?>
 
 <?php else: ?>
-	<?php if ($search_res): ?>
+	<?php if (isset($search_res) && count($search_res) > 0): ?>
 		<ul id="search_result">
 		<?php foreach($search_res as $row): ?>
 			<?php include_partial('search/search_row', array('row' => $row, 'query' => $query)) ?>
 		<?php endforeach ?>
 		</ul>
+	<?php else:?>
+		<div class="search_not_found">По вашему запросу ничего не найдено. Попробуйте изменить его.</div>
 	<?php endif ?>
 <?php endif ?>

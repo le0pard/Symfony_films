@@ -7,3 +7,5 @@
 <?php if ($afisha):?>
 <?php include_partial('afisha/list', array('afisha' => $afisha)) ?>
 <?php endif?>
+
+<div id="afisha_source">Информация предоставлена сайтом <a href="http://kino-teatr.ua/" target="_blank" rel="nofollow">www.kino-teatr.ua</a></div>
