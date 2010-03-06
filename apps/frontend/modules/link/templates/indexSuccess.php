@@ -1,1 +1,10 @@
-<a href="<?php echo $link->getUrl();?>"><?php echo $link->getUrl();?></a>
+<div class="text_block">
+Внимание! Вы переходите по внешней ссылке <strong><?php echo $link->getUrl();?></strong>, предоставленной одним из пользователей.<br />
+Администрация Coocoorooza не несет ответственности за содержимое, что находится по ссылке. 
+Данная ссылка может содержать вирусы, трояны и другие вредоносные программы, опасные для Вашего компьютера. 
+В случае появления подобных ссылок - немедленно сообщите администрации Coocoorooza.<br /><br />
+<div class="upload_link">
+<h3>Ссылка для скачивания</h3>
+<a target="_blank" href="<?php echo $link->getUrl();?>" rel="nofollow"><?php echo $link->getUrl();?></a>
+</div>
+</div>

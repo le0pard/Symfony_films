@@ -1816,6 +1816,12 @@ border-bottom:1px dashed;
 	padding:1em
 }
 
+.upload_link{
+	text-align:center;
+	width:100%;
+	font-size:1.2em
+}
+
 .text404_block_left {
 	float:left;
 	width:380px;

@@ -96,7 +96,11 @@ class FilmPeer extends BaseFilmPeer
 	  if (is_null($criteria)) {
 	     $criteria = new Criteria();
 	  }
-	  if (!sfContext::getInstance()->getUser()->hasCredential(array('admin', 'super_admin', 'moder'), false)){
+	  if (sfContext::getInstance()->getUser()->hasCredential(array('admin', 'super_admin'), false)){
+	  	//no criteria for admin
+	  } elseif (sfContext::getInstance()->getUser()->hasCredential(array('moder'))){
+	  	$criteria->add(self::IS_VISIBLE, false);
+	  } else {
 	  	$criteria->add(self::IS_VISIBLE, false);
 	  	$criteria->add(self::IS_PUBLIC, false);
 	  	$criteria->add(self::USER_ID, sfContext::getInstance()->getUser()->getAuthUser()->getId());
