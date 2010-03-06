@@ -614,8 +614,8 @@ sitemap:
 
 # 404 page
 404error_page:
-  url:   /index/error404
-  param: { module: index, action: error404 }
+  url:   /<?php echo sfConfig::get('sf_error_404_module') ?>/<?php echo sfConfig::get('sf_error_404_action')."\n" ?>
+  param: { module: <?php echo sfConfig::get('sf_error_404_module') ?>, action: <?php echo sfConfig::get('sf_error_404_action') ?> }
 
 # mobile routes
 film_poster_mobile:
