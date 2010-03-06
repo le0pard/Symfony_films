@@ -10,7 +10,7 @@
 		<?php endif ?>
 		<input class="css_button l" type="submit" value="Обновить" />
 		<a class="l css_button" style="margin-left:10px;" onclick="javascript: return confirm('Вы уверены, что хотите удалить &laquo;<?php echo $film->getTitle() ?>&raquo; ?');" href="<?php echo url_for('film_delete_step1', $film) ?>">Удалить</a>
-		<a class="css_button" href="<?php echo url_for('film_add_step2', $film) ?>"><span>Дальше</span></a>
+		<a class="r css_button" href="<?php echo url_for('film_add_step2', $film) ?>"><span>Дальше</span></a>
 	</div>
   </form>
 </div>

@@ -65,7 +65,7 @@
 
   <div class="add_film_listers">
   	<a class="css_button l" href="<?php echo url_for('film_edit_step1', $film) ?>"><span>Назад</span></a>
-  	<a class="css_button" href="<?php echo url_for('film_add_step3', $film) ?>"><span>Дальше</span></a>
+  	<a class="css_button r" href="<?php echo url_for('film_add_step3', $film) ?>"><span>Дальше</span></a>
   </div>
 
 </div>

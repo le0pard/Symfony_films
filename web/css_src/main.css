@@ -1552,6 +1552,10 @@ margin-bottom:0
 float:left
 }
 
+.add_film_listers .r {
+float:right
+}
+
 .form_body:after,#supervisor2:after,.clearfix:after,#top:after,#top_add:after,#top_add #cinema_posters div .lists li:after,#content_body:after,#content_body #new:after,#content_body #raitings:after,#content_body #film_forms:after,#content_body #comments ul li:after,#content_body #about_cat:after,#content_body #userinfo_ava:after,#content_body #userinfo_site:after,#content_body #userinfo_about:after,.digg_pagination:after {
 content:"";
 display:block;
