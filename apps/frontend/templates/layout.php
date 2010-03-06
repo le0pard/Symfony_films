@@ -6,8 +6,8 @@
     	Кукурудза - Лучшие фильмы и сериалы
   	<?php endif; ?>
 	</title>
-	<?php use_javascript('all.js') ?>
-	<?php use_stylesheet('all.css') ?>
+	<?php use_javascript('all.js?v=1.0.1') ?>
+	<?php use_stylesheet('all.css?v=1.0.1') ?>
 	
 	<?php include_http_metas() ?>
     <?php include_metas() ?>

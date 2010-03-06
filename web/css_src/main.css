@@ -487,8 +487,7 @@ width:20px;
 }
 
 .add_film_listers {
-width:100%;
-text-align:right
+width:100%
 }
 
 .tip {
@@ -1525,6 +1524,10 @@ h1 img,h2 img,h3 img,h4 img,h5 img,h6 img,li ul,li ol,fieldset input[type=button
 margin:0
 }
 
+#content_body #film_forms{
+	margin-bottom:80px;
+}
+
 p,dl {
 margin:0 0 1.5em
 }
@@ -1541,7 +1544,7 @@ form div.submit,form .rows div.submit,#footer #f_content address#_4art {
 text-align:right
 }
 
-form.inline p,#content_body #film_forms {
+form.inline p {
 margin-bottom:0
 }
 
@@ -1819,7 +1822,6 @@ border-bottom:1px dashed;
 	color:#666;
 	margin:2px 0;
 }
-
 
 .not_found_homer{
 	background:url('/images/404/homer.png') no-repeat center;

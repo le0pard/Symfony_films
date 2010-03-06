@@ -13,6 +13,7 @@
 Или попробуйте поискать по сайту:
 <form action="<?php echo url_for('@search') ?>" method="get">
 <input id="search_input" name="s" type="text" value="" />
+<input class="css_button" type="submit" value="Найти" />
 </form>
 </div>
 <div class="not_found_homer"></div>
