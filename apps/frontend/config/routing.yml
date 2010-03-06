@@ -612,6 +612,11 @@ sitemap:
   param: { module: index, action: sitemap, sf_format: xml }
 
 
+# 404 page
+404error_page:
+  url:   /index/error404
+  param: { module: index, action: error404 }
+
 # mobile routes
 film_poster_mobile:
   url:    /mobile/film_poster/:id
