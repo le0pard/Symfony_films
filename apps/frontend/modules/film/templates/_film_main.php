@@ -54,7 +54,13 @@
 		</span>
 	</li>
 
-	<li><strong>Год: </strong><span><?php echo $film->getPubYear() ?></span></li>
+	<li><strong>Год: </strong>
+		<span>
+			<a href="<?php echo url_for('@film_year?year='.$film->getPubYear()) ?>">
+				<?php echo $film->getPubYear() ?>
+			</a>
+		</span>
+	</li>
 	<li><strong>Страна: </strong><span><?php echo $film->getCountry() ?></span></li>
 	<li><strong>Режиссер: </strong><span><?php echo $film->getDirector() ?></span></li>
 	<li><strong>В главных ролях: </strong><span><?php echo $film->getCastPeople() ?></span></li>

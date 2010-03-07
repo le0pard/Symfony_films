@@ -53,4 +53,20 @@ class film_typesActions extends sfActions
     $response->addMeta('keywords', sfConfig::get('app_http_keywords').', '.$this->film_type->getTitle().' жанр кино');
     $response->addMeta('description', sfConfig::get('app_http_description').' '.$this->film_type->getTitle().' жанр кино');
   }
+  
+  public function executeYear(sfWebRequest $request)
+  {
+  	$this->year = $request->getParameter('year', date("Y"));
+	$this->pager = new sfPropelPager(
+		'Film',
+		sfConfig::get('app_pages_catalog_page', 60)
+	);
+	$this->pager->setCriteria(FilmPeer::getCriteriaByYear($this->year));
+	$this->pager->setPage($request->getParameter('page', 1));
+	$this->pager->init();
+	
+	$response = $this->getResponse();
+    $response->addMeta('keywords', sfConfig::get('app_http_keywords').', фильмы за '.$this->year);
+    $response->addMeta('description', sfConfig::get('app_http_description').' фильмы за '.$this->year);
+  }
 }

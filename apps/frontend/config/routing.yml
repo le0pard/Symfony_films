@@ -141,6 +141,21 @@ film_types_atom:
     id: \d+
     sf_method: [get]      
 
+film_year:
+  url:     /year/:year
+  param:  { module: film_types, action: year }
+  requirements:
+    year: ([0-9]{4})
+    sf_method: [get]
+    
+film_year_pager:
+  url:     /year/:year/:page
+  param:  { module: film_types, action: year }
+  requirements:
+    year: ([0-9]{4})
+    page: \d+
+    sf_method: [get]
+
 #film add   
 film_add_step1:
   url:     /film/add1

@@ -4,5 +4,8 @@ index:
 show:
   enabled:     true
   lifetime:    14400 # 4 часа
+year:
+  enabled:     true
+  lifetime:    14400 # 4 часа
 all:
   with_layout: false

@@ -60,6 +60,12 @@ class FilmPeer extends BaseFilmPeer
 		return $results;
 	}
 	
+	static public function getCriteriaByYear($year) {
+		$criteria = new Criteria();
+		$criteria->add(self::PUB_YEAR, $year);
+    	return self::addVisibleCriteria($criteria);
+    }
+	
 	static public function addVisibleCriteria(Criteria $criteria = null) {
 	    if (is_null($criteria)) {
 	    	$criteria = new Criteria();
