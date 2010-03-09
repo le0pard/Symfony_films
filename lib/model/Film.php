@@ -142,6 +142,8 @@ sfPropelBehavior::add('Film', array(
 		'cache' => array(
 			'film_types/index?page=*',
 			'film_types/index',
+			'film_types/year?year=*',
+			'film_types/year?year=*&page=*',
 			'@sf_cache_partial?module=film&action=_film_main&sf_cache_key=#{id}',
 			'@sf_cache_partial?module=film&action=_topNew&sf_cache_key=top_new',
 			//mobile
@@ -151,7 +153,8 @@ sfPropelBehavior::add('Film', array(
 			'getFilmFilmTypessJoinFilmTypes' => 'getFilmTypes'
 		),
 		'variables' => array(
-			'id' => 'getId'
+			'id' => 'getId',
+			'year' => 'getPubYear'
 		),
 		'criteria' => array(
 			//'getIsVisible' => true,

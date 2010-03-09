@@ -21,6 +21,7 @@ EOF;
   {
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
+    require_once sfConfig::get('sf_plugins_dir')."/sfViewCacheObserverPlugin/config/config.php";
     // cleanup Lucene index
 	$index = FilmPeer::getLuceneIndex();
 	$criteria = new Criteria();

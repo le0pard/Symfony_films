@@ -24,7 +24,7 @@
 	<li><strong>Рейтинг: </strong>
 	<span>
 	<a target="_blank" href="http://kino-teatr.ua/ru/main/film_rating/film_id/<?php echo $film->getExternalId() ?>.phtml" title="<?php echo $film->getTitle()?>">
-	<img alt="Рейтинг фильма Аватар" src="http://kino-teatr.ua/rating_<?php echo $film->getExternalId() ?>.gif">
+	<img alt="<?php echo $film->getTitle()?>" src="http://kino-teatr.ua/rating_<?php echo $film->getExternalId() ?>.gif">
 	</a>
 	</span>
 	</li>
