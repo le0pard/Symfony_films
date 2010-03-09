@@ -399,14 +399,25 @@ class filmActions extends sfActions
 			try{
 				$url = $this->generateUrl('film_show', $film, true);
 				$url = $this->bitLyUrl($url);
-				$t = new Twitter(sfConfig::get('app_integration_twitter_username'), sfConfig::get('app_integration_twitter_password'));
 				$str = $film->getTitle()." (".$film->getOriginalTitle().") ".$url;
 				if (strlen($str) > 140){
 					$str = $film->getTitle()." ".$url;
 				}
 				
-				$t->updateStatus($str);
-				$this->getUser()->setFlash('notice', 'Твиттернул.');
+				/*$t = new Twitter(sfConfig::get('app_integration_twitter_username'), sfConfig::get('app_integration_twitter_password'));
+				$t->updateStatus($str);*/
+				$out="POST http://twitter.com/statuses/update.json HTTP/1.1\r\n"
+				  ."Host: twitter.com\r\n"
+				  ."Authorization: Basic ".base64_encode (sfConfig::get('app_integration_twitter_username').':'.sfConfig::get('app_integration_twitter_password'))."\r\n"
+				  ."Content-type: application/x-www-form-urlencoded\r\n"
+				  ."Content-length: ".strlen ("status=".$str)."\r\n"
+				  ."Connection: Close\r\n\r\n"
+				  ."status=".$str;
+				
+				$fp = fsockopen ('twitter.com', 80);
+				fwrite ($fp, $out);
+				fclose ($fp);
+				$this->getUser()->setFlash('confirm', 'Твиттернул.');
 			} catch (Exception $e) {
 				$this->getUser()->setFlash('error', 'Не твиттернул.');	
 			}
