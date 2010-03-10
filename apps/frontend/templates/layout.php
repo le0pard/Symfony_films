@@ -15,6 +15,14 @@
 	<link rel="alternate" type="application/atom+xml" title="Atom"  href="<?php echo url_for('@film_types_all_atom', true) ?>" />
 	<link title="RSS" type="application/rss+xml" rel="alternate" href="<?php echo url_for('@film_types_all_rss', true) ?>"/>
     <?php include_stylesheets() ?>
+    <!--[if lte IE 6]>
+        <?php echo stylesheet_tag("ie6")?>
+    <![endif]-->
+    
+    <!--[if IE 7]>
+       <?php echo stylesheet_tag("ie7")?>
+    <![endif]-->
+    
 	<?php include_javascripts() ?>
   </head>
   <body>
@@ -53,6 +61,7 @@
 		<!--FOOTER-->
 	</div>
   </div>
+  <?php include_partial('global/reject') ?>
   <?php include_partial('global/google_analytics') ?>
   </body>
 </html>

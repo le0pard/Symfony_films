@@ -1,3 +1,7 @@
+div.reject {
+    display: none;
+}
+
 input.ajax_input_error{
 	background-color: #FCF6D0 !important;
 	border:1px solid #F00 !important
