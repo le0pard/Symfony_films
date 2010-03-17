@@ -17,13 +17,17 @@ class FrontFilmForm extends BaseFilmForm
   									   "Screener" => "Screener (SCR)",
   									   "Workprint" => "Workprint (WP)",
   									   "Telecine" => "Telecine (TC)",
+  									   "DVDScr" => "DVDScr",
   									   "TVRip" => "TVRip",
   									   "VHSRip" => "VHSRip",
-  									   "SATRip" => "SATRip/DSRip",
+  									   "SATRip" => "SATRip",
+  									   "DSRip" => "DSRip",
   									   "HDTVRip" => "HDTVRip",
   									   "PDTVRip" => "PDTVRip",
-  									   "DVDRip" => "DVDRip/LDRip",
-  									   "HDRip" => "HDRip"
+  									   "DVDRip" => "DVDRip",
+  									   "LDRip" => "LDRip",
+  									   "HDRip" => "HDRip",
+  									   "BDRip" => "BDRip"
   									);
 	
   public function configure()
