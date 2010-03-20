@@ -216,21 +216,23 @@ var FilmSiteJs = {
 	changeAfishaCity: function(){
 		if ($('afisha_film_id')){
 			location.href = afisha_film_city_path($F('afisha_film_id'),$F('afisha_city'));
-		} else {	
+		} else if ($F('afisha_city')) {	
 			location.href = afisha_get_shows_path($F('afisha_city'));
 		}
 	},
 	changeAfishaCityToday: function(){
-		new Ajax.Updater('afisha_today_films_list_box', afisha_films_today_ajax_path(), {
-			method: 'post',
-			postBody: "city_id=" + $F('afisha_today_films_list'),
-			onComplete: function(){
-				$('afisha_today_films_loader').hide();
-			},
-			onLoading: function(){
-				$('afisha_today_films_loader').show();
-			}
-		});
+		if ($F('afisha_today_films_list')){
+			new Ajax.Updater('afisha_today_films_list_box', afisha_films_today_ajax_path(), {
+				method: 'post',
+				postBody: "city_id=" + $F('afisha_today_films_list'),
+				onComplete: function(){
+					$('afisha_today_films_loader').hide();
+				},
+				onLoading: function(){
+					$('afisha_today_films_loader').show();
+				}
+			});
+		}
 	},	
 	initTextarea: function(){
 		var textarea_id = null;
