@@ -24,7 +24,7 @@
 		  </li>
 		</ul>
 		<address id="_4art">
-		<span>Дизайн&nbsp; &nbsp;<a href="http://www.nekisni.com">День&nbsp;Велосипеда</a></span>
+		<span>Дизайн&nbsp; &nbsp;<a href="http://bicycle-day.com">День&nbsp;Велосипеда</a></span>
 		</address>
 	</div>
 </div>
