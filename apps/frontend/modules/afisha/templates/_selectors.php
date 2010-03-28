@@ -26,7 +26,7 @@
 			<?php if (isset($selected_by_city) || isset($selected_by_film) || isset($selected_by_cinema)): ?>
 				<?php foreach($date_range as $date):?>
 					<li>
-						<?php if ($selected_day['t'] == $date['t']):?>
+						<?php if ($selected_day['y'] == $date['y'] && $selected_day['m'] == $date['m'] && $selected_day['d'] == $date['d']):?>
 							<span>
 						<?php else:?>
 							<a <?php if ($date_today['t'] == $date['t']):?> class="today_day"<?php endif ?>
@@ -40,7 +40,7 @@
 							<?php endif ?>">
 						<?php endif ?>	
 							<strong><?php echo $date['d'];?></strong><?php echo $days_of_week[$date['w']]; ?>
-						<?php if ($selected_day['t'] == $date['t']):?>
+						<?php if ($selected_day['y'] == $date['y'] && $selected_day['m'] == $date['m'] && $selected_day['d'] == $date['d']):?>
 							</span>
 						<?php else:?>	
 							</a>
