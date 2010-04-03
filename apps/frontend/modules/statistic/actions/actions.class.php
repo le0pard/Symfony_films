@@ -53,7 +53,7 @@ class statisticActions extends sfActions
 	  $g->pie_slice_colours(array('#d01f3c','#356aa0','#c79810', '#AFDC44'));
 	 
 	  //To display value as tool tip
-	  #$g->set_tool_tip( '#val#%' );
+	  //$g->set_tool_tip( '#val#%' );
 	  $g->set_tool_tip( '#x_label#<br>#val#%' );
 	 
 	  $g->title('Категории фильмов', '{font-size:18px; color: #18A6FF}');
