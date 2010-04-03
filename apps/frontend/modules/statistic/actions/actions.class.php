@@ -41,7 +41,8 @@ class statisticActions extends sfActions
 	  $g->bg_colour = '#E4F5FC';
 	 
 	  //Set the transparency, line colour to separate each slice etc.
-	  $g->pie(80,'#78B9EC','{font-size: 12px; color: #78B9EC;');
+	  //$g->pie(80,'#78B9EC','{font-size: 12px; color: #78B9EC;}');
+	  $g->pie(80,'#78B9EC','{display:none;}',false,1);
 	 
 	  //array two arrray one containing data while other contaning labels 
 	  $g->pie_values($data, $chatData);
@@ -49,10 +50,11 @@ class statisticActions extends sfActions
 	  //Set the colour for each slice. Here we are defining three colours 
 	  //while we need 7 colours. So, the same colours will be 
 	  //repeated for the all remaining slices in the same order  
-	  $g->pie_slice_colours( array('#d01f3c','#356aa0','#c79810') );
+	  $g->pie_slice_colours(array('#d01f3c','#356aa0','#c79810', '#AFDC44'));
 	 
 	  //To display value as tool tip
-	  $g->set_tool_tip( '#val#%' );
+	  #$g->set_tool_tip( '#val#%' );
+	  $g->set_tool_tip( '#x_label#<br>#val#%' );
 	 
 	  $g->title('Категории фильмов', '{font-size:18px; color: #18A6FF}');
 	  return $this->renderText($g->render());
