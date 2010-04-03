@@ -24,12 +24,8 @@ class statisticActions extends sfActions
   }
   
   public function executeCathegory_films() {
-  	  $c = new Criteria();
-	  $c->add(FilmTypesPeer::IS_VISIBLE, true);
-	  $c->addAscendingOrderByColumn(FilmTypesPeer::TITLE);
-	  $film_types = FilmTypesPeer::doSelect($c);
-	  $c = new Criteria();
-	  $film_types_count = FilmFilmTypesPeer::doCount($c);
+	  $film_types = FilmTypesPeer::doSelectAllActive();
+	  $film_types_count = FilmFilmTypesPeer::doCount(new Criteria());
 	  
 	  $chatData = array();
 	  $data = array();
@@ -67,9 +63,9 @@ class statisticActions extends sfActions
   	  $titleData = array();
   	  $chartData = array();
 	  $aryRange=array();
-	  $tommorow  = mktime(0, 0, 0, date("m"), date("d")-1, date("Y"));
+	  $tommorow  = mktime(6, 0, 0, date("m"), date("d")-1, date("Y")); # hours shift for summer/winter change time
 	  $lastmonth = mktime(0, 0, 0, date("m")-1, date("d"), date("Y"));
-	  while ($tommorow>=$lastmonth) {
+	  while ($tommorow >= $lastmonth) {
 	  	$titleData[] = date("d/m/y", $lastmonth);
 	  	$chartData[] = FilmPeer::countByDateRange(
 				mktime(0, 0, 0, date("m", $lastmonth), date("d", $lastmonth), date("Y", $lastmonth)), 

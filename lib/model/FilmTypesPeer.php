@@ -17,5 +17,10 @@ class FilmTypesPeer extends BaseFilmTypesPeer
 	{
 	  return self::doSelectOne(self::getActiveCriteria($criteria));
 	}
+	
+	static public function doSelectAllActive(Criteria $criteria = null)
+	{
+	  return self::doSelect(self::getActiveCriteria($criteria));
+	}
 
 }
