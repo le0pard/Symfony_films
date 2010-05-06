@@ -132,9 +132,27 @@ class Film extends BaseFilm
 			$user->setCountOfFilms($user->countFilmsRelatedByUserId(FilmPeer::addVisibleCriteria()));
 			$user->save();
 		}
-		
 	}
-
+	
+	public function getNextFilm(Criteria $criteria = null){
+		if (is_null($criteria)) {
+	    	$criteria = new Criteria();
+	    }
+	    $criteria->add(FilmPeer::IS_VISIBLE, true);
+		$criteria->add(FilmPeer::IS_PUBLIC, true);
+		$criteria->addAscendingOrderByColumn(FilmPeer::MODIFIED_AT);
+		$criteria->add(FilmPeer::MODIFIED_AT, $this->getModifiedAt(), Criteria::GREATER_EQUAL);
+		$criteria->add(FilmPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+		return FilmPeer::doSelectOne($criteria);
+	}
+	
+	public function getPrevFilm(Criteria $criteria = null){
+		$criteria = FilmPeer::addVisibleCriteria($criteria);
+		$criteria->add(FilmPeer::MODIFIED_AT, $this->getModifiedAt(), Criteria::LESS_EQUAL);
+		$criteria->add(FilmPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+		return FilmPeer::doSelectOne($criteria);
+	}
+	
 }
 
 sfPropelBehavior::add('Film', array(

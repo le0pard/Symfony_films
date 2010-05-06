@@ -633,6 +633,13 @@ sitemap:
   param: { module: <?php echo sfConfig::get('sf_error_404_module') ?>, action: <?php echo sfConfig::get('sf_error_404_action') ?> }
 
 # mobile routes
+mobile_afisha:
+  url:    /mobile/afisha
+  param:  { module: mobile, action: afisha, sf_format: mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+
 film_poster_mobile:
   url:    /mobile/film_poster/:id
   param:  { module: mobile, action: film_poster, sf_format: mobile }
@@ -641,9 +648,25 @@ film_poster_mobile:
     id: \d+
     sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
 
+film_mobile:
+  url:     /mobile/film/:id
+  class:  sfRequestHostRoute
+  param:  { module: mobile, action: film, sf_format: mobile }
+  requirements:
+    id: \d+
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+
+films_mobile:
+  url:    /mobile/films/:page
+  param:  { module: mobile, action: index, sf_format: mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    page: \d+
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+
 homepage_mobile:
   url:    /
-  param:  { module: index, action: index, sf_format: mobile }
+  param:  { module: mobile, action: index, sf_format: mobile }
   class:  sfRequestHostRoute
   requirements:
     sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
