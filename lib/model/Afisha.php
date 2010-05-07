@@ -13,7 +13,8 @@ sfPropelBehavior::add('Afisha', array(
 			'afisha/index?day=*&id=*&month=*&year=*',
 			//mobile
 			'mobile/afisha?sf_format=mobile',
-			'mobile/afisha?page=*&sf_format=mobile'
+			'mobile/afisha?page=*&sf_format=mobile',
+			'mobile/afisha_film?id=*&sf_format=mobile'
 		),
 		'belongs_to_depend' => array(
 			'getAfishaTheater',

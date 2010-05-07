@@ -56,6 +56,12 @@ class mobileActions extends sfActions
 	}
   }
   
+  public function executeAfisha_film(sfWebRequest $request)
+  {
+  	$this->film = AfishaFilmPeer::retrieveByPK($request->getParameter('id'));
+  	$this->forward404Unless($this->film);
+  }
+  
   public function executeFilm_poster(sfWebRequest $request)
   {
     $this->film = FilmPeer::retrieveByPK($request->getParameter('id'));
