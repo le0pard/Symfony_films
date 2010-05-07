@@ -10,7 +10,10 @@ sfPropelBehavior::add('Afisha', array(
 			'@sf_cache_partial?module=afisha&action=_today&sf_cache_key=afisha',
 			'afisha/index',
 			'afisha/index?id=*',
-			'afisha/index?day=*&id=*&month=*&year=*'
+			'afisha/index?day=*&id=*&month=*&year=*',
+			//mobile
+			'mobile/afisha?sf_format=mobile',
+			'mobile/afisha?page=*&sf_format=mobile'
 		),
 		'belongs_to_depend' => array(
 			'getAfishaTheater',

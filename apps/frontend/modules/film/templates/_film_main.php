@@ -50,7 +50,7 @@
 			<?php foreach($film->getFilmFilmTypessJoinFilmTypes() as $key=>$row):?>
 				<?php if ($key > 0):?>, <?php endif?>
 					<a href="<?php echo url_for('film_types', $row->getFilmTypes()) ?>"><?php echo $row->getFilmTypes()->getTitle() ?></a>
-				<?php endforeach ?>
+			<?php endforeach ?>
 		</span>
 	</li>
 

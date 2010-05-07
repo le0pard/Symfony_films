@@ -33,6 +33,20 @@ class AfishaFilmPeer extends BaseAfishaFilmPeer {
     	return self::doSelect($criteria);
     }
     
+	static public function getCriteriaFilmsByIdsForMobile($ids, $order = 0){
+    	$criteria = new Criteria();
+		$criteria->add(self::ID, $ids, Criteria::IN);
+		switch ($order) {
+    		case 1:
+				$criteria->addAscendingOrderByColumn(self::TITLE);
+				break;
+			default:
+				$criteria->addAscendingOrderByColumn(self::TITLE);
+				break;
+		}	
+    	return $criteria;
+    }
+    
 	static public function getForTop($ids) {
 		$criteria = new Criteria();
 		$criteria->add(self::ID, $ids, Criteria::IN);

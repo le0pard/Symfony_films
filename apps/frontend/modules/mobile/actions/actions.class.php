@@ -36,6 +36,26 @@ class mobileActions extends sfActions
   	$this->prev_film = $this->film->getPrevFilm();
   }
   
+  public function executeAfisha(sfWebRequest $request)
+  {
+  	if ($request->hasParameter('city_id')){
+  		
+  	} else {
+  		$this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+  	}
+	if ($this->selected_city){
+		$this->pager = new sfPropelPager(
+			'AfishaFilm',
+			sfConfig::get('app_pages_mobile_afisha')
+		);
+		$this->pager->setPeerMethod('doSelect');
+		$this->pager->setCriteria(AfishaPeer::getCriteriaForTodayMobile($this->selected_city));
+		$this->pager->setPage($request->getParameter('page', 1));
+		$this->pager->init();
+		$this->selected_country = $this->selected_city->getAfishaCountry();
+	}
+  }
+  
   public function executeFilm_poster(sfWebRequest $request)
   {
     $this->film = FilmPeer::retrieveByPK($request->getParameter('id'));

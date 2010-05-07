@@ -15,12 +15,20 @@
 </p>
 <div id="content" class="group">
 <h1><?php echo $film->getTitle(); ?> / <?php echo $film->getOriginalTitle() ?> (<?php echo $film->getPubYear() ?>)</h1>
-<img class="aligncenter" src="<?php echo url_for('@film_poster_mobile?id='.$film->getId()) ?>" alt="<?php echo $film->getTitle() ?>" title="<?php echo $film->getTitle() ?>" />
+<img class="aligncenter" src="/uploads/posters/<?php echo $film->getThumbLogo() ?>" alt="<?php echo $film->getTitle(); ?>" title="<?php echo $film->getTitle(); ?>" />
 <p><?php echo System::jevix_def($film->getAbout(ESC_RAW)); ?></p>
 <div class="clear"></div>
-<!--
-<p class="byline small">Posted by <a href="#" title="">leopard</a> on 25 Январь 2010.</p>
-<p class="tags small">Tags: <a href="#" rel="tag">разработка</a></p>
-<p class="categories small">Categories: <a href="#" title="#" rel="category tag">Новости</a>,  <a href="#" title="#" rel="category tag">разработка</a></p>
--->
+
+<p class="byline small">Опубликовал 
+<?php if ($film->getUsersRelatedByUserId()): ?>
+<strong><?php echo $film->getUsersRelatedByUserId()->getLogin() ?></strong>
+<?php else: ?>
+Неизвестен	
+<?php endif ?> 
+<?php echo strftime('%d.%m.%Y', $film->getModifiedAt('U')) ?>.</p>
+<p class="categories small"> Жанр: 
+<?php foreach($film->getFilmFilmTypessJoinFilmTypes() as $key=>$row):?><?php if ($key > 0):?>, <?php endif?>
+	<strong><?php echo $row->getFilmTypes()->getTitle() ?></strong>
+<?php endforeach ?>
+</p>
 </div><!--#content-->

@@ -45,6 +45,10 @@ class AfishaPeer extends BaseAfishaPeer
 		return AfishaFilmPeer::getFilmsByIds(self::getForTodayFilmIds($city));
     }
     
+    static public function getCriteriaForTodayMobile($city, $order = 0){
+		return AfishaFilmPeer::getCriteriaFilmsByIdsForMobile(self::getForTodayFilmIds($city), $order);
+    }
+    
 	static public function getByDateRangeAndCity($date_begin, $date_end, $city_id, $limit = null) {
 		$criteria = new Criteria();
 		$cton1 = $criteria->getNewCriterion(self::DATE_BEGIN, $date_begin, Criteria::LESS_EQUAL);

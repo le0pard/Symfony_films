@@ -1,13 +1,17 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.1//EN"
+  "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
 <title><?php if (!include_slot('title')): ?>Кукурудза - Лучшие фильмы и сериалы<?php endif; ?></title>
-<meta content="text/html; charset=UTF-8" http-equiv="content-type">
-<meta content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport">
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" />
 	<?php /* use_javascript('all.js')*/ ?>
 	<?php use_stylesheet('mobile.css') ?>
 	<?php include_http_metas() ?>
-    <?php include_metas() ?>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <?php include_stylesheets() ?>
+    	<?php include_metas() ?>
+    	<link rel="shortcut icon" href="/favicon.ico" />
+    	<?php include_stylesheets() ?>
 	<?php include_javascripts() ?>
 	<style type="text/css">
 		@import url(/css/mobile_adv.css);
@@ -33,12 +37,12 @@
    	<?php include_partial('global/header') ?>
 	<!--HEADER-->
 	<?php echo $sf_content ?>
-	<hr>
+	<hr />
 	<div class="group">
 		<form method="get" action="http://leopard.in.ua" id="search">
 			<div>
-				<input type="text" value="" inputmode="predictOn" id="s" name="s">
-				<input type="submit" value="Search" name="submit_button">
+				<input type="text" value="" id="s" name="s" />
+				<input type="submit" value="Search" name="submit_button" />
 			</div>
 		</form>
 	</div>

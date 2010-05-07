@@ -165,7 +165,9 @@ sfPropelBehavior::add('Film', array(
 			'@sf_cache_partial?module=film&action=_film_main&sf_cache_key=#{id}',
 			'@sf_cache_partial?module=film&action=_topNew&sf_cache_key=top_new',
 			//mobile
-			'@sf_cache_partial?module=film&action=_topNew&sf_cache_key=m_top_new'
+			'mobile/index?sf_format=mobile',
+			'mobile/index?page=*&sf_format=mobile',
+			'mobile/film?id=#{id}&sf_format=mobile'
 		),
 		'has_many_depend' => array(
 			'getFilmFilmTypessJoinFilmTypes' => 'getFilmTypes'

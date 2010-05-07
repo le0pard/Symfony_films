@@ -1,0 +1,11 @@
+index:
+  enabled:     true
+  lifetime:    86400 # сутки
+film:
+  enabled:     true
+  lifetime:    86400 # сутки
+afisha:
+  enabled:     true
+  lifetime:    86400 # сутки
+all:
+  with_layout: false
