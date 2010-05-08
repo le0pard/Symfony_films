@@ -19,7 +19,7 @@
 </p>
 <hr />
 <p class="small">
-Powered by <a onclick="return false;" href="#"><strong>Symfony</strong></a>.
+Powered by <a href="http://leopard.in.ua"><strong>Leopard Brain</strong></a>.
 </p>
 <p id="developer-link">
 	<a href="http://leopard.in.ua" rel="developer" title="Development">Developed by Leopard</a>

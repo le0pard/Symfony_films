@@ -32,14 +32,20 @@ class mobileActions extends sfActions
   	$this->film = FilmPeer::retrieveByPK($request->getParameter('id'));
   	$this->forward404Unless($this->film);
   	
-  	$this->next_film = $this->film->getNextFilm();
-  	$this->prev_film = $this->film->getPrevFilm();
+  	if ($this->film->getIsVisible() && $this->film->getIsPublic()){
+  		$this->next_film = $this->film->getNextFilm();
+  		$this->prev_film = $this->film->getPrevFilm();
+  	} else {
+  		$this->redirect('@homepage_mobile');
+  	}
   }
   
   public function executeAfisha(sfWebRequest $request)
   {
   	if ($request->hasParameter('city_id')){
-  		
+  		$this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+  		$this->forward404Unless($this->selected_city);
+  		$this->city_id_params = $this->selected_city->getId();
   	} else {
   		$this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
   	}
@@ -60,6 +66,47 @@ class mobileActions extends sfActions
   {
   	$this->film = AfishaFilmPeer::retrieveByPK($request->getParameter('id'));
   	$this->forward404Unless($this->film);
+  	
+  	if ($request->hasParameter('city_id')){
+  		$this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+  		$this->forward404Unless($this->selected_city);
+  		$this->city_id_params = $this->selected_city->getId();
+  	} else {
+  		$this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+  	}
+  	
+  	$this->selected_country = $this->selected_city->getAfishaCountry();
+  	
+	$selected_day = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+  	$this->selected_day = date('c', $selected_day);
+  	$this->yesterday_day = date('c', $selected_day - 86400);
+  	$this->tomorrow_day = date('c', $selected_day + 86400);
+  	$this->two_days_day = date('c', $selected_day + 2*86400);
+	
+	$this->afisha_today = AfishaPeer::getByDateRangeAndFilm($this->selected_day, $this->selected_day, $this->film->getId(), $this->selected_city->getId());
+	$this->afisha_yesterday = AfishaPeer::getByDateRangeAndFilm($this->yesterday_day, $this->yesterday_day, $this->film->getId(), $this->selected_city->getId());
+	$this->afisha_tomorrow = AfishaPeer::getByDateRangeAndFilm($this->tomorrow_day, $this->tomorrow_day, $this->film->getId(), $this->selected_city->getId());
+	$this->afisha_2days = AfishaPeer::getByDateRangeAndFilm($this->two_days_day, $this->two_days_day, $this->film->getId(), $this->selected_city->getId());
+  }
+  
+  public function executeAfisha_cinema(sfWebRequest $request)
+  {
+  	$this->cinema = AfishaTheaterPeer::retrieveByPK($request->getParameter('id'));
+  	$this->forward404Unless($this->cinema);
+	$this->selected_city = $this->cinema->getAfishaCity();
+  	$this->forward404Unless($this->selected_city);
+  	$this->city_id_params = $this->selected_city->getId();
+  	
+  	$selected_day = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+  	$this->selected_day = date('c', $selected_day);
+  	$this->yesterday_day = date('c', $selected_day - 86400);
+  	$this->tomorrow_day = date('c', $selected_day + 86400);
+  	$this->two_days_day = date('c', $selected_day + 2*86400);
+  	
+  	$this->afisha_today = AfishaPeer::getByDateRangeAndCinema($this->selected_day, $this->selected_day, $this->cinema->getId());
+	$this->afisha_yesterday = AfishaPeer::getByDateRangeAndCinema($this->yesterday_day, $this->yesterday_day, $this->cinema->getId());
+	$this->afisha_tomorrow = AfishaPeer::getByDateRangeAndCinema($this->tomorrow_day, $this->tomorrow_day, $this->cinema->getId());
+	$this->afisha_2days = AfishaPeer::getByDateRangeAndCinema($this->two_days_day, $this->two_days_day, $this->cinema->getId());
   }
   
   public function executeFilm_poster(sfWebRequest $request)

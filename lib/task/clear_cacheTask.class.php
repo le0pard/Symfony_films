@@ -41,7 +41,16 @@ EOF;
     	'afisha/film?day=*&id=#{id}&month=*&year=*&city_id=*',
     	'afisha/cinema?id=*',
 		'afisha/cinema?day=*&id=*&month=*&year=*',
-    	'@sf_cache_partial?module=afisha&action=_today_films&sf_cache_key=today_films'
+    	'@sf_cache_partial?module=afisha&action=_today_films&sf_cache_key=today_films',
+    	//mobile
+    	'mobile/afisha?sf_format=mobile',
+    	'mobile/afisha?sf_format=mobile&city_id=*',
+    	'mobile/afisha?page=*&sf_format=mobile',
+    	'mobile/afisha?page=*&sf_format=mobile&city_id=*',
+    	'mobile/afisha_film?id=*&sf_format=mobile',
+    	'mobile/afisha_film?id=*&sf_format=mobile&city_id=*',
+    	'mobile/afisha_cinema?id=*&sf_format=mobile',
+    	'mobile/afisha_cinema?id=*&sf_format=mobile&city_id=*'
     );
 	
     $context = sfContext::createInstance($this->configuration);

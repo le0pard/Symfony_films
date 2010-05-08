@@ -82,6 +82,27 @@ ul.table li.disclosure a .date {
 	font-size: 11px;
 	white-space: nowrap;
 }
+ul.table.disclosure a .cinema_title,
+ul.table li.disclosure a .cinema_title {
+	color: #666;
+	font-size: 11px;
+	white-space: nowrap;
+	font-weight:bold;
+}
+
+ul.table.disclosure a .description,
+ul.table li.disclosure a .description {
+	color: #000;
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+ul.table.disclosure a .description_wrap,
+ul.table li.disclosure a .description_wrap {
+	color: #000;
+	font-size: 11px;
+}
+
 ul.table li .title {
 	background: #a5a5a5 url(/images/mobile/title-dimple.gif) repeat-x top;
 	border-bottom:1px solid #777;
@@ -130,7 +151,7 @@ ul.table li .title {
 #navigation-top {
 	display:none;
 }
-.pagination {
+.pagination, .top_menu {
 	background:#fff;
 	border:1px solid #ccc;
 	border-width:0 1px 1px;
@@ -138,22 +159,27 @@ ul.table li .title {
 	margin:0 10px;
 	overflow:hidden;
 }
-.pagination span {
+.pagination span, .top_menu span {
 	display:none;
 }
 .pagination span.next,
-.pagination span.prev {
+.pagination span.prev,
+.top_menu span.next,
+.top_menu span.prev  {
 	display:block;
 	width:50%;
 }
-.pagination span.prev {
+
+.pagination span.prev, .top_menu span.prev {
 	float:right;
 }
-.pagination span.next {
+.pagination span.next, .top_menu span.next {
 	float:left;
 }
 .pagination .next a,
-.pagination .prev a {
+.pagination .prev a,
+.top_menu .next a,
+.top_menu .prev a {
 	border:5px solid #fff;
 	display:block;
 	height:1.5em;
@@ -176,16 +202,31 @@ ul.table.disclosure .pagination .prev a {
 	text-align:right;
 }
 
+.top_menu .next a {
+	border-right:1px solid #ddd;
+	border-left:0;
+	padding-left:25px;
+}
+.top_menu .prev a {
+	border-left:1px solid #fff;
+	border-right:0;
+	padding-right:25px;
+	text-align:right;
+}
+
 #next-prev-bottom,
 #navigation-bottom {display:none;}
 
-#search {
+#search, #change_city {
 	margin: 0;
 }
-#search input {
+#search input, #change_city input {
 	padding: 3px;
 }
-#s {
+#search select, #change_city select {
+	padding: 3px;
+}
+#s, #ch_city {
 	width: 50%;
 }
 
@@ -201,8 +242,14 @@ ul.table.disclosure .pagination .prev a {
 .tabbed .tabs li {
 	float:left;
 	margin-bottom: 0;
+}
+.tabbed .tabs2 li {
 	width:50%;
 }
+.tabbed .tabs4 li {
+	width:25%;
+}
+
 .tabbed .tabs li a{
 	background:#d5d5d5 url(/images/mobile/tab.gif) repeat-x bottom;
 	color:#333;
@@ -276,18 +323,20 @@ ul.table.disclosure .pagination .prev a {
 }
 
 .pagination .next a,
-ul.table.disclosure .pagination .next a {
+ul.table.disclosure .pagination .next a,
+.top_menu .next a {
 	border-bottom-left-radius:10px;
 	-webkit-border-bottom-left-radius:10px;
 	-moz-border-radius-bottomleft:10px;
 }
 .pagination .prev a,
-ul.table.disclosure .pagination .prev a {
+ul.table.disclosure .pagination .prev a,
+.top_menu .prev a {
 	border-bottom-right-radius:10px;
 	-webkit-border-bottom-right-radius:10px;
 	-moz-border-radius-bottomright:10px;
 }
-.pagination {
+.pagination, .top_menu {
 	border-bottom-left-radius:10px;
 	border-bottom-right-radius:10px;
 	-webkit-border-bottom-left-radius:10px;

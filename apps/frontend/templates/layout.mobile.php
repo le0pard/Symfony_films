@@ -18,9 +18,6 @@
 	</style>
 	<script type="text/javascript">
 	<!--
-		CFMOBI_IS_PAGE = false;	
-		CFMOBI_PAGES_TAB = 'Pages';	
-		CFMOBI_POSTS_TAB = 'Recent Posts';	
 		var CFMOBI_TOUCH = ["iPhone","iPod","Android","BlackBerry9530","LG-TU915 Obigo","LGE VX","webOS","Nokia5800"];
 		for (var i = 0; i < CFMOBI_TOUCH.length; i++) {
 			if (navigator.userAgent.indexOf(CFMOBI_TOUCH[i]) != -1) {
@@ -28,7 +25,8 @@
 				break;
 			}
 		}
-	 
+		
+		document.write('<script type="text/javascript" src="/js/jquery/jquery-1.4.2.min.js"><\/script><script type="text\/javascript" src="/js/jquery/mobile.jquery.js"><\/script>');
 	//-->
 	</script>
 </head>

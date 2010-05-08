@@ -13,8 +13,13 @@ sfPropelBehavior::add('Afisha', array(
 			'afisha/index?day=*&id=*&month=*&year=*',
 			//mobile
 			'mobile/afisha?sf_format=mobile',
-			'mobile/afisha?page=*&sf_format=mobile',
-			'mobile/afisha_film?id=*&sf_format=mobile'
+	    	'mobile/afisha?sf_format=mobile&city_id=*',
+	    	'mobile/afisha?page=*&sf_format=mobile',
+	    	'mobile/afisha?page=*&sf_format=mobile&city_id=*',
+	    	'mobile/afisha_film?id=*&sf_format=mobile',
+	    	'mobile/afisha_film?id=*&sf_format=mobile&city_id=*',
+	    	'mobile/afisha_cinema?id=*&sf_format=mobile',
+	    	'mobile/afisha_cinema?id=*&sf_format=mobile&city_id=*'
 		),
 		'belongs_to_depend' => array(
 			'getAfishaTheater',

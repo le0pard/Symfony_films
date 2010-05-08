@@ -10,5 +10,8 @@ afisha:
 afisha_film:
   enabled:     true
   lifetime:    86400 # сутки
+afisha_cinema:
+  enabled:     true
+  lifetime:    86400 # сутки
 all:
   with_layout: false

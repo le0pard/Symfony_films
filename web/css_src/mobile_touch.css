@@ -18,7 +18,9 @@ ul.table li .title {
 	padding-top:16px;
 }
 .pagination .next a,
-.pagination .prev a {
+.pagination .prev a,
+.top_menu span.prev,
+.top_menu span.prev {
 	border-bottom-width:15px;
 	border-top-width:15px;
 }
