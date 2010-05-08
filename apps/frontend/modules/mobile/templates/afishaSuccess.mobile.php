@@ -14,7 +14,6 @@
 	<form method="get" action="" id="change_city">
 		<div>
 			<select id="ch_city" name="city_id">
-				<option value="">** Выберите город **</option>
 				<?php foreach($selected_country->getCities() as $city):?>
 					<option <?php $city->getId() == $selected_city->getId() and print 'selected="selected"' ?> value="<?php echo $city->getId();?>"><?php echo $city->getTitle();?></option>
 				<?php endforeach?>
