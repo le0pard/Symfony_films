@@ -89,6 +89,11 @@
 				<include name="*.js"/>
 			</fileset>
 		</yuicompress>
+		<yuicompress munge="yes" warn="false" linebreak="5000" preserveallsemicolons="yes" outputfolder="${dest_js.dir}/jquery">
+			<fileset dir="${src_js.dir}/jquery">
+				<include name="*.js"/>
+			</fileset>
+		</yuicompress>
 	</target>
 	
 	<target name="minify-css">
