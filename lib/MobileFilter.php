@@ -8,7 +8,12 @@ class MobileFilter extends sfFilter {
 	      case 'mobile':
 	      	$actionInstance = $this->getContext()->getController()->getActionStack()->getLastEntry()->getActionInstance();
             $actionInstance->setLayout('layout'); 
-	        $this->getContext()->getResponse()->setContentType('text/html');
+            $response = $this->getContext()->getResponse();
+	        $response->setContentType('text/html');
+	        $time = 3600;
+	        $response->addCacheControlHttpHeader('max_age='.$time);
+	        $response->addCacheControlHttpHeader('private=True');
+	        $response->setHttpHeader('Expires', $response->getDate(time() + $time * 1000));
 	        break;
 	    }
     }
