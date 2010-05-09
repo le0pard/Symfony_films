@@ -649,6 +649,15 @@ mobile_afisha_cinema:
     id: \d+
     sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
     
+mobile_afisha_cinemas:
+  url:    /mobile/afisha/cinemas/:city_id
+  param:  { module: mobile, action: afisha_cinemas, sf_format: mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    city_id: \d+
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+    sf_method: [get, post]
+    
 mobile_afisha:
   url:    /mobile/afisha
   param:  { module: mobile, action: afisha, sf_format: mobile }

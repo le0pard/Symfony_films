@@ -109,6 +109,26 @@ class mobileActions extends sfActions
 	$this->afisha_2days = AfishaPeer::getByDateRangeAndCinema($this->two_days_day, $this->two_days_day, $this->cinema->getId());
   }
   
+  public function executeAfisha_cinemas(sfWebRequest $request)
+  {
+  	if ($request->isMethod('post') && $request->hasParameter('change_city_id')){
+  		$selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('change_city_id'));
+  		$this->forward404Unless($selected_city);
+  		$this->redirect('@mobile_afisha_cinemas?city_id='.$selected_city->getId());
+  	}
+  	
+  	if ($request->hasParameter('city_id')){
+  		$this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+  		$this->forward404Unless($this->selected_city);
+  		$this->city_id_params = $this->selected_city->getId();
+  	} else {
+  		$this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
+  	}
+  	
+  	$this->selected_country = $this->selected_city->getAfishaCountry();
+  	$this->afisha_cinemas = AfishaTheaterPeer::getByCityId($this->selected_city->getId());
+  }
+  
   public function executeFilm_poster(sfWebRequest $request)
   {
     $this->film = FilmPeer::retrieveByPK($request->getParameter('id'));

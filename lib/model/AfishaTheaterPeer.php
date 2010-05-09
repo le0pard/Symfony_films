@@ -25,5 +25,12 @@ class AfishaTheaterPeer extends BaseAfishaTheaterPeer {
 		$criteria->add(self::EXTERNAL_ID, $external_id);
     	return self::doSelectOne($criteria);
     }
+    
+    static public function getByCityId($city_id){
+    	$criteria = new Criteria();
+		$criteria->add(self::AFISHA_CITY_ID, $city_id);
+		$criteria->addAscendingOrderByColumn(self::TITLE);
+    	return self::doSelect($criteria);
+    } 
 	
 } // AfishaTheaterPeer

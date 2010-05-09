@@ -18,7 +18,8 @@
 					<option <?php $city->getId() == $selected_city->getId() and print 'selected="selected"' ?> value="<?php echo $city->getId();?>"><?php echo $city->getTitle();?></option>
 				<?php endforeach?>
 			</select>
-			<input type="submit" value="Поменять" />
+			<input type="submit" value="Поменять" />  
+			<a title="Кинотеатры" href="<?php echo url_for('@mobile_afisha_cinemas?city_id='.$selected_city->getId()) ?>">Кинотеатры</a>
 		</div>
 	</form>
 </div>
