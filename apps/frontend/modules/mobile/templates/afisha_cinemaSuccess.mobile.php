@@ -33,9 +33,9 @@
 		<h2 id="tomorrow" class="table-title">Завтра</h2>
 		<?php include_partial('mobile/afisha_films_list', array('afisha' => $afisha_tomorrow, 'cinema' => $cinema)) ?>
 	</div>
-	<div id="2days_tab" style="display: none;">
+	<div id="two_days_tab" style="display: none;">
 		<hr>
-		<h2 id="2days" class="table-title">2 дня</h2>
+		<h2 id="two_days" class="table-title">2 дня</h2>
 		<?php include_partial('mobile/afisha_films_list', array('afisha' => $afisha_2days, 'cinema' => $cinema)) ?>
 	</div>
 </div>

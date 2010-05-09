@@ -14,37 +14,37 @@
 // **********************************************************************
 
 jQuery(function($) {
-	$('div.tabbed').prepend('<ul class="tabs tabs4 hide"><li class=""><a href="#yesterday">Вчера</a></li><li class="active"><a href="#today">Сегодня</a></li><li class=""><a href="#tomorrow">Завтра</a></li><li class=""><a href="#2days">2 дня</a></li></ul>');
+	$('div.tabbed').prepend('<ul class="tabs tabs4 hide"><li class=""><a href="#yesterday">Вчера</a></li><li class="active"><a href="#today">Сегодня</a></li><li class=""><a href="#tomorrow">Завтра</a></li><li class=""><a href="#two_days">2 дня</a></li></ul>');
 	var tabs = $('ul.tabs');
 	if (tabs.size()) {
 		tabs.removeClass('hide');
-		$('#yesterday, #today, #tomorrow, #2days').hide();
+		$('#yesterday, #today, #tomorrow, #two_days').hide();
 		$('ul.tabs a[href=#yesterday]').click(function() {
 			$('ul.tabs li').removeClass('active');
 			$(this).parent().addClass('active');
-			$('#today_tab, #tomorrow_tab, #2days_tab').hide();
+			$('#today_tab, #tomorrow_tab, #two_days_tab').hide();
 			$('#yesterday_tab').show();
 			return false;
 		});
 		$('ul.tabs a[href=#today]').click(function() {
 			$('ul.tabs li').removeClass('active');
 			$(this).parent().addClass('active');
-			$('#yesterday_tab, #tomorrow_tab, #2days_tab').hide();
+			$('#yesterday_tab, #tomorrow_tab, #two_days_tab').hide();
 			$('#today_tab').show();
 			return false;
 		});
 		$('ul.tabs a[href=#tomorrow]').click(function() {
 			$('ul.tabs li').removeClass('active');
 			$(this).parent().addClass('active');
-			$('#yesterday_tab, #today_tab, #2days_tab').hide();
+			$('#yesterday_tab, #today_tab, #two_days_tab').hide();
 			$('#tomorrow_tab').show();
 			return false;
 		});
-		$('ul.tabs a[href=#2days]').click(function() {
+		$('ul.tabs a[href=#two_days]').click(function() {
 			$('ul.tabs li').removeClass('active');
 			$(this).parent().addClass('active');
 			$('#yesterday_tab, #today_tab, #tomorrow_tab').hide();
-			$('#2days_tab').show();
+			$('#two_days_tab').show();
 			return false;
 		});
 		$('.tabbed ul.group').css({
