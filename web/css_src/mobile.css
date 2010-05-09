@@ -1,5 +1,6 @@
 body {
 	font-family: Verdana, sans-serif;
+	font-size:12px;
 }
 h1, h2, h3, p {
 	margin: 0 0 5px 0;
@@ -51,7 +52,7 @@ hr {
 	border: 0 none;
 }
 .caption p.caption-text {
-	font-size: 11px;
+	font-size: 0.9em;
 	line-height: 17px;
 	padding: 0 4px 5px;
 	margin: 0;

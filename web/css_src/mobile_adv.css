@@ -5,7 +5,7 @@ body {
 	color:#333;
 	margin:0;
 }
-h1 {font-size:18px;}
+h1 {font-size:1.5em;}
 hr {display:none;}
 a {color:blue;}
 blockquote {
@@ -20,7 +20,7 @@ p, li {
 	margin: 0 0 10px;
 }
 .small {
-	font-size:10px;
+	font-size:0.8em;
 	line-height:2;
 }
 .hide {
@@ -79,13 +79,13 @@ ul.table li.disclosure a {
 ul.table.disclosure a .date,
 ul.table li.disclosure a .date {
 	color: #666;
-	font-size: 11px;
+	font-size: 0.9em;
 	white-space: nowrap;
 }
 ul.table.disclosure a .cinema_title,
 ul.table li.disclosure a .cinema_title {
 	color: #666;
-	font-size: 11px;
+	font-size: 0.9em;
 	white-space: nowrap;
 	font-weight:bold;
 }
@@ -93,14 +93,14 @@ ul.table li.disclosure a .cinema_title {
 ul.table.disclosure a .description,
 ul.table li.disclosure a .description {
 	color: #000;
-	font-size: 11px;
+	font-size: 0.9em;
 	white-space: nowrap;
 }
 
 ul.table.disclosure a .description_wrap,
 ul.table li.disclosure a .description_wrap {
 	color: #000;
-	font-size: 11px;
+	font-size: 0.9em;
 }
 
 ul.table li .title {
@@ -108,7 +108,7 @@ ul.table li .title {
 	border-bottom:1px solid #777;
 	color: #fff;
 	display: block;
-	font-size: 10px;
+	font-size: 0.8em;
 	font-weight:normal;
 	padding: 3px 8px;
 	text-shadow: 0 1px 1px #555;
@@ -116,7 +116,7 @@ ul.table li .title {
 .title-divider {
 	background:url(/images/mobile/title-divider.png) repeat-x center;
 	color:#999;
-	font-size:10px;
+	font-size:0.8em;
 	font-weight:normal;
 	margin:0 -15px 10px -15px;
 }
@@ -145,7 +145,7 @@ ul.table li .title {
 	background: transparent url(/images/mobile/logo.png) no-repeat 10px center;
 	color:#fff;
 	display:block;
-	font-size:16px;
+	font-size:1em;
 	padding:10px 40px;
 }
 #navigation-top {
@@ -267,7 +267,7 @@ ul.table.disclosure .pagination .prev a {
 .commentlist li {
 	background:url(/images/mobile/comment.png) no-repeat 10px 10px;
 	border-bottom:1px solid #ddd;
-	font-size:11px;
+	font-size:0.9em;
 	margin:0;
 	padding:10px 10px 10px 30px;
 }
