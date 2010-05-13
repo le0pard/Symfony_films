@@ -7,15 +7,24 @@ class MobileFilter extends sfFilter {
     	$response = $this->getContext()->getResponse();
       	$request = $this->getContext()->getRequest();
       	
-      	if ($request->getCookie('no_mobile') == false && $request->getHost() != sfConfig::get('app_mobile_domain') && $this->isMobileUserAgents($request)){
+      	if (!$request->getCookie('no_mobile')){
+      		$response->setCookie('no_mobile', 'no', time() + 7776000, '/', '.'.sfConfig::get('app_domain'));
+      	}
+      	
+      	if ($request->getCookie('no_mobile') == 'no' && 
+      		$request->getRequestFormat() != 'mobile' && 
+      		$this->isMobileUserAgents($request)){
+      			
       		return $this->getContext()->getController()->redirect('@homepage_mobile');
-      	} else {
-      		$response->setCookie('no_mobile', true, time() + 7776000, '/', '.'.sfConfig::get('app_domain'));
+      	} elseif($request->getRequestFormat() != 'mobile') {
+      		$response->setCookie('no_mobile', 'yes', time() + 7776000, '/', '.'.sfConfig::get('app_domain'));
       	}
       	
 	    switch ($request->getRequestFormat()){
 	      case 'mobile':
-	      	if (!$request->getCookie('no_mobile')){
+	      	if ($request->getCookie('no_mobile') == 'yes'){
+	      		return $this->getContext()->getController()->redirect('@homepage_standard');
+	      	} else {	
 		      	$actionInstance = $this->getContext()->getController()->getActionStack()->getLastEntry()->getActionInstance();
 	            $actionInstance->setLayout('layout'); 
 		        $response->setContentType('text/html');
@@ -23,8 +32,6 @@ class MobileFilter extends sfFilter {
 		        $response->addCacheControlHttpHeader('max_age='.$time);
 		        $response->addCacheControlHttpHeader('private=True');
 		        $response->setHttpHeader('Expires', $response->getDate(time() + $time * 1000));
-	      	} else {
-	      		return $this->getContext()->getController()->redirect('@homepage_standard');
 	      	}
 	        break;
 	    }
