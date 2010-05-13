@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  <?php echo sprintf('Кинотеатры %s - Coocoorooza', $selected_city->getTitle()) ?>
+<?php end_slot(); ?>
 <p id="top-menu" class="top_menu">
 <span>&laquo;</span> 
 <span class="next">

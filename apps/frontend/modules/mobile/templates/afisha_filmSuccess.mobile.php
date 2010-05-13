@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  <?php echo sprintf('%s (%s) - Coocoorooza', $film->getTitle(), $film->getOrigTitle()) ?>
+<?php end_slot(); ?>
 <p id="top-menu" class="top_menu">
 <span>&laquo;</span> 
 <span class="next">

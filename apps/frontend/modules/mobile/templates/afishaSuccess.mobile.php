@@ -1,3 +1,4 @@
+<?php slot('title') ?>Афиша - Coocoorooza<?php end_slot(); ?>
 <p id="top-menu" class="top_menu">
 <span>&laquo;</span> 
 <span class="next">

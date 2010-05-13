@@ -1,3 +1,6 @@
+<?php slot('title') ?>
+  <?php echo sprintf('%s - Coocoorooza', $film->getTitle()) ?>
+<?php end_slot(); ?>
 <p id="next-prev-top" class="pagination">
 <span>&laquo;</span> 
 <span class="next">
