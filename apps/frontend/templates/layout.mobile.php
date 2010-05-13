@@ -39,7 +39,7 @@
 	<div class="group">
 		<form method="get" action="<?php echo url_for('@search_mobile') ?>" id="search">
 			<div>
-				<input type="text" value="" id="s" name="s" />
+				<input inputmode="user predictOn" type="text" value="" id="s" name="s" />
 				<input type="submit" value="Поиск" />
 			</div>
 		</form>
