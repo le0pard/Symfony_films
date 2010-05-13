@@ -6,7 +6,7 @@
 		</address>
 		<ul id="menu_3">
 		  <li>
-			<a href="<?php echo url_for('@go_to_mobile_page') ?>">Мобильная версия</a>&nbsp;|&nbsp;
+			<a href="<?php echo url_for('@homepage_mobile') ?>">Мобильная версия</a>&nbsp;|&nbsp;
 		  </li>
 		  <li>
 			<a href="<?php echo url_for('@static_page_rules') ?>">Правила</a>&nbsp;|&nbsp;

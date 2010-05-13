@@ -146,15 +146,4 @@ class mobileActions extends sfActions
   	return sfView::NONE;
   }
   
-  public function executeGo_to_standart(sfWebRequest $request)
-  {
-  	$this->getResponse()->setCookie('no_mobile', 'yes', time() + 7776000, '/', '.'.sfConfig::get('app_domain'));
-  	$this->redirect('@homepage_standard');
-  }
-  
-  public function executeGo_to_mobile(sfWebRequest $request)
-  {
-  	$this->getResponse()->setCookie('no_mobile', 'no', time() + 7776000, '/', '.'.sfConfig::get('app_domain'));
-  	$this->redirect('@homepage_mobile');
-  }
 }

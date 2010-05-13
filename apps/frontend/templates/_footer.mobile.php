@@ -14,7 +14,7 @@
 
 <div id="footer">
 <p>
-<a href="<?php echo url_for('@go_to_standart_page') ?>">Выйти из мобильного режима</a> 
+<a href="<?php echo url_for('@homepage_standard') ?>">Выйти из мобильного режима</a> 
 <span class="small">(стандартная версия для браузера)</span>.
 </p>
 <hr />
