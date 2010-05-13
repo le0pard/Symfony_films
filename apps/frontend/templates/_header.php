@@ -26,7 +26,7 @@
 			<a href="<?php echo url_for('@static_page_jabber') ?>">Jabber: мануал</a>
 		</li>
 		<li>
-			<a href="<?php echo url_for('@homepage_mobile') ?>">Мобильная версия</a>
+			<a href="<?php echo url_for('@go_to_mobile_page') ?>">Мобильная версия</a>
 		</li>
 	</ul>
 

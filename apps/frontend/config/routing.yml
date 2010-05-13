@@ -712,6 +712,21 @@ homepage_mobile:
     sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
 
 
+#go to
+go_to_standart_page:
+  url:    /go_to_standart
+  param:  { module: mobile, action: go_to_standart, sf_format: mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+
+go_to_mobile_page:
+  url:    /go_to_mobile
+  param:  { module: mobile, action: go_to_mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    sf_host: <?php echo sfConfig::get('app_domain')."\n" ?>
+
   
 # default rules
 homepage_standard:
