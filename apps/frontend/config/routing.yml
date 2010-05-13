@@ -697,6 +697,13 @@ films_mobile:
     page: \d+
     sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
 
+search_mobile:
+  url:   /mobile/search
+  param: { module: search, action: index, sf_format: mobile }
+  class:  sfRequestHostRoute
+  requirements:
+    sf_host: <?php echo sfConfig::get('app_mobile_domain')."\n" ?>
+
 homepage_mobile:
   url:    /
   param:  { module: mobile, action: index, sf_format: mobile }

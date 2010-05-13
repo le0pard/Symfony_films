@@ -37,10 +37,10 @@
 	<?php echo $sf_content ?>
 	<hr />
 	<div class="group">
-		<form method="get" action="http://leopard.in.ua" id="search">
+		<form method="get" action="<?php echo url_for('@search_mobile') ?>" id="search">
 			<div>
 				<input type="text" value="" id="s" name="s" />
-				<input type="submit" value="Search" name="submit_button" />
+				<input type="submit" value="Поиск" />
 			</div>
 		</form>
 	</div>
