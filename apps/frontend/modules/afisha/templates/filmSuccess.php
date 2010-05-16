@@ -32,7 +32,7 @@
   </ul>
 </div>
 <div class="cinema_desc">
-	<?php echo $film->getDescription(ESC_RAW) ?>
+	<?php echo strip_tags($film->getDescription(ESC_RAW)) ?>
 </div>
 </div>
 

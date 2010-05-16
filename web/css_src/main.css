@@ -1843,3 +1843,9 @@ border-bottom:1px dashed;
 	height:500px;
 	float:right;
 }
+
+
+/* webslice */
+#CooCooSlice{
+	display:none;
+}

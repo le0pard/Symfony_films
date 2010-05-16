@@ -14,6 +14,9 @@
     <link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="alternate" type="application/atom+xml" title="Atom"  href="<?php echo url_for('@film_types_all_atom', true) ?>" />
 	<link title="RSS" type="application/rss+xml" rel="alternate" href="<?php echo url_for('@film_types_all_rss', true) ?>"/>
+	
+	<link rel="default-slice" type="application/x-hatom" href="#CooCooSlice" />
+	
     <?php include_stylesheets() ?>
     <!--[if lte IE 6]>
         <?php echo stylesheet_tag("ie6")?>
@@ -62,6 +65,9 @@
 	</div>
   </div>
   <?php include_partial('global/reject') ?>
+  <!--Webslice-->
+  <?php include_component('webslice', 'layout') ?>
+  <!--Webslice-->
   <?php include_partial('global/google_analytics') ?>
   </body>
 </html>

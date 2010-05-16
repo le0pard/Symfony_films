@@ -35,7 +35,7 @@
 <?php if ($film->getPoster()): ?>
 <img class="aligncenter" src="/uploads/afisha_films/<?php echo $film->getPoster() ?>" alt="<?php echo $film->getTitle()?>" title="<?php echo $film->getTitle()?>" />
 <?php endif?>
-<p><?php echo $film->getDescription(ESC_RAW) ?></p>
+<p><?php echo strip_tags($film->getDescription(ESC_RAW)) ?></p>
 <div class="clear"></div>
 </div><!--#content-->
 

@@ -632,6 +632,11 @@ sitemap:
   url:   /<?php echo sfConfig::get('sf_error_404_module') ?>/<?php echo sfConfig::get('sf_error_404_action')."\n" ?>
   param: { module: <?php echo sfConfig::get('sf_error_404_module') ?>, action: <?php echo sfConfig::get('sf_error_404_action') ?> }
 
+# services
+service_webslice_main:
+  url:    /service/webslice
+  param:  { module: webslice, action: index }
+
 # mobile routes
 mobile_afisha_film:
   url:    /mobile/afisha/film/:id
