@@ -68,47 +68,48 @@ EOF;
 	
 	foreach ($this->routes as $name => $route)
     {
+    	$name = preg_replace('/^(\d+)(.*)$/i', 'page_$1$2', $name);
       $requirements = $route->getRequirements();
-	  $variables = $route->getVariables();
-	  $options = $route->getOptions();
-	  $tokens = $route->getTokens();
-	  $defaults_params = $route->getDefaults();
+		  $variables = $route->getVariables();
+		  $options = $route->getOptions();
+		  $tokens = $route->getTokens();
+		  $defaults_params = $route->getDefaults();
       $method = isset($requirements['sf_method']) ? strtoupper(is_array($requirements['sf_method']) ? implode(', ', $requirements['sf_method']) : $requirements['sf_method']) : 'ANY';
 	  
-	  $temp_route = "'";
-	  $temp_variables = array_keys($variables);
-	  foreach($tokens as $key=>$token){
-	  	switch ($token[0]){
-	  		case 'separator':
-				if (!$token[1]) $temp_route.= $token[2];
-				break;
-			case 'text':
-				$temp_route.= $token[2];
-				break;	
-			case 'variable':
-				$temp_route.= "' + ".$token[3]." + '";
-				break;
-		}
-	  }
-	  $temp_route.= "'";
-	  
-	  $this->logSection('routes', sprintf('Route for name "%s" >> "%s"', $name, $temp_route));
-	  
-	  $function_str.= $name.'_path = function(';
-	  foreach($temp_variables as $k=>$variable){
-	  	if ($k != 0) $function_str.= ', ';
-	  	$function_str.= $variable;
-	  }
-	  $function_str.= "){ return less_routes_prefix_url + ".$temp_route."; }\n";
-    }
-	
-	$handle = fopen(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR."js_src".DIRECTORY_SEPARATOR.$application."_less_routes_".$file_prefix.".js", "w+");
-	if ($handle){
-		if (fwrite($handle, $path_prefix.$function_str) === false) {
-			throw new sfCommandException(sprintf('Cannot write %s_less_routes_%s.js text file.', $application, $file_prefix));
-        }
-    	fclose($handle); 
-	}
+		  $temp_route = "'";
+		  $temp_variables = array_keys($variables);
+		  foreach($tokens as $key=>$token){
+		  	switch ($token[0]){
+		  		case 'separator':
+					if (!$token[1]) $temp_route.= $token[2];
+					break;
+				case 'text':
+					$temp_route.= $token[2];
+					break;	
+				case 'variable':
+					$temp_route.= "' + ".$token[3]." + '";
+					break;
+			}
+		  }
+		  $temp_route.= "'";
+		  
+		  $this->logSection('routes', sprintf('Route for name "%s" >> "%s"', $name, $temp_route));
+		  
+		  $function_str.= $name.'_path = function(';
+		  foreach($temp_variables as $k=>$variable){
+		  	if ($k != 0) $function_str.= ', ';
+		  	$function_str.= $variable;
+		  }
+		  $function_str.= "){ return less_routes_prefix_url + ".$temp_route."; }\n";
+	    }
+		
+			$handle = fopen(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR."js_src".DIRECTORY_SEPARATOR.$application."_less_routes_".$file_prefix.".js", "w+");
+			if ($handle){
+				if (fwrite($handle, $path_prefix.$function_str) === false) {
+					throw new sfCommandException(sprintf('Cannot write %s_less_routes_%s.js text file.', $application, $file_prefix));
+		        }
+		    	fclose($handle); 
+			}
   }
   
 }

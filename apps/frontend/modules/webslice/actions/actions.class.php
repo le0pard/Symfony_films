@@ -20,7 +20,6 @@ class websliceActions extends sfActions
     if ($request->hasParameter('city_id')){
       $this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
       $this->forward404Unless($this->selected_city);
-      $this->city_id_params = $this->selected_city->getId();
     } else {
       $this->selected_city = AfishaCityPeer::getByTitle(sfConfig::get('app_default_city', "Киев"));
     }

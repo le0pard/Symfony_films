@@ -637,6 +637,10 @@ service_webslice_main:
   url:    /service/webslice
   param:  { module: webslice, action: index }
 
+service_webslice_city:
+  url:    /service/webslice/:city_id
+  param:  { module: webslice, action: index }
+
 # mobile routes
 mobile_afisha_film:
   url:    /mobile/afisha/film/:id

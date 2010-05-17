@@ -1,4 +1,117 @@
 body{
-	width:320px;
-	height:240px;
+	width:318px;
+	height:238px;
+	margin:0;
+	padding:0;
+	font-size:10px;
+	border:1px solid #CCC;
+}
+
+a img {
+	border:0;
+}
+
+#top_menu{
+	width:318px;
+	height:25px;
+}
+#slider{
+  border:1px solid #779D1D;
+}
+
+#slider ul, #slider li{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+#slider, #slider li{ 
+  width:318px;
+  height:185px;
+  overflow:hidden; 
+}
+
+.cinema_title{
+  font-size:1.2em;
+	padding:1px 1px 2px 4px;
+	overflow:hidden;
+	font-size:1.8em;
+}
+
+.cinema_title span {
+	font-size:0.8em;
+}
+
+.cinema_info{
+	float:left;
+	width:112px;
+	text-align:center;
+	padding:0 2px;
+}
+
+.cinema_info .poster {
+display: inline-block;
+height: 149px;
+width: 108px;
+overflow: hidden;
+position: relative;
+text-align: left; }
+.cinema_info .poster img {
+  margin: 4px 0 0 5px;
+	max-height:140px;
+  max-width:100px;}
+.cinema_info .poster:before {
+  content:"";
+	height:149px;
+	width:108px;
+	position:absolute;
+	background:url(/images/poster_template_tiny.png) no-repeat }
+	
+.cinema_data{
+	float:left;
+	padding:0 1px;
+	width:200px;
+	font-size:1.3em;
+	height:150px;
+	overflow:auto;
+}
+
+.cinema_data p {
+	text-align:justify;
+	margin:0;
+	padding:0;
+}
+
+#navigation{
+	height:30px;
+	width:318px;
+}
+
+div#prevBtn{
+  float:left;
+  width:20px;
+  cursor:pointer;
+  cursor:hand;
+  background:url(/images/services/webslice/arrow-180.png) no-repeat center;
+  height:25px;
+  border:1px solid #CCC;
+}
+div#nextBtn{
+  float:right;
+  width:20px;
+  cursor:pointer;
+  cursor:hand;
+  background:url(/images/services/webslice/arrow.png) no-repeat center;
+  height:25px;
+  border:1px solid #CCC;
+}
+
+#selector_city{
+	margin:0 20px;
+	text-align:center;
+	vertical-align:middle;
+	padding-top:5px;
+}
+
+#selector_city select{
+	font-size:1.4em;
 }

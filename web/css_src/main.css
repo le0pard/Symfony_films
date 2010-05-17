@@ -1639,7 +1639,7 @@ line-height:1.5em
         width: 49px;
         height: 36px;
         padding: 10px 0 0 0;
-        background: url(../images/aff_dates_green.png) no-repeat;
+        background: url(/images/aff_dates_green.png) no-repeat;
         text-shadow: 0 -1px #c5c5c5;
         color: #98c825;
         text-decoration: none; }
@@ -1649,7 +1649,7 @@ line-height:1.5em
           line-height: 0.75em; }
       #affiche_dates ul li span {
         color: #fcc863;
-        background: url(../images/aff_dates_orange.png) no-repeat; }
+        background: url(/images/aff_dates_orange.png) no-repeat; }
   #affiche_dates .aff_location {
     padding-bottom: 1em; }
     #affiche_dates .aff_location .country, #affiche_dates .aff_location .city {
@@ -1719,7 +1719,7 @@ line-height:1.5em
         height: 250px;
         width: 180px;
         position: absolute;
-        background: url(../images/poster_template.png) no-repeat; }
+        background: url(/images/poster_template.png) no-repeat; }
   #cinema_info .cinema_address {
     display: inline-block;
     vertical-align: top;
