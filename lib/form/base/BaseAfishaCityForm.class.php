@@ -23,7 +23,7 @@ abstract class BaseAfishaCityForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'                => new sfValidatorPropelChoice(array('model' => 'AfishaCity', 'column' => 'id', 'required' => false)),
+      'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'afisha_country_id' => new sfValidatorPropelChoice(array('model' => 'AfishaCountry', 'column' => 'id')),
       'external_id'       => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'title'             => new sfValidatorString(array('max_length' => 500)),

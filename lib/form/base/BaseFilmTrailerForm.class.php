@@ -24,7 +24,7 @@ abstract class BaseFilmTrailerForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'           => new sfValidatorPropelChoice(array('model' => 'FilmTrailer', 'column' => 'id', 'required' => false)),
+      'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'film_id'      => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'trailer_type' => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'trailer_code' => new sfValidatorString(array('max_length' => 500)),

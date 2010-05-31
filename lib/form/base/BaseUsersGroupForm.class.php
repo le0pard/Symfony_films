@@ -21,7 +21,7 @@ abstract class BaseUsersGroupForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'                     => new sfValidatorPropelChoice(array('model' => 'UsersGroup', 'column' => 'id', 'required' => false)),
+      'id'                     => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'name'                   => new sfValidatorString(array('max_length' => 255)),
       'description'            => new sfValidatorString(array('required' => false)),
       'users_users_group_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Users', 'required' => false)),

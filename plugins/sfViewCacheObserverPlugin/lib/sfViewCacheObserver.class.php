@@ -27,7 +27,7 @@ class sfViewCacheObserver  {
 	}
 	
 	public function identifyAndClearByObject($object, $called_main_method = true){
-		$class = get_class($object);
+    $class = get_class($object);
 		$criteriaArray = sfConfig::get('propel_behavior_viewCacheObserver_'.$class.'_criteria', array());
 		$criteria_pass = true;
 		foreach($criteriaArray as $key=>$row){

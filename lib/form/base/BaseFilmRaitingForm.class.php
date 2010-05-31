@@ -22,7 +22,7 @@ abstract class BaseFilmRaitingForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorPropelChoice(array('model' => 'FilmRaiting', 'column' => 'id', 'required' => false)),
+      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'user_id'    => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
       'rating'     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),

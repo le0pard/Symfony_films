@@ -21,7 +21,7 @@ abstract class BaseAfishaTimeForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'        => new sfValidatorPropelChoice(array('model' => 'AfishaTime', 'column' => 'id', 'required' => false)),
+      'id'        => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'afisha_id' => new sfValidatorPropelChoice(array('model' => 'Afisha', 'column' => 'id')),
       'time'      => new sfValidatorString(array('max_length' => 200)),
       'price'     => new sfValidatorString(array('max_length' => 100, 'required' => false)),

@@ -20,7 +20,7 @@ abstract class BaseFilmTotalRatingForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'           => new sfValidatorPropelChoice(array('model' => 'FilmTotalRating', 'column' => 'id', 'required' => false)),
+      'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'film_id'      => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id')),
       'total_rating' => new sfValidatorNumber(),
     ));

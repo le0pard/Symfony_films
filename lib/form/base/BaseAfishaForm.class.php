@@ -30,7 +30,7 @@ abstract class BaseAfishaForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'                => new sfValidatorPropelChoice(array('model' => 'Afisha', 'column' => 'id', 'required' => false)),
+      'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'external_id'       => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'afisha_theater_id' => new sfValidatorPropelChoice(array('model' => 'AfishaTheater', 'column' => 'id')),
       'afisha_film_id'    => new sfValidatorPropelChoice(array('model' => 'AfishaFilm', 'column' => 'id')),

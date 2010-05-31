@@ -12,14 +12,14 @@ class LoginFilter extends sfFilter {
 	        if ($rk && $rk->getUsers()){
 	        	if ($rk->getUsers()->getIsActive()){
 	        		$this->getContext()->getUser()->signIn($rk->getUsers());
-				} else {
-					$this->getContext()->getController()->forward('user', 'logout');
-				}
+						} else {
+							$this->getContext()->getController()->forward('user', 'logout');
+						}
 	        }
 	      }
-	  }
+	   }
     }
     // Execute next filter
-	$filterChain->execute();
+	  $filterChain->execute();
   }
 }

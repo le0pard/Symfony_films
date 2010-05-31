@@ -24,7 +24,7 @@ abstract class BaseMessagesForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'           => new sfValidatorPropelChoice(array('model' => 'Messages', 'column' => 'id', 'required' => false)),
+      'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'from_user_id' => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
       'to_user_id'   => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id')),
       'message_type' => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),

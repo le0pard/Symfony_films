@@ -6,7 +6,7 @@
 <div id="entrance">
   <h1>Скриншоты к &laquo;<?php echo $film->getTitle() ?>&raquo;</h1>
   <?php include_partial('film/add_panel', array('film' => $film)) ?>
-  
+<!--   
   	<div>
 		<a id="upload_gallery_link" href="javascript:;">Мульти-загрузчик</a>
 	</div>
@@ -22,10 +22,11 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-			var session_name = '<?php echo ini_get('session.name') ?>';
-			var session_val = '<?php echo session_id()?>';
+			var session_name = 'filmUserSession';
+			var session_val = '<?php echo session_id().":".sha1(session_id().':6hehAbVP6JADNbDSGRjZVGT9PNvbptcW')?>';
 		</script>
 	</div>
+ -->
   <?php if (isset($form_add)): ?>
   <form id="film_add_form_st2_add" action="<?php echo url_for('film_add_step2', $film) ?>" method="post" <?php $form_add->isMultipart() and print 'enctype="multipart/form-data"' ?>>
 	<div class="rows"><?php echo $form_add['thumb_img']->renderLabel() ?><br />

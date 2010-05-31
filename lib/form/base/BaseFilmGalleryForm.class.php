@@ -22,7 +22,7 @@ abstract class BaseFilmGalleryForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorPropelChoice(array('model' => 'FilmGallery', 'column' => 'id', 'required' => false)),
+      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'film_id'    => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'thumb_img'  => new sfValidatorString(array('max_length' => 500)),
       'normal_img' => new sfValidatorString(array('max_length' => 500)),

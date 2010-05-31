@@ -24,7 +24,7 @@ abstract class BaseCommentsForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'          => new sfValidatorPropelChoice(array('model' => 'Comments', 'column' => 'id', 'required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'user_id'     => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id')),
       'film_id'     => new sfValidatorPropelChoice(array('model' => 'Film', 'column' => 'id', 'required' => false)),
       'description' => new sfValidatorString(array('required' => false)),

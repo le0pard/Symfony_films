@@ -35,7 +35,7 @@ abstract class BaseUsersForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'                     => new sfValidatorPropelChoice(array('model' => 'Users', 'column' => 'id', 'required' => false)),
+      'id'                     => new sfValidatorChoice(array('choices' => array($this->getObject()->getId()), 'empty_value' => $this->getObject()->getId(), 'required' => false)),
       'login'                  => new sfValidatorString(array('max_length' => 100)),
       'password'               => new sfValidatorString(array('max_length' => 100)),
       'password_salt'          => new sfValidatorString(array('max_length' => 100)),
