@@ -42,7 +42,7 @@ class mobileActions extends sfActions
   
   public function executeAfisha(sfWebRequest $request)
   {
-  	if ($request->hasParameter('city_id')){
+  	if ($request->hasParameter('city_id') && is_numeric($request->hasParameter('city_id'))){
   		$this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
   		$this->forward404Unless($this->selected_city);
   		$this->city_id_params = $this->selected_city->getId();
