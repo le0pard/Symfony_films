@@ -620,6 +620,16 @@ statistic_cathegory_films:
 statistic_films_by_day:
   url:   /statistic_films_by_day
   param: { module: statistic, action: films_by_day } 
+
+#api
+api_afisha_theaters:
+  url:    /api/afisha_theaters/:city_id/:token.:sf_format
+  param:  { module: api, action: afisha_theaters }
+  requirements:
+    city_id: \d+
+    token: (.*)
+    sf_method: [get]
+    sf_format: (?:xml|json)
  
 #sitemap
 sitemap:
@@ -631,6 +641,7 @@ sitemap:
 404error_page:
   url:   /<?php echo sfConfig::get('sf_error_404_module') ?>/<?php echo sfConfig::get('sf_error_404_action')."\n" ?>
   param: { module: <?php echo sfConfig::get('sf_error_404_module') ?>, action: <?php echo sfConfig::get('sf_error_404_action') ?> }
+
 
 # services
 service_webslice_main:

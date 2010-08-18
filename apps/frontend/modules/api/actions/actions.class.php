@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * api actions.
+ *
+ * @package    symfony_films
+ * @subpackage api
+ * @author     leopard
+ * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class apiActions extends sfActions
+{
+ /**
+  * Executes index action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeAfisha_theaters(sfWebRequest $request)
+  {
+    if ($request->hasParameter('token') && $request->hasParameter('city_id') && $request->getParameter('token') == sfConfig::get('app_api_secret_token', 'secret_token')){
+	    $this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+	    $this->forward404Unless($this->selected_city);
+	        
+	    $this->afisha_cinemas = AfishaTheaterPeer::getByCityId($this->selected_city->getId());
+    } else {
+    	return $this->forward404(sprintf('Not valid "%s" token.', $request->getParameter('token'))); 
+    }
+  }
+}
