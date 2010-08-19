@@ -5,6 +5,7 @@
 <?php $i++ ?>
 {
 'id': <?php echo $row->getId()?>,
+'city_id': <?php echo $row->getAfishaCityId() ?>,
 'title': '<?php echo $row->getTitle() ?>',
 'phone': '<?php echo $row->getPhone()?>',
 'address': '<?php echo $row->getAddress() ?>',
