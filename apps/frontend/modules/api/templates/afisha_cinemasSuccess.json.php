@@ -9,8 +9,6 @@
 'theater_id': <?php echo $row->getAfishaTheaterId() ?>,
 'cinema_id': <?php echo $row->getAfishaFilmId() ?>,
 'zal_title': '<?php echo $row->getAfishaZal()->getTitle() ?>',
-'link': '<?php echo $row->getLink()?>',
-'description': '<?php echo $row->getDescription() ?>',
 'date_begin': '<?php echo $row->getDateBegin() ?>',
 'date_end': '<?php echo $row->getDateEnd() ?>',
 'times': '<?php echo $row->getTimes() ?>',
