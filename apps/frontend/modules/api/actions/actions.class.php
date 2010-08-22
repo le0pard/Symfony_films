@@ -26,4 +26,19 @@ class apiActions extends sfActions
     	return $this->forward404(sprintf('Not valid "%s" token.', $request->getParameter('token'))); 
     }
   }
+  
+  
+  public function executeAfisha_cinemas(sfWebRequest $request)
+  {
+    if ($request->hasParameter('token') && $request->hasParameter('city_id') && $request->getParameter('token') == sfConfig::get('app_api_secret_token', 'secret_token')){
+      $this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
+      $this->forward404Unless($this->selected_city);
+
+      $selected_day = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+      $two_days_day = date('c', $selected_day + 2*86400);
+      $this->afisha_cinemas = AfishaPeer::getByDateRangeAndCity($selected_day, $two_days_day, $this->selected_city->getId());
+    } else {
+      return $this->forward404(sprintf('Not valid "%s" token.', $request->getParameter('token'))); 
+    }
+  }
 }

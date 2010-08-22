@@ -630,6 +630,15 @@ api_afisha_theaters:
     token: (.*)
     sf_method: [get]
     sf_format: (?:xml|json)
+    
+api_afisha_cinemas:
+  url:    /api/afisha_cinemas/:city_id/:token.:sf_format
+  param:  { module: api, action: afisha_cinemas }
+  requirements:
+    city_id: \d+
+    token: (.*)
+    sf_method: [get]
+    sf_format: (?:xml|json)
  
 #sitemap
 sitemap:
