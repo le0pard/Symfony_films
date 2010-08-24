@@ -2,8 +2,8 @@
   $afisha = array(); 
   $afisha['afisha'] = array();
   $afisha['cinemas'] = array();
+  $cinemas = array();
 ?>
-<?php $cinemas = array(); ?>
 <?php foreach($afisha_cinemas as $key=>$row): ?>
 <?php
    $afisha['afisha'][] = array(
