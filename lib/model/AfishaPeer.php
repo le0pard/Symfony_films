@@ -48,6 +48,22 @@ class AfishaPeer extends BaseAfishaPeer
   static public function getCriteriaForTodayMobile($city, $order = 0){
 		return AfishaFilmPeer::getCriteriaFilmsByIdsForMobile(self::getForTodayFilmIds($city), $order);
   }
+  
+  static public function getApiByTwoDatesAndCity($date_today, $date_tomorow, $city_id) {
+    $criteria = new Criteria();
+    $cton1_1 = $criteria->getNewCriterion(self::DATE_BEGIN, $date_today, Criteria::LESS_EQUAL);
+    $cton1_2 = $criteria->getNewCriterion(self::DATE_END, $date_today, Criteria::GREATER_EQUAL);
+    $cton2_1 = $criteria->getNewCriterion(self::DATE_BEGIN, $date_tomorow, Criteria::LESS_EQUAL);
+    $cton2_2 = $criteria->getNewCriterion(self::DATE_END, $date_tomorow, Criteria::GREATER_EQUAL);
+    $cton1_1->addAnd($cton1_2);
+    $cton2_1->addAnd($cton2_2);
+    $cton1_1->addOr($cton2_1);
+    $criteria->add($cton1_1);
+    $criteria->add(AfishaTheaterPeer::AFISHA_CITY_ID, $city_id);
+    $criteria->addAscendingOrderByColumn(AfishaTheaterPeer::TITLE);
+    $criteria->addAscendingOrderByColumn(AfishaFilmPeer::TITLE);
+    return self::doSelectJoinAll($criteria);
+  }
     
 	static public function getByDateRangeAndCity($date_begin, $date_end, $city_id, $limit = null) {
 		$criteria = new Criteria();
@@ -61,7 +77,7 @@ class AfishaPeer extends BaseAfishaPeer
 		}
 		$criteria->addAscendingOrderByColumn(AfishaTheaterPeer::TITLE);
 		$criteria->addAscendingOrderByColumn(AfishaFilmPeer::TITLE);
-    	return self::doSelectJoinAll($criteria);
+    return self::doSelectJoinAll($criteria);
   }
     
 	static public function getByDateRangeAndCinema($date_begin, $date_end, $cinema_id) {

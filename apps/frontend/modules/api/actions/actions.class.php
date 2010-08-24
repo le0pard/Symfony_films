@@ -35,7 +35,8 @@ class apiActions extends sfActions
       $this->forward404Unless($this->selected_city);
 
       $selected_day = mktime(0, 0, 0, date("m"), date("d"), date("Y"));
-      $this->afisha_cinemas = AfishaPeer::getByDateRangeAndCity($selected_day, $selected_day, $this->selected_city->getId());
+      $tomorrow_day = date('c', $selected_day + 86400);
+      $this->afisha_cinemas = AfishaPeer::getApiByTwoDatesAndCity($selected_day, $tomorrow_day, $this->selected_city->getId());
     } else {
       return $this->forward404(sprintf('Not valid "%s" token.', $request->getParameter('token'))); 
     }
