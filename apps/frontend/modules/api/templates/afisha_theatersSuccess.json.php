@@ -1,16 +1,17 @@
-<?php $i = 0; ?>
-{ 'theaters': [
+<?php 
+  $theaters = array();
+  $theaters['theaters'] = array();
+?>
 <?php foreach($afisha_cinemas as $key=>$row): ?>
-<?php echo $i == 0 ? '' : ",\n" ?>
-<?php $i++ ?>
-{
-'id': <?php echo $row->getId()?>,
-'city_id': <?php echo $row->getAfishaCityId() ?>,
-'title': '<?php echo $row->getTitle() ?>',
-'phone': '<?php echo $row->getPhone()?>',
-'address': '<?php echo $row->getAddress() ?>',
-'link': '<?php echo $row->getLink() ?>'
-}
+<?php
+   $theaters['theaters'][] = array(
+    'id' => $row->getId(),
+    'city_id' => $row->getAfishaCityId(),
+    'title' => $row->getTitle(),
+    'phone' => $row->getPhone(), 
+    'address' => $row->getAddress(),
+    'link' => $row->getLink()
+   );
+?>
 <?php endforeach ?>
-]
-}
+<?php echo json_encode($theaters) ?>
