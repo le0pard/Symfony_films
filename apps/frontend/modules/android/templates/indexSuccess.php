@@ -11,7 +11,7 @@
 <body>
     <div id="top">
         <div class="center">
-            <h1><img alt="PopCornUA" src="/images/android/logo.gif" width="250" height="63" /></h1>
+            <h1><img alt="PopCornUA" src="/images/android/logo.png" /></h1>
 
             <p>Android приложение для афиши кинотеатров Украины.</p>
             
