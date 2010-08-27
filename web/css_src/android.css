@@ -160,17 +160,7 @@ h3 a {
   top: -40px;
   padding-top: 73px;
   padding-left: 45px;
-  background: url(/images/android/iphone.png) 0 0 no-repeat;
-}
-
-.tweet ul {
-  list-style-type: none;
-}
-
-.tweet li {
-  padding: 6px 0;
-  font-size: 14px;
-  line-height: 18px;
+  background: url(/images/android/android.png) 0 0 no-repeat;
 }
 
 /* @group Sidebar */
