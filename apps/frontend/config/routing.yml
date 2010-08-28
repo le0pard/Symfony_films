@@ -746,9 +746,16 @@ android_page:
   param: { module: android, action: index }
   class:  sfRequestHostRoute
   requirements:
-#    sf_host: <?php echo sfConfig::get('app_android_domain')."\n" ?> 
-     sf_host: android.film.leo.local
+     sf_host: <?php echo sfConfig::get('app_android_domain')."\n" ?> 
+#     sf_host: android.film.leo.local
 
+android_download_page:
+  url:   /download
+  param: { module: android, action: download }
+  class:  sfRequestHostRoute
+  requirements:
+     sf_host: <?php echo sfConfig::get('app_android_domain')."\n" ?> 
+#     sf_host: android.film.leo.local
 
 # default rules
 homepage_standard:

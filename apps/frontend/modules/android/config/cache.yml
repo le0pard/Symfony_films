@@ -1,0 +1,5 @@
+index:
+  enabled:     true
+  lifetime:    864000 # 10 деней 
+all:
+  with_layout: false

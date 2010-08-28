@@ -27,6 +27,7 @@
     <![endif]-->
     
 	<?php include_javascripts() ?>
+	<?php include_partial('global/google_analytics') ?>
   </head>
   <body>
     <div id="supervisor">
@@ -68,6 +69,5 @@
   <!--Webslice-->
   <?php include_component('webslice', 'layout') ?>
   <!--Webslice-->
-  <?php include_partial('global/google_analytics') ?>
   </body>
 </html>

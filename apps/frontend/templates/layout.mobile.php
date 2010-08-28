@@ -29,6 +29,7 @@
 		document.write('<script type="text/javascript" src="/js/jquery/jquery-1.4.2.min.js"><\/script><script type="text\/javascript" src="/js/jquery/mobile.jquery.js"><\/script>');
 	//-->
 	</script>
+	<?php include_partial('global/google_analytics') ?>
 </head>
 <body id="is-list">
 	<!--HEADER-->
@@ -47,6 +48,5 @@
 	<!--FOOTER-->
    	<?php include_partial('global/footer') ?>
 	<!--FOOTER-->
-	<?php include_partial('global/google_analytics') ?>
 </body>
 </html>

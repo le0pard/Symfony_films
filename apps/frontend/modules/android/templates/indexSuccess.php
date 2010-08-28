@@ -7,6 +7,7 @@
     <meta name="description" content="PopCornUA - Android приложение для афиши кинотеатров Украины" />
     <meta name="keywords" content="popcornua, android, coocoorooza, афиша, кинотеатр, Украина" />
     <link rel="stylesheet" href="/css/android.css" type="text/css" media="screen" charset="utf-8" />
+    <?php include_partial('global/google_analytics') ?>
 </head>
 <body>
     <div id="top">
@@ -23,7 +24,7 @@
     <div id="band">
 
         <div class="center">
-            <a id="dl" href="#">Скачать <span class="ver">Версия 1.0</span></a>
+            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.0</span></a>
             <div class="preview">
                 <a id="pre" href="#">Страница на AndroidMarket</a>
             </div>
@@ -38,6 +39,7 @@
                 <li>Просмотр сеансов в выбраном кинотеатре</li>
                 <li>Просмотр фильма и кинотеатров, в которых он транслируется</li>
                 <li>Информация за текущий и следующий день</li>
+                <li>Работает на 2.х версиях Android</li>
               </ol>
             <div class="bot_line"></div>
         </div>
