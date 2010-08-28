@@ -21,7 +21,7 @@ class androidActions extends sfActions
   }
   
   public function executeDownload(sfWebRequest $request){
-  	$file = sfConfig::get('sf_web_dir').'/download/android/androidCoocooAfisha.apk1';
+  	$file = sfConfig::get('sf_web_dir').'/download/android/androidCoocooAfisha.apk';
   	if (file_exists($file)) {
 	  	$response = $this->getResponse();
 	  	$response->clearHttpHeaders();
