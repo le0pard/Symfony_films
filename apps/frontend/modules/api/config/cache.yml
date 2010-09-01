@@ -1,0 +1,8 @@
+afisha_theaters:
+  enabled:     true
+  lifetime:    3600 # 1 час
+afisha_cinemas:
+  enabled:     true
+  lifetime:    3600 # 1 час
+all:
+  with_layout: false
