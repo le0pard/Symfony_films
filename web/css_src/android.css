@@ -96,7 +96,7 @@ h3 a {
   padding: 20px 0;
   background-color: #1d1e20;
   border-top: 1px solid rgba(255, 255, 255, .1);
-	min-height:300px;
+	min-height:500px;
 }
 
 #dl {
@@ -167,7 +167,7 @@ h3 a {
 
 #side {
   position: absolute;
-  top: 160px;
+  top: 220px;
   left: 0;
   padding-left: 40px;
 }

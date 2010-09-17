@@ -24,15 +24,27 @@
     <div id="band">
 
         <div class="center">
-            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.1.0</span></a>
+            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.1.2</span></a>
             <div class="preview">
-                <a id="pre" href="#">Страница на AndroidMarket</a>
+                <a id="pre" href="market://search?q=pname:ua.in.leopard.androidCoocooAfisha">Страница на AndroidMarket</a>
             </div>
         </div>
 
     </div>
     <div id="bot">
         <div class="center">
+            <div id="side">
+              <p>QR-Code</p>
+              <img alt="QR-Code" src="http://fs01.androidpit.info/aqr/x85/894585-1284749775708.png" />
+              <div>
+                <p>Дополнительные ссылки:</p>
+                <ul>
+                  <li><a target="_blank" href="http://www.androidpit.com/en/android/market/apps/app/ua.in.leopard.androidCoocooAfisha/PopCornUA">www.androidpit.com</a></li>
+                  <li><a target="_blank" href="http://www.appbrain.com/app/ua.in.leopard.androidCoocooAfisha">www.appbrain.com</a></li>
+                  <li><a target="_blank" href="http://ru.androlib.com/android.application.ua-in-leopard-androidcoocooafisha-jFiBj.aspx">ru.androlib.com</a></li>
+                </ul>
+              </div>            
+            </div>
             <h2><strong>Основные возможности:</strong></h2>
               <ol>
                 <li>Возможность работы как онлайн, так и оффлайн (без постоянного подключения к интернету)</li>
@@ -43,6 +55,8 @@
                 <li>Режим экономии трафика (без картинок)</li>
                 <li>Работает на 2.х версиях Android</li>
               </ol>
+            <div class="bot_line"></div>
+            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/PeWOOZ4QaS4?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PeWOOZ4QaS4?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
             <div class="bot_line"></div>
         </div>
     </div>
