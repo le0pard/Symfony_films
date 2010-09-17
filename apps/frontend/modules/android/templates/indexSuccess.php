@@ -35,7 +35,7 @@
         <div class="center">
             <div id="side">
               <p>QR-Code</p>
-              <img alt="QR-Code" src="http://fs01.androidpit.info/aqr/x85/894585-1284749775708.png" />
+              <img alt="QR-Code" src="http://chart.apis.google.com/chart?cht=qr&chs=164x164&chl=market://details?id=ua.in.leopard.androidCoocooAfisha" />
               <div>
                 <p>Дополнительные ссылки:</p>
                 <ul>
