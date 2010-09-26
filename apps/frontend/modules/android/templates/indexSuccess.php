@@ -10,6 +10,13 @@
     <?php include_partial('global/google_analytics') ?>
 </head>
 <body>
+    
+    <div style="position: absolute; top: 5px; right: 50px; white-space: nowrap; height: 20px;">
+        <a target="_blank" href="http://twitter.com/PopCornUA">
+          <img style="height: 20px; width: 58px; border-width: 0px; cursor: pointer;" alt="Follow twitter" src="/images/android/follow_alpha.png" />
+        </a>
+    </div>
+
     <div id="top">
         <div class="center">
             <h1><img alt="PopCornUA" src="/images/android/logo.png" /></h1>
@@ -43,7 +50,14 @@
                   <li><a target="_blank" href="http://www.appbrain.com/app/ua.in.leopard.androidCoocooAfisha">www.appbrain.com</a></li>
                   <li><a target="_blank" href="http://ru.androlib.com/android.application.ua-in-leopard-androidcoocooafisha-jFiBj.aspx">ru.androlib.com</a></li>
                 </ul>
-              </div>            
+              </div> 
+              <br />
+              <p>Следи за обновлениями:</p>
+              <div>
+                <a target="_blank" href="http://twitter.com/PopCornUA">
+                  <img alt="Follow twitter" src="/images/android/twitter.png" />
+                </a>
+              </div>           
             </div>
             <h2><strong>Основные возможности:</strong></h2>
               <ol>
