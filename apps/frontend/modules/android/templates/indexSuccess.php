@@ -12,7 +12,7 @@
 <body>
     
     <div style="position: absolute; top: 5px; right: 50px; white-space: nowrap; height: 20px;">
-        <a target="_blank" href="http://twitter.com/PopCornUA">
+        <a target="_blank" href="http://twitter.com/PopCornUA" style="border:0;">
           <img style="height: 20px; width: 58px; border-width: 0px; cursor: pointer;" alt="Follow twitter" src="/images/android/follow_alpha.png" />
         </a>
     </div>
@@ -55,7 +55,7 @@
               <p>Следи за обновлениями:</p>
               <div>
                 <a target="_blank" href="http://twitter.com/PopCornUA">
-                  <img alt="Follow twitter" src="/images/android/twitter.png" />
+                  <img style="border:0;" alt="Follow twitter" src="/images/android/twitter.png" />
                 </a>
               </div>           
             </div>
