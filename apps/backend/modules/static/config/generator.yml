@@ -33,6 +33,7 @@ generator:
 
       filter:
         display: [title, is_visible]
+        class: false
 
       form: 
         class: StaticPagesForm

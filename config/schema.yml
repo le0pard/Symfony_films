@@ -1,4 +1,3 @@
-
 propel:
   users:
     id:               ~
@@ -179,6 +178,9 @@ propel:
    description:     { type: longvarchar }
    created_at:      ~
    updated_at:      ~
+   latitude:        { type: varchar(50) }
+   longitude:       { type: varchar(50) }
+   normal_telephone:        { type: varchar(255) }
    
   afisha_film:
    id:              ~

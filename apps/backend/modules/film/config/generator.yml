@@ -35,6 +35,7 @@ generator:
 
       filter:
         display: [title, original_title, pub_year]
+        class: false
 
       form: 
         class: FilmForm

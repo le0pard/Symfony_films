@@ -453,6 +453,9 @@ CREATE TABLE "afisha_theater"
 	"description" TEXT,
 	"created_at" TIMESTAMP,
 	"updated_at" TIMESTAMP,
+	"latitude" VARCHAR(50),
+	"longitude" VARCHAR(50),
+	"normal_telephone" VARCHAR(255),
 	PRIMARY KEY ("id")
 );
 

@@ -20,4 +20,7 @@ require 'lib/model/om/BaseAfishaCity.php';
  */
 class AfishaCity extends BaseAfishaCity {
 
+    public function __toString(){
+      return sprintf('%s (%s)', $this->getTitle(), $this->getId());
+    }
 } // AfishaCity

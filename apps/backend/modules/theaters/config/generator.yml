@@ -1,0 +1,48 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           AfishaTheater
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          afisha_theater
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions:
+        _new: { label: "Создать" }
+      fields:
+        title: { label: Название }
+        address: { label: Адрес }
+        phone: { label: Телефоны }
+        description: { label: Описание }
+        latitude: { label: Широта }
+        longitude: { label: Долгота }
+        normal_telephone: { label: Телефон для бронирования }
+        
+      list:
+        title:          Кинотеатры
+        display:        [title, address, normal_telephone]
+        max_per_page:   50
+        sort:           [afisha_city_id, asc]
+        batch_actions:
+          _delete: { label: Удалить }
+        object_actions:
+          _edit:       { label: Редактировать }
+          _delete:     { label: Удалить, confirm: "Уверены, что хотите удалить?" }
+        actions:
+          _new: { label: Создать }
+          
+      filter:
+        display: [afisha_city_id, title, address, normal_telephone]
+        class: false
+        
+      form:
+        class: BackendAfishaTheaterForm
+      edit:
+        title: Редактировать кинотеатр %%title%%
+      new: 
+        title: Новый кинотеатр

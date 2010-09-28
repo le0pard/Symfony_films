@@ -1,3 +1,12 @@
+afisha_theater:
+  class: sfPropelRouteCollection
+  options:
+    model:                AfishaTheater
+    module:               theaters
+    prefix_path:          /theaters
+    column:               id
+    with_wildcard_routes: true
+
 banned_ips:
   class: sfPropelRouteCollection
   options:

@@ -33,6 +33,7 @@ generator:
 
       filter:
         display: [title, is_visible, is_not_main]
+        class: false
 
       form: 
         class: BackendFilmTypesForm

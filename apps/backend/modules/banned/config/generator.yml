@@ -32,6 +32,7 @@ generator:
 
       filter:
         display: [ip]
+        class: false
 
       form: ~
       edit:
