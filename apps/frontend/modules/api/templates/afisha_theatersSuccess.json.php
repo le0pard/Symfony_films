@@ -10,7 +10,10 @@
     'title' => $row->getTitle(),
     'phone' => $row->getPhone(), 
     'address' => $row->getAddress(),
-    'link' => $row->getLink()
+    'link' => $row->getLink(),
+    'latitude' => $row->getLatitude(),
+    'longitude' => $row->getLongitude(),
+    'call_phone' => $row->getNormalTelephone()
    );
 ?>
 <?php endforeach ?>
