@@ -71,7 +71,7 @@
                 <li>Работает на 2.х версиях Android</li>
               </ol>
             <div class="bot_line"></div>
-            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/PeWOOZ4QaS4?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/PeWOOZ4QaS4?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/U967Jrre1Zw?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/U967Jrre1Zw?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
             <div class="bot_line"></div>
         </div>
     </div>
