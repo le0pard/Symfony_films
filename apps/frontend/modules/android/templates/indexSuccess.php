@@ -31,7 +31,7 @@
     <div id="band">
 
         <div class="center">
-            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.1.5</span></a>
+            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.2.0</span></a>
             <div class="preview">
                 <a id="pre" href="market://search?q=pname:ua.in.leopard.androidCoocooAfisha">Страница на AndroidMarket</a>
             </div>
@@ -66,6 +66,7 @@
                 <li>Просмотр фильма и кинотеатров, в которых он транслируется</li>
                 <li>Информация за текущий и следующий день</li>
                 <li>Фильтр на любимые кинотеатры</li>
+                <li>Карта кинотеатров</li>
                 <li>Режим экономии трафика (без картинок)</li>
                 <li>Работает на 2.х версиях Android</li>
               </ol>
