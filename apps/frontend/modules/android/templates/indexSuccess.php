@@ -31,7 +31,7 @@
     <div id="band">
 
         <div class="center">
-            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.3.8</span></a>
+            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.3.9</span></a>
             <div class="preview">
                 <a id="pre" href="market://search?q=pname:ua.in.leopard.androidCoocooAfisha">Страница на AndroidMarket</a>
             </div>
