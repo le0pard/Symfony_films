@@ -5,7 +5,4 @@ Migrate:
 ./symfony propel:build-filters
 ./symfony cache:clear
 
-
-ALTER TABLE afisha_theater ADD COLUMN latitude character varying(50);
-ALTER TABLE afisha_theater ADD COLUMN longitude character varying(50);
-ALTER TABLE afisha_theater ADD COLUMN normal_telephone character varying(255);
+ALTER TABLE afisha_film ADD COLUMN casts character varying(800);

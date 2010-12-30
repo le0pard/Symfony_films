@@ -18,7 +18,7 @@
   <ul>
 	<li><strong>Название в прокате: </strong><span><?php echo $film->getTitle()?></span></li>
 	<li><strong>Оригинальное название: </strong><span><?php echo $film->getOrigTitle()?></span></li>
-
+  <?php if ($film->getCasts() != ""): ?><li><strong>В ролях: </strong><span><?php echo $film->getCasts() ?></span></li><?php endif ?>
 	<li><strong>Год: </strong><span><?php echo $film->getYear() ?></span></li>
 	<li><strong>Ссылка: </strong><span><?php echo $film->getLink() ?></span></li>
 	<li><strong>Рейтинг: </strong>

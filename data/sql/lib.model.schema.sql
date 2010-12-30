@@ -483,6 +483,7 @@ CREATE TABLE "afisha_film"
 	"video_tag" VARCHAR(255),
 	"created_at" TIMESTAMP,
 	"updated_at" TIMESTAMP,
+	"casts" VARCHAR(800),
 	PRIMARY KEY ("id")
 );
 

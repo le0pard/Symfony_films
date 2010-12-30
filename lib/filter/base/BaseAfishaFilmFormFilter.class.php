@@ -22,6 +22,7 @@ abstract class BaseAfishaFilmFormFilter extends BaseFormFilterPropel
       'video_tag'   => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'casts'       => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -35,6 +36,7 @@ abstract class BaseAfishaFilmFormFilter extends BaseFormFilterPropel
       'video_tag'   => new sfValidatorPass(array('required' => false)),
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'casts'       => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('afisha_film_filters[%s]');
@@ -63,6 +65,7 @@ abstract class BaseAfishaFilmFormFilter extends BaseFormFilterPropel
       'video_tag'   => 'Text',
       'created_at'  => 'Date',
       'updated_at'  => 'Date',
+      'casts'       => 'Text',
     );
   }
 }

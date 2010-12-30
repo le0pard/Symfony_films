@@ -194,6 +194,7 @@ propel:
    video_tag:       { type: varchar(255) }
    created_at:      ~
    updated_at:      ~ 
+   casts:           { type: varchar(800) }
      
   afisha:
    id:              ~

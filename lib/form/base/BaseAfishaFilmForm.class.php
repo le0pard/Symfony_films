@@ -25,6 +25,7 @@ abstract class BaseAfishaFilmForm extends BaseFormPropel
       'video_tag'   => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
+      'casts'       => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -39,6 +40,7 @@ abstract class BaseAfishaFilmForm extends BaseFormPropel
       'video_tag'   => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
+      'casts'       => new sfValidatorString(array('max_length' => 800, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('afisha_film[%s]');
