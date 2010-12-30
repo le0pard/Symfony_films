@@ -30,7 +30,8 @@
     'year' => $row->getYear(),
     'poster' => $row->getPoster(),
     'link' => $row->getLink(),
-    'description' => strip_tags($row->getDescription(ESC_RAW))
+    'description' => strip_tags($row->getDescription(ESC_RAW)),
+    'casts' => $row->getCasts()
    );
 ?>
 <?php endforeach ?>

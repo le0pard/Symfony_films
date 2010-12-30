@@ -18,7 +18,6 @@
   <ul>
 	<li><strong>Название в прокате: </strong><span><?php echo $film->getTitle()?></span></li>
 	<li><strong>Оригинальное название: </strong><span><?php echo $film->getOrigTitle()?></span></li>
-  <?php if ($film->getCasts() != ""): ?><li><strong>В ролях: </strong><span><?php echo $film->getCasts() ?></span></li><?php endif ?>
 	<li><strong>Год: </strong><span><?php echo $film->getYear() ?></span></li>
 	<li><strong>Ссылка: </strong><span><?php echo $film->getLink() ?></span></li>
 	<li><strong>Рейтинг: </strong>
@@ -31,8 +30,13 @@
 	
   </ul>
 </div>
+<?php if ($film->getCasts() != ""): ?>
+<div id="film_casts">
+  <strong>В ролях: </strong><div style="margin:10px 0;"><?php echo $film->getCasts() ?></div>
+</div>
+<?php endif ?>
 <div class="cinema_desc">
-	<?php echo strip_tags($film->getDescription(ESC_RAW)) ?>
+	<strong>Сюжет: </strong><div style="margin-top:10px;"><?php echo strip_tags($film->getDescription(ESC_RAW)) ?></div>
 </div>
 </div>
 

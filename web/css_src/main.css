@@ -1069,6 +1069,8 @@ border-bottom:1px dashed;
 border-bottom-color:#909090
 }
 
+
+
 #content_body #film_trailers {
 margin-bottom:2em;
 background:#eee;
@@ -1729,6 +1731,13 @@ line-height:1.5em
     vertical-align: top; }
     #cinema_info #film_desc ul {
       width: auto; }
+  #cinema_info #film_casts {
+    width:100%;
+		padding-top:0.4em;
+    padding-bottom:0.4em;
+    border-bottom:1px dashed;
+    border-bottom-color:#909090
+	}
 
 
 
