@@ -5,7 +5,7 @@
     <title>PopCornUA - Android приложение для афиши кинотеатров Украины</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
     <meta name="description" content="PopCornUA - Android приложение для афиши кинотеатров Украины" />
-    <meta name="keywords" content="popcornua, android, coocoorooza, афиша, кинотеатр, Украина" />
+    <meta name="keywords" content="popcornua, android, coocoorooza, афиша, кинотеатр, кинотеатры, Украина" />
     <link rel="stylesheet" href="/css/android.css" type="text/css" media="screen" charset="utf-8" />
     <?php include_partial('global/google_analytics') ?>
 </head>
@@ -46,9 +46,9 @@
               <div>
                 <p>Дополнительные ссылки:</p>
                 <ul>
-                  <li><a target="_blank" href="http://www.androidpit.com/en/android/market/apps/app/ua.in.leopard.androidCoocooAfisha/PopCornUA">www.androidpit.com</a></li>
-                  <li><a target="_blank" href="http://www.appbrain.com/app/ua.in.leopard.androidCoocooAfisha">www.appbrain.com</a></li>
-                  <li><a target="_blank" href="http://ru.androlib.com/android.application.ua-in-leopard-androidcoocooafisha-jFiBj.aspx">ru.androlib.com</a></li>
+                  <li><a rel="nofollow" target="_blank" href="http://www.appbrain.com/app/ua.in.leopard.androidCoocooAfisha">www.appbrain.com</a></li>
+                  <li><a rel="nofollow" target="_blank" href="http://ru.androlib.com/android.application.ua-in-leopard-androidcoocooafisha-jFiBj.aspx">ru.androlib.com</a></li>
+                  <li><a rel="nofollow" target="_blank" href="http://www.androidpit.com/en/android/market/apps/app/ua.in.leopard.androidCoocooAfisha/PopCornUA">www.androidpit.com</a></li>
                 </ul>
               </div> 
               <br />
@@ -72,7 +72,7 @@
                 <li>Работает на 2.х версиях Android</li>
               </ol>
             <div class="bot_line"></div>
-            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/U967Jrre1Zw?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/U967Jrre1Zw?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/5QVDa-S81vw?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/5QVDa-S81vw?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
             <div class="bot_line"></div>
         </div>
     </div>
