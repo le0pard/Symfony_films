@@ -128,7 +128,9 @@ EOF
 		}
 		$this->getResponse()->setHttpHeader('Content-Type','application/json;charset=utf-8');
         return $this->renderText(json_encode($output));
-	}
+	  } else {
+	  	return $this->renderText("");
+	  }
   }
   
   public function executeRegistration_done(sfWebRequest $request){
