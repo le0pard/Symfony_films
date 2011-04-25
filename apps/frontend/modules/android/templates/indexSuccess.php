@@ -31,7 +31,7 @@
     <div id="band">
 
         <div class="center">
-            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 1.4.7</span></a>
+            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 2.0.0</span></a>
             <div class="preview">
                 <a id="pre" href="market://search?q=pname:ua.in.leopard.androidCoocooAfisha">Страница на AndroidMarket</a>
             </div>
@@ -67,12 +67,13 @@
                 <li>Информация за текущий и следующий день</li>
                 <li>Фильтр на любимые кинотеатры</li>
                 <li>Карта кинотеатров</li>
-                <li>Виджет для рабочего стола</li>
+                <li>Удобный и быстрый поиск фильмов</li>
                 <li>Режим экономии трафика (без картинок)</li>
+                <li>Простой и красивый дизайн</li>
                 <li>Работает на 2.х версиях Android</li>
               </ol>
             <div class="bot_line"></div>
-            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/5QVDa-S81vw?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/5QVDa-S81vw?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+            <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/ntds49_WCL0?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/ntds49_WCL0?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
             <div class="bot_line"></div>
         </div>
     </div>
