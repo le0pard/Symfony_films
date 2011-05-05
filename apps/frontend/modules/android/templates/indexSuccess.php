@@ -70,7 +70,7 @@
                 <li>Удобный и быстрый поиск фильмов</li>
                 <li>Режим экономии трафика (без картинок)</li>
                 <li>Простой и красивый дизайн</li>
-                <li>Работает на 2.х версиях Android</li>
+                <li>Работает на Android 1.6 и выше</li>
               </ol>
             <div class="bot_line"></div>
             <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/ntds49_WCL0?fs=1&amp;hl=ru_RU&amp;hd=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/ntds49_WCL0?fs=1&amp;hl=ru_RU&amp;hd=1" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
