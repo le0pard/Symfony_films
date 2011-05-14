@@ -67,7 +67,7 @@ class mobileActions extends sfActions
   	$this->film = AfishaFilmPeer::retrieveByPK($request->getParameter('id'));
   	$this->forward404Unless($this->film);
   	
-  	if ($request->hasParameter('city_id')){
+  	if ($request->hasParameter('city_id') && is_numeric($request->getParameter('city_id'))){
   		$this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
   		$this->forward404Unless($this->selected_city);
   		$this->city_id_params = $this->selected_city->getId();
@@ -111,13 +111,13 @@ class mobileActions extends sfActions
   
   public function executeAfisha_cinemas(sfWebRequest $request)
   {
-  	if ($request->isMethod('post') && $request->hasParameter('change_city_id')){
+  	if ($request->isMethod('post') && $request->hasParameter('change_city_id') && is_numeric($request->getParameter('change_city_id'))){
   		$selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('change_city_id'));
   		$this->forward404Unless($selected_city);
   		$this->redirect('@mobile_afisha_cinemas?city_id='.$selected_city->getId());
   	}
   	
-  	if ($request->hasParameter('city_id')){
+  	if ($request->hasParameter('city_id') && is_numeric($request->getParameter('city_id'))){
   		$this->selected_city = AfishaCityPeer::retrieveByPK($request->getParameter('city_id'));
   		$this->forward404Unless($this->selected_city);
   		$this->city_id_params = $this->selected_city->getId();
