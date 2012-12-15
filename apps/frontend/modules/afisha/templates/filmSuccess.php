@@ -44,4 +44,4 @@
 
 <?php include_partial('afisha/list', array('afisha' => $afisha)) ?>
 
-<div id="afisha_source">Информация предоставлена сайтом <a href="http://kino-teatr.ua/ru/main/film/film_id/<?php echo $film->getExternalId()?>.phtml" target="_blank" rel="nofollow">www.kino-teatr.ua</a></div>
+<div id="afisha_source">Информация предоставлена сайтом <a href="http://kino-teatr.ua/ru/main/film/film_id/<?php echo $film->getExternalId()?>.phtml" target="_blank">www.kino-teatr.ua</a></div>
