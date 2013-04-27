@@ -5,19 +5,19 @@
 <h1><?php echo $cinema->getTitle()?></h1>
 <div id="cinema_info">
 <div>
-	<a class="back" href="<?php echo url_for('@afisha') ?>">Назад на афишу</a>
+  <a class="back" href="<?php echo url_for('@afisha') ?>">Назад на афишу</a>
 </div>
 <!--
 <div class="cinema_name">
-	<h1><?php echo $cinema->getTitle()?></h1>
+  <h1><?php echo $cinema->getTitle()?></h1>
 </div>
  -->
 <div class="cinema_address">
-	<h4>тел. <?php echo $cinema->getPhone()?><br />
-	<?php echo $cinema->getAddress()?></h4>
+  <h4>тел. <?php echo $cinema->getPhone()?><br />
+  <?php echo $cinema->getAddress()?></h4>
 </div>
 <div class="cinema_desc">
-	<?php echo $cinema->getDescription(ESC_RAW) ?>
+  <?php echo $cinema->getDescription(ESC_RAW) ?>
 </div>
 </div>
 

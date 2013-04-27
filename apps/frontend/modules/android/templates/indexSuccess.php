@@ -3,14 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>PopCornUA - Android приложение для афиши кинотеатров Украины</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="PopCornUA - Android приложение для афиши кинотеатров Украины" />
     <meta name="keywords" content="popcornua, android, coocoorooza, афиша, кинотеатр, кинотеатры, Украина" />
     <link rel="stylesheet" href="/css/android.css" type="text/css" media="screen" charset="utf-8" />
     <?php include_partial('global/google_analytics') ?>
 </head>
 <body>
-    
+
     <div style="position: absolute; top: 5px; right: 50px; white-space: nowrap; height: 20px;">
         <a target="_blank" href="http://twitter.com/PopCornUA" style="border:0;">
           <img style="height: 20px; width: 58px; border-width: 0px; cursor: pointer;" alt="Follow twitter" src="/images/android/follow_alpha.png" />
@@ -22,16 +22,16 @@
             <h1><img alt="PopCornUA" src="/images/android/logo.png" /></h1>
 
             <p>Android приложение для афиши кинотеатров Украины.</p>
-            
+
             <div id="vid">
-                
+
             </div>
         </div>
     </div>
     <div id="band">
 
         <div class="center">
-            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 2.2.2</span></a>
+            <a id="dl" href="<?php echo url_for('@android_download_page') ?>">Скачать <span class="ver">Версия 2.2.3</span></a>
             <div class="preview">
                 <a id="pre" href="market://search?q=pname:ua.in.leopard.androidCoocooAfisha">Страница на AndroidMarket</a>
             </div>
@@ -50,14 +50,14 @@
                   <li><a rel="nofollow" target="_blank" href="http://ru.androlib.com/android.application.ua-in-leopard-androidcoocooafisha-jFiBj.aspx">ru.androlib.com</a></li>
                   <li><a rel="nofollow" target="_blank" href="http://www.androidpit.com/en/android/market/apps/app/ua.in.leopard.androidCoocooAfisha/PopCornUA">www.androidpit.com</a></li>
                 </ul>
-              </div> 
+              </div>
               <br />
               <p>Следи за обновлениями:</p>
               <div>
                 <a target="_blank" href="http://twitter.com/PopCornUA">
                   <img style="border:0;" alt="Follow twitter" src="/images/android/twitter.png" />
                 </a>
-              </div>           
+              </div>
             </div>
             <h2><strong>Основные возможности:</strong></h2>
               <ol>
@@ -80,12 +80,12 @@
     <div id="ftr">
         <div class="center">
 
-            
+
             <div class="info">
-                <p>              
+                <p>
                 &copy; 2010 <a href="http://leopard.in.ua">Васильев Алексей</a>.
                 </p>
-                
+
             </div>
         </div>
 
