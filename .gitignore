@@ -11,7 +11,6 @@ lib/vendor/**
 data/films.*
 .tmp_*
 data/sphinx/*
-lib/XmlParser.class.php
 lib/task/updateAfishaTask.class.php
 apps/frontend/config/app.yml
 apps/backend/config/app.yml
