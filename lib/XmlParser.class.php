@@ -39,9 +39,11 @@ class XmlParser {
 					if ('shows' == $row['name']){
 						foreach($row['children'] as $row2){
 							$temp_array = array('id' => $row2['attrs']['id'], 'film_id' => $row2['attrs']['film_id'], 'cinema_id' => $row2['attrs']['cinema_id'], 'hall_id' => $row2['attrs']['hall_id']);
+							$temp_array['id'] = $row2['attrs']['film_id'].$row2['attrs']['cinema_id'].$row2['attrs']['hall_id'];
 							foreach($row2['children'] as $row3){
 								if (in_array($row3['name'], array('begin', 'end'))){
 									$temp_array[$row3['name']] = $row3['data'];
+									$temp_array['id'] .= str_replace('-', '', $row3['data']);
 								} elseif ('times' == $row3['name']){
 									if (isset($row3['children'])){
 										foreach($row3['children'] as $row4){
